@@ -2871,18 +2871,18 @@ a.subdued {
   -moz-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   border-color: #b2b2b2;
-  background-color: #f8f8f8;
+  background-color: #ebebeb;
   background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
   color: #444;
   position: absolute;
   bottom: 0;
   z-index: 5;
   width: 100%;
-  height: 49px;
+  height: 49px; /*EDIT: changed from 49, tab item not container*/
   /*border-style: solid;
   border-top-width: 1px; EDIT: remove border*/
   background-size: 0;
-  line-height: 49px; }
+  line-height: 49px; /*EDIT: changed from 49, moves tab text*/}
   .tabs .tab-item .badge {
     background-color: #444;
     color: #f8f8f8; }
