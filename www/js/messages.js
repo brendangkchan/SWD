@@ -15,17 +15,17 @@ app.factory("Messages", function() {
   ];
 
 
-  return messages;
+  //return messages;
 
-  // return {
-  //   all: function() {
-  //     return messages;
-  //   },
-  //   get: function(messageId) {
-  //     // Simple index lookup
-  //     return friends[messageId];
-  //   }
-  // }
+  return {
+    all: function() {
+      return messages;
+    },
+    get: function(messageId) {
+      // Simple index lookup
+      return friends[messageId];
+    }
+  }
 });
 
 // .directive("message", function () {
@@ -39,5 +39,5 @@ app.factory("Messages", function() {
 app.controller('MessageCtrl', function($scope, Messages){
 
   // Messages factory returns its internal variable "messages"
-  $scope.messages = Messages;
+  $scope.messages = Messages.all();
 })

@@ -1,0 +1,9 @@
+2014-07-29 19:39:54.488 StotleDev[28707:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-29 19:39:54.515 StotleDev[28707:70b] Unlimited access to network resources
+2014-07-29 19:39:54.804 StotleDev[28707:70b] [CDVTimer][keyboard] 0.085056ms
+2014-07-29 19:39:54.806 StotleDev[28707:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-29 19:39:54.806 StotleDev[28707:70b] [CDVTimer][statusbar] 0.748038ms
+2014-07-29 19:39:54.807 StotleDev[28707:70b] [CDVTimer][TotalPluginStartup] 3.048956ms
+2014-07-29 19:39:55.020 StotleDev[28707:70b] Resetting plugins due to page load.
+2014-07-29 19:39:55.598 StotleDev[28707:70b] Finished load of: file:///Users/brendan/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/A8E0DE55-68CF-4B2C-B590-3D15B0403120/StotleDev.app/www/index.html#/tab/dash
+Terminating in response to SpringBoard's termination.

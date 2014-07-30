@@ -3305,7 +3305,7 @@ a.subdued {
   z-index: 2;
   display: block;
   margin: -1px;
-  padding: 15px;
+  padding: 10px;    /*EDIT: Changed from 15px*/
   border-width: 1px;
   border-style: solid;
   font-size: 16px; }
@@ -3595,15 +3595,15 @@ a.item-content {
 
 .item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
   padding-left: 70px;
-  min-height: 70px; }
+  height: 80px; } /*Changed from min-height:70px*/
   .item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
     position: absolute;
-    top: 15px;
+    top: 10px;  /*Changed from 15px*/
     left: 15px;
-    max-width: 40px;
-    max-height: 40px;
-    width: 100%;
-    border-radius: 4px; }
+    max-width: 42px;  /*Changed from 40px*/
+    max-height: 60px; /*Changed from 40px*/
+    width: auto;      /*Changed from 100%*/
+    border-radius: 1px; } /*Changed from 4px*/
 
 .item-avatar-right, .item-avatar-right .item-content {
   padding-right: 70px;
