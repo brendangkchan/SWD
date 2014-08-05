@@ -2827,7 +2827,7 @@ a.subdued {
 
 .bar-footer {
   bottom: 0;
-  border-top-width: 1px;
+  border-top-width: 0px; /*Changed from 1px*/
   border-bottom-width: 0;
   background-position: top; }
   .bar-footer.item-input-inset {
