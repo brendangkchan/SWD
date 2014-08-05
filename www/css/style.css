@@ -13,16 +13,16 @@
 	top: 3em;
 }
 
-.message-title {
+.reference-title {
 	top: 0;
 	padding-top: 0;
 }
 
-.message-author {
+.reference-author {
 	display: inline;
 }
 
-.message-count {
+.reference-count {
 	display: inline;
 	float: right;
 	margin: 0;

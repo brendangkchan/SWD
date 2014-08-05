@@ -15,8 +15,6 @@ app.factory("Results", function() {
   ];
 
 
-  //return messages;
-
   return {
     all: function() {
       return results;
@@ -33,19 +31,19 @@ app.factory("Results", function() {
 app.controller('SearchCtrl', function($scope, Results) {
 
 	var showResultsButton = false;
-	var showModal = false;
+	var showSearchModal = false;
 	$scope.query = "";
 
 	// Fake results from factory
 	$scope.results = Results.all();
 
-	$scope.setShowModal = function () {
-		this.showModal = true;
+	$scope.showResultsModal = function () {
+		this.showSearchModal = true;
 	}
 
 	$scope.search = function (query) {
 		this.showResultsButton = true;
-		this.showModal = true;
+		this.showSearchModal = true;
 		this.query = $scope.query;
 		console.log("Query is: " + $scope.query);
 		//this.openModal();
@@ -76,7 +74,7 @@ app.directive('modalDialog', function() {
         scope.show = false;
       };
     },
-    templateUrl: 'templates/modalDialog.html'
+    templateUrl: 'templates/results-modal.html'
   };
 });
 
