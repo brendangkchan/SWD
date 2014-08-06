@@ -46,7 +46,6 @@ app.controller('SearchCtrl', function($scope, Results) {
 		this.showSearchModal = true;
 		this.query = $scope.query;
 		console.log("Query is: " + $scope.query);
-		//this.openModal();
 	};
 
 	$scope.setHasResults = function() {
