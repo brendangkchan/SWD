@@ -1,13 +1,26 @@
 <ion-view title="Selling">
 	<ion-content class="has-header">
 		<ion-list>
-			<ion-item class="item item-avatar" ng-repeat="reference in references">
+			<ion-item class="item item-avatar reference-item" ng-repeat="reference in references" option-buttons="itemButtons">
 				<img src={{reference.icon}}>
 				<h2 class="reference-title">{{reference.title}}</h2>
 				<div>
 					<p class="reference-author">{{reference.author}}</p>
 				</div>
 				<p class="reference-count">{{reference.count}}</p>
+
+				<!-- Hidden Buttons -->
+				<div class="reference-item-buttons">
+					<ion-option-button class="button-light reference-item-button" ng-click="edit(item)">
+	            		<i class="icon ion-edit"></i>
+	          		</ion-option-button>
+	          		<ion-option-button class="button-light reference-item-button" ng-click="edit(item)">
+	            		<i class="icon ion-search"></i>
+	          		</ion-option-button>
+	          		<ion-option-button class="button-light reference-item-button" ng-click="edit(item)">
+	            		<i class="icon ion-trash-b"></i>
+	          		</ion-option-button>
+          		</div>
 			</ion-item>
 		</ion-list>
 	</ion-content>
