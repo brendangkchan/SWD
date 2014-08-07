@@ -1,4 +1,6 @@
-/* Empty. Add your own CSS if you like */
+/*
+ * Search Bar
+ */
 
 #search-bar-container {
 	height: auto;
@@ -8,44 +10,111 @@
 	height: 2em;
 }
 
+
+/*
+ * Reference Tabs
+ */
+
 .tabs-top {
 	/*Align message tabs to bottom of search bar*/
 	top: 3em;
 }
 
+/*
+ * Reference List Item
+ */
+
 .reference-title {
 	top: 0;
-	padding-top: 0;
+	padding: 0 !important;
+	margin-bottom: 10px !important;
 }
 
 .reference-author {
-	display: inline;
+	display: block;
 }
 
 .reference-count {
-	display: inline;
+	display: block;
 	float: right;
-	margin: 0;
+	line-height: 10px;
+	color: #e18842 !important;
 }
 
 .reference-item {
-	//width: 100%;
-	/*background-color: #DDD; background is behind content*/
+	line-height: 10px;
+	padding: 0 !important;
 }
 
-.reference-item-buttons {
-	width: 0px;
-}
 
 .reference-item-button {
-	//top: 20px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	margin-left: 10px;
 	margin-right: 10px;
+	border-color: #D9D9D9 !important;
 }
 
 
+/*
+ * Reference Conversation List Accordion
+ */
+
+.clip-circle{
+	height: 45px;
+	width: 45px;
+
+	border-radius: 50% !important;
+	-moz-border-radius:50%;
+ 	-webkit-border-radius:50%;
+}
+
+.conversation-top-line {
+	padding-top: 10px !important;
+}
+
+.conversation-name {
+	top: 0;
+	padding-top: 0;
+	display: inline;
+	line-height: 10px;
+	color: #000 !important;
+	padding-bottom: 7px !important;
+}
+
+.conversation-preview {
+	display: block;
+	line-height: 30px;
+}
+
+.conversation-price {
+	display: inline;
+	float: right;
+	color: #4bbd64 !important;
+	padding-bottom: 7px !important;
+	margin-top: 0 !important;
+
+}
+
+.list .item.item-accordion {
+  //line-height: 25px;
+  padding-top: 0;
+  height: 65px;
+  //transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+
+
+/*
+ * Search Modal
+ */
 
 .ng-modal-overlay {
   /* A dark translucent div that covers the whole screen */
@@ -96,35 +165,7 @@
 }
 
 
-/*
- * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
- */
-/*.list .item.item-accordion {
-  line-height: 38px;
-  padding-top: 0;
-  padding-bottom: 0;
-  transition: 0.09s all linear;
-}
-.list .item.item-accordion.ng-hide {
-  line-height: 0px;
-}
-.list .item.item-accordion.ng-hide-add,
-.list .item.item-accordion.ng-hide-remove {
-  display: block !important;
-}*/
 
-.item-accordion {
-  line-height: 38px;
-  padding-top: 0;
-  padding-bottom: 0;
-  //transition: 0.09s all linear;
-}
-.item-accordion.ng-hide {
-  line-height: 0px;
-}
-.item-accordion.ng-hide-add,
-.item-accordion.ng-hide-remove {
-  display: block !important;
-}
+
 
 

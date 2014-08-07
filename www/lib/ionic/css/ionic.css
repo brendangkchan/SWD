@@ -3438,7 +3438,7 @@ a.item {
 .item-complex .item-content, .item-radio .item-content {
   position: relative;
   z-index: 2;
-  padding: 15px 15px 15px 15px; /*EDIT: changed right from 45px*/
+  padding: 10px 15px 15px 15px; /*EDIT: changed from 15 45 15 15*/
   border: none;
   background-color: white; }
 

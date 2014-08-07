@@ -53,8 +53,8 @@ app.controller('SearchCtrl', function($scope, Results) {
 	}
 });
 
-// Blank modal with query
-app.directive('modalDialog', function() {
+// Results Modal
+app.directive('resultsModal', function() {
   return {
     restrict: 'E',
     scope: {
