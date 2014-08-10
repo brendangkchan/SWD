@@ -1,26 +1,39 @@
-<div class='ng-modal' ng-show='show'>
-  <div class='ng-modal-overlay' ng-click='hideModal()'></div>
-  	<div class='ng-modal-dialog' ng-style='dialogStyle'>
+<!-- Nav Bar -->
+<!-- <ion-nav-bar class="bar-energized nav-title-slide-ios7">
+  <ion-nav-button class="button-icon icon ion-ios7-arrow-back" ng-click="back()"></ion-nav-back-button>
+</ion-nav-bar> -->
 
-    	
-  		<!-- Header Bar -->
-		<div class="bar bar-header bar-energized">
-  			<div class="buttons">
-        		<button class="button button-icon" ng-click="hideModal()">
-          		<i class="icon ion-ios7-arrow-back"></i>
-        		</button>
-  			</div>
-  			<h1 class="title">{{conversationName}}</h1>
-		</div>
+<ion-view title="{{conversation.name}}">
+	<ion-content class="conversation-content">
 
-		<!-- <div class="bar bar-subheader search-modal-subheader">
-          <div>Matches found for: {{queryInput}}</div>
-        </div> -->
+		<!-- Post Info Sub-Header -->
+
+		<!-- Messages -->
+		<ion-list>
+			<div ng-repeat="message in conversation.messages track by message.name">
+
+				
+				<!-- Message -->
+				<ion-item class="item item-avatar message-item-left">
+					<img class="clip-circle message-icon-left" src={{conversation.icon}}>
+					<p class="message-body-left">{{message.body}}</p>
+				</ion-item>
+
+				<ion-item class="item item-avatar-right message-item-right">
+					<img class="clip-circle message-icon-right" src={{conversation.icon}}>
+					<p class="message-body-right">{{message.body}}</p>
+					
+				</ion-item>
+
+				
+			</div>
+		</ion-list>
+
+		<!-- Text Input -->
 
 
-		<!-- Modal content -->
-    	<ion-content class="search-modal-content" ng-transclude>
-    	</ion-content>
+	</ion-content>
+</ion-view>
 
-  </div>
-</div>
+
+

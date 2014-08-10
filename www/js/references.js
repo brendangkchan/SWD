@@ -1,8 +1,6 @@
 var app = angular.module('references', [])
 
-/**
- * A simple example service that returns some data.
- */
+
 app.factory("References", function() {
   // Might use a resource here that returns a JSON array
 
@@ -15,16 +13,25 @@ app.factory("References", function() {
   ];
 
   var conversations = [
-    { name: 'Beyonce K', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg'},
-    { name: 'Jay Z', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg'},
-    { name: 'Beyonce C', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg'},
-    { name: 'Jay D', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg'}
+    { id: 0, name: 'Beyonce K', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', messages: []},
+    { id: 1, name: 'Jay Z', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', messages: []},
+    { id: 2, name: 'Beyonce C', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', messages: []},
+    { id: 3, name: 'Jay D', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', messages: []}
   ];
 
-  // Dummy conversation data
+  var messages = [
+    { name: 'one', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
+    { name: 'two', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
+    { name: 'three', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
+    { name: 'four', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
+  ];
+
+
   for (var i=0; i<4; i++) {
-    references[i].conversations.push(conversations[0]);
-    references[i].conversations.push(conversations[1]);
+    for (var j=0; j<4; j++) {
+      conversations[i].messages.push(messages[j]);
+    }
+    references[i].conversations.push(conversations[i]);
   }
 
   return {
@@ -42,12 +49,11 @@ app.factory("References", function() {
 });
 
 // References param is reference to factory
-app.controller('ReferenceSellCtrl', function($scope, References){
+app.controller('ReferenceSellCtrl', function($scope, References, $location){
 
   // References factory returns its internal variable "references"
   $scope.references = References.all();
   $scope.conversations = References.conversations();
-
 
   $scope.toggleReference = function(reference) {
     if ($scope.isReferenceShown(reference)) {
@@ -69,14 +75,14 @@ app.controller('ReferenceSellCtrl', function($scope, References){
 });
 
 // References param is reference to factory
-app.controller('ReferenceBuyCtrl', function($scope, References){
+app.controller('ReferenceBuyCtrl', function($scope, References, $location){
 
   // References factory returns its internal variable "references"
   $scope.references = References.all();
   $scope.conversations = References.conversations();
 
-
   $scope.toggleReference = function(reference) {
+    console.log($location.url());
     if ($scope.isReferenceShown(reference)) {
       $scope.shownReference = null;
     } else {
@@ -94,6 +100,31 @@ app.controller('ReferenceBuyCtrl', function($scope, References){
   };
 
 });
+
+// Conversation Controller
+app.controller('ConversationCtrl', function($scope, $stateParams, References) {
+
+  // Setting $scope variables
+  console.log("Reference: " + $stateParams.referenceIndex + " Conversation: " + $stateParams.conversationIndex);
+  $scope.reference = References.get($stateParams.referenceIndex);
+  $scope.conversation = $scope.reference.conversations[$stateParams.conversationIndex];
+
+  // LOGGING HERE BREAKS CODE
+  //console.log(reference);
+  //console.log(conversation);
+
+  // Back Navigation
+  $scope.back = function () {
+    $window.history.back();
+  }
+})
+
+
+// function MyCtrl($scope, $ionicNavBarDelegate) {
+//   $scope.goBack = function() {
+//     $ionicNavBarDelegate.back();
+//   };
+// }
 
 
 // Conversation Modal

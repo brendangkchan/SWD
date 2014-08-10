@@ -1,21 +1,44 @@
-<!-- 
-  Create tabs with an icon and label, using the tabs-positive style. 
-  Each tab's child <ion-nav-view> directive will have its own 
-  navigation history that also transitions its views in and out.
--->
+<!-- Nav Bar -->
+<!-- <ion-nav-bar class="bar-energized nav-title-slide-ios7">
+</ion-nav-bar> -->
+
+<!-- Search Bar -->
+<div class="bar bar-subheader" id="search-bar-container" ng-controller="SearchCtrl">
+  <label class="item item-input" id="search-bar">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input enterShowResults type="text" placeholder="Search" ng-model="query" ng-enter="search(query)">
+  </label>
+</div>
+
+<!-- Reference Tabs -->
 <ion-tabs class="has-tabs-top tabs-top">
 
 
-  <!-- Pets Tab -->
-  <ion-tab title="Selling" href="#/tab/selling">
+  <!-- Selling Tab -->
+  <!-- <ion-tab title="Selling" href="#/tab/selling">
+    <ion-nav-view name="tab-selling"></ion-nav-view>
+  </ion-tab> -->
+  <ion-tab title="Selling" ui-sref="tab.selling">
     <ion-nav-view name="tab-selling"></ion-nav-view>
   </ion-tab>
 
 
-  <!-- Adopt Tab -->
-  <ion-tab title="Buying" href="#/tab/buying">
+  <!-- Buying Tab -->
+  <!-- <ion-tab title="Buying" href="#/tab/buying">
+    <ion-nav-view name="tab-buying"></ion-nav-view>
+  </ion-tab> -->
+  <ion-tab title="Buying" ui-sref="tab.buying">
     <ion-nav-view name="tab-buying"></ion-nav-view>
   </ion-tab>
 
+  <!-- Friends Tab -->
+  <!-- <ion-tab title="Friends" href="#/tab/friends">
+    <ion-nav-view name="tab-friends"></ion-nav-view>
+  </ion-tab> -->
+  <ion-tab title="Friends" ui-sref="tab.friends">
+    <ion-nav-view name="tab-friends"></ion-nav-view>
+  </ion-tab>
 
 </ion-tabs>
+
+

@@ -60,32 +60,52 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     // Conversation page
     .state('conversation', {
-      url: '/conversation/:name',
-      templateUrl: 'templates/conversation.html'
+      url: '/conversation/:referenceIndex/:conversationIndex',
+      templateUrl: 'templates/conversation.html',
+      controller: 'ConversationCtrl'
     })
 
-    // .state('tab.friends', {
-    //   url: '/friends',
+    // Conversation page
+    // .state('tab.conversation', {
+    //   url: '/conversation/:referenceIndex/:conversationIndex',
     //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/tab-friends.html',
-    //       controller: 'FriendsCtrl'
+    //     'tab-selling': {
+    //       templateUrl: 'templates/conversation.html',
+    //       controller: 'ConversationCtrl'
     //     }
     //   }
     // })
-    // .state('tab.friend-detail', {
-    //   url: '/friend/:friendId',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/friend-detail.html',
-    //       controller: 'FriendDetailCtrl'
-    //     }
-    //   }
-    // })
+
+
+    .state('tab.friends', {
+      url: '/friends',
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/tab-friends.html',
+          controller: 'FriendsCtrl'
+        }
+      }
+    })
+    .state('tab.friend-detail', {
+      url: '/friend/:friendId',
+      views: {
+        'tab-friends': {
+          templateUrl: 'templates/friend-detail.html',
+          controller: 'FriendDetailCtrl'
+        }
+      }
+    })
 
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/selling');
 
-});
+
+
+})
+
+// Show search only on reference pages
+.controller('AppCtrl', ['$scope', '$location', function($scope, $location) {
+
+}]);
 

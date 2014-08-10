@@ -4,7 +4,7 @@
 			<div ng-repeat="reference in references">
 
 				<ion-item class="item item-avatar reference-item" option-buttons="itemButtons" ng-click="toggleReference(reference)" ng-class="{active:isReferenceShown(reference)}">
-					<img src={{reference.icon}}>
+					<img src={{reference.icon}} class="reference-icon">
 					<h2 class="reference-title">{{reference.title}}</h2>
 					<!-- <div> -->
 						<p class="reference-author">{{reference.author}}</p>
@@ -27,7 +27,8 @@
 				</ion-item>
 
 				<!-- Accordian Item -->
-				<ion-item class="item-accordion item-avatar conversation-item" ng-repeat="conversation in reference.conversations" ng-show="isReferenceShown(reference)">
+				<ion-item class="item-accordion item-avatar conversation-item" ng-repeat="conversation in reference.conversations" ng-show="isReferenceShown(reference)" 
+				ui-sref="conversation({ referenceIndex: $parent.$parent.$index, conversationIndex: $index})">
 					<img class="clip-circle" src={{conversation.icon}}>
 					<div class="conversation-top-line">
 						<div class="conversation-name">{{conversation.name}}</div>
@@ -42,4 +43,4 @@
 	</ion-content>
 </ion-view>
 
- <!-- href="#/conversation/{{conversation.name}}" -->
+<!-- href="#/conversation/{{$parent.$parent.$index}}/{{$index}}" -->

@@ -20,9 +20,18 @@
 	top: 3em;
 }
 
+
 /*
  * Reference List Item
  */
+
+.reference-icon {
+	top: 10px !important;  /*Changed from 15px*/
+    max-width: 42px !important;  /*Changed from 40px*/
+    max-height: 60px !important; /*Changed from 40px*/
+    width: auto !important;      /*Changed from 100%*/
+    border-radius: 1px !important;  /*Changed from 4px*/
+}
 
 .reference-title {
 	top: 0;
@@ -44,6 +53,7 @@
 .reference-item {
 	line-height: 10px;
 	padding: 0 !important;
+	height: 80px !important;
 }
 
 
@@ -70,7 +80,7 @@
 }
 
 .conversation-top-line {
-	padding-top: 10px !important;
+	padding-top: 0px !important;
 }
 
 .conversation-name {
@@ -164,6 +174,59 @@
 	display: inline;
 }
 
+/*
+ * Conversation 
+ */
+
+
+
+.conversation-content {
+}
+
+.message-item-left {
+	/*How far from left message body starts*/
+	padding-left: 65px !important;
+	padding-right: 65px !important;
+	min-height: 60px !important;
+	height: auto !important;
+	border-width: 0px !important;
+}
+
+.message-icon-left {
+	top: 10px !important;
+	left: 10px !important;
+}
+
+.message-body-left {
+	color: #000 !important;
+	overflow: visible !important;
+	text-overflow: initial !important;
+	white-space: normal !important;
+	word-wrap: break-word;
+}
+
+.message-item-right {
+	/*How far from left message body starts*/
+	padding-left: 65px !important;
+	padding-right: 65px !important;
+	min-height: 60px !important;
+	height: auto !important;
+	border-width: 0px !important;
+}
+
+.message-icon-right {
+	top: 10px !important;
+	right: 10px !important;
+}
+
+.message-body-right {
+	color: #666 !important;
+	overflow: visible !important;
+	text-overflow: initial !important;
+	white-space: normal !important;
+	word-wrap: break-word;
+	text-align: right;
+}
 
 
 
