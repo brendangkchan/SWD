@@ -29,16 +29,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+    // Home state to encompass tab and conversation state
+    .state('home', {
+      url: "/home",
+      abstract: true,
+      template: '<ui-view/>'  // Where children plug into
+    })
+
     // setup an abstract state for the tabs directive
-    .state('tab', {
+    .state('home.tab', {
       url: "/tab",
       abstract: true,
       templateUrl: "templates/tabs.html"
     })
 
     // Each tab has its own nav history stack:
-
-    .state('tab.selling', {
+    // Appends url to /tab/[append]
+    .state('home.tab.selling', {
       url: '/selling',
       views: {
         'tab-selling': {
@@ -48,7 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    .state('tab.buying', {
+    .state('home.tab.buying', {
       url: '/buying',
       views: {
         'tab-buying': {
@@ -77,7 +84,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     // })
 
 
-    .state('tab.friends', {
+    .state('home.tab.friends', {
       url: '/friends',
       views: {
         'tab-friends': {
@@ -86,7 +93,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
-    .state('tab.friend-detail', {
+    .state('home.tab.friend-detail', {
       url: '/friend/:friendId',
       views: {
         'tab-friends': {
@@ -98,7 +105,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/selling');
+  $urlRouterProvider.otherwise('/home/tab/selling');
 
 
 
