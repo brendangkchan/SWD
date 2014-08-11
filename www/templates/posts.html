@@ -1,0 +1,75 @@
+<!-- posts.html
+Posts after selecting a result -->
+
+
+<!-- Nav Bar -->
+<ion-nav-bar class="bar-light nav-title-slide-ios7 conversation-nav-bar">
+  <button class="button-icon icon ion-ios7-arrow-back" ng-click="back()"></button>
+</ion-nav-bar>
+
+<ion-view title="Posts">
+
+	<!-- Results Sub-Header -->
+	<div class="has-header item item-avatar posts-sub-header">
+		<img class="icon" src={{book.icon}}>
+		<p class="title">{{book.title}}</p>
+		<p class="author">{{book.author}}</p>
+		<p class="isbn">${{book.isbn}}</p>
+	</div>
+
+	<!-- Column Headers -->
+	<div class="has-header post-column-headers">
+		<div class="row row-center">
+			<div class="col header-col">
+				User
+			</div>
+			<div class="col header-col">
+				Price
+			</div>
+			<div class="col header-col">
+				Edition
+			</div>
+			<div class="col header-col">
+				Condition
+			</div>
+		</div>
+	</div>
+
+	<ion-content class="posts-content">
+		<!-- Results Content -->
+		<ion-list>
+			<!-- Messages -->
+			<div ng-repeat="post in posts track by post.user.name">
+
+				<div class="post-item">
+
+					<div class="row row-center">
+						<div class="col simple-col">
+							<img class="clip-circle icon" src={{post.user.icon}}>
+						</div>
+						<div class="col simple-col">
+							<h3 class="price">${{post.price}}</h3>
+						</div>
+						<div class="col simple-col">
+							<h3 class="edition">{{post.edition}}</h3>
+						</div>
+						<div class="col simple-col">
+							<h3 class="condition">{{post.condition}}</h3>
+						</div>
+					</div>
+
+					<div class"row bottom-row">
+						<div class="col col-25 bottom-col">
+							<p class="name">{{post.user.name}}</p>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-view>
+
+
+

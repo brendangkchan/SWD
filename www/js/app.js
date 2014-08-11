@@ -80,6 +80,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       controller: 'SearchCtrl'
     })
 
+    // Posts
+    .state('home.posts', {
+      url: '/posts/:book',
+      templateUrl: 'templates/posts.html',
+      controller: 'PostCtrl'
+    })
+
     // Conversation page
     // .state('tab.conversation', {
     //   url: '/conversation/:referenceIndex/:conversationIndex',

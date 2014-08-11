@@ -53,6 +53,7 @@
 }
 
 .reference-title {
+	display: block;
 	padding: 5px 0 0 0 !important;
 	margin-bottom: 10px !important;
 }
@@ -140,7 +141,7 @@
 }
 
 .list .item.item-accordion.ng-hide {
-  line-height: 0px;
+  /*line-height: 0px;*/
 }
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
@@ -190,6 +191,145 @@
 	display: block;
 	color: #333;
 }
+
+/*
+ * Posts Sub-Header
+ */
+
+.posts-sub-header {
+	line-height: 10px;
+	padding: 12px 0px 0px 70px !important;
+	height: 80px !important;
+
+	border-color: #FFF; !important;
+}
+
+.posts-sub-header .icon {
+	top: 10px !important;  /*Changed from 15px*/
+    max-width: 42px !important;  /*Changed from 40px*/
+    max-height: 60px !important; /*Changed from 40px*/
+    width: auto !important;      /*Changed from 100%*/
+    border-radius: 1px !important;  /*Changed from 4px*/
+}
+
+.posts-sub-header .title {
+	display: block;
+	top: 0;
+	padding: 0 !important;
+	margin-bottom: 10px !important;
+	color: #000;
+}
+
+.posts-sub-header .author {
+	display: block;
+	margin-bottom: 11px !important;
+	color: #333;
+}
+
+.posts-sub-header .isbn {
+	display: block;
+	color: #333;
+}
+
+
+/*
+ * Post Column Headers
+ */
+
+.post-column-headers {
+	position: absolute;
+	top: 90px !important;
+	padding: 0px !important;
+	margin: 30px 0 0px 0 !important;
+	width: 100%;
+	height: 35px;
+
+	border-color: #DDD;
+	border-bottom-width: 1px;
+	border-style: solid;
+}
+
+.post-column-headers .row {
+	height: 35px;
+	margin: 0 !important;
+}
+
+.header-col {
+	text-align: center;
+	vertical-align: middle;
+	line-height: 35px; 
+	height: 35px;   
+	padding: 3px 0 0 0 !important;
+	margin: 0 !important;
+
+	color: #444;
+}
+
+/*
+ * Posts
+ */
+
+.posts-content {
+	top: 155px;
+}
+
+.post-item {
+	padding: 10px;
+	height: 80px;
+	border-color: #DDD;
+	border-bottom-width: 1px;
+	border-style: solid;
+}
+
+.post-item .row {
+	padding: 0px !important;
+	height: 40px !important;      
+}
+
+.post-item .bottom-row {
+	padding: 0px !important;
+	height: 30px !important;      
+}
+
+.post-item .bottom-col {
+	padding: 0 5px 0 7px !important;
+	height: 30px !important;      
+	margin: 5px 0 0 0px !important;
+	text-align: center;
+}
+
+.post-item .icon {
+	height: 40px;
+	width: 40px;
+	margin-top: 3px !important;
+}
+
+.post-item .name {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.post-item .simple-col {
+	text-align: center;
+	vertical-align: middle;
+	line-height: 40px; 
+	height: 40px;   
+	padding: 0 !important   
+}
+
+.post-item .price {
+	margin-top: 15px !important;
+	color: #4bbd64;
+}
+
+.post-item .edition {
+	margin-top: 15px !important;
+}
+
+.post-item .condition {
+	margin-top: 15px !important;
+}
+
 
 
 
@@ -250,7 +390,7 @@
 }
 
 /*
- * Post Info Header
+ * Post Info Header (in Conversation)
  */
 
 .post-info-header {

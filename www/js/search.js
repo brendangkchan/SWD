@@ -21,7 +21,36 @@ app.factory("Results", function() {
     },
     get: function(resultId) {
       // Simple index lookup
-      return friends[resultId];
+      return results[resultId];
+    }
+  }
+});
+
+// Dummy Posts
+
+app.factory("Posts", function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var posts = [
+    { user: { name: 'Yonce K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A' },
+    { user: { name: 'Jay Z', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B' },
+    { user: { name: 'Brendan C', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A' },
+    { user: { name: 'Samantha S', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B' },
+    { user: { name: 'Adam K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A' },
+    { user: { name: 'Raymond G', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B' },
+    { user: { name: 'Alexander E', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A' },
+    { user: { name: 'asdlfkjfaldkjfdasf F', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B' },
+  ];
+
+
+  return {
+    all: function() {
+      return posts;
+    },
+    get: function(postIndex) {
+      // Simple index lookup
+      return posts[postIndex];
     }
   }
 });
@@ -47,6 +76,28 @@ app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, 
 	$scope.setHasResults = function() {
 		this.showResultsButton = true;
 	}
+
+	// Back Navigation
+	$scope.back = function () {
+		$window.history.back();
+	}
+});
+
+
+// Posts Controller
+
+app.controller('PostCtrl', function($scope, $window, $stateParams, Posts, Results) {
+
+	$scope.title = $stateParams.book;	// get title
+	$scope.posts = Posts.all();
+
+	var search = function (title) {
+		return Results.get(0);
+	};
+
+	$scope.book = search($scope.title);
+	
+	console.log($scope.book);
 
 	// Back Navigation
 	$scope.back = function () {
