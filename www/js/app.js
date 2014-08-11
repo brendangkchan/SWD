@@ -13,6 +13,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
     }
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -65,11 +66,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    // Conversation page
-    .state('conversation', {
+    // Conversation 
+    .state('home.conversation', {
       url: '/conversation/:referenceIndex/:conversationIndex',
       templateUrl: 'templates/conversation.html',
       controller: 'ConversationCtrl'
+    })
+
+    // Search
+    .state('home.search', {
+      url: '/search/:query',
+      templateUrl: 'templates/search.html',
+      controller: 'SearchCtrl'
     })
 
     // Conversation page
@@ -84,28 +92,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     // })
 
 
-    .state('home.tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('home.tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
+    // .state('home.tab.friends', {
+    //   url: '/friends',
+    //   views: {
+    //     'tab-friends': {
+    //       templateUrl: 'templates/tab-friends.html',
+    //       controller: 'FriendsCtrl'
+    //     }
+    //   }
+    // })
+    // .state('home.tab.friend-detail', {
+    //   url: '/friend/:friendId',
+    //   views: {
+    //     'tab-friends': {
+    //       templateUrl: 'templates/friend-detail.html',
+    //       controller: 'FriendDetailCtrl'
+    //     }
+    //   }
+    // })
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home/tab/selling');
+  //$urlRouterProvider.otherwise('/home/tab/selling');
 
 
 

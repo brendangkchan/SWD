@@ -1,0 +1,37 @@
+<!-- search.html
+Initial results after first search -->
+
+
+<!-- Nav Bar -->
+<ion-nav-bar class="bar-light nav-title-slide-ios7 conversation-nav-bar">
+  <button class="button-icon icon ion-ios7-arrow-back" ng-click="back()"></button>
+</ion-nav-bar>
+
+<ion-view title="Results">
+	<ion-content class="results-content">
+
+		<!-- Results Content -->
+		<ion-list>
+
+			<!-- Results Sub-Header -->
+			<div class="results-sub-header">
+				<p>Matches For: {{query}}</p>
+			</div>
+
+			<!-- Messages -->
+			<div ng-repeat="result in results track by result.isbn">
+
+				<div class="item item-avatar result-item">
+					<img class="icon" src={{result.icon}}>
+					<p class="title">{{result.title}}</p>
+					<p class="author">{{result.author}}</p>
+					<p class="isbn">${{result.isbn}}</p>
+				</div>
+				
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-view>
+
+
+

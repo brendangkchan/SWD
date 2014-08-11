@@ -1,4 +1,13 @@
 /*
+ * Navigation Bar
+ */
+
+.stotle-nav-bar {
+	background-color: #EC8130 !important;
+	border-width: 0px !important;
+}
+
+/*
  * Search Bar
  */
 
@@ -8,6 +17,11 @@
 
 #search-bar {
 	height: 2em;
+}
+
+.search-button {
+	padding: 5px !important;
+	color: #EC8130 !important;
 }
 
 
@@ -25,8 +39,13 @@
  * Reference List Item
  */
 
+.reference-item {
+	line-height: 10px;
+	height: 85px !important;
+}
+
 .reference-icon {
-	top: 10px !important;  /*Changed from 15px*/
+	top: 15px !important;  /*Changed from 15px*/
     max-width: 42px !important;  /*Changed from 40px*/
     max-height: 60px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
@@ -34,27 +53,23 @@
 }
 
 .reference-title {
-	top: 0;
-	padding: 0 !important;
+	padding: 5px 0 0 0 !important;
 	margin-bottom: 10px !important;
 }
 
 .reference-author {
 	display: block;
+	margin: 0 0 5px 0 !important;
 }
 
 .reference-count {
 	display: block;
 	float: right;
 	line-height: 10px;
-	color: #e18842 !important;
+	color: #EC8130 !important;
 }
 
-.reference-item {
-	line-height: 10px;
-	padding: 0 !important;
-	height: 80px !important;
-}
+
 
 
 .reference-item-button {
@@ -80,7 +95,13 @@
 }
 
 .conversation-top-line {
-	padding-top: 0px !important;
+	padding-top: 5px !important;
+}
+
+.conversation-icon {
+	top: 15px !important;
+	max-width: 45px !important;
+	max-height: 45px !important;
 }
 
 .conversation-name {
@@ -107,11 +128,17 @@
 }
 
 .list .item.item-accordion {
-  //line-height: 25px;
   padding-top: 0;
-  height: 65px;
+  padding-left: 5px !important;
+  height: 75px;
   //transition: 0.09s all linear;
 }
+
+.list .item.item-accordion .item-content {
+	/*separates conversation icon and text*/
+	padding-left: 75px !important;
+}
+
 .list .item.item-accordion.ng-hide {
   line-height: 0px;
 }
@@ -121,64 +148,58 @@
 }
 
 
-
 /*
- * Search Modal
+ * Search
  */
 
-.ng-modal-overlay {
-  /* A dark translucent div that covers the whole screen */
-  position:absolute;
-  z-index:9999;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-color:#000000;
-  opacity: 0.8;
-}
-.ng-modal-dialog {
-  /* A centered div above the overlay with a box shadow. */
-  z-index:10000;
-  position: absolute;
-  width: 50%; /* Default */
-
-  /* Center the dialog */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-
-  background-color: #fff;
-  box-shadow: 4px 4px 80px #000;
-}
-
-.search-modal-content {
-	top: 30px;		/*align with bottom of subheader*/
-}
-
- /*text stays static*/
-.search-modal-subheader {
-	padding-left:14px;
+.results-sub-header {
+	padding: 5px 5px 0px 10px;
 	height: 30px;
 	background-color: #EEE;
 }
 
-.result-title {
-	top: 0;
-	padding-top: 0;
+.result-item {
+	line-height: 10px;
+	padding: 17px 0px 0px 70px !important;
+	height: 90px !important;
 }
 
-.result-author {
-	display: inline;
+.result-item .icon {
+	top: 15px !important;  /*Changed from 15px*/
+    max-width: 42px !important;  /*Changed from 40px*/
+    max-height: 60px !important; /*Changed from 40px*/
+    width: auto !important;      /*Changed from 100%*/
+    border-radius: 1px !important;  /*Changed from 4px*/
 }
+
+.result-item .title {
+	display: block;
+	top: 0;
+	padding: 0 !important;
+	margin-bottom: 10px !important;
+	color: #000;
+}
+
+.result-item .author {
+	display: block;
+	margin-bottom: 11px !important;
+	color: #333;
+}
+
+.result-item .isbn {
+	display: block;
+	color: #333;
+}
+
+
 
 /*
  * Conversation 
  */
 
-
+.conversation-nav-bar {
+	border-color: #EC8130 !important;
+}
 
 .conversation-content {
 }
@@ -228,6 +249,42 @@
 	text-align: right;
 }
 
+/*
+ * Post Info Header
+ */
+
+.post-info-header {
+	padding-left: 50px !important;
+	padding-top: 6px !important;
+	background-color: #EEE;
+	height: 60px !important;
+}
+
+.post-info-header .icon{
+	top: 8px !important;  /*Changed from 15px*/
+	left: 10px !important;
+    max-width: 42px !important;  /*Changed from 40px*/
+    max-height: 40px !important; /*Changed from 40px*/
+    width: auto !important;      /*Changed from 100%*/
+    border-radius: 1px !important;  /*Changed from 4px*/
+}
+
+.post-info-header .title{
+	display: block;
+	margin: 0 0 1px 0 !important;
+	top: 0px !important;
+	color: #000;
+}
+
+.post-info-header .price{
+	display: inline;
+	float:  right;
+	color: #4bbd64 !important;
+}
+
+.post-info-header .author{
+	display: inline;
+}
 
 
 

@@ -1,13 +1,17 @@
-<!-- Nav Bar -->
-<!-- <ion-nav-bar class="bar-energized nav-title-slide-ios7">
-</ion-nav-bar> -->
 
-<!-- Search Bar -->
-<div class="bar bar-subheader" id="search-bar-container" ng-controller="SearchCtrl">
-  <label class="item item-input" id="search-bar">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input enterShowResults type="text" placeholder="Search" ng-model="query" ng-enter="search(query)">
-  </label>
+<div ng-controller="SearchCtrl">
+  <!-- Nav Bar -->
+  <ion-nav-bar class="bar-energized nav-title-slide-ios7 stotle-nav-bar">
+    <button class="button button-clear" ng-show="showResultsButton">Results</button>
+  </ion-nav-bar>
+
+  <!-- Search Bar -->
+  <div class="bar bar-subheader" id="search-bar-container">
+    <label class="item item-input" id="search-bar">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input enterShowResults type="text" placeholder="Title, Author, ISBN..." ng-model="query" ng-enter="search(query)" >
+    </label>
+  </div>
 </div>
 
 <!-- Reference Tabs -->
@@ -15,30 +19,23 @@
 
 
   <!-- Selling Tab -->
-  <!-- <ion-tab title="Selling" href="#/tab/selling">
-    <ion-nav-view name="tab-selling"></ion-nav-view>
-  </ion-tab> -->
   <ion-tab title="Selling" ui-sref="home.tab.selling">
     <ion-nav-view name="tab-selling"></ion-nav-view>
   </ion-tab>
 
 
   <!-- Buying Tab -->
-  <!-- <ion-tab title="Buying" href="#/tab/buying">
-    <ion-nav-view name="tab-buying"></ion-nav-view>
-  </ion-tab> -->
   <ion-tab title="Buying" ui-sref="home.tab.buying">
     <ion-nav-view name="tab-buying"></ion-nav-view>
   </ion-tab>
 
   <!-- Friends Tab -->
-  <!-- <ion-tab title="Friends" href="#/tab/friends">
+  
+  <!-- <ion-tab title="Friends" ui-sref="home.tab.friends">
     <ion-nav-view name="tab-friends"></ion-nav-view>
   </ion-tab> -->
-  <ion-tab title="Friends" ui-sref="home.tab.friends">
-    <ion-nav-view name="tab-friends"></ion-nav-view>
-  </ion-tab>
 
 </ion-tabs>
 
 
+<!-- ui-sref="home.search({ query: input })" -->

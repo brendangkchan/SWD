@@ -2,7 +2,7 @@
   <ion-content class="has-header">
     <ion-list>
       <!-- <ion-item ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}"> -->
-      <ion-item ng-repeat="friend in friends" type="item-text-wrap" ui-sref="tab.friend-detail({ friendId: friend.id})">
+      <ion-item ng-repeat="friend in friends" type="item-text-wrap" ui-sref="home.tab.friend-detail({ friendId: friend.id})">
         {{friend.name}}
       </ion-item>
     </ion-list>

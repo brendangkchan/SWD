@@ -8,10 +8,10 @@ app.factory("Results", function() {
 
   // Some fake testing data
   var results = [
-    { id: 0, title: 'Unbroken: A World War II Story of Survival, Resilience, and Redemption', author: 'Laura Hillenbrand', icon: 'img/test/book1.jpg'},
-    { id: 1, title: 'Diagnostic and Statistical Manual of Mental Disorders', author: 'American Psychiatric Association', icon: 'img/test/book2.jpg'},
-    { id: 2, title: 'StrengthsFinder 2.0', author: 'Tom Rath', icon: 'img/test/book3.jpg'},
-    { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', icon: 'img/test/book4.jpg'}
+    { id: 0, title: 'Unbroken: A World War II Story of Survival, Resilience, and Redemption', author: 'Laura Hillenbrand', icon: 'img/test/book1.jpg', isbn: '99-9260-864-1'},
+    { id: 1, title: 'Diagnostic and Statistical Manual of Mental Disorders', author: 'American Psychiatric Association', icon: 'img/test/book2.jpg', isbn: '99-9269-366-5'},
+    { id: 2, title: 'StrengthsFinder 2.0', author: 'Tom Rath', icon: 'img/test/book3.jpg', isbn: '99-9269-153-0'},
+    { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', icon: 'img/test/book4.jpg', isbn: '99-9267-942-5'}
   ];
 
 
@@ -28,54 +28,32 @@ app.factory("Results", function() {
 
 // Search Controller
 
-app.controller('SearchCtrl', function($scope, Results) {
+app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, Results) {
 
-	var showResultsButton = false;
-	var showSearchModal = false;
-	$scope.query = "";
+	$scope.showResultsButton = false;
+	$scope.query = $stateParams.query;
 
 	// Fake results from factory
 	$scope.results = Results.all();
 
-	$scope.showResultsModal = function () {
-		this.showSearchModal = true;
-	}
-
+	
 	$scope.search = function (query) {
-		this.showResultsButton = true;
-		this.showSearchModal = true;
-		this.query = $scope.query;
+		$scope.showResultsButton = true;
 		console.log("Query is: " + $scope.query);
+		console.log("Show Results Button: " + $scope.showResultsButton);
+		$location.path( '/home/search/' + $scope.query);
 	};
 
 	$scope.setHasResults = function() {
 		this.showResultsButton = true;
 	}
+
+	// Back Navigation
+	$scope.back = function () {
+		$window.history.back();
+	}
 });
 
-// Results Modal
-app.directive('resultsModal', function() {
-  return {
-    restrict: 'E',
-    scope: {
-      show: '=',
-      queryInput: '=query'
-    },
-    //replace: true, // Replace with the template below
-    transclude: true, // we want to insert custom content inside the directive
-    link: function(scope, element, attrs) {
-      scope.dialogStyle = {};
-      if (attrs.width)
-        scope.dialogStyle.width = attrs.width;
-      if (attrs.height)
-        scope.dialogStyle.height = attrs.height;
-      scope.hideModal = function() {
-        scope.show = false;
-      };
-    },
-    templateUrl: 'templates/results-modal.html'
-  };
-});
 
 
 // Directive for show after return input, ng-show = true if variable true
@@ -103,3 +81,27 @@ app.directive('ngEnter', function() {
     };
 });
 
+
+// Results Modal
+// app.directive('resultsModal', function() {
+//   return {
+//     restrict: 'E',
+//     scope: {
+//       show: '=',
+//       queryInput: '=query'
+//     },
+//     //replace: true, // Replace with the template below
+//     transclude: true, // we want to insert custom content inside the directive
+//     link: function(scope, element, attrs) {
+//       scope.dialogStyle = {};
+//       if (attrs.width)
+//         scope.dialogStyle.width = attrs.width;
+//       if (attrs.height)
+//         scope.dialogStyle.height = attrs.height;
+//       scope.hideModal = function() {
+//         scope.show = false;
+//       };
+//     },
+//     templateUrl: 'templates/results-modal.html'
+//   };
+// });

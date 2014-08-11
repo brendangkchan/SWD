@@ -1,19 +1,26 @@
 <!-- Nav Bar -->
-<!-- <ion-nav-bar class="bar-energized nav-title-slide-ios7">
-  <ion-nav-button class="button-icon icon ion-ios7-arrow-back" ng-click="back()"></ion-nav-back-button>
-</ion-nav-bar> -->
+<ion-nav-bar class="bar-light nav-title-slide-ios7 conversation-nav-bar">
+  <button class="button-icon icon ion-ios7-arrow-back" ng-click="back()"></button>
+</ion-nav-bar>
 
 <ion-view title="{{conversation.name}}">
 	<ion-content class="conversation-content">
 
-		<!-- Post Info Sub-Header -->
-
-		<!-- Messages -->
+		<!-- Conversation Content -->
 		<ion-list>
-			<div ng-repeat="message in conversation.messages track by message.name">
 
+			<!-- Post Info Sub-Header -->
+			<div class="item item-avatar post-info-header">
+				<img src={{reference.icon}} class="icon">
+				<p class="title">{{reference.title}}</p>
+				<p class="price">${{conversation.price}}</p>
+				<p class="author">{{reference.author}}</p>
 				
-				<!-- Message -->
+			</div>
+
+			<!-- Messages -->
+			<div ng-repeat="message in conversation.messages track by message.id">
+
 				<ion-item class="item item-avatar message-item-left">
 					<img class="clip-circle message-icon-left" src={{conversation.icon}}>
 					<p class="message-body-left">{{message.body}}</p>
@@ -22,17 +29,22 @@
 				<ion-item class="item item-avatar-right message-item-right">
 					<img class="clip-circle message-icon-right" src={{conversation.icon}}>
 					<p class="message-body-right">{{message.body}}</p>
-					
 				</ion-item>
-
 				
 			</div>
 		</ion-list>
-
-		<!-- Text Input -->
-
-
 	</ion-content>
+
+	<!-- Text Input -->
+		<ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+			<label class="item-input-wrapper">
+				<input type="text" placeholder="Type your message" on-return="sendMessage()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+			</label>
+			<button class="button button-clear" ng-click="sendMessage()">
+				Send
+			</button>
+		</ion-footer-bar>
+
 </ion-view>
 
 

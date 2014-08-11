@@ -28,8 +28,16 @@ app.factory("References", function() {
 
 
   for (var i=0; i<4; i++) {
-    for (var j=0; j<4; j++) {
-      conversations[i].messages.push(messages[j]);
+    for (var j=0; j<8; j++) {
+
+      var id = Math.random().toString(36).slice(2);
+
+      conversations[i].messages.push(
+        {
+          name: 'name',
+          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          id: id
+        });
     }
     references[i].conversations.push(conversations[i]);
   }
@@ -101,8 +109,47 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location){
 
 });
 
+// Messaging Input Directive
+app.directive('input', function($timeout) {
+  return {
+    restrict: 'E',
+    scope: {
+      'returnClose': '=',
+      'onReturn': '&',
+      'onFocus': '&',
+      'onBlur': '&'
+    },
+    link: function(scope, element, attr) {
+      element.bind('focus', function(e) {
+        if (scope.onFocus) {
+          $timeout(function() {
+            scope.onFocus();
+          });
+        }
+      });
+      element.bind('blur', function(e) {
+        if (scope.onBlur) {
+          $timeout(function() {
+            scope.onBlur();
+          });
+        }
+      });
+      element.bind('keydown', function(e) {
+        if (e.which == 13) {
+          if (scope.returnClose) element[0].blur();
+          if (scope.onReturn) {
+            $timeout(function() {
+              scope.onReturn();
+            });
+          }
+        }
+      });
+    }
+  }
+})
+
 // Conversation Controller
-app.controller('ConversationCtrl', function($scope, $stateParams, References) {
+app.controller('ConversationCtrl', function($scope, $stateParams, References, $window, $ionicScrollDelegate, $timeout) {
 
   // Setting $scope variables
   console.log("Reference: " + $stateParams.referenceIndex + " Conversation: " + $stateParams.conversationIndex);
@@ -117,14 +164,65 @@ app.controller('ConversationCtrl', function($scope, $stateParams, References) {
   $scope.back = function () {
     $window.history.back();
   }
+
+
+
+  // Methods for input directive
+
+  var alternate,
+  isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
+  // Send Message
+  $scope.sendMessage = function() {
+    //alternate = !alternate;
+    var id = Math.random().toString(36).slice(2);
+
+    $scope.conversation.messages.push({
+      //userId: alternate ? '12345' : '54321',
+      //text: $scope.data.message
+      name: "name",
+      body: $scope.data.message,
+      id: id
+    });
+    console.log($scope.data.message);
+    delete $scope.data.message;
+    $ionicScrollDelegate.scrollBottom(true);
+  }
+
+  // Show Keyboard
+  $scope.inputUp = function() {
+    if (isIOS) $scope.data.keyboardHeight = 216;
+    $timeout(function() {
+      $ionicScrollDelegate.scrollBottom(true);
+    }, 300);
+  }
+
+  // Hide Keyboard
+  $scope.inputDown = function() {
+    if (isIOS) $scope.data.keyboardHeight = 0;
+    $ionicScrollDelegate.resize();
+  }
+
+  // Message Data
+  $scope.data = {};
+  $scope.myId = '12345';
+
+
+  // Initialization
+  var init = function() {
+    console.log("Initializing ConversationCtrl")
+    //$ionicScrollDelegate.scrollBottom(true);
+
+    // TODO: Load bottom of list without scrolling
+    $timeout(function() {
+      $ionicScrollDelegate.scrollBottom(true);
+    }, 0);
+  };
+
+  init();
 })
 
 
-// function MyCtrl($scope, $ionicNavBarDelegate) {
-//   $scope.goBack = function() {
-//     $ionicNavBarDelegate.back();
-//   };
-// }
 
 
 // Conversation Modal
