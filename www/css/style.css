@@ -3,8 +3,16 @@
  */
 
 .stotle-nav-bar {
-	background-color: #EC8130 !important;
+	background-color: #E18842 !important;
 	border-width: 0px !important;
+}
+
+.stotle-button {
+	color: #E18842 !important;
+}
+
+.stotle-nav-bar-clear {
+	border-color: #E18842 !important;
 }
 
 /*
@@ -19,10 +27,10 @@
 	height: 2em;
 }
 
-.search-button {
+/*.search-button {
 	padding: 5px !important;
 	color: #EC8130 !important;
-}
+}*/
 
 
 /*
@@ -67,7 +75,7 @@
 	display: block;
 	float: right;
 	line-height: 10px;
-	color: #EC8130 !important;
+	color: #E18842 !important;
 }
 
 
@@ -336,10 +344,6 @@
 /*
  * Conversation 
  */
-
-.conversation-nav-bar {
-	border-color: #EC8130 !important;
-}
 
 .conversation-content {
 }
