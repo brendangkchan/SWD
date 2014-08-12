@@ -70,6 +70,19 @@ app.factory("Posts", function() {
   }
 });
 
+// Me factory
+
+app.factory("Me", function() {
+
+	var me = { user: { name: 'Brendan C', icon: 'img/test/me.jpg' } }
+	
+	return {
+		get: function() {
+			return me;
+		}
+	}
+});
+
 // Search Controller
 
 app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, Results) {
@@ -101,11 +114,12 @@ app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, 
 
 // Posts Controller
 
-app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, Posts, Results) {
+app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, Posts, Results, Me) {
 
 	$scope.title = $stateParams.book;	// get title
 	$scope.posts = Posts.all();
 	$scope.post;
+	$scope.me = Me.get();
 
 	var search = function (title) {
 		return Results.get(0);
@@ -122,36 +136,53 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 
 
 
+
+
+
+
+	// Post Detail Modal
+	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
+		id: 'detail',
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.detailModal = modal;
+	});
+
 	$scope.openPostDetail = function(index) {
 		$scope.post = Posts.get(index);
-		$scope.openModal();
+		$scope.detailModal.show();
 		console.log("Post is: " + $scope.post);
 	}
 
 	$scope.closePostDetail = function() {
-		$scope.closeModal();
+		$scope.detailModal.hide();
 	}
 
-
-
 	// Create Post Modal
-	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
+
+	$ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
+		id: 'create',
 		scope: $scope,
 		animation: 'slide-in-up'
 	}).then(function(modal) {
-		$scope.modal = modal;
+		$scope.createModal = modal;
 	});
 
-	$scope.openModal = function() {
-		$scope.modal.show();
-	};
-	$scope.closeModal = function() {
-		$scope.modal.hide();
-	};
+	$scope.openCreatePost = function() {
+		//$scope.post = Posts.get(index);
+		$scope.createModal.show();
+		//console.log("Post is: " + $scope.post);
+	}
+
+	$scope.closeCreatePost = function() {
+		$scope.createModal.hide();
+	}
 
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
-		$scope.modal.remove();
+		$scope.detailModal.remove();
+		$scope.createModal.remove();
 	});
 	// Execute action on hide modal
 	$scope.$on('modal.hidden', function() {

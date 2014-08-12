@@ -1,0 +1,64 @@
+<div class="modal create-post-modal">
+
+	<!-- Post Info -->
+	<div class="create-post-header">
+		<div class="row row-center">
+			<div class="col simple-col">
+				<img class="clip-circle icon" src={{me.user.icon}}>
+			</div>
+			<div class="col simple-col">
+				<label class="item item-input price">
+			    	<input type="number" placeholder="$20">
+			  	</label>
+			</div>
+			<div class="col simple-col">
+				<label class="item item-input edition">
+			    	<input type="number" placeholder="1">
+			  	</label>
+			</div>
+			<div class="col simple-col">
+				<label class="item item-input item-select">
+				    <select>
+				      <option selected>A</option>
+				      <option>B</option>
+				      <option>C</option>
+				      <option>D</option>
+				      <option>F</option>
+				    </select>
+			  	</label>
+			</div>
+		</div>
+		<div class"row bottom-row">
+			<div class="col col-25 bottom-col">
+				<p class="name">{{me.user.name}}</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Post Details -->
+	<ion-content class="create-post-content">
+		
+		<!-- Images -->
+		<ion-scroll direction="x" class="image-gallery">
+			<img ng-repeat="image in post.images" class="image" src={{image}}>
+		</ion-scroll>
+
+
+		<div class="comments">
+				{{post.comments}}
+		</div>
+
+
+	</ion-content>
+
+	<!-- Footer Buttons -->
+	<div class="bar bar-footer create-post-footer">
+		<button class="button button-clear stotle-button close" ng-click="closeCreatePost()">
+			Close
+		</button>
+		<button class="button button-clear stotle-button message">
+			Finish
+		</button>
+	</div>
+
+</div>
