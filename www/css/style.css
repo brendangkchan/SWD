@@ -99,7 +99,7 @@
  */
 
 .conversation-item {
-	//border-color: #EEE;
+	border-color: #EEE;
 }
 
 .clip-circle{
@@ -235,7 +235,7 @@
 .posts-sub-header .title {
 	display: block;
 	//top: 5px;
-	padding: 5px 0 0 0 !important;
+	padding: 5px 15px 0 0 !important;
 	margin-bottom: 10px !important;
 	color: #000;
 }
@@ -296,7 +296,7 @@
 .post-item {
 	padding: 10px;
 	height: 80px;
-	border-color: #DDD;
+	border-color: #EEE;
 	border-bottom-width: 1px;
 	border-style: solid;
 }
@@ -334,7 +334,9 @@
 	vertical-align: middle;
 	line-height: 40px; 
 	height: 40px;   
-	padding: 0 !important   
+	padding: 0 !important;  
+
+	font-size: 1.5em; 
 }
 
 .post-item .price {
@@ -417,7 +419,9 @@
 	vertical-align: middle;
 	line-height: 40px; 
 	height: 40px;   
-	padding: 0 !important   
+	padding: 0 !important;
+
+	font-size: 1.5em;   
 }
 
 .post-detail-header .price {
@@ -436,10 +440,34 @@
 .post-detail-content {
 	height: calc(100% - 164px - 80px - 36px) !important;
 	top: 80px;
-	padding: 10px;
+	//padding: 10px;
 	border-top-width: 1px;
 	border-top-color: #DDD;
 	//background-color: #EEE;
+}
+
+.image-gallery {
+	overflow: scroll;
+	white-space: nowrap;
+	min-width: 100%;
+
+	margin: 40px 0px 30px 0px;
+}
+
+.image-gallery .image {
+	max-height: 45%;
+	max-width: 45%;
+	display: inline;
+}
+
+.post-detail-content .comments {
+	padding: 0px 20px 15px 20px;
+	//background-color: #EEE;
+	height: 10em;
+
+	font-size: 1.2em;
+	color: #333;
+	overflow: scroll;
 }
 
 .post-detail-footer {

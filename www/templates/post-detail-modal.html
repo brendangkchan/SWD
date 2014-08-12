@@ -7,13 +7,13 @@
 				<img class="clip-circle icon" src={{post.user.icon}}>
 			</div>
 			<div class="col simple-col">
-				<h3 class="price">${{post.price}}</h3>
+				<div class="price">${{post.price}}</div>
 			</div>
 			<div class="col simple-col">
-				<h3 class="edition">{{post.edition}}</h3>
+				<div class="edition">{{post.edition}}</div>
 			</div>
 			<div class="col simple-col">
-				<h3 class="condition">{{post.condition}}</h3>
+				<div class="condition">{{post.condition}}</div>
 			</div>
 		</div>
 		<div class"row bottom-row">
@@ -25,7 +25,29 @@
 
 	<!-- Post Details -->
 	<ion-content class="post-detail-content">
-		Content
+		
+		<!-- Images -->
+		<ion-scroll direction="x" class="image-gallery">
+			<img ng-repeat="image in post.images" class="image" src={{image}}>
+		</ion-scroll>
+
+		<!-- Comments -->
+		<!-- <div class="card comments">
+		  <div class="item item-text-wrap body">
+		    {{post.comments}}
+		  </div>
+		</div> -->
+
+		<div class="comments">
+				{{post.comments}}
+		</div>
+
+		<!-- <ion-scroll direction="y" class="comments">
+			<div class="body">
+				{{post.comments}}
+			</div>
+		</ion-scroll> -->
+
 	</ion-content>
 
 	<!-- Footer Buttons -->

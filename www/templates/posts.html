@@ -5,7 +5,7 @@ Posts after selecting a result -->
 <!-- Nav Bar -->
 <ion-nav-bar class="bar-light nav-title-slide-ios7 stotle-nav-bar-clear">
   <button class="button-icon icon ion-ios7-arrow-left stotle-button" ng-click="back()"></button>
-  <button class="button button-clear pull-right stotle-button">Create Post</button>
+  <button class="button button-clear pull-right stotle-button" ng-click="openCreatePost()">Create Post</button>
 </ion-nav-bar>
 
 <ion-view title="Posts">
@@ -49,13 +49,13 @@ Posts after selecting a result -->
 							<img class="clip-circle icon" src={{post.user.icon}}>
 						</div>
 						<div class="col simple-col">
-							<h3 class="price">${{post.price}}</h3>
+							<div class="price">${{post.price}}</div>
 						</div>
 						<div class="col simple-col">
-							<h3 class="edition">{{post.edition}}</h3>
+							<div class="edition">{{post.edition}}</div>
 						</div>
 						<div class="col simple-col">
-							<h3 class="condition">{{post.condition}}</h3>
+							<div class="condition">{{post.condition}}</div>
 						</div>
 					</div>
 
@@ -66,19 +66,6 @@ Posts after selecting a result -->
 					</div>
 					
 				</div>
-				
-
-				<!-- <script id="post-detail-modal.html" type="text/ng-template">
-				  <div class="modal">
-				    <ion-header-bar>
-				      <h1 class="title">{{post.user.name}}</h1>
-				      <button class="button button-icon icon ion-ios7-close-empty" ng-click="closePostDetail()"></button>
-				    </ion-header-bar>
-				    <ion-content>
-				      Hello!
-				    </ion-content>
-				  </div>
-				</script> -->
 
 			</div>
 		</ion-list>
