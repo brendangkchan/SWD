@@ -41,7 +41,7 @@ Posts after selecting a result -->
 			<!-- Messages -->
 			<div ng-repeat="post in posts track by post.user.name">
 
-				<div class="post-item">
+				<div class="post-item" ng-click="openPostDetail($index)">
 
 					<div class="row row-center">
 						<div class="col simple-col">
@@ -66,9 +66,25 @@ Posts after selecting a result -->
 					
 				</div>
 				
+
+				<!-- <script id="post-detail-modal.html" type="text/ng-template">
+				  <div class="modal">
+				    <ion-header-bar>
+				      <h1 class="title">{{post.user.name}}</h1>
+				      <button class="button button-icon icon ion-ios7-close-empty" ng-click="closePostDetail()"></button>
+				    </ion-header-bar>
+				    <ion-content>
+				      Hello!
+				    </ion-content>
+				  </div>
+				</script> -->
+
 			</div>
 		</ion-list>
 	</ion-content>
+
+	
+
 </ion-view>
 
 

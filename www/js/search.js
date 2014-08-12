@@ -86,10 +86,11 @@ app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, 
 
 // Posts Controller
 
-app.controller('PostCtrl', function($scope, $window, $stateParams, Posts, Results) {
+app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, Posts, Results) {
 
 	$scope.title = $stateParams.book;	// get title
 	$scope.posts = Posts.all();
+	$scope.post;
 
 	var search = function (title) {
 		return Results.get(0);
@@ -103,6 +104,48 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, Posts, Result
 	$scope.back = function () {
 		$window.history.back();
 	}
+
+
+
+	$scope.openPostDetail = function(index) {
+		$scope.post = Posts.get(index);
+		$scope.openModal();
+		console.log("Post is: " + $scope.post);
+	}
+
+	$scope.closePostDetail = function() {
+		$scope.closeModal();
+	}
+
+
+
+	// Create Post Modal
+	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.modal = modal;
+	});
+
+	$scope.openModal = function() {
+		$scope.modal.show();
+	};
+	$scope.closeModal = function() {
+		$scope.modal.hide();
+	};
+
+	//Cleanup the modal when we're done with it!
+	$scope.$on('$destroy', function() {
+		$scope.modal.remove();
+	});
+	// Execute action on hide modal
+	$scope.$on('modal.hidden', function() {
+	// Execute action
+	});
+	// Execute action on remove modal
+	$scope.$on('modal.removed', function() {
+	// Execute action
+});
 });
 
 
