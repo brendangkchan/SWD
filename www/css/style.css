@@ -49,11 +49,18 @@
 
 .reference-item {
 	line-height: 10px;
-	height: 85px !important;
+	height: 100px !important;
+	padding-right: 15px !important;
+	//border-color: #EEE;
+}
+
+.reference-item .item-content {
+	height: 100px !important;
+	//padding: 10px 25px 15px 15px !important;
 }
 
 .reference-icon {
-	top: 15px !important;  /*Changed from 15px*/
+	top: 20px !important;  /*Changed from 15px*/
     max-width: 42px !important;  /*Changed from 40px*/
     max-height: 60px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
@@ -62,7 +69,7 @@
 
 .reference-title {
 	display: block;
-	padding: 5px 0 0 0 !important;
+	padding: 10px 0 0 0 !important;
 	margin-bottom: 10px !important;
 }
 
@@ -78,9 +85,6 @@
 	color: #E18842 !important;
 }
 
-
-
-
 .reference-item-button {
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -93,6 +97,10 @@
 /*
  * Reference Conversation List Accordion
  */
+
+.conversation-item {
+	//border-color: #EEE;
+}
 
 .clip-circle{
 	height: 45px;
@@ -162,19 +170,23 @@
  */
 
 .results-sub-header {
-	padding: 5px 5px 0px 10px;
-	height: 30px;
+	padding: 10px 0px 0px 15px;
+	height: 35px;
 	background-color: #EEE;
 }
 
 .result-item {
 	line-height: 10px;
 	padding: 17px 0px 0px 70px !important;
-	height: 90px !important;
+	height: 100px !important;
+}
+
+.result-item .item-content {
+	//padding-right: 15px !important;
 }
 
 .result-item .icon {
-	top: 15px !important;  /*Changed from 15px*/
+	top: 20px !important;  /*Changed from 15px*/
     max-width: 42px !important;  /*Changed from 40px*/
     max-height: 60px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
@@ -183,21 +195,21 @@
 
 .result-item .title {
 	display: block;
-	top: 0;
-	padding: 0 !important;
-	margin-bottom: 10px !important;
+	//top: 5px;
+	padding: 2px 20px 0 0 !important;
+	margin-bottom: 7px !important;
 	color: #000;
 }
 
 .result-item .author {
 	display: block;
 	margin-bottom: 11px !important;
-	color: #333;
+	color: #222;
 }
 
 .result-item .isbn {
 	display: block;
-	color: #333;
+	color: #222;
 }
 
 /*
@@ -213,7 +225,7 @@
 }
 
 .posts-sub-header .icon {
-	top: 10px !important;  /*Changed from 15px*/
+	top: 15px !important;  /*Changed from 15px*/
     max-width: 42px !important;  /*Changed from 40px*/
     max-height: 60px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
@@ -222,8 +234,8 @@
 
 .posts-sub-header .title {
 	display: block;
-	top: 0;
-	padding: 0 !important;
+	//top: 5px;
+	padding: 5px 0 0 0 !important;
 	margin-bottom: 10px !important;
 	color: #000;
 }
@@ -247,10 +259,10 @@
 .post-column-headers {
 	position: absolute;
 	top: 90px !important;
-	padding: 0px !important;
+	padding: 7px 0 0 0 !important;
 	margin: 30px 0 0px 0 !important;
 	width: 100%;
-	height: 35px;
+	height: 45px;
 
 	border-color: #DDD;
 	border-bottom-width: 1px;
@@ -278,7 +290,7 @@
  */
 
 .posts-content {
-	top: 155px;
+	top: 165px;
 }
 
 .post-item {
@@ -345,10 +357,9 @@
 
 .post-detail-modal {
 	width: 100% !important;
-	min-height: calc(100%-156px) !important;
-	height: calc(100%-156px) !important;
+	height: calc(100% - 164px) !important;
 
-	top: 154px !important;
+	top: 164px !important;
 	//left: 12.5% !important;
 }
 
@@ -423,10 +434,33 @@
 }
 
 .post-detail-content {
+	height: calc(100% - 164px - 80px - 36px) !important;
 	top: 80px;
 	padding: 10px;
 	border-top-width: 1px;
 	border-top-color: #DDD;
+	//background-color: #EEE;
+}
+
+.post-detail-footer {
+	height: 44px !important;
+	position: absolute !important;
+	top: calc(100% - 164px - 80px + 36px) !important;
+	
+	//border-top-width: 1px;
+	//border-top-color: #EEE;
+}
+
+.post-detail-footer .button {
+	top: 0 !important;
+}
+
+.post-detail-footer .close {
+	left: 10px !important;
+}
+
+.post-detail-footer .message {
+	right: 15px !important;
 }
 
 
@@ -487,25 +521,29 @@
  */
 
 .post-info-header {
-	padding-left: 50px !important;
+	padding-left: 55px !important;
 	padding-top: 6px !important;
 	background-color: #EEE;
-	height: 60px !important;
+	height: 80px !important;
+
+	border-bottom-width: 1px;
+	border-color: #DDD;
 }
 
 .post-info-header .icon{
-	top: 8px !important;  /*Changed from 15px*/
+	top: 15px !important;  /*Changed from 15px*/
 	left: 10px !important;
     max-width: 42px !important;  /*Changed from 40px*/
-    max-height: 40px !important; /*Changed from 40px*/
+    max-height: 50px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
     border-radius: 1px !important;  /*Changed from 4px*/
 }
 
 .post-info-header .title{
 	display: block;
-	margin: 0 0 1px 0 !important;
-	top: 0px !important;
+	margin: 0px 0 2px 0 !important;
+	padding: 5px 0 0 0 !important;
+	//top: 15px !important;
 	color: #000;
 }
 

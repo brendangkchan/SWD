@@ -16,7 +16,8 @@ app.factory("References", function() {
     { id: 0, name: 'Beyonce K', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', messages: []},
     { id: 1, name: 'Jay Z', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', messages: []},
     { id: 2, name: 'Beyonce C', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', messages: []},
-    { id: 3, name: 'Jay D', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', messages: []}
+    { id: 3, name: 'Jay D', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', messages: []},
+    { id: 4, name: 'Bae J', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user1.jpg', messages: []}
   ];
 
   var messages = [
@@ -40,6 +41,7 @@ app.factory("References", function() {
         });
     }
     references[i].conversations.push(conversations[i]);
+    references[i].conversations.push(conversations[i+1]);
   }
 
   return {
