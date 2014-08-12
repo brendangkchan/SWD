@@ -1,0 +1,54 @@
+<ion-view>
+	<!-- Column Headers -->
+	<div class="has-header post-column-headers">
+		<div class="row row-center">
+			<div class="col header-col user">
+				User
+			</div>
+			<div class="col header-col">
+				Price
+			</div>
+			<div class="col header-col">
+				Edition
+			</div>
+			<div class="col header-col">
+				Condition
+			</div>
+		</div>
+	</div>
+
+	<ion-content class="posts-content">
+		<!-- Results Content -->
+		<ion-list>
+			<!-- Messages -->
+			<div ng-repeat="post in posts track by post.user.name">
+
+				<div class="post-item" ng-click="openPostDetail($index)">
+
+					<div class="row row-center">
+						<div class="col simple-col">
+							<img class="clip-circle icon" src={{post.user.icon}}>
+						</div>
+						<div class="col simple-col">
+							<div class="price">${{post.price}}</div>
+						</div>
+						<div class="col simple-col">
+							<div class="edition">{{post.edition}}</div>
+						</div>
+						<div class="col simple-col">
+							<div class="condition">{{post.condition}}</div>
+						</div>
+					</div>
+
+					<div class"row bottom-row">
+						<div class="col col-25 bottom-col">
+							<p class="name">{{post.user.name}}</p>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-view>

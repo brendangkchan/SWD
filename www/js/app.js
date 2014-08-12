@@ -82,9 +82,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     // Posts
     .state('home.posts', {
-      url: '/posts/:book',
+      url: '/posts',
       templateUrl: 'templates/posts.html',
-      controller: 'PostCtrl'
+      controller: 'PostCtrl',
+      abstract: true
+    })
+
+    // Posts Selling
+    .state('home.posts.selling', {
+      url: '/selling',
+      views: {
+        'tab-posts-selling': {
+          templateUrl: 'templates/tab-posts.html',
+          controller: 'PostCtrl'
+        }
+      }
+    })
+
+    // Posts Buying
+    .state('home.posts.buying', {
+      url: '/buying',
+      views: {
+        'tab-posts-buying': {
+          templateUrl: 'templates/tab-posts.html',
+          controller: 'PostCtrl'
+        }
+      }
     })
 
     // Conversation page

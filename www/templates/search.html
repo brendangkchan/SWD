@@ -21,7 +21,7 @@ Initial results after first search -->
 			<!-- Messages -->
 			<div ng-repeat="result in results track by result.isbn">
 
-				<div class="item item-avatar result-item" ui-sref="home.posts({ book: result.title })">
+				<div class="item item-avatar result-item" ui-sref="home.posts.selling">
 					<img class="icon" src={{result.icon}}>
 					<h2 class="title">{{result.title}}</h2>
 					<p class="author">{{result.author}}</p>
@@ -34,4 +34,4 @@ Initial results after first search -->
 </ion-view>
 
 
-
+<!-- ui-sref="home.posts({ book: result.title })" -->

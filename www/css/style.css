@@ -219,9 +219,12 @@
 .posts-sub-header {
 	line-height: 10px;
 	padding: 12px 0px 0px 70px !important;
-	height: 80px !important;
+	height: 90px !important;
 
-	border-color: #FFF; !important;
+	//border-color: #FFF; !important;
+
+	border-bottom-width: 1px !important;
+	border-color: #EEE;
 }
 
 .posts-sub-header .icon {
@@ -252,13 +255,28 @@
 }
 
 
+/* 
+ * Post Tabs
+ */
+
+.post-tabs {
+	top: 89px !important;
+	
+}
+
+.post-tabs .tab-item-active {
+	/*border-top-width: 1px !important;
+	border-color: #EEE;*/
+}
+
+
 /*
  * Post Column Headers
  */
 
 .post-column-headers {
 	position: absolute;
-	top: 90px !important;
+	top: 80px !important;
 	padding: 7px 0 0 0 !important;
 	margin: 30px 0 0px 0 !important;
 	width: 100%;
@@ -294,7 +312,7 @@
  */
 
 .posts-content {
-	top: 165px;
+	top: 155px;
 }
 
 .post-item {
@@ -363,8 +381,8 @@
 
 .post-detail-modal {
 	width: 100% !important;
-	height: calc(100% - 164px) !important;
-	top: 164px !important;
+	height: calc(100% - 243px) !important;
+	top: 243px !important;
 }
 
 .modal-backdrop {
@@ -440,23 +458,25 @@
 }
 
 .post-detail-content {
-	height: calc(100% - 164px - 80px - 36px) !important;
+	/* Pictures and Comments */
+	height: calc(100% - 243px - 80px - 60px) !important;
+	//max-height: 50% !important;
 	top: 80px;
 	//padding: 10px;
-	border-top-width: 1px;
-	border-top-color: #DDD;
+	//border-top-width: 1px;
+	//border-top-color: #DDD;
 	//background-color: #EEE;
 }
 
-.image-gallery {
+.post-detail-content .image-gallery {
 	overflow: scroll;
 	white-space: nowrap;
 	min-width: 100%;
 
-	margin: 30px 0px 30px 0px;
+	margin: 15px 15px 20px 15px;
 }
 
-.image-gallery .image {
+.post-detail-content .image-gallery .image {
 	max-height: 35%;
 	max-width: 35%;
 	display: inline;
@@ -465,7 +485,7 @@
 .post-detail-content .comments {
 	padding: 0px 20px 15px 20px;
 	//background-color: #EEE;
-	height: 10em;
+	height: 45% !important;
 
 	font-size: 1.2em;
 	color: #333;
@@ -475,10 +495,10 @@
 .post-detail-footer {
 	height: 44px !important;
 	position: absolute !important;
-	top: calc(100% - 164px - 80px + 36px) !important;
+	top: calc(100% - 243px - 80px + 37px) !important;
 	
 	/*border-top-width: 1px;
-	border-top-color: #DDD;*/
+	border-top-color: #000;*/
 }
 
 .post-detail-footer .button {
@@ -505,8 +525,8 @@
 
 .create-post-modal {
 	width: 100% !important;
-	height: calc(100% - 164px) !important;
-	top: 164px !important;
+	height: calc(100% - 243px) !important;
+	top: 243px !important;
 }
 
 .modal-backdrop {
@@ -591,11 +611,11 @@
 }
 
 .create-post-content {
-	height: calc(100% - 164px - 80px - 36px) !important;
+	height: calc(100% - 243px - 80px - 40px) !important;
 	top: 80px;
 	//padding: 10px;
-	border-top-width: 1px;
-	border-top-color: #DDD;
+	//border-top-width: 1px;
+	//border-top-color: #DDD;
 	//background-color: #EEE;
 }
 
@@ -626,7 +646,7 @@
 .create-post-footer {
 	height: 44px !important;
 	position: absolute !important;
-	top: calc(100% - 164px - 80px + 36px) !important;
+	top: calc(100% - 243px - 80px + 37px) !important;
 	
 	/*border-top-width: 1px;
 	border-top-color: #DDD;*/
