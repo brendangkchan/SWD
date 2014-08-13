@@ -114,7 +114,7 @@ app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, 
 
 // Posts Controller
 
-app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, Posts, Results, Me) {
+app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, $ionicPopup, Posts, Results, Me) {
 
 	$scope.title = $stateParams.book;	// get title
 	$scope.posts = Posts.all();
@@ -152,7 +152,6 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 		$scope.post = Posts.get(index);
 		$scope.detailModal.show();
 		console.log("Post is: " + $scope.post);
-		$scope.$apply();
 	}
 
 	$scope.closePostDetail = function() {
@@ -220,6 +219,8 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
       	//$scope.showPostButtons = false;
       	//console.log($scope.showPostButtons);
     });
+
+
 });
 
 

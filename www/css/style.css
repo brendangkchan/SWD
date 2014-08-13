@@ -532,18 +532,19 @@
  */
 
 .transparent {
-	background: transparent !important;
+	//background: transparent !important;
 	//background-color: rgba(0, 0, 0, 0.5);
 }
 .image-modal {
 	width: 100% !important;
-	height: 100%;
-	top: 0 !important;
-	left: 0 !important;
+	height: calc(100% - 243px) !important;
+	top: 243px !important;
 }
 .fullscreen-image {
-	max-width: 100%;
+	width: 100%;
 	max-height: 100%;
+	margin: 0 !important;
+	padding: 0 !important;
 	bottom: 0;
 	left: 0;
 	margin: auto;
@@ -551,6 +552,20 @@
 	position: fixed;
 	right: 0;
 	top: 0;
+}
+
+.vignette {
+	-webkit-box-shadow: inset 0px 0px 85px rgba(0,0,0,0.4);
+	-moz-box-shadow:    inset 0px 0px 85px rgba(0,0,0,0.4);
+	box-shadow:         inset 0px 0px 85px rgba(0,0,0,0.4);
+	
+	line-height: 0;         /* ensure no space between bottom */
+		
+	//display: inline-block;  /* don't go wider than image */
+}
+.vignette img {
+	position: relative; 
+	z-index: -1;            /* position beneath */
 }
 
 /*
