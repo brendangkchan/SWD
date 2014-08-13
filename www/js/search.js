@@ -120,6 +120,9 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	$scope.posts = Posts.all();
 	$scope.post;
 	$scope.me = Me.get();
+	$scope.image;
+
+	$scope.showPostButtons = true;
 
 	var search = function (title) {
 		return Results.get(0);
@@ -135,11 +138,6 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	}
 
 
-
-
-
-
-
 	// Post Detail Modal
 	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
 		id: 'detail',
@@ -150,12 +148,15 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	});
 
 	$scope.openPostDetail = function(index) {
+		$scope.showPostButtons = false;
 		$scope.post = Posts.get(index);
 		$scope.detailModal.show();
 		console.log("Post is: " + $scope.post);
+		$scope.$apply();
 	}
 
 	$scope.closePostDetail = function() {
+		$scope.showPostButtons = true;
 		$scope.detailModal.hide();
 	}
 
@@ -164,7 +165,7 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	$ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
 		id: 'create',
 		scope: $scope,
-		animation: 'slide-in-up'
+		animation: 'slide-in-up',
 	}).then(function(modal) {
 		$scope.createModal = modal;
 	});
@@ -179,19 +180,46 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 		$scope.createModal.hide();
 	}
 
+
+	// Image Modal
+
+	$ionicModal.fromTemplateUrl('templates/image-modal.html', {
+		id: 'image',
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.imageModal = modal;
+	});
+
+	$scope.openImage = function(image) {
+		$scope.image = image;
+		$scope.imageModal.show();
+		//console.log("Post is: " + $scope.post);
+	}
+
+	$scope.closeImage = function() {
+		$scope.imageModal.hide();
+	}
+
+
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
 		$scope.detailModal.remove();
 		$scope.createModal.remove();
+		$scope.imageModal.remove();
 	});
 	// Execute action on hide modal
 	$scope.$on('modal.hidden', function() {
-	// Execute action
+		//$scope.showPostButtons = true;
 	});
 	// Execute action on remove modal
 	$scope.$on('modal.removed', function() {
-	// Execute action
-});
+		//$scope.showPostButtons = true;
+	});
+	$scope.$on('modal.shown', function() {
+      	//$scope.showPostButtons = false;
+      	//console.log($scope.showPostButtons);
+    });
 });
 
 
