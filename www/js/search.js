@@ -130,15 +130,9 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 
 	$scope.book = search($scope.title);
 	
-	console.log($scope.book);
-
-	// Back Navigation
-	$scope.back = function () {
-		$window.history.back();
-	}
-
 
 	// Post Detail Modal
+
 	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
 		id: 'detail',
 		scope: $scope,
@@ -148,14 +142,11 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	});
 
 	$scope.openPostDetail = function(index) {
-		$scope.showPostButtons = false;
 		$scope.post = Posts.get(index);
 		$scope.detailModal.show();
-		console.log("Post is: " + $scope.post);
 	}
 
 	$scope.closePostDetail = function() {
-		$scope.showPostButtons = true;
 		$scope.detailModal.hide();
 	}
 
@@ -170,7 +161,6 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	});
 
 	$scope.openCreatePost = function() {
-		//$scope.post = Posts.get(index);
 		$scope.createModal.show();
 		//console.log("Post is: " + $scope.post);
 	}
@@ -193,11 +183,24 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	$scope.openImage = function(image) {
 		$scope.image = image;
 		$scope.imageModal.show();
-		//console.log("Post is: " + $scope.post);
 	}
 
 	$scope.closeImage = function() {
 		$scope.imageModal.hide();
+	}
+
+	// Back Navigation
+	$scope.back = function () {
+		$window.history.back();
+	}
+
+	$scope.togglePostButtons = function() {
+		setTimeout(function () {
+	        $scope.$apply(function(){
+       	 		$scope.showPostButtons = !$scope.showPostButtons;
+	        });
+    	}, 10);
+    	console.log("Toggling Post Buttons: " + $scope.showPostButtons);
 	}
 
 
@@ -209,15 +212,14 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	});
 	// Execute action on hide modal
 	$scope.$on('modal.hidden', function() {
-		//$scope.showPostButtons = true;
+		$scope.togglePostButtons();
 	});
 	// Execute action on remove modal
 	$scope.$on('modal.removed', function() {
 		//$scope.showPostButtons = true;
 	});
 	$scope.$on('modal.shown', function() {
-      	//$scope.showPostButtons = false;
-      	//console.log($scope.showPostButtons);
+      	$scope.togglePostButtons();
     });
 
 
