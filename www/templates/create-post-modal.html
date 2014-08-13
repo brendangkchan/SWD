@@ -35,26 +35,28 @@
 		</div>
 	</div>
 
-	<!-- Post Details -->
-	<ion-content class="create-post-content">
+	<!-- Post Info -->
+	<div class="create-post-content">
 		
-		<!-- Images -->
+		<!-- Comments -->
+		<label class="item item-input comments">
+	    	<textarea placeholder="Comments"></textarea>
+  		</label>
+
+  		<!-- Images -->
 		<ion-scroll direction="x" class="image-gallery">
 			<img ng-repeat="image in post.images" class="image" src={{image}}>
 		</ion-scroll>
 
-
-		<div class="comments">
-				{{post.comments}}
-		</div>
-
-
-	</ion-content>
+	</div>
 
 	<!-- Footer Buttons -->
-	<div class="bar bar-footer create-post-footer">
+	<div class="button-bar create-post-footer">
 		<button class="button button-clear stotle-button close" ng-click="closeCreatePost()">
 			Close
+		</button>
+		<button class="button button-clear stotle-button message">
+			Photos
 		</button>
 		<button class="button button-clear stotle-button message">
 			Finish
@@ -62,3 +64,14 @@
 	</div>
 
 </div>
+
+
+<!-- <button class="button button-clear stotle-button close" ng-click="closeCreatePost()">
+			Close
+		</button>
+		<button class="button button-clear stotle-button message">
+			Add Photos
+		</button>
+		<button class="button button-clear stotle-button message">
+			Finish
+		</button> -->

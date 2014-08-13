@@ -26,27 +26,23 @@
 	<!-- Post Details -->
 	<div class="post-detail-content">
 		
-		<!-- Images -->
-		<ion-scroll direction="x" class="image-gallery">
-			<img ng-repeat="image in post.images" class="image" src={{image}}>
-		</ion-scroll>
-
 		<!-- Comments -->
-		<!-- <div class="card comments">
-		  <div class="item item-text-wrap body">
-		    {{post.comments}}
-		  </div>
-		</div> -->
-
 		<div class="comments">
 				{{post.comments}}
 		</div>
 
-		<!-- <ion-scroll direction="y" class="comments">
-			<div class="body">
-				{{post.comments}}
-			</div>
+		<!-- Images -->
+		<!-- <ion-scroll direction="x" class="image-gallery">
+			<img ng-repeat="image in post.images" class="image" src={{image}}>
 		</ion-scroll> -->
+		<div class="image-gallery">
+			<div class="row">
+				<div class="col">
+					<img ng-repeat="image in post.images" class="image" src={{image}}>
+				</div>
+			</div>
+		</div>
+		
 
 	</div>
 
