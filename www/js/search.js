@@ -14,6 +14,7 @@ app.factory("Results", function() {
     { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', icon: 'img/test/book4.jpg', isbn: '99-9267-942-5'}
   ];
 
+  var result;
 
   return {
     all: function() {
@@ -22,7 +23,20 @@ app.factory("Results", function() {
     get: function(resultId) {
       // Simple index lookup
       return results[resultId];
-    }
+    },
+    search: function (title) {
+		for (var i = 0; i < results.length; i++) {
+			if (results[i].title === title) {
+				//console.log(results[i]);
+				//return results[i];
+				result = results[i];
+			}
+		}
+	},
+	get: function() {
+		//console.log(result);
+		return result;
+	}
   }
 });
 
@@ -109,6 +123,10 @@ app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, 
 	$scope.back = function () {
 		$window.history.back();
 	}
+
+	$scope.select = function(title) {
+		Results.search(title);
+	}
 });
 
 
@@ -116,20 +134,15 @@ app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, 
 
 app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, $ionicPopup, Posts, Results, Me) {
 
-	$scope.title = $stateParams.book;	// get title
+	$scope.book_title = $stateParams.book;	// get title
 	$scope.posts = Posts.all();
 	$scope.post;
 	$scope.me = Me.get();
 	$scope.image;
+	$scope.book = Results.get();
+	console.log($scope.book);
 
 	$scope.showPostButtons = true;
-
-	var search = function (title) {
-		return Results.get(0);
-	};
-
-	$scope.book = search($scope.title);
-	
 
 	// Post Detail Modal
 

@@ -90,7 +90,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     // Posts Selling
     .state('home.posts.selling', {
-      url: '/selling',
+      url: '/selling/:book',
       views: {
         'tab-posts-selling': {
           templateUrl: 'templates/tab-posts.html',
