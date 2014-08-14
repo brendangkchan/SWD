@@ -43,10 +43,26 @@
 	    	<textarea placeholder="Comments"></textarea>
   		</label>
 
-  		<!-- Images -->
-		<ion-scroll direction="x" class="image-gallery">
-			<img ng-repeat="image in post.images" class="image" src={{image}}>
-		</ion-scroll>
+		<!-- Images -->
+		<div class="image-gallery">
+			<div class="row">
+				<div class="col">
+					<button class="button ion-plus stotle-button"></button>
+				</div>
+				<div class="col">
+					<button class="button ion-plus stotle-button"></button>
+				</div>
+				<div class="col">
+					<button class="button ion-plus stotle-button"></button>
+				</div>
+				<div class="col">
+					<button class="button ion-plus stotle-button"></button>
+				</div>
+			</div>
+		</div>
+
+		
+
 
 	</div>
 
@@ -54,9 +70,6 @@
 	<div class="button-bar create-post-footer">
 		<button class="button button-clear stotle-button close" ng-click="closeCreatePost()">
 			Close
-		</button>
-		<button class="button button-clear stotle-button message">
-			Photos
 		</button>
 		<button class="button button-clear stotle-button message">
 			Finish
