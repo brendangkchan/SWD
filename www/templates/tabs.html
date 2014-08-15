@@ -1,8 +1,7 @@
-
-<div ng-controller="SearchCtrl">
+<ion-view title="My Books" ng-controller="SearchCtrl">
   <!-- Nav Bar -->
   <ion-nav-bar class="bar-energized nav-title-slide-ios7 stotle-nav-bar">
-    <button class="button button-clear" ng-show="showResultsButton">Results</button>
+    <button class="button button-clear pull-left" ng-if="showResultsButton" ui-sref="home.posts.selling">Results</button>
   </ion-nav-bar>
 
   <!-- Search Bar -->
@@ -12,7 +11,6 @@
       <input enterShowResults type="text" placeholder="Title, Author, ISBN..." ng-model="query" ng-enter="search(query)" >
     </label>
   </div>
-</div>
 
 <!-- Reference Tabs -->
 <ion-tabs class="has-tabs-top tabs-top">
@@ -28,5 +26,5 @@
   </ion-tab>
 
 </ion-tabs>
-
+</ion-view>
 

@@ -76,8 +76,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     // Search
     .state('home.search', {
       url: '/search/:query',
-      templateUrl: 'templates/search.html',
-      controller: 'SearchCtrl'
+      templateUrl: 'templates/results.html',
+      controller: 'ResultsCtrl'
     })
 
     // Posts
@@ -143,7 +143,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home/tab/selling');
+  //$urlRouterProvider.otherwise('/home/tab/selling');
 
 
 

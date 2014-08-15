@@ -44,6 +44,9 @@ app.factory("References", function() {
     references[i].conversations.push(conversations[i+1]);
   }
 
+  var shownReferenceSell = null;
+  var shownReferenceBuy = null;
+
   return {
     all: function() {
       return references;
@@ -54,29 +57,47 @@ app.factory("References", function() {
     },
     conversations: function() {
       return conversations;
+    },
+    setShownReferenceSell: function (reference) {
+      shownReferenceSell = reference;
+    },
+    getShownReferenceSell: function () {
+      return shownReferenceSell;
+    },
+    setShownReferenceBuy: function (reference) {
+      shownReferenceBuy = reference;
+    },
+    getShownReferenceBuy: function () {
+      return shownReferenceBuy;
     }
   }
 });
 
-// References param is reference to factory
+// Reference Sell Tab Controller
+
 app.controller('ReferenceSellCtrl', function($scope, References, $location){
 
-  // References factory returns its internal variable "references"
+  // Load references and conversations
   $scope.references = References.all();
   $scope.conversations = References.conversations();
 
+  // Expand/Collapse reference
   $scope.toggleReference = function(reference) {
     if ($scope.isReferenceShown(reference)) {
       $scope.shownReference = null;
     } else {
       $scope.shownReference = reference;
     }
+    References.setShownReferenceSell($scope.shownReference);
   };
   
+  // Reference visibility
   $scope.isReferenceShown = function(reference) {
+    $scope.shownReference = References.getShownReferenceSell();
     return $scope.shownReference === reference;
   };
 
+  // Remove reference permanantly
   $scope.removeReference = function(reference) {
     console.log("Removing reference: " + reference.id);
     $scope.references.splice($scope.references.indexOf(reference), 1);
@@ -84,26 +105,31 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location){
 
 });
 
-// References param is reference to factory
+// Reference Buy Tab Controller
+
 app.controller('ReferenceBuyCtrl', function($scope, References, $location){
 
-  // References factory returns its internal variable "references"
+  // Load references and conversations
   $scope.references = References.all();
   $scope.conversations = References.conversations();
 
+  // Expand/Collapse reference
   $scope.toggleReference = function(reference) {
-    console.log($location.url());
     if ($scope.isReferenceShown(reference)) {
       $scope.shownReference = null;
     } else {
       $scope.shownReference = reference;
     }
+    References.setShownReferenceBuy($scope.shownReference);
   };
   
+  // Reference visibility
   $scope.isReferenceShown = function(reference) {
+    $scope.shownReference = References.getShownReferenceBuy();
     return $scope.shownReference === reference;
   };
 
+  // Remove reference permanantly
   $scope.removeReference = function(reference) {
     console.log("Removing reference: " + reference.id);
     $scope.references.splice($scope.references.indexOf(reference), 1);

@@ -5,7 +5,7 @@ Posts after selecting a result -->
 
 <!-- Nav Bar -->
 <ion-nav-bar class="bar-light nav-title-slide-ios7 stotle-nav-bar-clear">
-  <button class="button-icon icon ion-ios7-arrow-left stotle-button" ui-sref="home.search" ng-show="showPostButtons"></button>
+  <button class="button-icon icon ion-ios7-arrow-left stotle-button" ng-click="back()" ng-show="showPostButtons"></button>
   <button class="button button-clear pull-right stotle-button" ng-click="openCreatePost()" ng-if="showPostButtons">Create Post</button>
 </ion-nav-bar>
 

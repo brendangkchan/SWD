@@ -1,4 +1,4 @@
-var app = angular.module('search', ['ionic', 'ngAnimate'])
+var app = angular.module('search', ['ionic', 'ngAnimate', 'ngStorage'])
 
 
 // Dummy Search Results
@@ -14,29 +14,45 @@ app.factory("Results", function() {
     { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', icon: 'img/test/book4.jpg', isbn: '99-9267-942-5'}
   ];
 
+  var query = null;
+
   var result;
 
   return {
+  	// Get all results
     all: function() {
       return results;
     },
+    // Get a specific result
     get: function(resultId) {
-      // Simple index lookup
       return results[resultId];
     },
-    search: function (title) {
+    // Initial Search
+    search: function (query) {
+    	this.setQuery(query);
+    },
+    // Store selected book
+    selectBook: function (title) {
 		for (var i = 0; i < results.length; i++) {
 			if (results[i].title === title) {
-				//console.log(results[i]);
-				//return results[i];
 				result = results[i];
 			}
 		}
 	},
-	get: function() {
+	// Get selected book
+	getBook: function() {
 		//console.log(result);
 		return result;
+	},
+	// Store last query
+	setQuery: function(someQuery) {
+		query = someQuery;
+	},
+	// Retrieve last query
+	getQuery: function() {
+		return query;
 	}
+
   }
 });
 
@@ -97,55 +113,172 @@ app.factory("Me", function() {
 	}
 });
 
+// Root Scope Variables
+
+app.run(function($rootScope, $location) {
+	$rootScope.showResultsButton = false;
+	$rootScope.previousState;
+	$rootScope.currentState;
+	$rootScope.query;
+
+	$rootScope.stateStack = new Array();
+
+	// Retrieve previous state
+	$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+		
+		// State Reload
+   		if (to.name === from.name) {
+   			return;	
+   		}
+
+		// Switch Between Reference Tabs
+   		if (to.name.substring(0, 8) === 'home.tab' && from.name.substring(0, 8) === 'home.tab') {
+   			return;
+   		}
+
+   		// Switch Between Post Tabs
+   		if (to.name.substring(0, 10) === 'home.posts' && from.name.substring(0, 10) === 'home.posts') {
+   			return;
+   		}
+   		
+   		$rootScope.previousState = from.name;
+		$rootScope.currentState = to.name;
+
+		$rootScope.stateStack.push(from.name);
+
+   		console.log($rootScope.previousState + ' -> ' + $rootScope.currentState);
+	});
+
+	// Back Navigation
+	$rootScope.back = function () {
+		console.log($rootScope.previousState);
+		if ($rootScope.previousState === 'home.tab.selling') {
+			$location.path('home/tab/selling');
+		}
+		if ($rootScope.previousState === 'home.tab.buying') {
+			$location.path('home/tab/buying');
+		}
+		if ($rootScope.previousState === 'home.search') {
+			$location.path('home/search/' + $rootScope.query);
+		}
+		// Back to home -> posts <- search <- ?
+		if ($rootScope.previousState === 'home.posts.selling' || 
+			$rootScope.previousState === 'home.posts.buying') {
+			if ($rootScope.currentState === 'home.search') {
+
+				// Pop state stack until reach a home tab
+				console.log("here");
+				for (var i = 0; i < $rootScope.stateStack.length; i++) {
+					var state = $rootScope.stateStack[i];
+					if (state.indexOf("tab") > -1) {
+						$location.path('home/tab/' + state.substring(9));
+					 	return;
+					}
+				}
+			}
+		}
+		// else {
+		// 	$window.history.back();
+		// }
+	};
+})
+
 // Search Controller
 
-app.controller('SearchCtrl', function($scope, $location, $stateParams, $window, Results) {
+app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, Results) {
 
-	$scope.showResultsButton = false;
-	$scope.query = $stateParams.query;
+	//$scope.storage = $sessionStorage;
 
-	// Fake results from factory
-	$scope.results = Results.all();
-
+	// Configure Results button
+	$scope.showResultsButton = $rootScope.showResultsButton;
 	
+	// Make initial search
 	$scope.search = function (query) {
-		$scope.showResultsButton = true;
-		console.log("Query is: " + $scope.query);
-		console.log("Show Results Button: " + $scope.showResultsButton);
+		console.log("SearchCtrl search: " + $scope.query);
+
+		// Show Results button
+		$rootScope.showResultsButton = true;
+
+		// Perform search
+		Results.search($scope.query);
+
+		// Go to Results 
 		$location.path( '/home/search/' + $scope.query);
 	};
 
-	$scope.setHasResults = function() {
-		this.showResultsButton = true;
+	// Result Button
+	// Pop state stack until reach a post tab
+	$scope.backToPosts = function() {
+		for (var i = 0; i < $rootScope.stateStack.length; i++) {
+			var state = $rootScope.stateStack[i];
+			console.log(state.substring(11));
+			if (state.indexOf("posts") > -1) {
+				$location.path('home/posts/' + state.substring(11));
+			 	return;
+			}
+		}
+	}
+
+});
+
+// Results Controller
+
+app.controller('ResultsCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, Results) {
+
+	// Get query from Results service
+	$scope.query = Results.getQuery();
+
+	// Fake results from factory
+	$scope.results = Results.all();
+	
+	// Select book from initial search
+	$scope.selectBook = function(title) {
+		console.log("ResultsCtrl select: " + title);
+		Results.selectBook(title);
 	}
 
 	// Back Navigation
-	$scope.back = function () {
-		$window.history.back();
+	$scope.back = $rootScope.back;
+
+	// Result Button
+	// Pop state stack until reach a post tab
+	$scope.backToPosts = function() {
+		for (var i = 0; i < $rootScope.stateStack.length; i++) {
+			var state = $rootScope.stateStack[i];
+			console.log(state.substring(11));
+			if (state.indexOf("posts") > -1) {
+				$location.path('home/posts/' + state.substring(11));
+			 	return;
+			}
+		}
 	}
 
-	$scope.select = function(title) {
-		Results.search(title);
-	}
 });
+
+
 
 
 // Posts Controller
 
-app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, $ionicPopup, Posts, Results, Me) {
+app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, Me) {
 
-	$scope.book_title = $stateParams.book;	// get title
+	// Fake posts from factory
 	$scope.posts = Posts.all();
-	$scope.post;
-	$scope.me = Me.get();
-	$scope.image;
-	$scope.book = Results.get();
-	console.log($scope.book);
 
+	// My user information
+	$scope.me = Me.get();
+
+	// Get selected book for subheader
+	$scope.book = Results.getBook();
+
+	// Configure Nav-Bar buttons
 	$scope.showPostButtons = true;
 
-	// Post Detail Modal
+	// Back Navigation
+	$scope.back = $rootScope.back;
 
+
+	// Post Detail Modal
 	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
 		id: 'detail',
 		scope: $scope,
@@ -163,8 +296,8 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 		$scope.detailModal.hide();
 	}
 
-	// Create Post Modal
 
+	// Create Post Modal
 	$ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
 		id: 'create',
 		scope: $scope,
@@ -184,7 +317,6 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 
 
 	// Image Modal
-
 	$ionicModal.fromTemplateUrl('templates/image-modal.html', {
 		id: 'image',
 		scope: $scope,
@@ -202,18 +334,14 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 		$scope.imageModal.hide();
 	}
 
-	// Back Navigation
-	$scope.back = function () {
-		$window.history.back();
-	}
 
+	// Toggle Nav-Bar button visibility
 	$scope.togglePostButtons = function() {
 		setTimeout(function () {
 	        $scope.$apply(function(){
        	 		$scope.showPostButtons = !$scope.showPostButtons;
 	        });
     	}, 10);
-    	console.log("Toggling Post Buttons: " + $scope.showPostButtons);
 	}
 
 
@@ -229,12 +357,10 @@ app.controller('PostCtrl', function($scope, $window, $stateParams, $ionicModal, 
 	});
 	// Execute action on remove modal
 	$scope.$on('modal.removed', function() {
-		//$scope.showPostButtons = true;
 	});
 	$scope.$on('modal.shown', function() {
       	$scope.togglePostButtons();
     });
-
 
 });
 
