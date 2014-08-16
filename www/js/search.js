@@ -3,7 +3,7 @@ var app = angular.module('search', ['ionic', 'ngAnimate', 'ngStorage'])
 
 // Dummy Search Results
 
-app.factory("Results", function() {
+app.factory("Results", function($localStorage) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -14,9 +14,23 @@ app.factory("Results", function() {
     { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', icon: 'img/test/book4.jpg', isbn: '99-9267-942-5'}
   ];
 
+  // Last query
+  $localStorage.query;
   var query = null;
 
+  // Selected result
+  $localStorage.result;
   var result;
+
+  // Load last query after refresh
+  if ($localStorage.query != null) {
+  	query = $localStorage.query;
+  }
+
+  // Load last result after refresh
+  if ($localStorage.result != null) {
+  	result = $localStorage.result;
+  }
 
   return {
   	// Get all results
@@ -35,7 +49,8 @@ app.factory("Results", function() {
     selectBook: function (title) {
 		for (var i = 0; i < results.length; i++) {
 			if (results[i].title === title) {
-				result = results[i];
+				$localStorage.result = results[i];
+				result = $localStorage.result;
 			}
 		}
 	},
@@ -46,7 +61,8 @@ app.factory("Results", function() {
 	},
 	// Store last query
 	setQuery: function(someQuery) {
-		query = someQuery;
+		$localStorage.query = someQuery;
+		query = $localStorage.query;
 	},
 	// Retrieve last query
 	getQuery: function() {
@@ -115,38 +131,70 @@ app.factory("Me", function() {
 
 // Root Scope Variables
 
-app.run(function($rootScope, $location) {
+app.run(function($rootScope, $location, $localStorage, Results) {
+
 	$rootScope.showResultsButton = false;
+
+	//$localStorage.$reset();
+
+	// States
 	$rootScope.previousState;
 	$rootScope.currentState;
-	$rootScope.query;
+	$localStorage.previousState;
+	$localStorage.currentState;
 
+	// Load states on refresh
+	if ($localStorage.previousState != null) {
+		$rootScope.previousState = $localStorage.previousState;
+	}
+
+	if ($localStorage.currentState != null) {
+		$rootScope.currentState = $localStorage.currentState;
+	}
+
+	// State Stack
 	$rootScope.stateStack = new Array();
+	$rootScope.stateStack.push('bottom');
+	$localStorage.stateStack;
+
+	// Load state stack on refresh
+	if ($localStorage.stateStack != null) {
+		$rootScope.stateStack = $localStorage.stateStack;
+	}
 
 	// Retrieve previous state
 	$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
 		
-		// State Reload
-   		if (to.name === from.name) {
-   			return;	
-   		}
+		//console.log("From: " + from.name + ", To: " + to.name);
 
 		// Switch Between Reference Tabs
    		if (to.name.substring(0, 8) === 'home.tab' && from.name.substring(0, 8) === 'home.tab') {
-   			return;
+   			//return;
    		}
 
    		// Switch Between Post Tabs
    		if (to.name.substring(0, 10) === 'home.posts' && from.name.substring(0, 10) === 'home.posts') {
-   			return;
+   			//return;
    		}
-   		
-   		$rootScope.previousState = from.name;
-		$rootScope.currentState = to.name;
 
-		$rootScope.stateStack.push(from.name);
+   		// Reload, remove dulplicate state from stack
+		if ($rootScope.getLastState() === to.name) {
+			$rootScope.stateStack.pop();
+		}
+
+		// Update stack
+		$rootScope.stateStack.push(to.name);
+		$localStorage.stateStack = $rootScope.stateStack;
+
+		// Get states
+		$rootScope.previousState = $rootScope.stateStack[$rootScope.stateStack.length - 2];
+		$rootScope.currentState = $rootScope.stateStack[$rootScope.stateStack.length - 1];
+
 
    		console.log($rootScope.previousState + ' -> ' + $rootScope.currentState);
+
+   		// Print stack
+   		//$rootScope.printStack();
 	});
 
 	// Back Navigation
@@ -159,7 +207,7 @@ app.run(function($rootScope, $location) {
 			$location.path('home/tab/buying');
 		}
 		if ($rootScope.previousState === 'home.search') {
-			$location.path('home/search/' + $rootScope.query);
+			$location.path('home/search/' + Results.getQuery());
 		}
 		// Back to home -> posts <- search <- ?
 		if ($rootScope.previousState === 'home.posts.selling' || 
@@ -181,13 +229,22 @@ app.run(function($rootScope, $location) {
 		// 	$window.history.back();
 		// }
 	};
+
+	$rootScope.getLastState = function() {
+		return $rootScope.stateStack[$rootScope.stateStack.length - 1];
+		//$rootScope.stateStack.get(0);
+	};
+
+	$rootScope.printStack = function() {
+		for (var i = 0; i < $rootScope.stateStack.length; i++) {
+			console.log($rootScope.stateStack[i]);
+		}
+	};
 })
 
 // Search Controller
 
 app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, Results) {
-
-	//$scope.storage = $sessionStorage;
 
 	// Configure Results button
 	$scope.showResultsButton = $rootScope.showResultsButton;

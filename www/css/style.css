@@ -532,14 +532,28 @@
  */
 
 .transparent {
-	//background: transparent !important;
+	background: transparent !important;
 	//background-color: rgba(0, 0, 0, 0.5);
 }
 .image-modal {
 	width: 100% !important;
 	height: calc(100% - 243px) !important;
 	top: 243px !important;
+	background: #000;
 }
+
+.detail-image-container {
+	position: relative !important;
+	width: 100%;
+	height: inherit;
+}
+
+.detail-image {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+
 .fullscreen-image {
 	width: 100%;
 	max-height: 100%;
@@ -564,7 +578,7 @@
 	//display: inline-block;  /* don't go wider than image */
 }
 .vignette img {
-	position: relative; 
+	//position: relative; 
 	z-index: -1;            /* position beneath */
 }
 
@@ -695,10 +709,11 @@
 	vertical-align: middle;
 }
 
-.create-post-content .image-gallery button {
+.create-post-content .image-gallery .button {
 	border-color: #EA9043 !important;
 	background-color: #FFF !important;
 }
+
 
 .create-post-content .comments textarea {
 	font-size: 1.2em !important;
@@ -787,20 +802,20 @@
  */
 
 .post-info-header {
-	padding-left: 55px !important;
+	padding-left: 65px !important;
 	padding-top: 6px !important;
 	background-color: #EEE;
-	height: 80px !important;
+	height: 90px !important;
 
-	border-bottom-width: 1px;
+	//border-bottom-width: 2px;
 	border-color: #DDD;
 }
 
 .post-info-header .icon{
 	top: 15px !important;  /*Changed from 15px*/
 	left: 10px !important;
-    max-width: 42px !important;  /*Changed from 40px*/
-    max-height: 50px !important; /*Changed from 40px*/
+    //max-width: 42px !important;  /*Changed from 40px*/
+    max-height: 60px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
     border-radius: 1px !important;  /*Changed from 4px*/
 }
@@ -813,15 +828,18 @@
 	color: #000;
 }
 
+.post-info-header .author{
+	display: block;
+	margin: 0 !important;
+}
+
 .post-info-header .price{
-	display: inline;
+	display: block;
 	float:  right;
 	color: #4bbd64 !important;
 }
 
-.post-info-header .author{
-	display: inline;
-}
+
 
 
 

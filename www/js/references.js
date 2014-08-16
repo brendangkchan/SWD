@@ -1,7 +1,7 @@
 var app = angular.module('references', [])
 
 
-app.factory("References", function() {
+app.factory("References", function($localStorage) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -20,14 +20,7 @@ app.factory("References", function() {
     { id: 4, name: 'Bae J', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user1.jpg', messages: []}
   ];
 
-  var messages = [
-    { name: 'one', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-    { name: 'two', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-    { name: 'three', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-    { name: 'four', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
-  ];
-
-
+  // Build references
   for (var i=0; i<4; i++) {
     for (var j=0; j<8; j++) {
 
@@ -44,8 +37,25 @@ app.factory("References", function() {
     references[i].conversations.push(conversations[i+1]);
   }
 
+  // Track expanded references
   var shownReferenceSell = null;
   var shownReferenceBuy = null;
+
+  // Current conversation
+  $localStorage.reference;
+  $localStorage.conversation;
+  var reference;
+  var conversation;
+
+  // Load last conversation after refresh
+  if ($localStorage.reference != null) {
+    reference = $localStorage.reference;
+  }
+  if ($localStorage.conversation != null) {
+    conversation = $localStorage.conversation;
+  }
+
+
 
   return {
     all: function() {
@@ -69,6 +79,19 @@ app.factory("References", function() {
     },
     getShownReferenceBuy: function () {
       return shownReferenceBuy;
+    },
+    selectConversation: function (referenceIndex, conversationIndex) {
+      $localStorage.reference = references[referenceIndex];
+      $localStorage.conversation = references[referenceIndex].conversations[conversationIndex];
+
+      reference = $localStorage.reference;
+      conversation = $localStorage.conversation;
+    },
+    getSelectedReference: function() {
+      return reference;
+    },
+    getSelectedConversation: function() {
+      return conversation;
     }
   }
 });
@@ -80,6 +103,12 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location){
   // Load references and conversations
   $scope.references = References.all();
   $scope.conversations = References.conversations();
+
+  // Store clicked conversation
+  $scope.selectConversation = function (referenceIndex, conversationIndex) {
+    console.log("ReferenceSellCtrl select: " + referenceIndex + ", " + conversationIndex)
+    References.selectConversation(referenceIndex, conversationIndex);
+  }
 
   // Expand/Collapse reference
   $scope.toggleReference = function(reference) {
@@ -113,6 +142,12 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location){
   $scope.references = References.all();
   $scope.conversations = References.conversations();
 
+  // Store clicked conversation
+  $scope.selectConversation = function (referenceIndex, conversationIndex) {
+    console.log("ReferenceBuyCtrl select: " + referenceIndex + ", " + conversationIndex)
+    References.selectConversation(referenceIndex, conversationIndex);
+  }
+
   // Expand/Collapse reference
   $scope.toggleReference = function(reference) {
     if ($scope.isReferenceShown(reference)) {
@@ -137,52 +172,14 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location){
 
 });
 
-// Messaging Input Directive
-app.directive('input', function($timeout) {
-  return {
-    restrict: 'E',
-    scope: {
-      'returnClose': '=',
-      'onReturn': '&',
-      'onFocus': '&',
-      'onBlur': '&'
-    },
-    link: function(scope, element, attr) {
-      element.bind('focus', function(e) {
-        if (scope.onFocus) {
-          $timeout(function() {
-            scope.onFocus();
-          });
-        }
-      });
-      element.bind('blur', function(e) {
-        if (scope.onBlur) {
-          $timeout(function() {
-            scope.onBlur();
-          });
-        }
-      });
-      element.bind('keydown', function(e) {
-        if (e.which == 13) {
-          if (scope.returnClose) element[0].blur();
-          if (scope.onReturn) {
-            $timeout(function() {
-              scope.onReturn();
-            });
-          }
-        }
-      });
-    }
-  }
-})
 
 // Conversation Controller
 app.controller('ConversationCtrl', function($scope, $stateParams, References, $window, $ionicScrollDelegate, $timeout) {
 
   // Setting $scope variables
-  console.log("Reference: " + $stateParams.referenceIndex + " Conversation: " + $stateParams.conversationIndex);
-  $scope.reference = References.get($stateParams.referenceIndex);
-  $scope.conversation = $scope.reference.conversations[$stateParams.conversationIndex];
+  $scope.reference = References.getSelectedReference();
+  $scope.conversation = References.getSelectedConversation();
+
 
   // LOGGING HERE BREAKS CODE
   //console.log(reference);
@@ -251,6 +248,44 @@ app.controller('ConversationCtrl', function($scope, $stateParams, References, $w
 })
 
 
+// Messaging Input Directive
+app.directive('input', function($timeout) {
+  return {
+    restrict: 'E',
+    scope: {
+      'returnClose': '=',
+      'onReturn': '&',
+      'onFocus': '&',
+      'onBlur': '&'
+    },
+    link: function(scope, element, attr) {
+      element.bind('focus', function(e) {
+        if (scope.onFocus) {
+          $timeout(function() {
+            scope.onFocus();
+          });
+        }
+      });
+      element.bind('blur', function(e) {
+        if (scope.onBlur) {
+          $timeout(function() {
+            scope.onBlur();
+          });
+        }
+      });
+      element.bind('keydown', function(e) {
+        if (e.which == 13) {
+          if (scope.returnClose) element[0].blur();
+          if (scope.onReturn) {
+            $timeout(function() {
+              scope.onReturn();
+            });
+          }
+        }
+      });
+    }
+  }
+})
 
 
 // Conversation Modal
