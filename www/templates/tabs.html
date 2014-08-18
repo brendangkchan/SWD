@@ -1,7 +1,24 @@
 <ion-view title="My Books" ng-controller="SearchCtrl">
   <!-- Nav Bar -->
-  <ion-nav-bar class="bar-energized nav-title-slide-ios7 stotle-nav-bar">
+  <ion-nav-bar class="bar bar-header stotle-nav-bar-light">
+    
+    <!-- Results -->
     <button class="button button-clear pull-left" ng-if="showResultsButton" ui-sref="home.posts.selling">Results</button>
+
+    <!-- Title -->
+    <h1 class="title">My Books</h1>
+
+    <div class="buttons right-buttons">
+      <!-- Notifications -->
+      <div class="notification-button">
+        <button class="button button-icon ion-earth notification-button" ng-click=""></button>
+        <div class="text">1</div>
+      </div>
+
+      <!-- Settings -->
+      <button class="button-icon icon ion-ios7-gear-outline settings-button" ng-click=""></button>
+    </div>
+
   </ion-nav-bar>
 
   <!-- Search Bar -->

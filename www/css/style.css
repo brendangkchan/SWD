@@ -11,9 +11,70 @@
 	color: #E18842 !important;
 }
 
+.stotle-nav-bar-light {
+	background-color: #EA9043 !important;
+	border-width: 0px !important;
+}
+
+.stotle-nav-bar-light .title{
+	color: #FFF;
+}
+
+.stotle-button-light {
+	color: #EA9043 !important;
+}
+
+
+
 .stotle-nav-bar-clear {
+	border-bottom-width: 1px;
 	border-color: #E18842 !important;
 }
+
+/*
+ * Buttons
+ */
+
+.notification-button {
+	display: inline;
+}
+
+.notification-button .button{
+	position: absolute;
+	right: 45px;
+	padding: 0 !important;
+
+	height: 25px !important;
+
+	color: #FFF;
+}
+
+.notification-button .text{
+	position: absolute;
+	top: 15px;
+	right: 45px;
+	z-index: 10;
+	height: 20px;
+	width: 20px;
+	line-height: 20px;
+	text-align: center;
+
+	display:block;
+	//border: 1px solid #FFF;
+    border-radius: 50%;
+    color:#f5f5f5;
+    text-align:center;
+    text-decoration:none;
+    //background: #EE3E29;
+    background: #BA3120;
+    font-size: smaller;
+    font-weight:bold;
+}
+
+.settings-button {
+	color: #FFF;
+}
+
 
 /*
  * Search Bar
@@ -50,13 +111,19 @@
 .reference-item {
 	line-height: 10px;
 	height: 100px !important;
-	padding-right: 15px !important;
+	padding-right: 0px !important;
 	//border-color: #EEE;
+
+	
 }
 
 .reference-item .item-content {
 	height: 100px !important;
-	//padding: 10px 25px 15px 15px !important;
+	padding: 8px 15px 15px 70px !important;
+
+	border-width: 0 1px 0 0;
+	border-color: #ea9043;
+	border-style: solid;
 }
 
 .reference-icon {
@@ -90,7 +157,24 @@
 	margin-bottom: 20px;
 	margin-left: 10px;
 	margin-right: 10px;
-	border-color: #D9D9D9 !important;
+	//border-color: #D9D9D9 !important;
+	background-color: #FFF !important;
+}
+
+.item.active {
+	background-color: #FFF !important;
+}
+
+/*.item.actived {
+	background-color: #EEE !important;
+}*/
+
+.reference-item-button:after {
+	//background-color: #DDD;
+}
+
+.reference-item-button .delete {
+	//color: #BA3120;
 }
 
 

@@ -396,18 +396,24 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
 
   // Send Message
   $scope.sendMessage = function() {
-    //alternate = !alternate;
+    console.log('New message: ' + $scope.data.message);
+
+    // Message id
     var id = Math.random().toString(36).slice(2);
 
+    // Add message to conversation
     $scope.conversation.messages.push({
-      //userId: alternate ? '12345' : '54321',
-      //text: $scope.data.message
       name: "name",
       body: $scope.data.message,
       id: id
     });
-    console.log($scope.data.message);
+    
+    // Update conversation preview
+    $scope.conversation.preview = $scope.data.message;
+
+    // Clean up
     delete $scope.data.message;
+    
     $ionicScrollDelegate.scrollBottom(true);
   }
 
