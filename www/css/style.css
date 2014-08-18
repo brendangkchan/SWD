@@ -145,23 +145,21 @@
 }
 
 .list .item.item-accordion {
-  padding-top: 0;
-  padding-left: 5px !important;
-  height: 75px;
-  //transition: 0.09s all linear;
+	padding-top: 0;
+	padding-left: 5px !important;
+	height: 75px;
+	transition: 0.09s all linear;
 }
-
 .list .item.item-accordion .item-content {
 	/*separates conversation icon and text*/
 	padding-left: 75px !important;
 }
-
 .list .item.item-accordion.ng-hide {
-  /*line-height: 0px;*/
+	line-height: 0px;
 }
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
-  display: block !important;
+	display: block !important;
 }
 
 

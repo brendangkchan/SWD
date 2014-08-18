@@ -74,19 +74,19 @@ app.factory("Results", function($localStorage) {
 
 // Dummy Posts
 
-app.factory("Posts", function() {
+app.factory("Posts", function($location, $localStorage, References, Results) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
   var posts = [
-    { user: { name: 'Yonce K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: ''},
-    { user: { name: 'Jay Z', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '' },
-    { user: { name: 'Brendan C', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '' },
-    { user: { name: 'Samantha S', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '' },
-    { user: { name: 'Adam K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '' },
-    { user: { name: 'Raymond G', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '' },
-    { user: { name: 'Alexander E', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '' },
-    { user: { name: 'asdlfkjfaldkjfdasf F', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '' },
+    { id: '', user: { name: 'Yonce K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Jay Z', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Brendan C', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Samantha S', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Adam K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Raymond G', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Alexander E', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'asdlfkjfaldkjfdasf F', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'buy'},
   ];
 
   var images = [
@@ -103,15 +103,58 @@ app.factory("Posts", function() {
   		posts[i].images.push(images[j]);
   	}
   	posts[i].comments=comments;
+
+  	var id = Math.random().toString(36).slice(2);
+  	posts[i].id = id;
   }
+
+  // Post types
+  var sell_posts = posts.slice(0, 4);
+  var buy_posts = posts.slice(4);
+
+  // Post to message
+  var post;
+  $localStorage.post;
+  
+
+  if ($localStorage.post != null) {
+  	post = $localStorage.post;
+  }
+
+  var addToReferences = function(post) {
+  	var book = Results.getBook();
+  	console.log(book);
+  	console.log(post);
+  	var index = References.addReference(Results.getBook(), post);
+
+  	$location.path('home/conversation/' + index.referenceIndex + '/' + index.conversationIndex);
+  };
+
 
   return {
     all: function() {
       return posts;
     },
+    selling: function() {
+    	return sell_posts;
+    },
+    buying: function() {
+    	return buy_posts;
+    },
     get: function(postIndex) {
       // Simple index lookup
       return posts[postIndex];
+    },
+    message: function(post) {
+    	console.log('Messaging: ' + post.user.name);
+
+    	$localStorage.post = post;
+    	post = $localStorage.post;
+
+    	addToReferences(post);
+    },
+    getPost: function() {
+    	return post;
     }
   }
 });
@@ -131,11 +174,12 @@ app.factory("Me", function() {
 
 // Root Scope Variables
 
-app.run(function($rootScope, $location, $localStorage, Results) {
+app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 	$rootScope.showResultsButton = false;
 
 	//$localStorage.$reset();
+
 
 	// States
 	$rootScope.previousState;
@@ -159,7 +203,7 @@ app.run(function($rootScope, $location, $localStorage, Results) {
 
 	// Load state stack on refresh
 	if ($localStorage.stateStack != null) {
-		$rootScope.stateStack = $localStorage.stateStack;
+		//$rootScope.stateStack = $localStorage.stateStack;
 	}
 
 	// Retrieve previous state
@@ -172,13 +216,10 @@ app.run(function($rootScope, $location, $localStorage, Results) {
    			//return;
    		}
 
-   		// Switch Between Post Tabs
-   		if (to.name.substring(0, 10) === 'home.posts' && from.name.substring(0, 10) === 'home.posts') {
-   			//return;
-   		}
+   		
 
    		// Reload, remove dulplicate state from stack
-		if ($rootScope.getLastState() === to.name) {
+		if (getLastState() === to.name) {
 			$rootScope.stateStack.pop();
 		}
 
@@ -186,32 +227,49 @@ app.run(function($rootScope, $location, $localStorage, Results) {
 		$rootScope.stateStack.push(to.name);
 		$localStorage.stateStack = $rootScope.stateStack;
 
-		// Get states
-		$rootScope.previousState = $rootScope.stateStack[$rootScope.stateStack.length - 2];
-		$rootScope.currentState = $rootScope.stateStack[$rootScope.stateStack.length - 1];
-
+		// Update States
+		updateStatesFromStack();
 
    		console.log($rootScope.previousState + ' -> ' + $rootScope.currentState);
 
+   		// Switch Between Post Tabs
+   		if (to.name.substring(0, 10) === 'home.posts' && from.name.substring(0, 10) === 'home.posts') {
+   			// Save current state
+   			var currentState = $rootScope.stateStack.pop();
+
+   			// Pop tab state before
+   			$rootScope.stateStack.pop();
+
+   			// Restore current state
+   			$rootScope.stateStack.push(currentState);
+
+   			// Update states
+   			updateStatesFromStack();
+   		}
+
    		// Print stack
-   		//$rootScope.printStack();
+   		printStack();
 	});
 
 	// Back Navigation
 	$rootScope.back = function () {
-		console.log($rootScope.previousState);
 		if ($rootScope.previousState === 'home.tab.selling') {
 			$location.path('home/tab/selling');
+			return;
 		}
 		if ($rootScope.previousState === 'home.tab.buying') {
 			$location.path('home/tab/buying');
+			return;
 		}
 		if ($rootScope.previousState === 'home.search') {
 			$location.path('home/search/' + Results.getQuery());
+			return;
 		}
 		// Back to home -> posts <- search <- ?
 		if ($rootScope.previousState === 'home.posts.selling' || 
 			$rootScope.previousState === 'home.posts.buying') {
+
+			// Home, click results button to posts, back to search, back to home
 			if ($rootScope.currentState === 'home.search') {
 
 				// Pop state stack until reach a home tab
@@ -225,17 +283,50 @@ app.run(function($rootScope, $location, $localStorage, Results) {
 				}
 			}
 		}
-		// else {
-		// 	$window.history.back();
-		// }
+		// Conversation back to posts
+		if ($rootScope.previousState === 'home.posts.selling') {
+			$location.path('home/posts/selling');
+			return;
+		}
+		if ($rootScope.previousState === 'home.posts.buying') {
+			$location.path('home/posts/buying');
+			return;
+		}
+
+		// Disregard conversation state
+		if (($rootScope.currentState === 'home.posts.selling' || 
+			$rootScope.currentState === 'home.posts.buying') &&
+			$rootScope.previousState === 'home.conversation') {
+
+			// Current Stack: Posts Conversation Post
+
+			// Pop off Posts and Conversation
+			$rootScope.stateStack.pop();
+			$rootScope.stateStack.pop();
+
+			// Update States
+			updateStatesFromStack();
+
+			// Re-call back
+			$rootScope.back();
+		}
+
+		else {
+			$window.history.back();
+		}
 	};
 
-	$rootScope.getLastState = function() {
+	getLastState = function() {
 		return $rootScope.stateStack[$rootScope.stateStack.length - 1];
 		//$rootScope.stateStack.get(0);
 	};
 
-	$rootScope.printStack = function() {
+	updateStatesFromStack = function() {
+		$rootScope.previousState = $rootScope.stateStack[$rootScope.stateStack.length - 2];
+		$rootScope.currentState = $rootScope.stateStack[$rootScope.stateStack.length - 1];
+	}
+
+	printStack = function() {
 		for (var i = 0; i < $rootScope.stateStack.length; i++) {
 			console.log($rootScope.stateStack[i]);
 		}
@@ -290,7 +381,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 	
 	// Select book from initial search
 	$scope.selectBook = function(title) {
-		console.log("ResultsCtrl select: " + title);
+		console.log("Selected book: " + title);
 		Results.selectBook(title);
 	}
 
@@ -317,10 +408,10 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 
 // Posts Controller
 
-app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, Me) {
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, Me) {
 
 	// Fake posts from factory
-	$scope.posts = Posts.all();
+	$scope.posts = Posts.selling();
 
 	// My user information
 	$scope.me = Me.get();
@@ -335,6 +426,11 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 	$scope.back = $rootScope.back;
 
 
+	$scope.message = function(post) {
+		Posts.message(post);
+	}
+
+
 	// Post Detail Modal
 	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
 		id: 'detail',
@@ -345,8 +441,124 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 	});
 
 	$scope.openPostDetail = function(index) {
-		$scope.post = Posts.get(index);
+		$scope.post = $scope.posts[index];
 		$scope.detailModal.show();
+
+		console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
+	}
+
+	$scope.closePostDetail = function() {
+		$scope.detailModal.hide();
+	}
+
+
+	// Create Post Modal
+	$ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
+		id: 'create',
+		scope: $scope,
+		animation: 'slide-in-up',
+	}).then(function(modal) {
+		$scope.createModal = modal;
+	});
+
+	$scope.openCreatePost = function() {
+		$scope.createModal.show();
+		//console.log("Post is: " + $scope.post);
+	}
+
+	$scope.closeCreatePost = function() {
+		$scope.createModal.hide();
+	}
+
+
+	// Image Modal
+	$ionicModal.fromTemplateUrl('templates/image-modal.html', {
+		id: 'image',
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.imageModal = modal;
+	});
+
+	$scope.openImage = function(image) {
+		$scope.image = image;
+		$scope.imageModal.show();
+	}
+
+	$scope.closeImage = function() {
+		$scope.imageModal.hide();
+	}
+
+
+	// Toggle Nav-Bar button visibility
+	$scope.togglePostButtons = function() {
+		setTimeout(function () {
+	        $scope.$apply(function(){
+       	 		$scope.showPostButtons = !$scope.showPostButtons;
+	        });
+    	}, 10);
+	}
+
+
+	//Cleanup the modal when we're done with it!
+	$scope.$on('$destroy', function() {
+		$scope.detailModal.remove();
+		$scope.createModal.remove();
+		$scope.imageModal.remove();
+	});
+	// Execute action on hide modal
+	$scope.$on('modal.hidden', function() {
+		$scope.togglePostButtons();
+	});
+	// Execute action on remove modal
+	$scope.$on('modal.removed', function() {
+	});
+	$scope.$on('modal.shown', function() {
+      	$scope.togglePostButtons();
+    });
+
+});
+
+// Posts Controller
+
+app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, Me) {
+
+	// Fake posts from factory
+	$scope.posts = Posts.buying();
+	console.log($scope.posts);
+
+	// My user information
+	$scope.me = Me.get();
+
+	// Get selected book for subheader
+	$scope.book = Results.getBook();
+
+	// Configure Nav-Bar buttons
+	$scope.showPostButtons = true;
+
+	// Back Navigation
+	$scope.back = $rootScope.back;
+
+
+	$scope.message = function(post) {
+		Posts.message(post);
+	}
+
+
+	// Post Detail Modal
+	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
+		id: 'detail',
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.detailModal = modal;
+	});
+
+	$scope.openPostDetail = function(index) {
+		$scope.post = $scope.posts[index];
+		$scope.detailModal.show();
+
+		console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
 	}
 
 	$scope.closePostDetail = function() {

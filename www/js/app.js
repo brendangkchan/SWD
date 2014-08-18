@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'references', 'search'])
+angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -84,17 +84,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .state('home.posts', {
       url: '/posts',
       templateUrl: 'templates/posts.html',
-      controller: 'PostCtrl',
+      controller: 'PostSellCtrl',
       abstract: true
     })
 
     // Posts Selling
     .state('home.posts.selling', {
-      url: '/selling/:book',
+      url: '/selling',
       views: {
         'tab-posts-selling': {
           templateUrl: 'templates/tab-posts.html',
-          controller: 'PostCtrl'
+          controller: 'PostSellCtrl'
         }
       }
     })
@@ -105,7 +105,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'tab-posts-buying': {
           templateUrl: 'templates/tab-posts.html',
-          controller: 'PostCtrl'
+          controller: 'PostBuyCtrl'
         }
       }
     })
