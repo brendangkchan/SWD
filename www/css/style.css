@@ -568,9 +568,9 @@
 }
 
 .post-detail-content .comments {
-	margin: 10px 15px 5% 15px;
-	padding: 5px 10px 0 10px;
-	height: 35% !important;
+	margin: 5px 15px 15px 15px;
+	padding: 10px 10px 0 10px;
+	height: 40% !important;
 
 	font-size: 1.2em;
 	color: #555;
@@ -802,10 +802,14 @@
 }
 
 .create-post-content .image-gallery .button {
-	border-color: #EA9043 !important;
-	background-color: #FFF !important;
+	border-color: #EA9043;
+	background-color: #FFF;
 }
 
+.create-post-content .image-gallery .button.activated {
+	border-color: #EA9043 !important;
+	background-color: rgba(255, 157, 56, 0.3) !important;
+}
 
 .create-post-content .comments textarea {
 	font-size: 1.2em !important;
