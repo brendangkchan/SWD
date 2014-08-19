@@ -13,11 +13,11 @@ app.factory("References", function($location, $localStorage) {
   ];
 
   var conversations = [
-    { id: 0, name: 'Beyonce K', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', messages: []},
-    { id: 1, name: 'Jay Z', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', messages: []},
-    { id: 2, name: 'Beyonce C', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', messages: []},
-    { id: 3, name: 'Jay D', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', messages: []},
-    { id: 4, name: 'Bae J', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user1.jpg', messages: []}
+    { id: 0, name: 'Beyonce K', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', images: '', comments: '', messages: []},
+    { id: 1, name: 'Jay Z', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', images: '', comments: '', messages: []},
+    { id: 2, name: 'Beyonce C', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', images: '', comments: '', messages: []},
+    { id: 3, name: 'Jay D', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', images: '', comments: '', messages: []},
+    { id: 4, name: 'Bae J', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user1.jpg', images: '', comments: '', messages: []}
   ];
 
   // Build conversations
@@ -36,6 +36,17 @@ app.factory("References", function($location, $localStorage) {
           id: id
         });
     }
+
+    // Add images
+    conversations[i].images = [
+      'img/test/image1.jpg',
+      'img/test/image2.jpg',
+      'img/test/image3.jpg',
+      'img/test/image4.jpg',
+    ];
+
+    // Add comments
+    conversations[i].comments = 'Lorem ipsum dolor sit amet, consectetur consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
   }
 
   // Build references
@@ -371,13 +382,14 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location){
 
 
 // Conversation Controller
-app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, References, $window, $ionicScrollDelegate, $timeout) {
+app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, References, $window, $ionicModal, $ionicScrollDelegate, $timeout) {
 
   // Setting $scope variables
   $scope.reference = References.getSelectedReference();
   $scope.conversation = References.getSelectedConversation();
 
   console.log('Loading conversation with: ' + $scope.conversation.name);
+  console.log('Comments: ' + $scope.conversation.comments);
 
 
   // LOGGING HERE BREAKS CODE
@@ -449,6 +461,39 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
       $ionicScrollDelegate.scrollBottom(true);
     }, 0);
   };
+
+
+  // Image Modal
+  $ionicModal.fromTemplateUrl('templates/image-modal.html', {
+    id: 'image',
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.imageModal = modal;
+  });
+
+  $scope.openImage = function(image) {
+    $scope.image = image;
+    $scope.imageModal.show();
+  }
+
+  $scope.closeImage = function() {
+    $scope.imageModal.hide();
+  }
+
+
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.imageModal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+  });
+  $scope.$on('modal.shown', function() {
+  });
 
   init();
 })

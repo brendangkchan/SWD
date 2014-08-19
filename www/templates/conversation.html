@@ -10,14 +10,33 @@
 		<ion-list>
 
 			<!-- Post Info Sub-Header -->
-			<div class="item item-avatar post-info-header">
-				<img src={{reference.icon}} class="icon">
-				<p class="title">{{reference.title}}</p>
-				<p class="author">{{reference.author}}</p>
-				<p class="price">${{conversation.price}}</p>
-				
+			<div class="post-info-header">
+
+				<!-- Book -->
+				<div class="item item-avatar ">
+					<img src={{reference.icon}} class="icon">
+					<p class="title">{{reference.title}}</p>
+					<p class="author">{{reference.author}}</p>
+					<p class="price">${{conversation.price}}</p>
+				</div>
+
+			
 				
 			</div>
+
+			<!-- Comments -->
+			<div class="comments">
+					{{conversation.comments}}
+			</div>
+
+			<!-- Images -->
+				<div class="row">
+					<div class="col">
+						<img ng-repeat="image in conversation.images" class="image" src={{image}} ng-click="openImage(image)">
+					</div>
+				</div>
+
+			
 
 			<!-- Messages -->
 			<div ng-repeat="message in conversation.messages track by message.id">

@@ -159,6 +159,8 @@ app.factory("Posts", function($location, $localStorage, References, Results) {
   }
 });
 
+
+
 // Me factory
 
 app.factory("Me", function() {
@@ -171,6 +173,56 @@ app.factory("Me", function() {
 		}
 	}
 });
+
+
+
+// Notifications Factory
+
+app.factory("Notifications", function () {
+
+	// Notification Types
+	// message
+	// sold
+	// buy / sell (new posts)
+	// deleted
+
+	var notifications= [
+		{ user: { name: 'Ebony P', icon: 'img/test/woman1.jpg' }, book: { title: 'Queens of the Mountains', icon: 'img/test/book1.jpg' }, type: 'message', text: '' },
+		{ user: { name: 'Lucy R', icon: 'img/test/woman2.jpg' }, book: { title: 'Planets Without Borders', icon: 'img/test/book2.jpg' }, type: 'buy', text: '' },
+		{ user: { name: 'Toby H', icon: 'img/test/man1.jpg' }, book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' },
+		{ user: { name: 'Garret S', icon: 'img/test/man2.jpg' }, book: { title: 'The Economic Effects of McDonalds', icon: 'img/test/book4.jpg' }, type: 'sold', text: '' },
+	];
+
+	// Sort messages by book to consolidate
+
+
+	// Add text
+	for (var i = 0; i < notifications.length; i++) {
+		var notification = notifications[i];
+
+		if (notification.type === 'message') {
+			notifications[i].text = notification.user.name + ' messaged you about';
+		}
+		if (notification.type === 'buy') {
+			notifications[i].text = notification.user.name + ' wants to buy your book';
+		}
+		if (notification.type === 'sell') {
+			notifications[i].text = notification.user.name + ' wants to sell you their book';
+		}
+		if (notification.type === 'sold') {
+			notifications[i].text = notification.user.name + ' has sold their book';
+		}
+		if (notification.type === 'deleted') {
+			notifications[i].text = notification.user.name + ' has deleted their book';
+		}
+	}
+
+	return {
+		all: function() {
+			return notifications;
+		}
+	}
+})
 
 // Root Scope Variables
 
@@ -379,7 +431,7 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 // Search Controller
 
-app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, Results) {
+app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, Results, Notifications) {
 
 	// Configure Results button
 	$scope.showResultsButton = $rootScope.showResultsButton;
@@ -408,20 +460,38 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 	}
 
 
+	// Load Notifications
+	$scope.notifications = Notifications.all();
+
+	// Notifications Modal
+	$ionicModal.fromTemplateUrl('templates/notifications-modal.html', {
+		id: 'notifications',
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.notificationsModal = modal;
+	});
+
+	$scope.openNotifications = function() {
+		$scope.notificationsModal.show();
+	}
+
+	$scope.closeNotifications = function() {
+		$scope.notificationsModal.hide();
+	}
+
+
 	// Settings Modal
 	$ionicModal.fromTemplateUrl('templates/settings-modal.html', {
 		id: 'settings',
 		scope: $scope,
 		animation: 'slide-in-up'
 	}).then(function(modal) {
-		console.log('Configuring settings modal');
 		$scope.settingsModal = modal;
 	});
 
 	$scope.openSettings = function() {
-		//$scope.post = $scope.posts[index];
 		$scope.settingsModal.show();
-
 	}
 
 	$scope.closeSettings = function() {
@@ -430,8 +500,8 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
-	//$scope.notificationsModal.remove();
-		//$scope.settingsModal.remove();
+		$scope.notificationsModal.remove();
+		$scope.settingsModal.remove();
 	});
 	// Execute action on hide modal
 	$scope.$on('modal.hidden', function() {

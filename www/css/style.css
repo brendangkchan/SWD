@@ -894,42 +894,89 @@
  */
 
 .post-info-header {
-	padding-left: 65px !important;
-	padding-top: 6px !important;
-	background-color: #EEE;
-	height: 90px !important;
+	//padding-left: 0px !important;
+	//padding-top: 6px !important;
+	//background-color: #EEE;
+	min-height: 85px !important;
 
-	//border-bottom-width: 2px;
+	/*border-bottom-width: 2px;
 	border-color: #DDD;
+	border-style: solid;*/
 }
 
-.post-info-header .icon{
+.post-info-header .item {
+	height: 85px !important;
+
+	//background-color: #EEE;
+	border-width: 0px !important;
+}
+
+.post-info-header .icon {
 	top: 15px !important;  /*Changed from 15px*/
-	left: 10px !important;
-    //max-width: 42px !important;  /*Changed from 40px*/
-    max-height: 60px !important; /*Changed from 40px*/
+	left: 15px !important;
+    max-height: 90px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
     border-radius: 1px !important;  /*Changed from 4px*/
 }
 
-.post-info-header .title{
+.post-info-header .title { 
 	display: block;
 	margin: 0px 0 2px 0 !important;
-	padding: 5px 0 0 0 !important;
-	//top: 15px !important;
+	padding: 2px 0 0 0 !important;
 	color: #000;
 }
 
-.post-info-header .author{
+.post-info-header .author {
 	display: block;
 	margin: 0 !important;
 }
 
-.post-info-header .price{
+.post-info-header .price {
 	display: block;
-	float:  right;
+	//float:  right;
 	color: #4bbd64 !important;
 }
+
+
+
+.conversation-content .row {
+	width: 100%;
+	margin: 0 0 5px 0px !important;
+	padding: 0 0px 15px 15px !important;
+
+	border-bottom-width: 1px;
+	border-color: #BBB;
+	border-style: solid;
+}
+
+.conversation-content.col {
+	height: 20px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.conversation-content .image {
+	width: 15%;
+	margin: 0 !important;
+	padding: 0 5px 0 0 !important;
+}
+
+.conversation-content .comments {
+	margin: 5px 10px 10px 20px;
+	padding: 5px 15px 5px 0px;
+	height: auto !important;
+
+	//font-size: 1.2em;
+	color: #555;
+
+	//border-width: 1px;
+	//border-bottom-width: 1px;
+	border-color: #DDD;
+	border-style: solid;
+}
+
+
+
 
 /*
  *	Settings
@@ -973,4 +1020,63 @@
 	border-color: #ea9043 !important;
 	background-color: #ea9043 !important;
 }
+
+
+/*
+ *	Notifications
+ */
+
+.notifications-content {
+	top: 44px;
+} 
+
+.notification-item {
+	height: 90px;
+}
+
+.notification-item .user-icon {
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 20px 0 0 10px;
+
+	height: 45px;
+	width: 45px;
+
+	border-radius: 50% !important;
+	-moz-border-radius:50%;
+ 	-webkit-border-radius:50%;
+}
+
+.notification-item .book-icon {
+	position: absolute;
+	max-height: 55px;
+	max-width: 60px;
+	right: 0;
+	top: 0;
+	margin: 17px 10px 0 0;
+
+	//opacity: 0.7;
+    //filter: alpha(opacity=40);
+}
+
+.notification-item .text {
+	position: absolute;
+	top: 0;
+	width: calc(100% - 130px);
+	margin: 20px 70px 0 60px;
+}
+
+.notification-item .message {
+	margin: 0px 0 0 0px;
+	color: #000;
+}
+
+.notification-item .book {
+	margin: 7px 0 0 0px;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
 
