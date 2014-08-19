@@ -335,7 +335,7 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 // Search Controller
 
-app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, Results) {
+app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, Results) {
 
 	// Configure Results button
 	$scope.showResultsButton = $rootScope.showResultsButton;
@@ -352,20 +352,55 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 
 		// Go to Results 
 		$location.path( '/home/search/' + $scope.query);
-	};
+	}
 
 	// Result Button
 	// Pop state stack until reach a post tab
-	$scope.backToPosts = function() {
-		for (var i = 0; i < $rootScope.stateStack.length; i++) {
-			var state = $rootScope.stateStack[i];
-			console.log(state.substring(11));
-			if (state.indexOf("posts") > -1) {
-				$location.path('home/posts/' + state.substring(11));
-			 	return;
-			}
-		}
+	// $scope.backToPosts = function() {
+	// 	for (var i = 0; i < $rootScope.stateStack.length; i++) {
+	// 		var state = $rootScope.stateStack[i];
+	// 		console.log(state.substring(11));
+	// 		if (state.indexOf("posts") > -1) {
+	// 			$location.path('home/posts/' + state.substring(11));
+	// 		 	return;
+	// 		}
+	// 	}
+	// }
+
+
+	// Settings Modal
+	$ionicModal.fromTemplateUrl('templates/settings-modal.html', {
+		id: 'settings',
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		console.log('Configuring settings modal');
+		$scope.settingsModal = modal;
+	});
+
+	$scope.openSettings = function() {
+		//$scope.post = $scope.posts[index];
+		$scope.settingsModal.show();
+
 	}
+
+	$scope.closeSettings = function() {
+		$scope.settingsModal.hide();
+	}
+
+	//Cleanup the modal when we're done with it!
+	$scope.$on('$destroy', function() {
+	//$scope.notificationsModal.remove();
+		//$scope.settingsModal.remove();
+	});
+	// Execute action on hide modal
+	$scope.$on('modal.hidden', function() {
+	});
+	// Execute action on remove modal
+	$scope.$on('modal.removed', function() {
+	});
+	$scope.$on('modal.shown', function() {
+	});
 
 });
 
@@ -408,7 +443,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 
 // Posts Controller
 
-app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, Me) {
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, Posts, Results, Me) {
 
 	// Fake posts from factory
 	$scope.posts = Posts.selling();
@@ -425,7 +460,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	// Back Navigation
 	$scope.back = $rootScope.back;
 
-
+	// Message post
 	$scope.message = function(post) {
 		Posts.message(post);
 	}
@@ -437,6 +472,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 		scope: $scope,
 		animation: 'slide-in-up'
 	}).then(function(modal) {
+		console.log('here');
 		$scope.detailModal = modal;
 	});
 

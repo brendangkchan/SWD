@@ -326,6 +326,9 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
     $scope.references.splice($scope.references.indexOf(reference), 1);
   };
 
+
+
+
 });
 
 // Reference Buy Tab Controller

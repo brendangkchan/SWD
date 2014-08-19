@@ -35,11 +35,14 @@
  * Buttons
  */
 
-.notification-button {
-	display: inline;
+.nav-button:hover {
+	color: #EEE !important;
 }
 
-.notification-button .button{
+.notification-button {
+}
+
+.notification-button .button {
 	position: absolute;
 	right: 45px;
 	padding: 0 !important;
@@ -49,14 +52,14 @@
 	color: #FFF;
 }
 
-.notification-button .text{
+.notification-button .text {
 	position: absolute;
-	top: 15px;
+	top: 20px;
 	right: 45px;
 	z-index: 10;
-	height: 20px;
-	width: 20px;
-	line-height: 20px;
+	height: 15px;
+	width: 15px;
+	line-height: 15px;
 	text-align: center;
 
 	display:block;
@@ -67,11 +70,14 @@
     text-decoration:none;
     //background: #EE3E29;
     background: #BA3120;
-    font-size: smaller;
+    font-size: x-small;
     font-weight:bold;
 }
 
 .settings-button {
+	position: absolute;
+	right: 0px;
+	z-index: 20;
 	color: #FFF;
 }
 
@@ -921,8 +927,46 @@
 	color: #4bbd64 !important;
 }
 
+/*
+ *	Settings
+ */
+
+.settings-content {
+	top: 44px;
+	background-color: #EEE;
+}
+
+.settings-content .item {
+	/*height: 50px !important;
+	padding: 15px !important;
+
+	font-size: large;*/
+}
+
+.settings-content .settings-label {
+	height: 60px !important;
+	padding: 30px 0 0 15px !important;
+	background-color: transparent;
+	color: #666;
+	text-transform: uppercase;
+}
+
+.settings-content .sub-item {
+	height: 50px !important;
+	padding: 15px !important;
+	color: #444;
+
+	font-size: large;
+}
 
 
 
+.settings-content .toggle {
+	top: 8px;
+}
 
+.settings-content .toggle input:checked + .track{
+	border-color: #ea9043 !important;
+	background-color: #ea9043 !important;
+}
 
