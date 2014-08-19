@@ -1,4 +1,23 @@
 /*
+ *	Global Font
+ */
+
+
+
+html *
+{
+   //font-size: 1em !important;
+   //color: #000 !important;
+
+   font-weight: 300;
+
+   font-family: 'Open Sans', sans-serif;
+   
+
+} 
+
+
+/*
  * Navigation Bar
  */
 
@@ -18,6 +37,7 @@
 
 .stotle-nav-bar-light .title{
 	color: #FFF;
+	font-weight: 400;
 }
 
 .stotle-button-light {
@@ -29,6 +49,10 @@
 .stotle-nav-bar-clear {
 	border-bottom-width: 1px;
 	border-color: #E18842 !important;
+}
+
+.stotle-nav-bar-clear .title{
+	font-weight: 400;
 }
 
 /*
@@ -49,7 +73,6 @@
 .notification-button .button {
 	position: absolute;
 	right: 45px;
-	padding: 0 !important;
 
 	height: 25px !important;
 
@@ -83,6 +106,8 @@
 	right: 0px;
 	z-index: 20;
 	color: #FFF;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 
@@ -111,6 +136,10 @@
 .tabs-top {
 	/*Align message tabs to bottom of search bar*/
 	top: 3em;
+}
+
+.tab-title {
+	font-weight: 400;
 }
 
 
@@ -148,11 +177,14 @@
 	display: block;
 	padding: 10px 0 0 0 !important;
 	margin-bottom: 10px !important;
+
+	font-weight: 400;
 }
 
 .reference-author {
 	display: block;
 	margin: 0 0 5px 0 !important;
+	//font-size: 1em !important;
 }
 
 .reference-count {
@@ -160,6 +192,8 @@
 	float: right;
 	line-height: 10px;
 	color: #E18842 !important;
+
+	font-weight: 400;
 }
 
 .reference-item-button {
@@ -222,6 +256,8 @@
 	line-height: 10px;
 	color: #000 !important;
 	padding-bottom: 7px !important;
+
+	font-weight: 400;
 }
 
 .conversation-preview {
@@ -236,6 +272,7 @@
 	padding-bottom: 7px !important;
 	margin-top: 0 !important;
 
+	font-weight: 400;
 }
 
 .list .item.item-accordion {
@@ -291,6 +328,8 @@
 	padding: 2px 20px 0 0 !important;
 	margin-bottom: 7px !important;
 	color: #000;
+
+	font-weight: 400;
 }
 
 .result-item .author {
@@ -302,6 +341,7 @@
 .result-item .isbn {
 	display: block;
 	color: #222;
+	font-family: 'Roboto', sans-serif;
 }
 
 /*
@@ -333,6 +373,8 @@
 	padding: 5px 15px 0 0 !important;
 	margin-bottom: 10px !important;
 	color: #000;
+
+	font-weight: 400;
 }
 
 .posts-sub-header .author {
@@ -344,6 +386,7 @@
 .posts-sub-header .isbn {
 	display: block;
 	color: #333;
+	font-family: 'Roboto', sans-serif;
 }
 
 
@@ -812,7 +855,8 @@
 }
 
 .create-post-content .comments textarea {
-	font-size: 1.2em !important;
+	font-size: 1em !important;
+	line-height: 1em !important;
 	height: 100% !important;
 	color: #555 !important;
 }
@@ -851,14 +895,15 @@
 .message-item-left {
 	/*How far from left message body starts*/
 	padding-left: 65px !important;
-	padding-right: 65px !important;
+	padding-right: 40px !important;
 	min-height: 60px !important;
 	height: auto !important;
 	border-width: 0px !important;
+	margin: 15px 0 0px 0 !important;
 }
 
 .message-icon-left {
-	top: 10px !important;
+	top: 13px !important;
 	left: 10px !important;
 }
 
@@ -868,29 +913,36 @@
 	text-overflow: initial !important;
 	white-space: normal !important;
 	word-wrap: break-word;
+	font-size: 1em !important;
+	line-height: 1.4em !important;
+	font-weight: 400;
 }
 
 .message-item-right {
 	/*How far from left message body starts*/
-	padding-left: 65px !important;
+	padding-left: 40px !important;
 	padding-right: 65px !important;
 	min-height: 60px !important;
 	height: auto !important;
 	border-width: 0px !important;
+	margin: 15px 0 0px 0 !important;
 }
 
 .message-icon-right {
-	top: 10px !important;
+	top: 13px !important;
 	right: 10px !important;
 }
 
 .message-body-right {
-	color: #666 !important;
+	color: #444 !important;
 	overflow: visible !important;
 	text-overflow: initial !important;
 	white-space: normal !important;
 	word-wrap: break-word;
 	text-align: right;
+	font-size: 1em !important;
+	line-height: 1.4em !important;
+	font-weight: 400;
 }
 
 /*
@@ -928,6 +980,8 @@
 	margin: 0px 0 2px 0 !important;
 	padding: 2px 0 0 0 !important;
 	color: #000;
+
+	font-weight: 400;
 }
 
 .post-info-header .author {
@@ -1067,13 +1121,14 @@
 .notification-item .text {
 	position: absolute;
 	top: 0;
-	width: calc(100% - 130px);
+	width: calc(100% - 135px);
 	margin: 20px 70px 0 60px;
 }
 
 .notification-item .message {
 	margin: 0px 0 0 0px;
-	color: #000;
+	color: #333;
+	font-weight: 400;
 }
 
 .notification-item .book {

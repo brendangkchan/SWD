@@ -60,7 +60,7 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
       url: '/buying',
       views: {
         'tab-buying': {
-          templateUrl: 'templates/tab-selling.html',
+          templateUrl: 'templates/tab-references.html',
           controller: 'ReferenceBuyCtrl'
         }
       }
