@@ -177,6 +177,7 @@ app.factory("Me", function() {
 app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 	$rootScope.showResultsButton = false;
+	$rootScope.resultsButtonToPosts = false;
 
 	//$localStorage.$reset();
 
@@ -215,8 +216,6 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
    		if (to.name.substring(0, 8) === 'home.tab' && from.name.substring(0, 8) === 'home.tab') {
    			//return;
    		}
-
-   		
 
    		// Reload, remove dulplicate state from stack
 		if (getLastState() === to.name) {
@@ -274,7 +273,7 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 				// Pop state stack until reach a home tab
 				console.log("here");
-				for (var i = 0; i < $rootScope.stateStack.length; i++) {
+				for (var i = $rootScope.stateStack.length - 1; i > 0; i--) {
 					var state = $rootScope.stateStack[i];
 					if (state.indexOf("tab") > -1) {
 						$location.path('home/tab/' + state.substring(9));
@@ -316,6 +315,51 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
 		}
 	};
 
+	// Result button behavior
+	$rootScope.resultsButtonPressed = function() {
+		console.log('Results button pressed');
+
+		if ($rootScope.resultsButtonToPosts) {
+			backToPosts();
+		} 
+		else {
+			backToSearch();
+		}
+		return;
+	}
+
+	// Result button back to search
+	backToSearch = function() {
+		console.log('Results button back to Search');
+
+		$location.path('home/search/' + Results.getQuery());
+		return;
+	};
+
+	// Result button back to posts
+	backToPosts = function() {
+		console.log('Results button back to Posts');
+
+		// Find last Posts state
+		for (var i = $rootScope.stateStack.length - 1; i > 0; i--) {
+			var state = $rootScope.stateStack[i];
+
+			// Found Post state
+			if (state.indexOf("post") > -1) {
+				if (state === 'home.posts.selling') {
+					$location.path('home/posts/selling');
+					return;
+				}
+				if (state === 'home.posts.buying') {
+					$location.path('home/posts/buying');
+					return;
+				}
+			}
+		}
+	};
+
+
+
 	getLastState = function() {
 		return $rootScope.stateStack[$rootScope.stateStack.length - 1];
 		//$rootScope.stateStack.get(0);
@@ -347,6 +391,9 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 		// Show Results button
 		$rootScope.showResultsButton = true;
 
+		// New Search, Results button should come back to here
+		$rootScope.resultsButtonToPosts = false;
+
 		// Perform search
 		Results.search($scope.query);
 
@@ -354,18 +401,11 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 		$location.path( '/home/search/' + $scope.query);
 	}
 
-	// Result Button
-	// Pop state stack until reach a post tab
-	// $scope.backToPosts = function() {
-	// 	for (var i = 0; i < $rootScope.stateStack.length; i++) {
-	// 		var state = $rootScope.stateStack[i];
-	// 		console.log(state.substring(11));
-	// 		if (state.indexOf("posts") > -1) {
-	// 			$location.path('home/posts/' + state.substring(11));
-	// 		 	return;
-	// 		}
-	// 	}
-	// }
+	//Result Button
+	//Pop state stack until reach a post tab
+	$scope.resultsButtonPressed = function() {
+		$rootScope.resultsButtonPressed();
+	}
 
 
 	// Settings Modal
@@ -418,6 +458,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 	$scope.selectBook = function(title) {
 		console.log("Selected book: " + title);
 		Results.selectBook(title);
+		$rootScope.resultsButtonToPosts = true;
 	}
 
 	// Back Navigation
@@ -472,7 +513,6 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 		scope: $scope,
 		animation: 'slide-in-up'
 	}).then(function(modal) {
-		console.log('here');
 		$scope.detailModal = modal;
 	});
 
@@ -697,26 +737,3 @@ app.directive('ngEnter', function() {
 });
 
 
-// Results Modal
-// app.directive('resultsModal', function() {
-//   return {
-//     restrict: 'E',
-//     scope: {
-//       show: '=',
-//       queryInput: '=query'
-//     },
-//     //replace: true, // Replace with the template below
-//     transclude: true, // we want to insert custom content inside the directive
-//     link: function(scope, element, attrs) {
-//       scope.dialogStyle = {};
-//       if (attrs.width)
-//         scope.dialogStyle.width = attrs.width;
-//       if (attrs.height)
-//         scope.dialogStyle.height = attrs.height;
-//       scope.hideModal = function() {
-//         scope.show = false;
-//       };
-//     },
-//     templateUrl: 'templates/results-modal.html'
-//   };
-// });
