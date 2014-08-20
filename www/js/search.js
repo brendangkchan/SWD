@@ -74,14 +74,14 @@ app.factory("Results", function($localStorage) {
 
 // Dummy Posts
 
-app.factory("Posts", function($location, $localStorage, References, Results) {
+app.factory("Posts", function($rootScope, $location, $localStorage, References, Results) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
   var posts = [
     { id: '', user: { name: 'Yonce K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'sell'},
     { id: '', user: { name: 'Jay Z', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Brendan C', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Charissa T', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'sell'},
     { id: '', user: { name: 'Samantha S', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'sell'},
     { id: '', user: { name: 'Adam K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'buy'},
     { id: '', user: { name: 'Raymond G', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'buy'},
@@ -95,6 +95,14 @@ app.factory("Posts", function($location, $localStorage, References, Results) {
   	'img/test/image3.jpg',
   	'img/test/image4.jpg',
   ];
+
+  var conditions = [
+		{ value: 'A' },
+		{ value: 'B' },
+		{ value: 'C' },
+		{ value: 'D' },
+		{ value: 'F' }
+	];
 
   var comments = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nibh interdum eros vulputate ultricies. Morbi pretium sed massa at aliquam.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nibh interdum eros vulputate ultricies. Morbi pretium sed massa at aliquam.';
 
@@ -121,14 +129,23 @@ app.factory("Posts", function($location, $localStorage, References, Results) {
   	post = $localStorage.post;
   }
 
+  // Add to references after messaging someone
   var addToReferences = function(post) {
   	var book = Results.getBook();
   	console.log(book);
   	console.log(post);
-  	var index = References.addReference(Results.getBook(), post);
+  	var index = References.addConversation(Results.getBook(), post);
 
   	$location.path('home/conversation/' + index.referenceIndex + '/' + index.conversationIndex);
   };
+
+  // Create reference after creating post
+  var createReference = function(post) {
+  	console.log('Creating reference from post');
+  	var book = Results.getBook();
+
+  	References.addReference(book, post);
+  }
 
 
   return {
@@ -145,6 +162,9 @@ app.factory("Posts", function($location, $localStorage, References, Results) {
       // Simple index lookup
       return posts[postIndex];
     },
+    conditions: function() {
+    	return conditions;
+    },
     message: function(post) {
     	console.log('Messaging: ' + post.user.name);
 
@@ -155,6 +175,23 @@ app.factory("Posts", function($location, $localStorage, References, Results) {
     },
     getPost: function() {
     	return post;
+    },
+    addPost: function(post) {
+    	// Add id
+    	post.id = Math.random().toString(36).slice(2);
+
+    	// Add type
+    	if ($rootScope.currentState === 'home.posts.selling') {
+    		post.type = 'sell';
+    		sell_posts.push(post);
+    	}
+    	if ($rootScope.currentState === 'home.posts.buying') {
+    		post.type = 'buy';
+    		buy_posts.push(post);
+    	}
+
+    	// Add to references
+    	createReference(post);
     }
   }
 });
@@ -204,16 +241,16 @@ app.factory("Notifications", function () {
 			notifications[i].text = notification.user.name + ' messaged you about';
 		}
 		if (notification.type === 'buy') {
-			notifications[i].text = notification.user.name + ' wants to buy your book';
+			notifications[i].text = notification.user.name + ' wants to buy';
 		}
 		if (notification.type === 'sell') {
-			notifications[i].text = notification.user.name + ' wants to sell you their book';
+			notifications[i].text = notification.user.name + ' wants to sell';
 		}
 		if (notification.type === 'sold') {
-			notifications[i].text = notification.user.name + ' has sold their book';
+			notifications[i].text = notification.user.name + ' has sold';
 		}
 		if (notification.type === 'deleted') {
-			notifications[i].text = notification.user.name + ' has deleted their book';
+			notifications[i].text = notification.user.name + ' has deleted';
 		}
 	}
 
@@ -554,7 +591,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 
 // Posts Controller
 
-app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, Posts, Results, Me) {
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, Posts, Results, References, Me) {
 
 	// Fake posts from factory
 	$scope.posts = Posts.selling();
@@ -574,6 +611,63 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	// Message post
 	$scope.message = function(post) {
 		Posts.message(post);
+	}
+
+	// Selector data
+	$scope.data = {
+		'price': '',
+		'edition': '',
+		'condition': '',
+		'comments': ''
+	}
+	
+	// Possible conditions
+	$scope.conditions = Posts.conditions();
+
+	// Dummy images
+	$scope.images = [];
+
+	$scope.addImage = function() {
+		$scope.images.push('dummy');
+	}
+
+
+	// Create Post
+	$scope.createPost = function () {
+		// New Post
+		var post = { 
+			id: '', 	// Set in factory
+			user: $scope.me.user,
+			price: $scope.data.price, 
+			edition: $scope.data.edition, 
+			condition: $scope.data.condition,
+			images: [], 
+			comments: $scope.data.comments, 
+			type: ''	// Set in factory
+		};
+
+		// Alert user if any field empty
+		if (post.price === '') {
+			$ionicLoading.show({ template: 'Please add a price!', noBackdrop: true, duration: 2000 });
+			return;
+		}
+		if (post.edition === '') {
+			$ionicLoading.show({ template: 'Please add an edition!', noBackdrop: true, duration: 2000 });
+			return;
+		}
+		if (post.condition === '') {
+			$ionicLoading.show({ template: 'Please select a condition!', noBackdrop: true, duration: 2000 });
+			return;
+		}
+
+		// Add Post
+		Posts.addPost(post);
+
+		// Add Reference
+		//References.addReference(post);
+
+		// Hide Modal
+		$scope.createModal.hide();
 	}
 
 

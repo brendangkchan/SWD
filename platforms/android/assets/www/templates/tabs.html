@@ -1,0 +1,47 @@
+<ion-view title="My Books" ng-controller="SearchCtrl">
+  <!-- Nav Bar -->
+  <ion-nav-bar class="bar bar-header stotle-nav-bar-light">
+    
+    <!-- Results -->
+    <button class="button button-clear pull-left results-button" ng-if="showResultsButton" ng-click="resultsButtonPressed()">Results</button>
+
+    <!-- Title -->
+    <h1 class="title">My Books</h1>
+
+    <!-- <div class="buttons right-buttons"> -->
+      <!-- Notifications -->
+      <div class="notification-button">
+        <button class="button button-icon ion-earth nav-button notification-button" ng-click="openNotifications()"></button>
+        <div class="text">1</div>
+      </div>
+
+      <!-- Settings -->
+      <button class="button button-icon ion-ios7-gear-outline nav-button settings-button" ng-click="openSettings()"></button>
+    <!-- </div> -->
+
+  </ion-nav-bar>
+
+  <!-- Search Bar -->
+  <div class="bar bar-subheader" id="search-bar-container">
+    <label class="item item-input" id="search-bar">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input enterShowResults type="text" placeholder="Title, Author, ISBN..." ng-model="query" ng-enter="search(query)" >
+    </label>
+  </div>
+
+<!-- Reference Tabs -->
+<ion-tabs class="has-tabs-top tabs-top">
+
+  <!-- Selling Tab -->
+  <ion-tab title="Selling" ui-sref="home.tab.selling">
+    <ion-nav-view name="tab-selling"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Buying Tab -->
+  <ion-tab title="Buying" ui-sref="home.tab.buying">
+    <ion-nav-view name="tab-buying"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>
+</ion-view>
+

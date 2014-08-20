@@ -7,6 +7,7 @@
 					<img src={{reference.icon}} class="reference-icon">
 					<h2 class="reference-title">{{reference.title}}</h2>
 					<p class="reference-author">{{reference.author}}</p>
+					<p ng-if="reference.price != ''"class="reference-price">${{reference.price}}</p>
 					<p class="reference-count">{{reference.count}}</p>
 
 					<!-- Hidden Buttons -->

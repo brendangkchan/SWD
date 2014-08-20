@@ -1,0 +1,55 @@
+<div class="modal post-detail-modal">
+
+	<!-- Post Info -->
+	<div class="post-detail-header">
+		<div class="row row-center">
+			<div class="col simple-col">
+				<img class="clip-circle icon" src={{post.user.icon}}>
+			</div>
+			<div class="col simple-col">
+				<div class="price">${{post.price}}</div>
+			</div>
+			<div class="col simple-col">
+				<div class="edition">{{post.edition}}</div>
+			</div>
+			<div class="col simple-col">
+				<div class="condition">{{post.condition}}</div>
+			</div>
+		</div>
+		<div class"row bottom-row">
+			<div class="col col-25 bottom-col">
+				<p class="name">{{post.user.name}}</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Post Details -->
+	<div class="post-detail-content">
+		
+		<!-- Comments -->
+		<div class="comments">
+				{{post.comments}}
+		</div>
+
+		<!-- Images -->
+		<div class="image-gallery">
+			<div class="row">
+				<div class="col">
+					<img ng-repeat="image in post.images" class="image" src={{image}} ng-click="openImage(image)">
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Footer Buttons -->
+	<div class="bar bar-footer post-detail-footer">
+		<button class="button button-clear stotle-button close" ng-click="closePostDetail()">
+			Close
+		</button>
+		<button class="button button-clear stotle-button message" ng-click="message(post)">
+			Message
+		</button>
+	</div>
+
+</div>

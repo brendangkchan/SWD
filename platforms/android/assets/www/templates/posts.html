@@ -1,0 +1,96 @@
+<!-- posts.html
+Posts after selecting a result -->
+
+<!-- ng-click="back()" -->
+
+<!-- Nav Bar -->
+<ion-nav-bar class="bar-light nav-title-slide-ios7 stotle-nav-bar-clear">
+  <button class="button-icon icon ion-ios7-arrow-left stotle-button" ng-click="back()" ng-show="showPostButtons"></button>
+  <button class="button button-clear pull-right stotle-button" ng-click="openCreatePost()" ng-if="showPostButtons">Create Post</button>
+</ion-nav-bar>
+
+<ion-view title="Posts">
+
+	<!-- Results Sub-Header -->
+	<div class="has-header item item-avatar posts-sub-header">
+		<img class="icon" src={{book.icon}}>
+		<p class="title">{{book.title}}</p>
+		<p class="author">{{book.author}}</p>
+		<p class="isbn">${{book.isbn}}</p>
+	</div>
+
+	<!-- Post Tabs -->
+	<ion-tabs class="has-tabs-top tabs-top post-tabs">
+
+	  	<!-- Selling Tab -->
+	  	<ion-tab title="Selling" ui-sref="home.posts.selling">
+	    	<ion-nav-view name="tab-posts-selling"></ion-nav-view>
+	  	</ion-tab>
+
+	  	<!-- Buying Tab -->
+	  	<ion-tab title="Buying" ui-sref="home.posts.buying">
+	    	<ion-nav-view name="tab-posts-buying"></ion-nav-view>
+	  	</ion-tab>
+
+	</ion-tabs>
+
+
+	<!-- Column Headers -->
+	<!-- <div class="has-header post-column-headers">
+		<div class="row row-center">
+			<div class="col header-col user">
+				User
+			</div>
+			<div class="col header-col">
+				Price
+			</div>
+			<div class="col header-col">
+				Edition
+			</div>
+			<div class="col header-col">
+				Condition
+			</div>
+		</div>
+	</div> -->
+
+	<!-- <ion-content class="posts-content">
+		
+		<ion-list>
+			
+			<div ng-repeat="post in posts track by post.user.name">
+
+				<div class="post-item" ng-click="openPostDetail($index)">
+
+					<div class="row row-center">
+						<div class="col simple-col">
+							<img class="clip-circle icon" src={{post.user.icon}}>
+						</div>
+						<div class="col simple-col">
+							<div class="price">${{post.price}}</div>
+						</div>
+						<div class="col simple-col">
+							<div class="edition">{{post.edition}}</div>
+						</div>
+						<div class="col simple-col">
+							<div class="condition">{{post.condition}}</div>
+						</div>
+					</div>
+
+					<div class"row bottom-row">
+						<div class="col col-25 bottom-col">
+							<p class="name">{{post.user.name}}</p>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+		</ion-list>
+	</ion-content>  -->
+
+	
+
+</ion-view>
+
+
+
