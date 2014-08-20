@@ -1,7 +1,7 @@
 var app = angular.module('references', [])
 
 
-app.factory("References", function($location, $localStorage) {
+app.factory("References", function($location, $localStorage, $ionicLoading) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -254,6 +254,7 @@ app.factory("References", function($location, $localStorage) {
     // Reference already exists
     if (checkBookInReferences(book, post)) {
       // Alert user duplicate post
+      $ionicLoading.show({ template: "You've already posted this book!", noBackdrop: true, duration: 2000 });
       return;
     }
 
@@ -377,6 +378,9 @@ app.factory("References", function($location, $localStorage) {
     },
     addReference: function (book, post) {
       addReference(book, post);
+    },
+    checkForBook: function (book, post) {
+      return checkBookInReferences(book, post);
     }
   }
 });

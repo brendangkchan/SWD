@@ -197,12 +197,21 @@ html *
 .reference-author {
 	display: block;
 	line-height: 1em;
-	//margin: 0 0 5px 0 !important;
+	margin: 0 0 6px 0 !important;
 	//font-size: 1em !important;
 }
 
+.reference-price {
+	display: inline;
+	float: left;
+	line-height: 1em;
+	color: #4bbd64 !important;
+
+	font-weight: 400;
+}
+
 .reference-count {
-	display: block;
+	display: inline;
 	float: right;
 	line-height: 1em;
 	color: #E18842 !important;
@@ -363,6 +372,11 @@ html *
 /*
  * Posts Sub-Header
  */
+
+.create-post-button {
+	//font-size: 1.2em !important;
+	font-weight: 400 !important;
+}
 
 .posts-sub-header {
 	padding: 12px 0px 0px 70px !important;
@@ -818,13 +832,13 @@ html *
 
 .create-post-header .condition {
 	margin-top: 5px !important;
-	width: 60% !important;
-	margin-left: 25% !important;
+	width: 80% !important;
+	margin-left: 15% !important;
 	height: 75% !important;
 }
 .create-post-header select {
 	padding: 0 0px 0 0 !important;
-	margin: 5% 60% 0 0px !important;
+	margin: 5% 45% 0 0px !important;
 }
 
 .create-post-content {

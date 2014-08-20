@@ -44,16 +44,16 @@
 		<div class="image-gallery">
 			<div class="row">
 				<div class="col">
-					<button class="button ion-plus stotle-button"></button>
+					<button ng-show="images.length >= 0" ng-click="addImage()" class="button ion-android-camera stotle-button"></button>
 				</div>
 				<div class="col">
-					<button class="button ion-plus stotle-button"></button>
+					<button ng-show="images.length >= 1" ng-click="addImage()" class="button ion-android-camera stotle-button"></button>
 				</div>
 				<div class="col">
-					<button class="button ion-plus stotle-button"></button>
+					<button ng-show="images.length >= 2" ng-click="addImage()" class="button ion-android-camera stotle-button"></button>
 				</div>
 				<div class="col">
-					<button class="button ion-plus stotle-button"></button>
+					<button ng-show="images.length >= 3" ng-click="addImage()" class="button ion-android-camera stotle-button"></button>
 				</div>
 			</div>
 		</div>

@@ -97,11 +97,10 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
   ];
 
   var conditions = [
-		{ value: 'A' },
-		{ value: 'B' },
-		{ value: 'C' },
-		{ value: 'D' },
-		{ value: 'F' }
+		{ value: 'New' },
+		{ value: 'Good' },
+		{ value: 'Fair' },
+		{ value: 'Poor' }
 	];
 
   var comments = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nibh interdum eros vulputate ultricies. Morbi pretium sed massa at aliquam.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nibh interdum eros vulputate ultricies. Morbi pretium sed massa at aliquam.';
@@ -129,14 +128,23 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
   	post = $localStorage.post;
   }
 
+  // Add to references after messaging someone
   var addToReferences = function(post) {
   	var book = Results.getBook();
   	console.log(book);
   	console.log(post);
-  	var index = References.addReference(Results.getBook(), post);
+  	var index = References.addConversation(Results.getBook(), post);
 
   	$location.path('home/conversation/' + index.referenceIndex + '/' + index.conversationIndex);
   };
+
+  // Create reference after creating post
+  var createReference = function(post) {
+  	console.log('Creating reference from post');
+  	var book = Results.getBook();
+
+  	References.addReference(book, post);
+  }
 
 
   return {
@@ -181,8 +189,8 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
     		buy_posts.push(post);
     	}
 
-    	console.log('Adding post');
-    	console.log(post);    	
+    	// Add to references
+    	createReference(post);
     }
   }
 });
@@ -582,7 +590,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 
 // Posts Controller
 
-app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, Posts, Results, References, Me) {
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, Posts, Results, References, Me) {
 
 	// Fake posts from factory
 	$scope.posts = Posts.selling();
@@ -615,6 +623,13 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	// Possible conditions
 	$scope.conditions = Posts.conditions();
 
+	// Dummy images
+	$scope.images = [];
+
+	$scope.addImage = function() {
+		$scope.images.push('dummy');
+	}
+
 
 	// Create Post
 	$scope.createPost = function () {
@@ -630,14 +645,37 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 			type: ''	// Set in factory
 		};
 
+		// Alert user if any field empty
+		if (post.price === '') {
+			$ionicLoading.show({ template: 'Please add a price!', noBackdrop: true, duration: 2000 });
+			return;
+		}
+		if (post.edition === '') {
+			$ionicLoading.show({ template: 'Please add an edition!', noBackdrop: true, duration: 2000 });
+			return;
+		}
+		if (post.condition === '') {
+			$ionicLoading.show({ template: 'Please select a condition!', noBackdrop: true, duration: 2000 });
+			return;
+		}
+
 		// Add Post
 		Posts.addPost(post);
 
-		// Add Reference
-		//References.addReference(post);
-
 		// Hide Modal
 		$scope.createModal.hide();
+
+		// Clear form data
+		clearFormData();
+	}
+
+	var clearFormData = function() {
+		$scope.data = {
+			'price': '',
+			'edition': '',
+			'condition': '',
+			'comments': ''
+		}
 	}
 
 
@@ -672,6 +710,8 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	});
 
 	$scope.openCreatePost = function() {
+		//if (References.checkForBook($scope.book))
+
 		$scope.createModal.show();
 		//console.log("Post is: " + $scope.post);
 	}

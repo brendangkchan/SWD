@@ -1,15 +1,15 @@
 var app = angular.module('references', [])
 
 
-app.factory("References", function($location, $localStorage) {
+app.factory("References", function($location, $localStorage, $ionicLoading) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
   var references = [
-    { id: 0, title: 'Unbroken: A World War II Story of Survival, Resilience, and Redemption', author: 'Laura Hillenbrand', icon: 'img/test/book1.jpg', count: '', conversations: [], type: 'sell'},
-    { id: 1, title: 'Diagnostic and Statistical Manual of Mental Disorders', author: 'American Psychiatric Association', icon: 'img/test/book2.jpg', count: '', conversations: [], type: 'sell'},
-    { id: 2, title: 'StrengthsFinder 2.0', author: 'Tom Rath', icon: 'img/test/book3.jpg', count: '', conversations: [], type: 'buy'},
-    { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', icon: 'img/test/book4.jpg', count: '', conversations: [], type: 'buy'}
+    { id: 0, title: 'Unbroken: A World War II Story of Survival, Resilience, and Redemption', author: 'Laura Hillenbrand', icon: 'img/test/book1.jpg', price: 9, count: '', conversations: [], type: 'sell'},
+    { id: 1, title: 'Diagnostic and Statistical Manual of Mental Disorders', author: 'American Psychiatric Association', icon: 'img/test/book2.jpg', price: 8, count: '', conversations: [], type: 'sell'},
+    { id: 2, title: 'StrengthsFinder 2.0', author: 'Tom Rath', icon: 'img/test/book3.jpg', price: 9, count: '', conversations: [], type: 'buy'},
+    { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', price: 8, icon: 'img/test/book4.jpg', count: '', conversations: [], type: 'buy'}
   ];
 
   var conversations = [
@@ -81,8 +81,8 @@ app.factory("References", function($location, $localStorage) {
     conversation = $localStorage.conversation;
   }
 
-  // Add reference
-  var addReference = function (book, post) {
+  // Add Conversation
+  var addConversation = function (book, post) {
 
     // Check for existing conversation
     if (conversationExists(post) != false) {
@@ -149,6 +149,7 @@ app.factory("References", function($location, $localStorage) {
         count: 1, 
         conversations: [conversation],
         type: post.type,
+        price: ''
       };
 
       // Push new reference
@@ -166,9 +167,6 @@ app.factory("References", function($location, $localStorage) {
       referenceIndex: referenceIndex,
       conversationIndex: conversationIndex
     };
-
-      //console.log(reference);
-    
   };
 
   // Check if post already exists
@@ -236,6 +234,85 @@ app.factory("References", function($location, $localStorage) {
   }
 
 
+  // Add Reference from created post
+  var addReference = function (book, post) {
+
+    // References to add to
+    var references;
+
+    // Index of target reference
+    var referenceIndex;
+
+    // Determine target references 
+    if (post.type === 'sell') {
+      references = sell_references;
+    }
+    else {
+      references = buy_references;
+    }
+
+    // Reference already exists
+    if (checkBookInReferences(book, post)) {
+      // Alert user duplicate post
+      $ionicLoading.show({ template: "You've already posted this book!", noBackdrop: true, duration: 2000 });
+      return;
+    }
+
+    // New reference
+    else {
+      referenceIndex = references.length;
+    
+      // New book
+      reference = { 
+        id: referenceIndex, 
+        title: book.title, 
+        author: book.author, 
+        icon: book.icon, 
+        count: 0, 
+        conversations: [],
+        type: post.type,
+        price: post.price
+      };
+
+      // Push new reference
+      references.push(reference);
+
+      console.log('Adding new reference id: ' + referenceIndex);
+    }
+
+    return;
+  };
+
+
+
+  // Check reference for created post
+  var checkBookInReferences = function (book, post) {
+    console.log('Checking if book: ' + book.title + ' in ' + post.type);
+
+    // References to check
+    var references;
+
+    if (post.type === 'sell') {
+      references = sell_references;
+    }
+    else {
+      references = buy_references;
+    }
+
+    // Check each reference
+    for (var i = 0; i < references.length; i++) {
+      // Check each conversation
+      if (book.title === references[i].title) {
+        console.log('Matching book found!');
+        return true;
+      }
+    }
+    // No conversation match
+    console.log('No matching book!');
+    return false; 
+  }
+
+
 
   return {
     all: function() {
@@ -290,14 +367,20 @@ app.factory("References", function($location, $localStorage) {
     getSelectedConversation: function() {
       return conversation;
     },
-    addReference: function (book, post) {
+    addConversation: function (book, post) {
       // returns index of reference, newly created or previous
-      var indices = addReference(book, post);
+      var indices = addConversation(book, post);
 
       reference = $localStorage.reference;
       conversation = $localStorage.conversation;
 
       return indices;
+    },
+    addReference: function (book, post) {
+      addReference(book, post);
+    },
+    checkForBook: function (book, post) {
+      return checkBookInReferences(book, post);
     }
   }
 });

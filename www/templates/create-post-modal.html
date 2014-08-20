@@ -1,4 +1,4 @@
-<div class="modal create-post-modal">
+<div class="modal create-post-modal" ng-click="closeCreatePost()">
 
 	<!-- Post Info -->
 	<div class="create-post-header">
@@ -62,10 +62,10 @@
 
 	<!-- Footer Buttons -->
 	<div class="button-bar create-post-footer">
-		<button class="button button-clear stotle-button close" ng-click="closeCreatePost()">
+		<!-- <button class="button button-clear stotle-button close" ng-click="closeCreatePost()">
 			Close
-		</button>
-		<button class="button button-clear stotle-button message" ng-click="createPost()">
+		</button> -->
+		<button class="button button-full stotle-button-bar finish" ng-click="createPost()">
 			Finish
 		</button>
 	</div>

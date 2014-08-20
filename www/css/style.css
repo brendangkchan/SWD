@@ -30,6 +30,16 @@ html *
 	color: #E18842 !important;
 }
 
+.stotle-button-bar {
+	background-color: #EA9043;
+	color: #FFF;
+}
+
+.stotle-button-bar.activated {
+	background-color: #FF9D49;
+	color: #FFF;
+}
+
 .stotle-nav-bar-light {
 	background-color: #EA9043 !important;
 	border-width: 0px !important;
@@ -665,6 +675,7 @@ html *
 }
 
 .post-detail-footer {
+	width: 100%;
 	height: 44px !important;
 	position: absolute !important;
 	top: calc(100% - 243px - 80px + 37px) !important;
@@ -683,10 +694,12 @@ html *
 }
 
 .post-detail-footer .message {
-	right: 25px !important;
+	position: absolute;
+	bottom: 0px !important;
+	left: 0px !important;
 	font-size: 1.5em !important;
-	//border-color: #E18842 !important;
-	//border-radius: 8px !important;
+	border-width: 0 !important;
+	margin: 0 !important;
 }
 
 
@@ -832,13 +845,13 @@ html *
 
 .create-post-header .condition {
 	margin-top: 5px !important;
-	width: 60% !important;
-	margin-left: 25% !important;
+	width: 80% !important;
+	margin-left: 15% !important;
 	height: 75% !important;
 }
 .create-post-header select {
 	padding: 0 0px 0 0 !important;
-	margin: 5% 60% 0 0px !important;
+	margin: 5% 45% 0 0px !important;
 }
 
 .create-post-content {
@@ -895,6 +908,7 @@ html *
 }
 
 .create-post-footer {
+	width: 100%;
 	height: 44px !important;
 	position: absolute !important;
 	top: calc(100% - 243px - 80px + 37px) !important;
@@ -912,9 +926,16 @@ html *
 	font-size: 1.5em !important;
 }
 
-.create-post-footer .message {
-	//right: 25px !important;
+.create-post-footer .finish {
+	position: absolute;
+	padding: 0 0 5px 0 !important;
+	width: 100%;
+	bottom: 0px !important;
+	left: 0px !important;
 	font-size: 1.5em !important;
+	font-weight: 400;
+	border-width: 0 !important;
+	margin: 0 !important;
 }
 
 

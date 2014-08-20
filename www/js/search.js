@@ -97,11 +97,10 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
   ];
 
   var conditions = [
-		{ value: 'A' },
-		{ value: 'B' },
-		{ value: 'C' },
-		{ value: 'D' },
-		{ value: 'F' }
+		{ value: 'New' },
+		{ value: 'Good' },
+		{ value: 'Fair' },
+		{ value: 'Poor' }
 	];
 
   var comments = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nibh interdum eros vulputate ultricies. Morbi pretium sed massa at aliquam.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan nibh interdum eros vulputate ultricies. Morbi pretium sed massa at aliquam.';
@@ -663,11 +662,20 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 		// Add Post
 		Posts.addPost(post);
 
-		// Add Reference
-		//References.addReference(post);
-
 		// Hide Modal
 		$scope.createModal.hide();
+
+		// Clear form data
+		clearFormData();
+	}
+
+	var clearFormData = function() {
+		$scope.data = {
+			'price': '',
+			'edition': '',
+			'condition': '',
+			'comments': ''
+		}
 	}
 
 
@@ -702,6 +710,8 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	});
 
 	$scope.openCreatePost = function() {
+		//if (References.checkForBook($scope.book))
+
 		$scope.createModal.show();
 		//console.log("Post is: " + $scope.post);
 	}
