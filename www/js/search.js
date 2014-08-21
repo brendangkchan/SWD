@@ -220,21 +220,24 @@ app.factory("Me", function() {
 
 // Notifications Factory
 
-app.factory("Notifications", function () {
+app.factory("Notifications", function (Me) {
 
 	// Notification Types
 	// message
-	// sold
+	// bought / sold
 	// buy / sell (new posts)
 	// deleted
 
 	var notifications= [
 		// YOU HAVE SOLD
+		{ user: Me.get().user, book: { title: 'The Economic Effects of McDonalds', icon: 'img/test/book4.jpg' }, type: 'sold', text: '' },
 		{ user: { name: 'Ebony P', icon: 'img/test/woman1.jpg' }, book: { title: 'Queens of the Mountains', icon: 'img/test/book1.jpg' }, type: 'message', text: '' },
 		// YOU HAVE BOUGHT
-		{ user: { name: 'Lucy R', icon: 'img/test/woman2.jpg' }, book: { title: 'Planets Without Borders', icon: 'img/test/book2.jpg' }, type: 'buy', text: '' },
-		{ user: { name: 'Toby H', icon: 'img/test/man1.jpg' }, book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' },
-		{ user: { name: 'Garret S', icon: 'img/test/man2.jpg' }, book: { title: 'The Economic Effects of McDonalds', icon: 'img/test/book4.jpg' }, type: 'sold', text: '' },
+		{ user: Me.get().user, book: { title: 'The Economic Effects of McDonalds', icon: 'img/test/book4.jpg' }, type: 'bought', text: '' },
+		//{ user: { name: 'Lucy R', icon: 'img/test/woman2.jpg' }, book: { title: 'Planets Without Borders', icon: 'img/test/book2.jpg' }, type: 'buy', text: '' },
+		//{ user: { name: 'Toby H', icon: 'img/test/man1.jpg' }, book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' },
+		{ user: '', book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' }
+		
 	];
 
 	// Sort messages by book to consolidate
@@ -244,20 +247,29 @@ app.factory("Notifications", function () {
 	for (var i = 0; i < notifications.length; i++) {
 		var notification = notifications[i];
 
+		// Set Name
+		var name = notification.user.name
+		if (name === Me.get().user.name) {
+			name = 'You';
+		}
+
 		if (notification.type === 'message') {
-			notifications[i].text = notification.user.name + ' messaged you';
+			notifications[i].text = name + ' messaged you';
 		}
 		if (notification.type === 'buy') {
-			notifications[i].text = ' # new buyers';
+			notifications[i].text = ' 5 new buyers';
 		}
 		if (notification.type === 'sell') {
-			notifications[i].text = ' # new sellers';
+			notifications[i].text = ' 3 new sellers';
 		}
 		if (notification.type === 'sold') {
-			notifications[i].text = notification.user.name + ' has sold';
+			notifications[i].text = name + ' sold';
+		}
+		if (notification.type === 'bought') {
+			notifications[i].text = name + ' bought';
 		}
 		if (notification.type === 'deleted') {
-			notifications[i].text = notification.user.name + ' has deleted their post';
+			notifications[i].text = name + ' deleted their post';
 		}
 	}
 

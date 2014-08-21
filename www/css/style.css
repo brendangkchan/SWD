@@ -1224,6 +1224,7 @@ html *
  	-webkit-border-radius:50%;
 }
 
+
 .notification-item .book-icon {
 	position: absolute;
 	max-height: 55px;
@@ -1249,11 +1250,18 @@ html *
 	font-weight: 400;
 }
 
+
+.count-notification .text {
+	width: calc(100% - 90px);
+	margin: 20px 70px 0 10px !important;
+}
+
 .notification-item .book {
 	margin: 7px 0 0 0px;
 	white-space: nowrap;
   	overflow: hidden;
   	text-overflow: ellipsis;
 }
+
 
 
