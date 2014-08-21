@@ -1,7 +1,7 @@
-<div class="modal post-detail-modal" ng-click="closePostDetail()">
+<div class="modal post-detail-modal">
 
 	<!-- Post Info -->
-	<div class="post-detail-header">
+	<div class="post-detail-header" ng-click="closePostDetail()">
 		<div class="row row-center">
 			<div class="col simple-col">
 				<img class="clip-circle icon" src={{post.user.icon}}>
@@ -27,7 +27,7 @@
 	<div class="post-detail-content">
 		
 		<!-- Comments -->
-		<div class="comments">
+		<div class="comments" ng-click="closePostDetail()">
 				{{post.comments}}
 		</div>
 

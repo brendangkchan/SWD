@@ -12,7 +12,7 @@
 
 					<!-- Hidden Buttons -->
 					<div class="reference-item-buttons">
-						<ion-option-button class="button reference-item-button" ng-click="edit(item)">
+						<!-- <ion-option-button class="button reference-item-button" ng-click="edit(item)">
 		            		<i class="icon ion-edit"></i>
 		          		</ion-option-button>
 		          		<ion-option-button class="button reference-item-button" ng-click="search(item)">
@@ -23,6 +23,18 @@
 		          		</ion-option-button>
 		          		<ion-option-button class="button reference-item-button" ng-click="markComplete(reference)">
 		            		<i class="icon ion-trash-b delete"></i>
+		          		</ion-option-button> -->
+		          		<ion-option-button class="button-clear edit" ng-click="edit(item)">
+		            		Edit
+		          		</ion-option-button>
+		          		<ion-option-button class="button-clear search" ng-click="search(item)">
+		            		Search
+		          		</ion-option-button>
+		          		<ion-option-button class="button-clear delete" ng-click="delete(reference)">
+		            		Delete
+		          		</ion-option-button>
+		          		<ion-option-button class="button-clear sold" ng-click="markComplete(reference)">
+		            		Mark Sold
 		          		</ion-option-button>
 	          		</div>
 				</ion-item>

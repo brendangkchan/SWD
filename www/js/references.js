@@ -380,6 +380,7 @@ app.factory("References", function($location, $localStorage, $ionicLoading) {
       addReference(book, post);
     },
     checkForBook: function (book, post) {
+      console.log(book);
       return checkBookInReferences(book, post);
     }
   }

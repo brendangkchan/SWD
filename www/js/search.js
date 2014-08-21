@@ -79,14 +79,14 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
 
   // Some fake testing data
   var posts = [
-    { id: '', user: { name: 'Yonce K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Jay Z', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Charissa T', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Samantha S', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Adam K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'buy'},
-    { id: '', user: { name: 'Raymond G', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'buy'},
-    { id: '', user: { name: 'Alexander E', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'A', images: [], comments: '', type: 'buy'},
-    { id: '', user: { name: 'asdlfkjfaldkjfdasf F', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'B', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Yonce K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'Good', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Jay Z', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'Good', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Charissa T', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'New', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Samantha S', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'Fair', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Adam K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'Fair', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Raymond G', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'Good', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Alexander E', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'New', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'asdlfkjfaldkjfdasf F', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'Poor', images: [], comments: '', type: 'buy'},
   ];
 
   var images = [
@@ -175,7 +175,13 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
     getPost: function() {
     	return post;
     },
-    addPost: function(post) {
+    addPost: function(book, post) {
+
+    	// Check for existing book
+    	if (References.checkForBook(book, post)) {
+    		return;
+    	}
+
     	// Add id
     	post.id = Math.random().toString(36).slice(2);
 
@@ -223,7 +229,9 @@ app.factory("Notifications", function () {
 	// deleted
 
 	var notifications= [
+		// YOU HAVE SOLD
 		{ user: { name: 'Ebony P', icon: 'img/test/woman1.jpg' }, book: { title: 'Queens of the Mountains', icon: 'img/test/book1.jpg' }, type: 'message', text: '' },
+		// YOU HAVE BOUGHT
 		{ user: { name: 'Lucy R', icon: 'img/test/woman2.jpg' }, book: { title: 'Planets Without Borders', icon: 'img/test/book2.jpg' }, type: 'buy', text: '' },
 		{ user: { name: 'Toby H', icon: 'img/test/man1.jpg' }, book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' },
 		{ user: { name: 'Garret S', icon: 'img/test/man2.jpg' }, book: { title: 'The Economic Effects of McDonalds', icon: 'img/test/book4.jpg' }, type: 'sold', text: '' },
@@ -237,19 +245,19 @@ app.factory("Notifications", function () {
 		var notification = notifications[i];
 
 		if (notification.type === 'message') {
-			notifications[i].text = notification.user.name + ' messaged you about';
+			notifications[i].text = notification.user.name + ' messaged you';
 		}
 		if (notification.type === 'buy') {
-			notifications[i].text = notification.user.name + ' wants to buy';
+			notifications[i].text = ' # new buyers';
 		}
 		if (notification.type === 'sell') {
-			notifications[i].text = notification.user.name + ' wants to sell';
+			notifications[i].text = ' # new sellers';
 		}
 		if (notification.type === 'sold') {
 			notifications[i].text = notification.user.name + ' has sold';
 		}
 		if (notification.type === 'deleted') {
-			notifications[i].text = notification.user.name + ' has deleted';
+			notifications[i].text = notification.user.name + ' has deleted their post';
 		}
 	}
 
@@ -590,7 +598,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 
 // Posts Controller
 
-app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, Posts, Results, References, Me) {
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, Posts, Results, References, Me) {
 
 	// Fake posts from factory
 	$scope.posts = Posts.selling();
@@ -646,11 +654,11 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 		};
 
 		// Alert user if any field empty
-		if (post.price === '') {
-			$ionicLoading.show({ template: 'Please add a price!', noBackdrop: true, duration: 2000 });
+		if (post.price === '' || post.price !== parseInt(post.price)) {
+			$ionicLoading.show({ template: 'Please add a price in dollars!', noBackdrop: true, duration: 2000 });
 			return;
 		}
-		if (post.edition === '') {
+		if (post.edition === '' || post.edition !== parseInt(post.edition)) {
 			$ionicLoading.show({ template: 'Please add an edition!', noBackdrop: true, duration: 2000 });
 			return;
 		}
@@ -660,13 +668,17 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 		}
 
 		// Add Post
-		Posts.addPost(post);
+		console.log($scope.book);
+		Posts.addPost($scope.book, post);
 
 		// Hide Modal
 		$scope.createModal.hide();
 
 		// Clear form data
 		clearFormData();
+
+		// Resize scroll container
+		$ionicScrollDelegate.$getByHandle('postScroll').scrollBottom();
 	}
 
 	var clearFormData = function() {

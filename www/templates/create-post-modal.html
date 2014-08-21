@@ -1,4 +1,42 @@
-<div class="modal create-post-modal" ng-click="closeCreatePost()">
+<div class="modal create-post-modal">
+
+	<!-- Tab Buttons -->
+	<!-- <div class="button-bar create-post-tabs">
+		<a class="button button-block">Selling</a>
+  		<a class="button button-block">Buying</a>
+	</div> -->
+
+	<!-- Post Tabs -->
+	<ion-tabs class="tabs-top create-post-tabs">
+
+	  	<!-- Selling Tab -->
+	  	<ion-tab title="Selling">
+	  	</ion-tab>
+
+	  	<!-- Buying Tab -->
+	  	<ion-tab title="Buying">
+	  	</ion-tab>
+
+	</ion-tabs>
+
+
+	<!-- Column Headers -->
+	<div class="has-header create-post-column-headers">
+		<div class="row row-center">
+			<div class="col header-col user">
+				User
+			</div>
+			<div class="col header-col">
+				Price
+			</div>
+			<div class="col header-col">
+				Edition
+			</div>
+			<div class="col header-col">
+				Condition
+			</div>
+		</div>
+	</div>
 
 	<!-- Post Info -->
 	<div class="create-post-header">
@@ -66,7 +104,7 @@
 			Close
 		</button> -->
 		<button class="button button-full stotle-button-bar finish" ng-click="createPost()">
-			Finish
+			Post
 		</button>
 	</div>
 
