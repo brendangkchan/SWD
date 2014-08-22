@@ -190,7 +190,7 @@ html *
 
 .reference-item .item-content {
 	height: 100px !important;
-	padding: 8px 15px 15px 70px !important;
+	padding: 8px 15px 15px 80px !important;
 
 	border-width: 0 1px 0 0;
 	border-color: #ea9043;
@@ -201,8 +201,8 @@ html *
 
 .reference-icon {
 	top: 20px !important;  /*Changed from 15px*/
-    max-width: 42px !important;  /*Changed from 40px*/
-    max-height: 60px !important; /*Changed from 40px*/
+    max-width: 50px !important;  /*Changed from 40px*/
+    max-height: 70px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
     border-radius: 1px !important;  /*Changed from 4px*/
 }
@@ -282,6 +282,8 @@ html *
 }
 
 .clip-circle{
+	//position: relative;
+	//overflow: hidden;
 	height: 45px;
 	width: 45px;
 
@@ -294,11 +296,26 @@ html *
 	padding-top: 5px !important;
 }
 
-.conversation-icon {
+/*.conversation-icon {
 	top: 15px !important;
-	max-width: 45px !important;
-	max-height: 45px !important;
+	//max-width: 45px !important;
+	//max-height: 45px !important;
 	margin-left: 20px;
+}*/
+
+.conversation-item .center-cropped {
+	position: absolute;
+	top: 15px;
+	left: 35px;
+    display: inline;
+    width: 45px;
+    height: 45px;
+    background-position: center center;
+    background-size: cover;
+
+    border-radius: 50% !important;
+	-moz-border-radius:50%;
+ 	-webkit-border-radius:50%;
 }
 
 .conversation-name {
@@ -336,7 +353,7 @@ html *
 .list .item.item-accordion .item-content {
 	/*separates conversation icon and text*/
 	height: 75px !important;
-	padding-left: 75px !important;
+	padding-left: 95px !important;
 }
 .list .item.item-accordion.ng-hide {
 	line-height: 0px;
@@ -359,7 +376,7 @@ html *
 
 .result-item {
 	line-height: 1em;
-	padding: 15px 0px 0px 70px !important;
+	padding: 15px 0px 0px 80px !important;
 	height: 100px !important;
 }
 
@@ -368,9 +385,9 @@ html *
 }
 
 .result-item .icon {
-	top: 20px !important;  /*Changed from 15px*/
-    max-width: 42px !important;  /*Changed from 40px*/
-    max-height: 60px !important; /*Changed from 40px*/
+	top: 18px !important;  /*Changed from 15px*/
+    max-width: 50px !important;  /*Changed from 40px*/
+    max-height: 70px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
     border-radius: 1px !important;  /*Changed from 4px*/
 }
@@ -407,7 +424,7 @@ html *
 }
 
 .posts-sub-header {
-	padding: 12px 0px 0px 70px !important;
+	padding: 12px 0px 0px 75px !important;
 	height: 90px !important;
 
 	border-bottom-width: 1px !important;
@@ -416,15 +433,15 @@ html *
 
 .posts-sub-header .icon {
 	top: 15px !important;  /*Changed from 15px*/
-    max-width: 42px !important;  /*Changed from 40px*/
-    max-height: 60px !important; /*Changed from 40px*/
+    max-width: 45px !important;  /*Changed from 40px*/
+    max-height: 70px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
     border-radius: 1px !important;  /*Changed from 4px*/
 }
 
 .posts-sub-header .title {
 	display: block;
-	padding: 5px 15px 0 0 !important;
+	padding: 3px 15px 0 0 !important;
 	margin-bottom: 5px !important;
 	color: #000;
 
@@ -543,6 +560,18 @@ html *
 	margin-top: 3px !important;
 }
 
+.post-item .center-cropped {
+    margin: 3px 0 0 24px;
+    width: 40px;
+    height: 40px;
+    background-position: center center;
+    background-size: cover;
+
+    border-radius: 50% !important;
+	-moz-border-radius:50%;
+ 	-webkit-border-radius:50%;
+}
+
 .post-item .name {
 	white-space: nowrap;
 	overflow: hidden;
@@ -625,6 +654,18 @@ html *
 	height: 40px;
 	width: 40px;
 	margin-top: 3px !important;
+}
+
+.post-detail-header .center-cropped {
+    margin: 3px 0 0 24px;
+    width: 40px;
+    height: 40px;
+    background-position: center center;
+    background-size: cover;
+
+    border-radius: 50% !important;
+	-moz-border-radius:50%;
+ 	-webkit-border-radius:50%;
 }
 
 .post-detail-header .name {
@@ -872,6 +913,18 @@ html *
 	margin-top: 3px !important;
 }
 
+.create-post-header .center-cropped {
+    margin: 3px 0 0 24px;
+    width: 40px;
+    height: 40px;
+    background-position: center center;
+    background-size: cover;
+
+    border-radius: 50% !important;
+	-moz-border-radius:50%;
+ 	-webkit-border-radius:50%;
+}
+
 .create-post-header .name {
 	white-space: nowrap;
 	overflow: hidden;
@@ -1072,7 +1125,7 @@ html *
  */
 
 .post-info-header .item {
-	padding: 12px 0px 0px 70px !important;
+	padding: 12px 0px 0px 80px !important;
 	height: 90px !important;
 
 	border-bottom-width: 1px !important;
@@ -1080,11 +1133,12 @@ html *
 }
 
 .post-info-header .icon {
-	top: 15px !important;  /*Changed from 15px*/
+	top: 20px !important;  /*Changed from 15px*/
     max-width: 42px !important;  /*Changed from 40px*/
     max-height: 60px !important; /*Changed from 40px*/
     width: auto !important;      /*Changed from 100%*/
     border-radius: 1px !important;  /*Changed from 4px*/
+    margin-left: 5px !important;
 }
 
 .post-info-header .title {
@@ -1224,14 +1278,29 @@ html *
  	-webkit-border-radius:50%;
 }
 
+.notification-item .center-cropped {
+	position: absolute;
+	top: 20px;
+	left: 13px;
+    display: inline;
+    width: 45px;
+    height: 45px;
+    background-position: center center;
+    background-size: cover;
+
+    border-radius: 50% !important;
+	-moz-border-radius:50%;
+ 	-webkit-border-radius:50%;
+}
+
 
 .notification-item .book-icon {
 	position: absolute;
-	max-height: 55px;
-	max-width: 60px;
+	max-height: 60px;
+	max-width: auto;
 	right: 0;
 	top: 0;
-	margin: 17px 10px 0 0;
+	margin: 15px 10px 0 0;
 
 	//opacity: 0.7;
     //filter: alpha(opacity=40);
@@ -1240,8 +1309,8 @@ html *
 .notification-item .text {
 	position: absolute;
 	top: 0;
-	width: calc(100% - 135px);
-	margin: 20px 70px 0 60px;
+	width: calc(100% - 145px);
+	margin: 20px 80px 0 60px;
 }
 
 .notification-item .message {
@@ -1250,18 +1319,33 @@ html *
 	font-weight: 400;
 }
 
-
-.count-notification .text {
-	width: calc(100% - 90px);
-	margin: 20px 70px 0 10px !important;
-}
-
 .notification-item .book {
 	margin: 7px 0 0 0px;
 	white-space: nowrap;
   	overflow: hidden;
   	text-overflow: ellipsis;
 }
+
+.count-notification .text {
+	width: calc(100% - 90px);
+	margin: 20px 30px 0 10px !important;
+}
+
+
+
+.count-notification .text {
+	padding: 0 0 0 60px !important;
+}
+
+.count-notification .book-icon {
+	position: absolute;
+	max-height: 60px;
+	max-width: auto;
+	left: 15px;
+	top: 0;
+	margin: 15px 10px 0 0;
+}
+
 
 
 

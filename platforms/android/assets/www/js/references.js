@@ -6,18 +6,18 @@ app.factory("References", function($location, $localStorage, $ionicLoading) {
 
   // Some fake testing data
   var references = [
-    { id: 0, title: 'Unbroken: A World War II Story of Survival, Resilience, and Redemption', author: 'Laura Hillenbrand', icon: 'img/test/book1.jpg', price: 9, count: '', conversations: [], type: 'sell'},
-    { id: 1, title: 'Diagnostic and Statistical Manual of Mental Disorders', author: 'American Psychiatric Association', icon: 'img/test/book2.jpg', price: 8, count: '', conversations: [], type: 'sell'},
-    { id: 2, title: 'StrengthsFinder 2.0', author: 'Tom Rath', icon: 'img/test/book3.jpg', price: 9, count: '', conversations: [], type: 'buy'},
-    { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', price: 8, icon: 'img/test/book4.jpg', count: '', conversations: [], type: 'buy'}
+    { id: 0, title: 'Introductory Chemistry Essentials', author: 'Nivaldo Tro', icon: 'img/test/book_chem.jpg', isbn: '978-0321725998', price: 9, count: '', conversations: [], type: 'sell'},
+    { id: 1, title: 'Campbell Biology', author: 'Jane Reece', icon: 'img/test/book_bio.jpg', isbn: '978-0321775658', price: 8, count: '', conversations: [], type: 'sell'},
+    { id: 2, title: 'Lehninger Principles of Biochemistry', author: 'David Nelson', icon: 'img/test/book_biochem.jpg', isbn: ' 978-1429234146', price: 9, count: '', conversations: [], type: 'buy'},
+    { id: 3, title: 'Calculus', author: 'Ron Larson', icon: 'img/test/book_math.jpg', isbn: '978-0547167022', price: 8, count: '', conversations: [], type: 'buy'}
   ];
 
   var conversations = [
-    { id: 0, name: 'Beyonce K', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', images: '', comments: '', messages: []},
-    { id: 1, name: 'Jay Z', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', images: '', comments: '', messages: []},
-    { id: 2, name: 'Beyonce C', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 10, icon: 'img/test/user1.jpg', images: '', comments: '', messages: []},
-    { id: 3, name: 'Jay D', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user2.jpg', images: '', comments: '', messages: []},
-    { id: 4, name: 'Bae J', preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', price: 8, icon: 'img/test/user1.jpg', images: '', comments: '', messages: []}
+    { id: 0, name: 'Matthew P', preview: 'Is this book still for sale?', price: 10, icon: 'img/test/boy1.jpg', images: '', comments: '', messages: []},
+    { id: 1, name: 'Manuel D', preview: 'When will you be on campus?', price: 8, icon: 'img/test/boy2.jpg', images: '', comments: '', messages: []},
+    { id: 2, name: 'Angel M', preview: 'I will be in front of the gym wearing a red shirt.', price: 10, icon: 'img/test/girl1.jpg', images: '', comments: '', messages: []},
+    { id: 3, name: 'Rachel F', preview: 'Yea, the book has some highlighting, but nothing huge', price: 8, icon: 'img/test/girl2.jpg', images: '', comments: '', messages: []},
+    { id: 4, name: 'Sandra R', preview: 'I am free Mondays after 5.', price: 8, icon: 'img/test/girl3.jpg', images: '', comments: '', messages: []}
   ];
 
   // Build conversations

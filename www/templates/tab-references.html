@@ -42,13 +42,15 @@
 				<!-- Accordian Item -->
 				<ion-item class="item-accordion item-avatar conversation-item" ng-repeat="conversation in reference.conversations track by conversation.id" ng-show="isReferenceShown(reference)" 
 				ui-sref="home.conversation({ referenceIndex: $parent.$parent.$index, conversationIndex: $index})" ng-click="selectConversation($parent.$parent.$index, $index)">
-					<img class="clip-circle conversation-icon" src={{conversation.icon}}>
+					
+
+					<!-- <img class=" conversation-icon" src={{conversation.icon}}> -->
+					<div class="center-cropped" style="background-image: url({{conversation.icon}});"></div>
 					<div class="conversation-top-line">
 						<div class="conversation-name">{{conversation.name}}</div>
 						<p class="conversation-price">${{conversation.price}}</p>
 					</div>
 					<p class="conversation-preview">{{conversation.preview}}</p>
-					
 				</ion-item>
 
 			</div>

@@ -8,10 +8,10 @@ app.factory("Results", function($localStorage) {
 
   // Some fake testing data
   var results = [
-    { id: 0, title: 'Unbroken: A World War II Story of Survival, Resilience, and Redemption', author: 'Laura Hillenbrand', icon: 'img/test/book1.jpg', isbn: '99-9260-864-1'},
-    { id: 1, title: 'Diagnostic and Statistical Manual of Mental Disorders', author: 'American Psychiatric Association', icon: 'img/test/book2.jpg', isbn: '99-9269-366-5'},
-    { id: 2, title: 'StrengthsFinder 2.0', author: 'Tom Rath', icon: 'img/test/book3.jpg', isbn: '99-9269-153-0'},
-    { id: 3, title: 'Publication Manual of the American Psychological Association', author: 'American Psychiatric Association', icon: 'img/test/book4.jpg', isbn: '99-9267-942-5'}
+    { id: 0, title: 'Introductory Chemistry Essentials', author: 'Nivaldo Tro', icon: 'img/test/book_chem.jpg', isbn: '978-0321725998'},
+    { id: 1, title: 'Campbell Biology', author: 'Jane Reece', icon: 'img/test/book_bio.jpg', isbn: '978-0321775658'},
+    { id: 2, title: 'Lehninger Principles of Biochemistry', author: 'David Nelson', icon: 'img/test/book_biochem.jpg', isbn: ' 978-1429234146'},
+    { id: 3, title: 'Calculus', author: 'Ron Larson', icon: 'img/test/book_math.jpg', isbn: '978-0547167022'}
   ];
 
   // Last query
@@ -44,6 +44,25 @@ app.factory("Results", function($localStorage) {
     // Initial Search
     search: function (query) {
     	this.setQuery(query);
+
+    	// API key
+    	var myApi = '13JXGETH';
+
+    	var url = 'http://isbndb.com/api/v2/json/13JXGETH/book/';
+
+    	url = url + query.replace(' ', '_');
+
+    	console.log("URL: " + url);
+
+    	// $http({method: 'GET', url: '/someUrl'}).
+	    // success(function(data, status, headers, config) {
+	    //   // this callback will be called asynchronously
+	    //   // when the response is available
+	    // }).
+	    // error(function(data, status, headers, config) {
+	    //   // called asynchronously if an error occurs
+	    //   // or server returns response with an error status.
+	    // });
     },
     // Store selected book
     selectBook: function (title) {
@@ -79,14 +98,14 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
 
   // Some fake testing data
   var posts = [
-    { id: '', user: { name: 'Yonce K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'Good', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Jay Z', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'Good', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Charissa T', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'New', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Samantha S', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'Fair', images: [], comments: '', type: 'sell'},
-    { id: '', user: { name: 'Adam K', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'Fair', images: [], comments: '', type: 'buy'},
-    { id: '', user: { name: 'Raymond G', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'Good', images: [], comments: '', type: 'buy'},
-    { id: '', user: { name: 'Alexander E', icon: 'img/test/user1.jpg' }, price: 10, edition: 7, condition: 'New', images: [], comments: '', type: 'buy'},
-    { id: '', user: { name: 'asdlfkjfaldkjfdasf F', icon: 'img/test/user2.jpg' }, price: 8, edition: 6, condition: 'Poor', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Elias G', icon: 'img/test/boy1.jpg' }, price: 10, edition: 7, condition: 'Good', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Janice B', icon: 'img/test/girl3.jpg' }, price: 6, edition: 6, condition: 'Good', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Kimberly M', icon: 'img/test/girl2.jpg' }, price: 9, edition: 7, condition: 'New', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Blanche S', icon: 'img/test/boy2.jpg' }, price: 8, edition: 6, condition: 'Fair', images: [], comments: '', type: 'sell'},
+    { id: '', user: { name: 'Myron G', icon: 'img/test/boy1.jpg' }, price: 7, edition: 7, condition: 'Fair', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Lauren H', icon: 'img/test/girl1.jpg' }, price: 11, edition: 6, condition: 'Good', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Alma M', icon: 'img/test/girl2.jpg' }, price: 6, edition: 7, condition: 'New', images: [], comments: '', type: 'buy'},
+    { id: '', user: { name: 'Elaine F', icon: 'img/test/girl3.jpg' }, price: 8, edition: 6, condition: 'Poor', images: [], comments: '', type: 'buy'},
   ];
 
   var images = [
@@ -207,8 +226,9 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
 
 app.factory("Me", function() {
 
-	var me = { user: { name: 'Brendan C', icon: 'img/test/me.jpg' } }
-	
+	// var me = { user: { name: 'Brendan C', icon: 'img/test/me.jpg' } };
+	var me = { user: { name: 'Brendan C', icon: 'img/test/girl1.jpg' } };
+
 	return {
 		get: function() {
 			return me;
@@ -230,13 +250,13 @@ app.factory("Notifications", function (Me) {
 
 	var notifications= [
 		// YOU HAVE SOLD
-		{ user: Me.get().user, book: { title: 'The Economic Effects of McDonalds', icon: 'img/test/book4.jpg' }, type: 'sold', text: '' },
-		{ user: { name: 'Ebony P', icon: 'img/test/woman1.jpg' }, book: { title: 'Queens of the Mountains', icon: 'img/test/book1.jpg' }, type: 'message', text: '' },
+		{ user: Me.get().user, book: { title: 'Introductory Chemistry Essentials', icon: 'img/test/book_chem.jpg' }, type: 'sold', text: '' },
+		{ user: { name: 'Leah P', icon: 'img/test/girl2.jpg' }, book: { title: 'Campbell Biology', icon: 'img/test/book_bio.jpg' }, type: 'message', text: '' },
 		// YOU HAVE BOUGHT
-		{ user: Me.get().user, book: { title: 'The Economic Effects of McDonalds', icon: 'img/test/book4.jpg' }, type: 'bought', text: '' },
+		{ user: Me.get().user, book: { title: 'Lehninger Principles of Biochemistry', icon: 'img/test/book_biochem.jpg' }, type: 'bought', text: '' },
 		//{ user: { name: 'Lucy R', icon: 'img/test/woman2.jpg' }, book: { title: 'Planets Without Borders', icon: 'img/test/book2.jpg' }, type: 'buy', text: '' },
 		//{ user: { name: 'Toby H', icon: 'img/test/man1.jpg' }, book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' },
-		{ user: '', book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' }
+		{ user: '', book: { title: 'Calculus: A Deeper Look', icon: 'img/test/book_math.jpg' }, type: 'sell', text: '' }
 		
 	];
 
@@ -932,6 +952,24 @@ app.directive('ngEnter', function() {
             }
         });
     };
+});
+
+app.filter('orderObjectBy', function(){
+ return function(input, attribute) {
+    if (!angular.isObject(input)) return input;
+
+    var array = [];
+    for(var objectKey in input) {
+        array.push(input[objectKey]);
+    }
+
+    array.sort(function(a, b){
+        a = parseInt(a[attribute]);
+        b = parseInt(b[attribute]);
+        return a - b;
+    });
+    return array;
+ }
 });
 
 

@@ -4,7 +4,7 @@
 	<div class="post-detail-header" ng-click="closePostDetail()">
 		<div class="row row-center">
 			<div class="col simple-col">
-				<img class="clip-circle icon" src={{post.user.icon}}>
+				<div class="center-cropped" style="background-image: url({{post.user.icon}});"></div>
 			</div>
 			<div class="col simple-col">
 				<div class="price">${{post.price}}</div>

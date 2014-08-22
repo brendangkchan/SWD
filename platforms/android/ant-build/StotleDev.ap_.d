@@ -45,7 +45,15 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book1.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book2.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book3.jpg \
-/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book4.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book_bio.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book_biochem.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book_chem.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book_math.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/boy1.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/boy2.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/girl1.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/girl2.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/girl3.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/image1.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/image2.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/image3.jpg \
