@@ -3,16 +3,20 @@ var app = angular.module('search', ['ionic', 'ngAnimate', 'ngStorage'])
 
 // Dummy Search Results
 
-app.factory("Results", function($localStorage) {
+app.factory("Results", function($localStorage,  $http) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var results = [
-    { id: 0, title: 'Introductory Chemistry Essentials', author: 'Nivaldo Tro', icon: 'img/test/book_chem.jpg', isbn: '978-0321725998'},
-    { id: 1, title: 'Campbell Biology', author: 'Jane Reece', icon: 'img/test/book_bio.jpg', isbn: '978-0321775658'},
-    { id: 2, title: 'Lehninger Principles of Biochemistry', author: 'David Nelson', icon: 'img/test/book_biochem.jpg', isbn: ' 978-1429234146'},
-    { id: 3, title: 'Calculus', author: 'Ron Larson', icon: 'img/test/book_math.jpg', isbn: '978-0547167022'}
-  ];
+  // var results = [
+  //   { id: 0, title: 'Introductory Chemistry Essentials', author: 'Nivaldo Tro', icon: 'img/test/book_chem.jpg', isbn: '978-0321725998'},
+  //   { id: 1, title: 'Campbell Biology', author: 'Jane Reece', icon: 'img/test/book_bio.jpg', isbn: '978-0321775658'},
+  //   { id: 2, title: 'Lehninger Principles of Biochemistry', author: 'David Nelson', icon: 'img/test/book_biochem.jpg', isbn: ' 978-1429234146'},
+  //   { id: 3, title: 'Calculus', author: 'Ron Larson', icon: 'img/test/book_math.jpg', isbn: '978-0547167022'}
+  // ];
+
+  var results = {};
+
+  //$localStorage.$reset();
 
   // Last query
   $localStorage.query;
@@ -32,10 +36,156 @@ app.factory("Results", function($localStorage) {
   	result = $localStorage.result;
   }
 
+  // Create book objects from db data
+  getResultsFromData = function (data) {
+  	// Array to hold results
+  	var search_results = new Array();
+
+  	console.log(data);
+
+  	// Check each search result
+  	for (var i = 0; i < data.length; i++) {
+
+  		var result = data[i];
+  		var title = result.title.toLowerCase();
+  		var author = '';
+  		var author_name = '';
+  		var isbn = result.isbn10;
+
+  		if (result.author_data.length >= 1) {
+  			author = result.author_data[0].id;
+  			author_name = result.author_data[0].name;
+  		}
+
+  		var match_found = false;
+
+  		// Check each previous book
+  		for (var j = 0; j < i; j++) {
+
+  			// Current book 
+  			// var current_result = search_results[i];
+
+  			// console.log(current_result);
+  			var current_title = data[j].title.toLowerCase();
+  			var current_author = '';
+  			var current_isbn = data[j].isbn10;
+
+	  		if (data[j].author_data.length >= 1) {
+	  			current_author = data[j].author_data[0].id;
+	  		}
+	  			
+  			// Match found
+  			if ((title === current_title && author === current_author) || 
+  				isbn === current_isbn) {
+  				console.log('Match found');
+  				match_found = true;
+  				break;
+  			}
+  		}
+
+  		// No match found
+  		if (!match_found) {
+  			console.log('No match, adding result: ' + title);
+
+  			// New book
+  			var book = {
+  				title: titleCaps(data[i].title),
+  				author: author_name,
+  				isbn: data[i].isbn10,
+  				icon: getIconUrl(data[i].isbn10)
+  			};
+
+  			// Add book
+  			search_results.push(book);
+  			console.log(book);
+  		}
+  	}
+
+  	console.log('Finished adding ' + search_results.length + ' results');
+
+  	// Return results
+  	return search_results;
+  }
+
+  getIconUrl = function(isbn) {
+  	var size = 'S';
+
+  	return 'http://covers.openlibrary.org/b/' + 'isbn/' + isbn + '-S.jpg' + '?default=false';
+  }
+
+
+  	// Function to fix title capitalization
+	var small = "(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|v[.]?|via|vs[.]?)";
+	var punct = "([!\"#$%&'()*+,./:;<=>?@[\\\\\\]^_`{|}~-]*)";
+  
+	titleCaps = function(title){
+		var parts = [], split = /[:.;?!] |(?: |^)["Ò]/g, index = 0;
+		
+		while (true) {
+			var m = split.exec(title);
+
+			parts.push( title.substring(index, m ? m.index : title.length)
+				.replace(/\b([A-Za-z][a-z.'Õ]*)\b/g, function(all){
+					return /[A-Za-z]\.[A-Za-z]/.test(all) ? all : upper(all);
+				})
+				.replace(RegExp("\\b" + small + "\\b", "ig"), lower)
+				.replace(RegExp("^" + punct + small + "\\b", "ig"), function(all, punct, word){
+					return punct + upper(word);
+				})
+				.replace(RegExp("\\b" + small + punct + "$", "ig"), upper));
+			
+			index = split.lastIndex;
+			
+			if ( m ) parts.push( m[0] );
+			else break;
+		}
+		
+		return parts.join("").replace(/ V(s?)\. /ig, " v$1. ")
+			.replace(/(['Õ])S\b/ig, "$1s")
+			.replace(/\b(AT&T|Q&A)\b/ig, function(all){
+				return all.toUpperCase();
+			});
+	};
+    
+	function lower(word){
+		return word.toLowerCase();
+	}
+    
+	function upper(word){
+	  return word.substr(0,1).toUpperCase() + word.substr(1);
+	}
+
   return {
   	// Get all results
     all: function() {
-      return results;
+
+		// API key
+    	var myApi = '13JXGETH';
+
+    	var collection = 'books';
+
+    	// URL
+    	var url = 'http://isbndb.com/api/v2/json/13JXGETH/book/';
+
+    	// Details
+    	var index1 = 'combined';
+
+    	// Value
+    	var value1 = $localStorage.query.split(' ').join('_');
+
+    	// Parameters
+    	//var param = '&i=combined';
+    	var param = '';
+
+    	// Add query
+    	var url = 'http://isbndb.com/api/v2/json/' + myApi + '/' + collection + '?q=' + value1 + param;
+
+    	console.log('URL: ' + url);
+
+    	return $http({method: 'GET', url: url, cache: true});
+    },
+    getResults: function(data) {
+    	return getResultsFromData(data);
     },
     // Get a specific result
     get: function(resultId) {
@@ -45,24 +195,7 @@ app.factory("Results", function($localStorage) {
     search: function (query) {
     	this.setQuery(query);
 
-    	// API key
-    	var myApi = '13JXGETH';
-
-    	var url = 'http://isbndb.com/api/v2/json/13JXGETH/book/';
-
-    	url = url + query.replace(' ', '_');
-
-    	console.log("URL: " + url);
-
-    	// $http({method: 'GET', url: '/someUrl'}).
-	    // success(function(data, status, headers, config) {
-	    //   // this callback will be called asynchronously
-	    //   // when the response is available
-	    // }).
-	    // error(function(data, status, headers, config) {
-	    //   // called asynchronously if an error occurs
-	    //   // or server returns response with an error status.
-	    // });
+    	
     },
     // Store selected book
     selectBook: function (title) {
@@ -375,7 +508,7 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
    		}
 
    		// Print stack
-   		printStack();
+   		//printStack();
 	});
 
 	// Back Navigation
@@ -507,7 +640,7 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 // Search Controller
 
-app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, Results, Notifications) {
+app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, $ionicLoading, Results, Notifications) {
 
 	// Configure Results button
 	$scope.showResultsButton = $rootScope.showResultsButton;
@@ -527,6 +660,14 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 
 		// Go to Results 
 		$location.path( '/home/search/' + $scope.query);
+
+		$ionicLoading.show({
+	     	template: "<div class='icon ion-loading-c'></div>",
+			animation: 'fade-in',
+			showBackdrop: false,
+			maxWidth: 200,
+			showDelay: 0
+	    });
 	}
 
 	//Result Button
@@ -592,13 +733,22 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 
 // Results Controller
 
-app.controller('ResultsCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, Results) {
+app.controller('ResultsCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $ionicLoading, $window, Results) {
 
 	// Get query from Results service
 	$scope.query = Results.getQuery();
 
 	// Fake results from factory
-	$scope.results = Results.all();
+	//$scope.results = Results.all();
+
+	//$scope.results = null;
+
+	Results.all().success(function (data) {
+		var initial_results = data.data;
+		console.log(data,data);
+		$scope.results = Results.getResults(initial_results);
+		$ionicLoading.hide();
+	});
 	
 	// Select book from initial search
 	$scope.selectBook = function(title) {
@@ -927,6 +1077,18 @@ app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams
 
 });
 
+// Directive for error image source
+app.directive('errSrc', function() {
+  return {
+    link: function(scope, element, attrs) {
+      element.bind('error', function() {
+        if (attrs.src != attrs.errSrc) {
+          attrs.$set('src', attrs.errSrc);
+        }
+      });
+    }
+  }
+});
 
 
 // Directive for show after return input, ng-show = true if variable true

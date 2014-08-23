@@ -42,6 +42,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/css/deperecated.css \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/css/style.css \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/blank_cover.png \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book1.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book2.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book3.jpg \

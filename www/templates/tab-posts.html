@@ -21,7 +21,7 @@
 		<!-- Results Content -->
 		<ion-list>
 			<!-- Messages -->
-			<div ng-repeat="post in posts | orderObjectBy: 'price' track by post.id">
+			<div ng-repeat="post in posts track by post.id">
 
 				<div class="post-item" ng-click="openPostDetail($index)">
 
