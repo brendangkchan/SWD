@@ -21,7 +21,7 @@ Initial results after first search -->
 			<!-- Messages -->
 			<div ng-repeat="result in results track by result.isbn">
 
-				<div class="item item-avatar result-item" ui-sref="home.posts.selling({ book: result.title })" ng-click="selectBook(result.title)">
+				<div class="item item-avatar result-item" ui-sref="home.posts.selling({ book: result.title })" ng-click="selectBook(result)">
 					<img class="icon" ng-src={{result.icon}} err-src="img/test/blank_cover.png">
 					<h2 class="title">{{result.title}}</h2>
 					<p class="author">{{result.author}}</p>

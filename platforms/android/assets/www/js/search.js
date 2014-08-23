@@ -662,7 +662,7 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 		$location.path( '/home/search/' + $scope.query);
 
 		$ionicLoading.show({
-	     	template: "<div class='icon ion-loading-c'></div>",
+	     	template: "<div class='button-icon icon ion-loading-c'></div>",
 			animation: 'fade-in',
 			showBackdrop: false,
 			maxWidth: 200,

@@ -198,13 +198,15 @@ app.factory("Results", function($localStorage,  $http) {
     	
     },
     // Store selected book
-    selectBook: function (title) {
-		for (var i = 0; i < results.length; i++) {
-			if (results[i].title === title) {
-				$localStorage.result = results[i];
-				result = $localStorage.result;
-			}
-		}
+    selectBook: function (book) {
+		// for (var i = 0; i < results.length; i++) {
+		// 	if (results[i].title === title) {
+		// 		$localStorage.result = results[i];
+		// 		result = $localStorage.result;
+		// 	}
+		// }
+		$localStorage.result = book;
+		result = $localStorage.result;
 	},
 	// Get selected book
 	getBook: function() {
@@ -662,7 +664,7 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 		$location.path( '/home/search/' + $scope.query);
 
 		$ionicLoading.show({
-	     	template: "<div class='icon ion-loading-c'></div>",
+	     	template: "<div class='button-icon icon ion-loading-c'></div>",
 			animation: 'fade-in',
 			showBackdrop: false,
 			maxWidth: 200,
@@ -751,9 +753,9 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 	});
 	
 	// Select book from initial search
-	$scope.selectBook = function(title) {
-		console.log("Selected book: " + title);
-		Results.selectBook(title);
+	$scope.selectBook = function(book) {
+		console.log("Selected book: " + book.title);
+		Results.selectBook(book);
 		$rootScope.resultsButtonToPosts = true;
 	}
 
@@ -882,8 +884,8 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 		$scope.detailModal = modal;
 	});
 
-	$scope.openPostDetail = function(index) {
-		$scope.post = $scope.posts[index];
+	$scope.openPostDetail = function(post) {
+		$scope.post = post;
 		$scope.detailModal.show();
 
 		console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
@@ -998,8 +1000,8 @@ app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams
 		$scope.detailModal = modal;
 	});
 
-	$scope.openPostDetail = function(index) {
-		$scope.post = $scope.posts[index];
+	$scope.openPostDetail = function(post) {
+		$scope.post = post;
 		$scope.detailModal.show();
 
 		console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
