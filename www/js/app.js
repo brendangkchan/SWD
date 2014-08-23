@@ -84,7 +84,7 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
     .state('home.posts', {
       url: '/posts',
       templateUrl: 'templates/posts.html',
-      controller: 'PostSellCtrl',
+      controller: 'PostCtrl',
       abstract: true
     })
 

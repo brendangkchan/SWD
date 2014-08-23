@@ -516,14 +516,14 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
     // Clean up
     delete $scope.data.message;
     
-    $ionicScrollDelegate.scrollBottom(true);
+    $ionicScrollDelegate.scrollBottom(false);
   }
 
   // Show Keyboard
   $scope.inputUp = function() {
     if (isIOS) $scope.data.keyboardHeight = 216;
     $timeout(function() {
-      $ionicScrollDelegate.scrollBottom(true);
+      $ionicScrollDelegate.scrollBottom(false);
     }, 300);
   }
 
@@ -545,7 +545,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
 
     // TODO: Load bottom of list without scrolling
     $timeout(function() {
-      $ionicScrollDelegate.scrollBottom(true);
+      $ionicScrollDelegate.scrollBottom(false);
     }, 0);
   };
 

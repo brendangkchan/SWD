@@ -782,10 +782,10 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 
 // Posts Controller
 
-app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, Posts, Results, References, Me) {
+app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate,Posts, Results, References, Me) {
 
 	// Fake posts from factory
-	$scope.posts = Posts.selling();
+	//$scope.posts = Posts.selling();
 
 	// My user information
 	$scope.me = Me.get();
@@ -800,9 +800,9 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	$scope.back = $rootScope.back;
 
 	// Message post
-	$scope.message = function(post) {
-		Posts.message(post);
-	}
+	// $scope.message = function(post) {
+	// 	Posts.message(post);
+	// }
 
 	// Selector data
 	$scope.data = {
@@ -810,6 +810,14 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 		'edition': '',
 		'condition': '',
 		'comments': ''
+	}
+
+	// Post type
+	if ($rootScope.currentState === 'home.posts.selling') {
+		$scope.type = 'sell';
+	}
+	if ($rootScope.currentState === 'home.posts.buying') {
+		$scope.type = 'buy';
 	}
 	
 	// Possible conditions
@@ -834,26 +842,28 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 			condition: $scope.data.condition,
 			images: [], 
 			comments: $scope.data.comments, 
-			type: ''	// Set in factory
+			type: $scope.type	// Set in factory
 		};
 
 		// Alert user if any field empty
 		if (post.price === '' || post.price !== parseInt(post.price)) {
-			$ionicLoading.show({ template: 'Please add a price in dollars!', noBackdrop: true, duration: 2000 });
+			$ionicLoading.show({ template: 'Please add a price in dollars', noBackdrop: true, duration: 2000 });
 			return;
 		}
 		if (post.edition === '' || post.edition !== parseInt(post.edition)) {
-			$ionicLoading.show({ template: 'Please add an edition!', noBackdrop: true, duration: 2000 });
+			$ionicLoading.show({ template: 'Please add an edition', noBackdrop: true, duration: 2000 });
 			return;
 		}
 		if (post.condition === '') {
-			$ionicLoading.show({ template: 'Please select a condition!', noBackdrop: true, duration: 2000 });
+			$ionicLoading.show({ template: 'Please select a condition', noBackdrop: true, duration: 2000 });
 			return;
 		}
 
 		// Add Post
-		console.log($scope.book);
+		console.log('New Post: ');
+		console.log(post);
 		Posts.addPost($scope.book, post);
+		$ionicLoading.show({ template: 'Nice, your post will be up shortly!', noBackdrop: true, duration: 2000 });
 
 		// Hide Modal
 		$scope.createModal.hide();
@@ -876,24 +886,24 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 
 
 	// Post Detail Modal
-	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
-		id: 'detail',
-		scope: $scope,
-		animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.detailModal = modal;
-	});
+	// $ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
+	// 	id: 'detail',
+	// 	scope: $scope,
+	// 	animation: 'slide-in-up'
+	// }).then(function(modal) {
+	// 	$scope.detailModal = modal;
+	// });
 
-	$scope.openPostDetail = function(post) {
-		$scope.post = post;
-		$scope.detailModal.show();
+	// $scope.openPostDetail = function(post) {
+	// 	$scope.post = post;
+	// 	$scope.detailModal.show();
 
-		console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
-	}
+	// 	console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
+	// }
 
-	$scope.closePostDetail = function() {
-		$scope.detailModal.hide();
-	}
+	// $scope.closePostDetail = function() {
+	// 	$scope.detailModal.hide();
+	// }
 
 
 	// Create Post Modal
@@ -906,14 +916,30 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	});
 
 	$scope.openCreatePost = function() {
-		//if (References.checkForBook($scope.book))
 
 		$scope.createModal.show();
-		//console.log("Post is: " + $scope.post);
+
+		// Select post type
+		if ($rootScope.currentState === 'home.posts.selling') {
+			$ionicTabsDelegate.select(0);
+		}
+		if ($rootScope.currentState === 'home.posts.buying') {
+			$ionicTabsDelegate.select(1);
+		}
 	}
 
 	$scope.closeCreatePost = function() {
 		$scope.createModal.hide();
+	}
+
+	$scope.toggleType = function() {
+		console.log('Toggle create post type');
+		if ($scope.type === 'sell') {
+			$ionicTabsDelegate.select(1);
+		}
+		if ($scope.type === 'buy') {
+			$ionicTabsDelegate.select(0);
+		}
 	}
 
 
@@ -948,7 +974,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
-		$scope.detailModal.remove();
+		//$scope.detailModal.remove();
 		$scope.createModal.remove();
 		$scope.imageModal.remove();
 	});
@@ -964,6 +990,210 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
     });
 
 });
+
+
+
+
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate,Posts, Results, References, Me) {
+
+	// Fake posts from factory
+	$scope.posts = Posts.selling();
+
+	// My user information
+	$scope.me = Me.get();
+
+	// Get selected book for subheader
+	$scope.book = Results.getBook();
+
+	// Configure Nav-Bar buttons
+	$scope.showPostButtons = true;
+
+	// Back Navigation
+	$scope.back = $rootScope.back;
+
+	// Message post
+	$scope.message = function(post) {
+		Posts.message(post);
+	}
+
+	// Selector data
+	// $scope.data = {
+	// 	'price': '',
+	// 	'edition': '',
+	// 	'condition': '',
+	// 	'comments': ''
+	// }
+
+	// // Created Post type
+	// $scope.type = 'sell';
+
+	// // Switch type on tab change
+	// $scope.toggleType = function () {
+	// 	if ($scope.type === 'sell') {
+	// 		$scope.type = 'buy';
+	// 	}
+	// 	else {
+	// 		$scope.type = 'sell';
+	// 	}
+	// }
+	
+	// // Possible conditions
+	// $scope.conditions = Posts.conditions();
+
+	// // Dummy images
+	// $scope.images = [];
+
+	// $scope.addImage = function() {
+	// 	$scope.images.push('dummy');
+	// }
+
+
+	// Create Post
+	// $scope.createPost = function () {
+	// 	// New Post
+	// 	var post = { 
+	// 		id: '', 	// Set in factory
+	// 		user: $scope.me.user,
+	// 		price: $scope.data.price, 
+	// 		edition: $scope.data.edition, 
+	// 		condition: $scope.data.condition,
+	// 		images: [], 
+	// 		comments: $scope.data.comments, 
+	// 		type: ''	// Set in factory
+	// 	};
+
+	// 	// Alert user if any field empty
+	// 	if (post.price === '' || post.price !== parseInt(post.price)) {
+	// 		$ionicLoading.show({ template: 'Please add a price in dollars', noBackdrop: true, duration: 2000 });
+	// 		return;
+	// 	}
+	// 	if (post.edition === '' || post.edition !== parseInt(post.edition)) {
+	// 		$ionicLoading.show({ template: 'Please add an edition', noBackdrop: true, duration: 2000 });
+	// 		return;
+	// 	}
+	// 	if (post.condition === '') {
+	// 		$ionicLoading.show({ template: 'Please select a condition', noBackdrop: true, duration: 2000 });
+	// 		return;
+	// 	}
+
+	// 	// Add Post
+	// 	console.log($scope.book);
+	// 	Posts.addPost($scope.book, post);
+	// 	$ionicLoading.show({ template: 'Nice, your post will be up shortly!', noBackdrop: true, duration: 2000 });
+
+	// 	// Hide Modal
+	// 	$scope.createModal.hide();
+
+	// 	// Clear form data
+	// 	clearFormData();
+
+	// 	// Resize scroll container
+	// 	$ionicScrollDelegate.$getByHandle('postScroll').scrollBottom();
+	// }
+
+	// var clearFormData = function() {
+	// 	$scope.data = {
+	// 		'price': '',
+	// 		'edition': '',
+	// 		'condition': '',
+	// 		'comments': ''
+	// 	}
+	// }
+
+
+	// Post Detail Modal
+	$ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
+		id: 'detail',
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.detailModal = modal;
+	});
+
+	$scope.openPostDetail = function(post) {
+		$scope.post = post;
+		$scope.detailModal.show();
+
+		console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
+	}
+
+	$scope.closePostDetail = function() {
+		$scope.detailModal.hide();
+	}
+
+
+	// Create Post Modal
+	// $ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
+	// 	id: 'create',
+	// 	scope: $scope,
+	// 	animation: 'slide-in-up',
+	// }).then(function(modal) {
+	// 	$scope.createModal = modal;
+	// });
+
+	// $scope.openCreatePost = function() {
+
+	// 	$scope.createModal.show();
+
+	// 	// Select sell type
+	// 	$ionicTabsDelegate.select(0);
+	// }
+
+	// $scope.closeCreatePost = function() {
+	// 	$scope.createModal.hide();
+	// }
+
+
+	// Image Modal
+	$ionicModal.fromTemplateUrl('templates/image-modal.html', {
+		id: 'image',
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.imageModal = modal;
+	});
+
+	$scope.openImage = function(image) {
+		$scope.image = image;
+		$scope.imageModal.show();
+	}
+
+	$scope.closeImage = function() {
+		$scope.imageModal.hide();
+	}
+
+
+	// Toggle Nav-Bar button visibility
+	$scope.togglePostButtons = function() {
+		setTimeout(function () {
+	        $scope.$apply(function(){
+       	 		$scope.showPostButtons = !$scope.showPostButtons;
+	        });
+    	}, 10);
+	}
+
+
+	//Cleanup the modal when we're done with it!
+	$scope.$on('$destroy', function() {
+		$scope.detailModal.remove();
+		//$scope.createModal.remove();
+		$scope.imageModal.remove();
+	});
+	// Execute action on hide modal
+	$scope.$on('modal.hidden', function() {
+		$scope.togglePostButtons();
+	});
+	// Execute action on remove modal
+	$scope.$on('modal.removed', function() {
+	});
+	$scope.$on('modal.shown', function() {
+      	$scope.togglePostButtons();
+    });
+
+});
+
+
+
 
 // Posts Controller
 
@@ -1013,22 +1243,22 @@ app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams
 
 
 	// Create Post Modal
-	$ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
-		id: 'create',
-		scope: $scope,
-		animation: 'slide-in-up',
-	}).then(function(modal) {
-		$scope.createModal = modal;
-	});
+	// $ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
+	// 	id: 'create',
+	// 	scope: $scope,
+	// 	animation: 'slide-in-up',
+	// }).then(function(modal) {
+	// 	$scope.createModal = modal;
+	// });
 
-	$scope.openCreatePost = function() {
-		$scope.createModal.show();
-		//console.log("Post is: " + $scope.post);
-	}
+	// $scope.openCreatePost = function() {
+	// 	$scope.createModal.show();
+	// 	//console.log("Post is: " + $scope.post);
+	// }
 
-	$scope.closeCreatePost = function() {
-		$scope.createModal.hide();
-	}
+	// $scope.closeCreatePost = function() {
+	// 	$scope.createModal.hide();
+	// }
 
 
 	// Image Modal
@@ -1063,7 +1293,7 @@ app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams
 	//Cleanup the modal when we're done with it!
 	$scope.$on('$destroy', function() {
 		$scope.detailModal.remove();
-		$scope.createModal.remove();
+		//$scope.createModal.remove();
 		$scope.imageModal.remove();
 	});
 	// Execute action on hide modal
