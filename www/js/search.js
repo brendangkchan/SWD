@@ -936,9 +936,13 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 		console.log('Toggle create post type');
 		if ($scope.type === 'sell') {
 			$ionicTabsDelegate.select(1);
+			$scope.type = 'buy';
+			return;
 		}
 		if ($scope.type === 'buy') {
 			$ionicTabsDelegate.select(0);
+			$scope.type = 'sell';
+			return;
 		}
 	}
 
