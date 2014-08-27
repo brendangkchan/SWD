@@ -359,7 +359,7 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
 
 // Me factory
 
-app.factory("Me", function() {
+app.factory("Me", function(User) {
 
 	// var me = { user: { name: 'Brendan C', icon: 'img/test/me.jpg' } };
 	var me = { user: { name: 'Brendan C', icon: 'img/test/girl1.jpg' } };
@@ -375,7 +375,7 @@ app.factory("Me", function() {
 
 // Notifications Factory
 
-app.factory("Notifications", function (Me) {
+app.factory("Notifications", function (User) {
 
 	// Notification Types
 	// message
@@ -383,12 +383,14 @@ app.factory("Notifications", function (Me) {
 	// buy / sell (new posts)
 	// deleted
 
+	var me = User.user();
+
 	var notifications= [
 		// YOU HAVE SOLD
-		{ user: Me.get().user, book: { title: 'Introductory Chemistry Essentials', icon: 'img/test/book_chem.jpg' }, type: 'sold', text: '' },
+		{ user: me, book: { title: 'Introductory Chemistry Essentials', icon: 'img/test/book_chem.jpg' }, type: 'sold', text: '' },
 		{ user: { name: 'Leah P', icon: 'img/test/girl2.jpg' }, book: { title: 'Campbell Biology', icon: 'img/test/book_bio.jpg' }, type: 'message', text: '' },
 		// YOU HAVE BOUGHT
-		{ user: Me.get().user, book: { title: 'Lehninger Principles of Biochemistry', icon: 'img/test/book_biochem.jpg' }, type: 'bought', text: '' },
+		{ user: me, book: { title: 'Lehninger Principles of Biochemistry', icon: 'img/test/book_biochem.jpg' }, type: 'bought', text: '' },
 		//{ user: { name: 'Lucy R', icon: 'img/test/woman2.jpg' }, book: { title: 'Planets Without Borders', icon: 'img/test/book2.jpg' }, type: 'buy', text: '' },
 		//{ user: { name: 'Toby H', icon: 'img/test/man1.jpg' }, book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' },
 		{ user: '', book: { title: 'Calculus: A Deeper Look', icon: 'img/test/book_math.jpg' }, type: 'sell', text: '' }
@@ -404,7 +406,7 @@ app.factory("Notifications", function (Me) {
 
 		// Set Name
 		var name = notification.user.name
-		if (name === Me.get().user.name) {
+		if (name === me.name) {
 			name = 'You';
 		}
 
@@ -649,6 +651,12 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 	
 	// Make initial search
 	$scope.search = function (query) {
+		// Alert user if any field empty
+		if (!query) {
+			$ionicLoading.show({ template: 'Please enter a search query', noBackdrop: true, duration: 2000 });
+			return;
+		}
+
 		console.log("SearchCtrl search: " + $scope.query);
 
 		// Show Results button
@@ -782,13 +790,14 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 
 // Posts Controller
 
-app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate,Posts, Results, References, Me) {
+app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, $sessionStorage, Posts, Results, References, Me, User) {
 
 	// Fake posts from factory
 	//$scope.posts = Posts.selling();
 
-	// My user information
-	$scope.me = Me.get();
+	//My user information
+	$scope.me = User.user();
+
 
 	// Get selected book for subheader
 	$scope.book = Results.getBook();

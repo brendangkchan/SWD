@@ -29,10 +29,8 @@
     <!-- <script src="lib/aws/aws-sdk-min.js"></script> -->
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.0.15.min.js"></script>
 
-    <script>
-      AWS.config.update({accessKeyId: 'AKIAINJSSR526ZXVJ5TA', secretAccessKey: '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'});
-      AWS.config.region = 'us-west-1';
-    </script>
+    <script src="js/openfb-angular.js"></script>
+
 
     <script src="js/ngStorage.js"></script>
 
@@ -43,6 +41,7 @@
 
     <script src="js/references.js"></script>
     <script src="js/search.js"></script>    
+    <script src="js/user.js"></script>
   </head>
   <body ng-app="starter" animation="slide-left-right-ios7"  ng-controller="AppCtrl">
 
@@ -62,7 +61,7 @@
     -->
     
     <!-- Reference tabs rendered here -->
-    <ion-nav-view animation="slide-left-right-ios7">
+    <ion-nav-view id="main" animation="slide-left-right-ios7">
       
     </ion-nav-view>
 
@@ -119,6 +118,89 @@
 
 
   </body>
+   <!--  <script>
+        /*!
+
+         * Login to your application using Facebook.
+
+         * Uses the Facebook SDK for JavaScript available here:
+
+         * https://developers.facebook.com/docs/javascript/gettingstarted/
+
+         */
+
+         var appId = '1455184368090857';
+
+        var roleArn = ' arn:aws:iam::395994426563:role/login ';
+
+        var bucketName = 'bgchan-swd';
+
+        var fbUserId;
+
+        var bucket = new AWS.S3({
+
+            params: {
+
+                Bucket: bucketName
+
+            }
+
+        });
+
+        window.fbAsyncInit = function () {
+
+            FB.init({
+
+                appId: appId,
+                cookie: true,
+                xfbml: true,
+                version: 'v2.1'
+
+            });
+
+            FB.login(function (response) {
+
+                bucket.config.credentials = new AWS.WebIdentityCredentials({
+
+                    ProviderId: 'graph.facebook.com',
+
+                    RoleArn: roleArn,
+
+                    WebIdentityToken: response.authResponse.accessToken
+
+                });
+
+                fbUserId = response.authResponse.userID;
+
+                button.style.display = 'block';
+
+            });
+
+        };
+
+         // Load the Facebook SDK asynchronously
+
+        (function (d, s, id) {
+
+            var js, fjs = d.getElementsByTagName(s)[0];
+
+            if (d.getElementById(id)) {
+
+                return;
+
+            }
+
+            js = d.createElement(s);
+
+            js.id = id;
+
+            js.src = "//connect.facebook.net/en_US/all.js";
+
+            fjs.parentNode.insertBefore(js, fjs);
+
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script> -->
 
 </html>
 
