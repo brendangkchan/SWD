@@ -48,46 +48,47 @@ app.factory("User", function($sessionStorage, $http, $q, OpenFB, AWSService) {
 	}
 
 	var checkUser = function() {
-		// After we've loaded the credentials
+
+		// Load AWS credentials
         AWSService.credentials().then(function() {
-          //gapi.client.oauth2.userinfo.get()
-          //.execute(function(e) {
-            //var email = e.email;
-            // Get the dynamo instance for the
-            // UsersTable
             AWSService.dynamo({
               params: {TableName: AWSService.UsersTable()}
             })
             .then(function(table) {
-              // find the user by email or id
-              console.log('Looking for user: ' + storage['user'].id + ' in table: ' + AWSService.UsersTable());
-              table.getItem({
-                Key: {'userEmail': {S: storage['user'].id}}
-              }, function(err, data) {
-                  if (Object.keys(data).length == 0) {
-                    // User didn't previously exist
-                    // so create an entry
+            	console.log('DynamoDB object: ' + table);
+
+			// Query table for user
+			console.log('Looking for user: ' + storage['user'].id + ' in table: ' + AWSService.UsersTable());
+			table.getItem(
+      		{
+                Key: 
+                	{
+            			'userEmail': { S: storage['user'].id },
+                		'school': { S: storage['user'].schoolID }
+            		},
+                TableName: AWSService.UsersTable()
+            }, function(err, data) {
+            	console.log(data);
+            	if (data) {
+            		console.log('User already exists');
+            	} else {
+            		console.log('Storing new user');
+                    // Create an entry
                     var itemParams = {
-                      Item: {
-                        'userEmail': {S: email}, 
-                        data: { S: JSON.stringify(e) }
-                      }
+                    	Item: {
+                    		'userEmail': {S: storage['user'].id},
+                    		'school': {S: storage['user'].schoolID}
+                    	},
+                    	ReturnItemCollectionMetrics: 'SIZE'
                     };
                     table.putItem(itemParams, 
-                      function(err, data) {
-                        //service._user = e;
-                        //d.resolve(e);
-                        console.log(err);
-                    });
-                  } else {
-                    // The user already exists
-                    // service._user = 
-                    //   JSON.parse(data.Item.data.S);
-                    d.resolve(service._user);
+                    	function(err, data) {
+                    		console.log(data);
+                    		console.log(err);
+                	});  
                   }
-              });
-            });
-          //});
+           		});
+			});
         });
 	}
 
@@ -172,28 +173,31 @@ app.provider('AWSService', function() {
 	    		var config = {
 	    			RoleArn: self.arn,
 	    			WebIdentityToken: token,
-	    			RoleSessionName: 'web-id'
+	    			//RoleSessionName: 'web-id',
+	    			ProviderId: 'graph.facebook.com'
 	    		}
 	    		if (providerId) {
 	    			config['ProviderId'] = providerId;
 	    		}
 	    		self.config = config;
-	    		AWS.config.credentials = 
-	    		new AWS.WebIdentityCredentials(config);
-	    		credentialsDefer
-	    		.resolve(AWS.config.credentials);
+	    		AWS.config.credentials = new AWS.WebIdentityCredentials(config);
+	    		AWS.config.region = 'us-west-1';
+	    		credentialsDefer.resolve(AWS.config.credentials);
 	    	},
 	    	dynamo: function(params) {
+	    		console.log('Getting dynamoDB object with params: ');
+	    		console.log(params);
+
 	    		var d = $q.defer();
 	    		credentialsPromise.then(function() {
-				// Get cached table
-				var table = dynamoCache.get(JSON.stringify(params));
-				if (!table) {
-				// New table
-				var table = new AWS.DynamoDB(params);
-				dynamoCache.put(JSON.stringify(params), table);
-				};
-				d.resolve(table);
+					// Get cached table
+					var table = dynamoCache.get(JSON.stringify(params));
+					if (!table) {
+						// New table
+						var table = new AWS.DynamoDB(params);
+						dynamoCache.put(JSON.stringify(params), table);
+					};
+					d.resolve(table);
 				});
 	    		return d.promise;
 	    	},
