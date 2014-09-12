@@ -12,29 +12,21 @@
 
 					<!-- Hidden Buttons -->
 					<div class="reference-item-buttons">
-						<!-- <ion-option-button class="button reference-item-button" ng-click="edit(item)">
-		            		<i class="icon ion-edit"></i>
-		          		</ion-option-button>
-		          		<ion-option-button class="button reference-item-button" ng-click="search(item)">
-		            		<i class="icon ion-search"></i>
-		          		</ion-option-button>
-		          		<ion-option-button class="button reference-item-button" ng-click="delete(reference)">
-		            		<i class="icon ion-checkmark"></i>
-		          		</ion-option-button>
-		          		<ion-option-button class="button reference-item-button" ng-click="markComplete(reference)">
-		            		<i class="icon ion-trash-b delete"></i>
-		          		</ion-option-button> -->
-		          		<ion-option-button class="button-clear edit" ng-click="edit(item)">
+
+		          		<ion-option-button class="button-clear edit" ng-click="edit(item)" ng-if="reference.status == 'open'">
 		            		Edit
 		          		</ion-option-button>
-		          		<ion-option-button class="button-clear search" ng-click="search(item)">
+		          		<ion-option-button class="button-clear search" ng-click="search(item)" ng-if="reference.status == 'open'">
 		            		Search
 		          		</ion-option-button>
-		          		<ion-option-button class="button-clear delete" ng-click="delete(reference)">
+		          		<ion-option-button class="button-clear delete" ng-click="delete(reference)" ng-if="reference.status == 'open'">
 		            		Delete
 		          		</ion-option-button>
-		          		<ion-option-button class="button-clear sold" ng-click="markComplete(reference)">
+		          		<ion-option-button class="button-clear sold" ng-click="markSold(reference)" ng-if="reference.status == 'open'">
 		            		Mark Sold
+		          		</ion-option-button>
+		          		<ion-option-button class="button-clear" ng-click="undoMark(reference)" ng-if="reference.status !== 'open'">
+		            		Undo
 		          		</ion-option-button>
 	          		</div>
 				</ion-item>

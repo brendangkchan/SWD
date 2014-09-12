@@ -1,7 +1,7 @@
 var app = angular.module('references', [])
 
 
-app.factory("References", function($location, $localStorage, $ionicLoading) {
+app.factory("References", function($location, $localStorage, $ionicLoading, AWSHelper) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -57,8 +57,10 @@ app.factory("References", function($location, $localStorage, $ionicLoading) {
   }
 
   // Reference types
-  var sell_references = references.slice(0, 2);
-  var buy_references = references.slice(2);
+  // var sell_references = references.slice(0, 2);
+  // var buy_references = references.slice(2);
+  var sell_references;
+  var buy_references;
 
   // Track expanded references
   var shownReferenceSell = null;
@@ -91,7 +93,8 @@ app.factory("References", function($location, $localStorage, $ionicLoading) {
 
     // New conversation
     var conversation = { 
-        id: post.id, 
+        id: Math.random().toString(36).slice(2),
+        post_id: post.id, 
         name: post.user.name, 
         preview: '', 
         price: post.price, 
@@ -149,7 +152,8 @@ app.factory("References", function($location, $localStorage, $ionicLoading) {
         count: 1, 
         conversations: [conversation],
         type: post.type,
-        price: ''
+        price: '',
+        status: 'open'
       };
 
       // Push new reference
@@ -271,7 +275,8 @@ app.factory("References", function($location, $localStorage, $ionicLoading) {
         count: 0, 
         conversations: [],
         type: post.type,
-        price: post.price
+        price: post.price,
+        status: 'open'
       };
 
       // Push new reference
@@ -315,8 +320,38 @@ app.factory("References", function($location, $localStorage, $ionicLoading) {
 
 
   return {
-    all: function() {
-      return references;
+    getReferences: function() {
+      //return references;
+
+      AWSHelper.getReferences().then(function (data) {
+      var posts = data;
+      console.log(posts);
+
+      sell_references = new Array();
+      buy_references = new Array();
+
+      for (var i = 0; i < posts.length; i++) {
+        var post = posts[i];
+        post.title = post.title.substr(post.title.indexOf(" ") + 1);
+
+        console.log(post);
+        if ( post.type === 'sell') {
+          sell_references.push(post);
+        }
+        if (post.type === 'buy') {
+          buy_references.push(post); 
+        }
+      }
+
+      console.log(sell_references);
+      console.log(buy_references);
+
+      // return {
+      //   sell: sell_posts,
+      //   buy: buy_posts,
+      // };
+    });
+
     },
     selling: function() {
       return sell_references;
@@ -388,7 +423,7 @@ app.factory("References", function($location, $localStorage, $ionicLoading) {
 
 // Reference Sell Tab Controller
 
-app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage){
+app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper){
 
   //$localStorage.$reset();
 
@@ -419,19 +454,41 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
   };
 
   // Remove reference permanantly
-  $scope.removeReference = function(reference) {
-    console.log("Removing reference: " + reference.id);
-    $scope.references.splice($scope.references.indexOf(reference), 1);
+  // $scope.removeReference = function(reference) {
+  //   console.log("Removing reference: " + reference.id);
+  //   $scope.references.splice($scope.references.indexOf(reference), 1);
+  // };
+
+  // Delete reference permanantly
+  $scope.delete = function(reference) {
+    updateReferenceStatus(reference, 'deleted');
+    reference.status = 'deleted';
   };
 
+  // Delete reference permanantly
+  $scope.markSold = function(reference) {
+    updateReferenceStatus(reference, 'sold');
+    reference.status = 'sold';
+  };
 
+  // Undo reference mark
+  $scope.undoMark = function(reference) {
+    updateReferenceStatus(reference, 'open');
+    reference.status = 'open';
+  };
+
+  var updateReferenceStatus = function(reference, status) {
+    AWSHelper.updateReferenceStatus(reference, status).then(function(data) {
+      References.getReferences();
+    });
+  }
 
 
 });
 
 // Reference Buy Tab Controller
 
-app.controller('ReferenceBuyCtrl', function($scope, References, $location){
+app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper){
 
   // Load references and conversations
   $scope.references = References.buying();
@@ -459,11 +516,29 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location){
     return $scope.shownReference === reference;
   };
 
-  // Remove reference permanantly
-  $scope.removeReference = function(reference) {
-    console.log("Removing reference: " + reference.id);
-    $scope.references.splice($scope.references.indexOf(reference), 1);
+  // Delete reference permanantly
+  $scope.delete = function(reference) {
+    updateReferenceStatus(reference, 'deleted');
+    reference.status = 'deleted';
   };
+
+  // Delete reference permanantly
+  $scope.markSold = function(reference) {
+    updateReferenceStatus(reference, 'sold');
+    reference.status = 'sold';
+  };
+
+  // Undo reference mark
+  $scope.undoMark = function(reference) {
+    updateReferenceStatus(reference, 'open');
+    reference.status = 'open';
+  };
+
+  var updateReferenceStatus = function(reference, status) {
+    AWSHelper.updateReferenceStatus(reference, status).then(function(data) {
+      References.getReferences();
+    });
+  }
 
 });
 

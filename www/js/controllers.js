@@ -31,7 +31,7 @@ angular.module('sociogram.controllers', ['user'])
 			});
 	};
 })
-.controller('LoginCtrl', function ($scope, $state, OpenFB, User) {
+.controller('LoginCtrl', function ($scope, $state, OpenFB, User, References) {
 	$scope.facebookLogin = function () {
 		OpenFB.login('email,public_profile,user_education_history,publish_stream').then(
 			function () {
@@ -45,8 +45,10 @@ angular.module('sociogram.controllers', ['user'])
 
 				User.getUser().then(
 					function(response) {
+						References.getReferences();
 						$state.go('home.tab.selling');
-					});
+					}
+				);
 
 				
 			},

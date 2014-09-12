@@ -3,7 +3,7 @@ var app = angular.module('search', ['ionic', 'ngAnimate', 'ngStorage'])
 
 // Dummy Search Results
 
-app.factory("Results", function($localStorage,  $http) {
+app.factory("Results", function($localStorage,  $http, AWSHelper) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -194,8 +194,6 @@ app.factory("Results", function($localStorage,  $http) {
     // Initial Search
     search: function (query) {
     	this.setQuery(query);
-
-    	
     },
     // Store selected book
     selectBook: function (book) {
@@ -207,6 +205,8 @@ app.factory("Results", function($localStorage,  $http) {
 		// }
 		$localStorage.result = book;
 		result = $localStorage.result;
+
+		//Posts.getPosts(book);
 	},
 	// Get selected book
 	getBook: function() {
@@ -228,7 +228,7 @@ app.factory("Results", function($localStorage,  $http) {
 
 // Dummy Posts
 
-app.factory("Posts", function($rootScope, $location, $localStorage, References, Results) {
+app.factory("Posts", function($rootScope, $location, $localStorage, References, Results, AWSHelper) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -270,8 +270,10 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
   }
 
   // Post types
-  var sell_posts = posts.slice(0, 4);
-  var buy_posts = posts.slice(4);
+  //var sell_posts = posts.slice(0, 4);
+  //var buy_posts = posts.slice(4);
+  var sell_posts;
+  var buy_posts;
 
   // Post to message
   var post;
@@ -329,6 +331,38 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
     getPost: function() {
     	return post;
     },
+    getPosts: function() {
+    	//var posts = AWSHelper.getPosts(book);
+    	//console.log(posts);
+
+    	AWSHelper.getPosts(Results.getBook()).then(function (data) {
+			var posts = data;
+
+			sell_posts = new Array();
+	    	buy_posts = new Array();
+
+	    	for (var i = 0; i < posts.length; i++) {
+	    		var post = posts[i];
+	    		console.log(post);
+	    		if ( post.type === 'sell') {
+	    			sell_posts.push(post);
+	    		}
+	    		if (post.type === 'buy') {
+	    			buy_posts.push(post);	
+	    		}
+	    	}
+
+	    	console.log(sell_posts);
+	    	console.log(buy_posts);
+
+	    	return {
+	    		sell: sell_posts,
+	    		buy: buy_posts,
+	    	};
+		});
+
+    	
+    },
     addPost: function(book, post) {
 
     	// Check for existing book
@@ -339,18 +373,11 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
     	// Add id
     	post.id = Math.random().toString(36).slice(2);
 
-    	// Add type
-    	if ($rootScope.currentState === 'home.posts.selling') {
-    		post.type = 'sell';
-    		sell_posts.push(post);
-    	}
-    	if ($rootScope.currentState === 'home.posts.buying') {
-    		post.type = 'buy';
-    		buy_posts.push(post);
-    	}
-
     	// Add to references
     	createReference(post);
+
+    	// Upload post to db
+    	AWSHelper.uploadPost(book, post);
     }
   }
 });
@@ -743,7 +770,7 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 
 // Results Controller
 
-app.controller('ResultsCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $ionicLoading, $window, Results) {
+app.controller('ResultsCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $ionicLoading, $window, Results, Posts) {
 
 	// Get query from Results service
 	$scope.query = Results.getQuery();
@@ -764,6 +791,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 	$scope.selectBook = function(book) {
 		console.log("Selected book: " + book.title);
 		Results.selectBook(book);
+		Posts.getPosts(book);
 		$rootScope.resultsButtonToPosts = true;
 	}
 
@@ -822,13 +850,15 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 	}
 
 	// Post type
-	if ($rootScope.currentState === 'home.posts.selling') {
-		$scope.type = 'sell';
-	}
-	if ($rootScope.currentState === 'home.posts.buying') {
-		$scope.type = 'buy';
-	}
-	
+	// if ($rootScope.currentState === 'home.posts.selling') {
+	// 	$scope.type = 'sell';
+	// }
+	// if ($rootScope.currentState === 'home.posts.buying') {
+	// 	$scope.type = 'buy';
+	// }
+	//$scope.type = 'sell';
+
+
 	// Possible conditions
 	$scope.conditions = Posts.conditions();
 
@@ -868,6 +898,10 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 			return;
 		}
 
+		if (post.comments === '') {
+			post.comments = "none";
+		}
+
 		// Add Post
 		console.log('New Post: ');
 		console.log(post);
@@ -894,27 +928,6 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 	}
 
 
-	// Post Detail Modal
-	// $ionicModal.fromTemplateUrl('templates/post-detail-modal.html', {
-	// 	id: 'detail',
-	// 	scope: $scope,
-	// 	animation: 'slide-in-up'
-	// }).then(function(modal) {
-	// 	$scope.detailModal = modal;
-	// });
-
-	// $scope.openPostDetail = function(post) {
-	// 	$scope.post = post;
-	// 	$scope.detailModal.show();
-
-	// 	console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
-	// }
-
-	// $scope.closePostDetail = function() {
-	// 	$scope.detailModal.hide();
-	// }
-
-
 	// Create Post Modal
 	$ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
 		id: 'create',
@@ -931,9 +944,11 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 		// Select post type
 		if ($rootScope.currentState === 'home.posts.selling') {
 			$ionicTabsDelegate.select(0);
+			$scope.type = 'sell';
 		}
 		if ($rootScope.currentState === 'home.posts.buying') {
 			$ionicTabsDelegate.select(1);
+			$scope.type = 'buy';
 		}
 	}
 
@@ -942,13 +957,15 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 	}
 
 	$scope.toggleType = function() {
-		console.log('Toggle create post type');
+		//console.log('Toggle create post type');
 		if ($scope.type === 'sell') {
+			console.log('Toggle to post type: buy');
 			$ionicTabsDelegate.select(1);
 			$scope.type = 'buy';
 			return;
 		}
 		if ($scope.type === 'buy') {
+			console.log('Toggle to post type: sell');
 			$ionicTabsDelegate.select(0);
 			$scope.type = 'sell';
 			return;
@@ -1012,6 +1029,11 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	// Fake posts from factory
 	$scope.posts = Posts.selling();
 
+	// Posts.getPosts().then(function(posts) {
+	// 	$scope.posts = posts.sell;
+	// });
+	//$scope.posts = Posts.getPosts().sell;
+
 	// My user information
 	$scope.me = Me.get();
 
@@ -1028,90 +1050,6 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 	$scope.message = function(post) {
 		Posts.message(post);
 	}
-
-	// Selector data
-	// $scope.data = {
-	// 	'price': '',
-	// 	'edition': '',
-	// 	'condition': '',
-	// 	'comments': ''
-	// }
-
-	// // Created Post type
-	// $scope.type = 'sell';
-
-	// // Switch type on tab change
-	// $scope.toggleType = function () {
-	// 	if ($scope.type === 'sell') {
-	// 		$scope.type = 'buy';
-	// 	}
-	// 	else {
-	// 		$scope.type = 'sell';
-	// 	}
-	// }
-	
-	// // Possible conditions
-	// $scope.conditions = Posts.conditions();
-
-	// // Dummy images
-	// $scope.images = [];
-
-	// $scope.addImage = function() {
-	// 	$scope.images.push('dummy');
-	// }
-
-
-	// Create Post
-	// $scope.createPost = function () {
-	// 	// New Post
-	// 	var post = { 
-	// 		id: '', 	// Set in factory
-	// 		user: $scope.me.user,
-	// 		price: $scope.data.price, 
-	// 		edition: $scope.data.edition, 
-	// 		condition: $scope.data.condition,
-	// 		images: [], 
-	// 		comments: $scope.data.comments, 
-	// 		type: ''	// Set in factory
-	// 	};
-
-	// 	// Alert user if any field empty
-	// 	if (post.price === '' || post.price !== parseInt(post.price)) {
-	// 		$ionicLoading.show({ template: 'Please add a price in dollars', noBackdrop: true, duration: 2000 });
-	// 		return;
-	// 	}
-	// 	if (post.edition === '' || post.edition !== parseInt(post.edition)) {
-	// 		$ionicLoading.show({ template: 'Please add an edition', noBackdrop: true, duration: 2000 });
-	// 		return;
-	// 	}
-	// 	if (post.condition === '') {
-	// 		$ionicLoading.show({ template: 'Please select a condition', noBackdrop: true, duration: 2000 });
-	// 		return;
-	// 	}
-
-	// 	// Add Post
-	// 	console.log($scope.book);
-	// 	Posts.addPost($scope.book, post);
-	// 	$ionicLoading.show({ template: 'Nice, your post will be up shortly!', noBackdrop: true, duration: 2000 });
-
-	// 	// Hide Modal
-	// 	$scope.createModal.hide();
-
-	// 	// Clear form data
-	// 	clearFormData();
-
-	// 	// Resize scroll container
-	// 	$ionicScrollDelegate.$getByHandle('postScroll').scrollBottom();
-	// }
-
-	// var clearFormData = function() {
-	// 	$scope.data = {
-	// 		'price': '',
-	// 		'edition': '',
-	// 		'condition': '',
-	// 		'comments': ''
-	// 	}
-	// }
 
 
 	// Post Detail Modal
@@ -1134,27 +1072,6 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 		$scope.detailModal.hide();
 	}
 
-
-	// Create Post Modal
-	// $ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
-	// 	id: 'create',
-	// 	scope: $scope,
-	// 	animation: 'slide-in-up',
-	// }).then(function(modal) {
-	// 	$scope.createModal = modal;
-	// });
-
-	// $scope.openCreatePost = function() {
-
-	// 	$scope.createModal.show();
-
-	// 	// Select sell type
-	// 	$ionicTabsDelegate.select(0);
-	// }
-
-	// $scope.closeCreatePost = function() {
-	// 	$scope.createModal.hide();
-	// }
 
 
 	// Image Modal
@@ -1214,7 +1131,12 @@ app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams
 
 	// Fake posts from factory
 	$scope.posts = Posts.buying();
-	console.log($scope.posts);
+
+	// Posts.getPosts().then(function(posts) {
+	// 	$scope.posts = posts.buy;
+	// });
+
+	//$scope.posts = Posts.getPosts().buy;
 
 	// My user information
 	$scope.me = Me.get();
@@ -1254,24 +1176,6 @@ app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams
 		$scope.detailModal.hide();
 	}
 
-
-	// Create Post Modal
-	// $ionicModal.fromTemplateUrl('templates/create-post-modal.html', {
-	// 	id: 'create',
-	// 	scope: $scope,
-	// 	animation: 'slide-in-up',
-	// }).then(function(modal) {
-	// 	$scope.createModal = modal;
-	// });
-
-	// $scope.openCreatePost = function() {
-	// 	$scope.createModal.show();
-	// 	//console.log("Post is: " + $scope.post);
-	// }
-
-	// $scope.closeCreatePost = function() {
-	// 	$scope.createModal.hide();
-	// }
 
 
 	// Image Modal
