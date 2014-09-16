@@ -9,6 +9,9 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/R$xml.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/R.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/StotleDev.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/camera/CameraLauncher.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/camera/ExifHelper.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/camera/FileHelper.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$1.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$2.class \

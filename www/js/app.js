@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'user', 'openfb', 'sociogram.controllers'])
+angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'user', 'openfb', 'sociogram.controllers', 'camera'])
 
 .run(function($rootScope, $state, $ionicPlatform, $window, OpenFB) {
   $ionicPlatform.ready(function() {
@@ -43,7 +43,9 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, AWSServiceProvider) {
+.config(function($stateProvider, $urlRouterProvider, AWSServiceProvider, $compileProvider) {
+
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 
   // Configuration
   AWSServiceProvider.setArn('arn:aws:iam::395994426563:role/stotledev');
@@ -140,6 +142,17 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
           controller: 'PostBuyCtrl'
         }
       }
+    })
+
+    // the pet tab has its own child nav-view and history
+    .state('home.camera', {
+      url: '/camera',
+      //views: {
+        //'camera': {
+          templateUrl: 'templates/cam.html',
+          controller: 'CamCtrl'
+       // }
+     // }
     })
 
     // Conversation page

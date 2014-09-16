@@ -196,6 +196,67 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 	  return word.substr(0,1).toUpperCase() + word.substr(1);
 	}
 
+	var uploadImage = function(image, postID, imageID) {
+
+		var d = $q.defer();
+		var user = User.user();
+
+		AWSService.credentials().then(function() {
+
+		    // Handle the upload
+		    AWSService.s3({
+		    	params: {
+		    		Bucket: AWSService.Bucket()
+		    	}
+		    }).then(function(s3) {
+
+				// We have a handle of our s3 bucket
+				var file = image; // Get the first file
+				var key = user.id + '-' + postID + '-' + imageID;
+
+				var params = {
+					Key: key,
+					Body: file,
+					ACL: 'public-read'
+					ContentType: 'image/jpeg',
+				}
+
+				console.log('Uploading image with key: ' + key);
+
+				s3.putObject(params, function(err, data) {
+
+					if (err) {
+						console.log(err);
+					}
+
+					// The file has been uploaded
+					// or an error has occurred during the upload
+					if (!err) {
+						console.log('Upload successful!');
+
+						var params = {
+							Bucket: AWSService.Bucket(), 
+							Key: key, 
+							//acl: 'public-read'
+							//Expires: 900*4 
+						};
+						s3.getSignedUrl('getObject', params, 
+							function(err, url) {
+								
+								if (err) {
+									console.log(err);
+								}
+
+								// Now have signed url
+								console.log('Image URL: ' + url);
+						});
+					}
+				});
+		  	});
+		});
+		return d.promise;
+	};
+
 	return {
 		getReferences: function() {
 			var user = User.user();
@@ -409,13 +470,26 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 
 			// Load AWS credentials
 	        AWSService.credentials().then(function() {
+
+	        	// Upload images
+	        	for (var i = 0; i < post.images.length; i++) {
+
+	        		uploadImage(post.images[i], post.id, i);
+	        		// .then(function(imageURL) {
+	        		// 	// Have image URL
+	        		// 	post.images[i] = imageURL;
+	        		// });
+	        	}
+
+	        	// Get Post table
 	            AWSService.dynamo({
 	              params: {TableName: AWSService.PostsTable()}
 	            })
 	            .then(function(table) {
 
-				// Query table for user
-				console.log('Uploading post: ' + post.id + ' in table: ' + AWSService.PostsTable());
+					// Uploading post
+					console.log('Uploading post: ' + post.id + ' in table: ' + AWSService.PostsTable());
+
                     var itemParams = {
                     	Item: {
                     		// User's id
@@ -436,10 +510,13 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 	                		'status': { 'S': 'open' }
                     	}
                     };
+
+                    console.log(itemParams.Item);
+
                     // Put entry in table
                     table.putItem(itemParams, 
                     	function(err, data) {
-                    		console.log(data);
+                    		//console.log(data);
                     		if (err) { console.log(err); }
                 	});  
 				});
@@ -483,7 +560,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
                     // Put entry in table
                     table.putItem(itemParams, 
                     	function(err, data) {
-                    		console.log(data);
+                    		//console.log(data);
                     		if (err) { console.log(err); }
                 	});  
 				});
@@ -510,7 +587,9 @@ app.provider('AWSService', function() {
 	self.$get = function($q, $cacheFactory) {
 		// Cache dynamo objects
 	    var dynamoCache = $cacheFactory('dynamo'),
-	      credentialsDefer = $q.defer(),
+	    	s3Cache = $cacheFactory('s3Cache');
+
+	    var credentialsDefer = $q.defer(),
 	      credentialsPromise = credentialsDefer.promise;
   	
 
@@ -551,6 +630,21 @@ app.provider('AWSService', function() {
 				});
 	    		return d.promise;
 	    	},
+	    	s3: function(params) {
+			    var d = $q.defer();
+			    credentialsPromise.then(function() {
+					var s3Obj = s3Cache.get(JSON.stringify(params));
+					if (!s3Obj) {
+						var s3Obj = new AWS.S3(params);
+						s3Cache.put(JSON.stringify(params), s3Obj);
+					}
+					d.resolve(s3Obj);
+			    });
+			    return d.promise;
+		  	},
+		  	Bucket: function() {
+		  		return 'bgchan-swd';
+		  	},
 	    	UsersTable: function() {
 	    		return 'users-stotle-dev';
 	    	},
