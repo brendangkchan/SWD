@@ -230,17 +230,17 @@ app.factory("Results", function($localStorage,  $http, AWSHelper) {
 
 // Me factory
 
-app.factory("Me", function(User) {
+// app.factory("Me", function(User) {
 
-	// var me = { user: { name: 'Brendan C', icon: 'img/test/me.jpg' } };
-	var me = { user: { name: 'Brendan C', icon: 'img/test/girl1.jpg' } };
+// 	// var me = { user: { name: 'Brendan C', icon: 'img/test/me.jpg' } };
+// 	var me = { user: { name: 'Brendan C', icon: 'img/test/girl1.jpg' } };
 
-	return {
-		get: function() {
-			return me;
-		}
-	}
-});
+// 	return {
+// 		get: function() {
+// 			return me;
+// 		}
+// 	}
+// });
 
 
 
@@ -515,7 +515,13 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 // Search Controller
 
-app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, $ionicLoading, Results, Notifications) {
+app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, $ionicLoading, Results, Notifications, Chat) {
+
+
+	// Chat.loadQBScript().then(function(QB) {
+	// 	Chat.initializeQB(QB);
+	// });
+
 
 	// Configure Results button
 	$scope.showResultsButton = $rootScope.showResultsButton;

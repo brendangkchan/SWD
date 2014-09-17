@@ -160,7 +160,7 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
 
 // Posts Controller
 
-app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, $sessionStorage, $location, Posts, Results, References, Me, User) {
+app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, $sessionStorage, $location, Posts, Results, References, User) {
 
   // Fake posts from factory
   //$scope.posts = Posts.selling();
@@ -209,7 +209,7 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
     // New Post
     var post = { 
       id: '',   // Set in factory
-      user: $scope.me.user,
+      user: $scope.me.id,
       price: $scope.data.price, 
       edition: $scope.data.edition, 
       condition: $scope.data.condition,
@@ -233,7 +233,7 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
     }
 
     if (post.comments === '') {
-      post.comments = "none";
+      post.comments = ' ';
     }
 
     // Add Post
@@ -424,7 +424,7 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 
 
 
-app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate,Posts, Results, References, Me) {
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate,Posts, Results, References, User) {
 
   // Fake posts from factory
   $scope.posts = Posts.selling();
@@ -435,7 +435,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
   //$scope.posts = Posts.getPosts().sell;
 
   // My user information
-  $scope.me = Me.get();
+  $scope.me = User.user();
 
   // Get selected book for subheader
   $scope.book = Results.getBook();
@@ -527,7 +527,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 
 // Posts Controller
 
-app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, Me) {
+app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, User) {
 
   // Fake posts from factory
   $scope.posts = Posts.buying();
@@ -539,7 +539,7 @@ app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams
   //$scope.posts = Posts.getPosts().buy;
 
   // My user information
-  $scope.me = Me.get();
+  $scope.me = User.user();
 
   // Get selected book for subheader
   $scope.book = Results.getBook();

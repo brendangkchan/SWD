@@ -27,7 +27,7 @@
 	<div class="post-detail-content">
 		
 		<!-- Comments -->
-		<div class="comments" ng-click="closePostDetail()">
+		<div ng-show="post.comments != ''" class="comments" ng-click="closePostDetail()">
 				{{post.comments}}
 		</div>
 
@@ -44,10 +44,7 @@
 
 	<!-- Footer Buttons -->
 	<div class="bar bar-footer post-detail-footer">
-		<!-- <button class="button button-clear stotle-button close" ng-click="closePostDetail()">
-			Close
-		</button> -->
-		<button class="button button-full stotle-button-bar message" ng-click="message(post)">
+		<button class="button button-full stotle-button-bar message" ng-click="message(post)" ng-show="post.userID != $scope.me.id">
 			Message
 		</button>
 	</div>

@@ -1,0 +1,52 @@
+<div class="modal settings-modal">
+	<!-- Nav Bar -->
+	<ion-nav-bar class="bar-light nav-title-slide-ios7 stotle-nav-bar-clear"  ng-click="closeSettings()">
+	  <button class="button button-clear pull-right stotle-button" ng-click="closeSettings()">Done</button>
+	</ion-nav-bar>
+
+	<ion-view title="Settings" class="settings-content">
+
+		<ul class="list">
+
+			<div class="item settings-label">
+			    Notifications
+		  	</div>
+
+				<li class="item item-toggle sub-item">
+					Messages
+					<label class="toggle toggle-stotle stotle-button">
+						<input type="checkbox">
+						<div class="track">
+							<div class="handle"></div>
+						</div>
+					</label>
+				</li>
+
+				<li class="item item-toggle sub-item">
+					Matches
+					<label class="toggle toggle-stotle">
+						<input type="checkbox">
+						<div class="track">
+							<div class="handle"></div>
+						</div>
+					</label>
+				</li>
+
+		 	<div class="item settings-label">
+			    About
+		  	</div>
+
+			  	<a class="item item-icon-right sub-item">
+			  		About Us
+			  		<i class="icon ion-ios7-arrow-right"></i>
+			  	</a>
+
+			  	<a class="item item-icon-right sub-item">
+			  		Feedback
+			  		<i class="icon ion-ios7-arrow-right"></i>
+			  	</a>
+			
+			</ul>
+
+	</ion-view>
+</div>

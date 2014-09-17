@@ -1,0 +1,119 @@
+<div class="modal create-post-modal">
+
+	<!-- Tab Buttons -->
+	<!-- <div class="button-bar create-post-tabs">
+		<a class="button button-block">Selling</a>
+  		<a class="button button-block">Buying</a>
+	</div> -->
+
+	<!-- Post Tabs -->
+	<ion-tabs class="tabs-top create-post-tabs">
+
+	  	<!-- Selling Tab -->
+	  	<ion-tab title="Selling" ng-click="toggleType()">
+	  	</ion-tab>
+
+	  	<!-- Buying Tab -->
+	  	<ion-tab title="Buying" ng-click="toggleType()">
+	  	</ion-tab>
+
+	</ion-tabs>
+
+
+	<!-- Column Headers -->
+	<div class="has-header create-post-column-headers">
+		<div class="row row-center">
+			<div class="col header-col user">
+				User
+			</div>
+			<div class="col header-col">
+				Price
+			</div>
+			<div class="col header-col">
+				Edition
+			</div>
+			<div class="col header-col">
+				Condition
+			</div>
+		</div>
+	</div>
+
+	<!-- Post Info -->
+	<div class="create-post-header">
+		<div class="row row-center">
+			<div class="col simple-col">
+				<div class="center-cropped" style="background-image: url({{me.icon}});"></div>
+			</div>
+			<div class="col simple-col">
+				<label class="item item-input price">
+			    	<input type="number" placeholder="$20" ng-model="data.price">
+			  	</label>
+			</div>
+			<div class="col simple-col">
+				<label class="item item-input edition">
+			    	<input type="number" placeholder="1" ng-model="data.edition">
+			  	</label>
+			</div>
+			<div class="col simple-col">
+				<label class="item item-input item-select condition">
+				    <select name='options' ng-model="data.condition">
+			            <option  ng-repeat="condition in conditions" ng-value="condition.value">{{ condition.value }}
+	                    </option>
+		          	</select>
+			  	</label>
+			</div>
+		</div>
+		<div class"row bottom-row">
+			<div class="col col-25 bottom-col">
+				<p class="name">Me</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Post Info -->
+	<div class="create-post-content">
+		
+		<!-- Comments -->
+		<label class="item item-input comments">
+	    	<textarea placeholder="Comments" ng-model="data.comments"></textarea>
+  		</label>
+
+		<!-- Images -->
+		<div class="image-gallery">
+			<div class="row">
+				<div class="col">
+					<button ng-if="images.length == 0" ng-click="addImage()" class="button ion-android-camera stotle-button"></button>
+
+					<img ng-if="images.length >= 1" class="image" src={{images[0]}} ng-click="openImage(images[0])">
+				</div>
+				<div class="col">
+					<button ng-if="images.length == 1" ng-click="addImage()" class="button ion-android-camera stotle-button"></button>
+
+					<img ng-if="images.length >= 2" class="image" src={{images[1]}} ng-click="openImage(images[1])">
+				</div>
+				<div class="col">
+					<button ng-if="images.length == 2" ng-click="addImage()" class="button ion-android-camera stotle-button"></button>
+
+					<img ng-if="images.length >= 3" class="image" src={{images[2]}} ng-click="openImage(images[2])">
+				</div>
+				<div class="col">
+					<button ng-if="images.length == 3" ng-click="addImage()" class="button ion-android-camera stotle-button"></button>
+
+					<img ng-if="images.length >= 4" class="image" src={{images[3]}} ng-click="openImage(images[3])">
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<!-- Footer Buttons -->
+	<div class="button-bar create-post-footer">
+		<!-- <button class="button button-clear stotle-button close" ng-click="closeCreatePost()">
+			Close
+		</button> -->
+		<button class="button button-full stotle-button-bar finish" ng-click="createPost()">
+			Post
+		</button>
+	</div>
+
+</div>

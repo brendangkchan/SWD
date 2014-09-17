@@ -164,7 +164,8 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 										type: item.type.S,
 										price: item.price.S,
 										posts: item.posts.S,
-										status: item.status.S
+										status: item.status.S,
+										conversations: item.conversations.SS
 									}					            	
 				            	);
 					          });
@@ -407,7 +408,8 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 	                		'author': { 'S': book.author },
 	                		'icon': { 'S': book.icon },
 	                		'type': { 'S': post.type },
-	                		'status': { 'S': 'open' }
+	                		'status': { 'S': 'open' },
+	                		'conversations': { 'SS': ['null'] }
                     	}
                     };
 

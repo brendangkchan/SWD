@@ -25,12 +25,12 @@
 			</div>
 
 			<!-- Comments -->
-			<div class="comments">
+			<div class="comments" ng-if="conversation.comments != ' '">
 					{{conversation.comments}}
 			</div>
 
 			<!-- Images -->
-				<div class="row">
+				<div class="row" ng-if="conversation.images.length > 0">
 					<div class="col">
 						<img ng-repeat="image in conversation.images" class="image" src={{image}} ng-click="openImage(image)">
 					</div>

@@ -1,14 +1,14 @@
 <ion-view title="My Books">
 	<ion-content class="has-header">
 		<ion-list>
-			<div ng-repeat="reference in references">
+			<div ng-repeat="reference in references track by reference.title">
 
 				<ion-item class="item item-avatar reference-item" option-buttons="itemButtons" ng-click="toggleReference(reference)" ng-class="{active:isReferenceShown(reference)}">
 					<img class="icon reference-icon" ng-src={{reference.icon}} err-src="img/test/blank_cover.png">
 					<h2 class="reference-title">{{reference.title}}</h2>
 					<p class="reference-author">{{reference.author}}</p>
 					<p ng-if="reference.price != ''"class="reference-price">${{reference.price}}</p>
-					<p class="reference-count">{{reference.count}}</p>
+					<p class="reference-count">{{reference.conversations.length}}</p>
 
 					<!-- Hidden Buttons -->
 					<div class="reference-item-buttons">

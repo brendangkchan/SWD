@@ -3,7 +3,7 @@ var app = angular.module('user', ['ngStorage']);
 
 // User data 
 
-app.factory("User", function($sessionStorage, $http, $q, OpenFB, AWSService) {
+app.factory("User", function($sessionStorage, $window, $http, $q, OpenFB, AWSService) {
 
 	var storage = $sessionStorage;
 
@@ -142,7 +142,7 @@ app.factory("User", function($sessionStorage, $http, $q, OpenFB, AWSService) {
 			return storage['user'];
 		},
 		access_token: function() {
-			return storage['fbtoken'];
+			return window.sessionStorage['fbtoken'];
 		}
 	}
 

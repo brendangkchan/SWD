@@ -1356,7 +1356,7 @@ function($rootScope, $document, $compile, $timeout, $ionicPlatform, $ionicTempla
       self.el.classList.remove('hide');
       $timeout(function(){
         $document[0].body.classList.add('modal-open');
-      }, 400);
+      }, 100); //EDIT: 400
 
 
       if(!self.el.parentElement) {
@@ -1370,7 +1370,7 @@ function($rootScope, $document, $compile, $timeout, $ionicPlatform, $ionicTempla
       self._isShown = true;
       self._deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(){
         self.hide();
-      }, 200);
+      }, 100); //EDIT: 200
       self._isOpenPromise = $q.defer();
 
       ionic.views.Modal.prototype.show.call(self);
@@ -1388,7 +1388,7 @@ function($rootScope, $document, $compile, $timeout, $ionicPlatform, $ionicTempla
             self.hide();
           }
         });
-      }, 400);
+      }, 100); //EDIT: 400
     },
 
     /**
@@ -1419,7 +1419,7 @@ function($rootScope, $document, $compile, $timeout, $ionicPlatform, $ionicTempla
       return $timeout(function(){
         $document[0].body.classList.remove('modal-open');
         self.el.classList.add('hide');
-      }, 500);
+      }, 100); //EDIT: 500
     },
 
     /**
