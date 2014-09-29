@@ -2,7 +2,7 @@ var app = angular.module('posts', ['ionic', 'ngAnimate', 'ngStorage']);
 
 // Dummy Posts
 
-app.factory("Posts", function($rootScope, $location, $localStorage, References, Results, AWSHelper) {
+app.factory("Posts", function($rootScope, $location, $state, $localStorage, References, Results, AWSHelper) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -65,7 +65,8 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
   	console.log(post);
   	var index = References.addConversation(Results.getBook(), post);
 
-  	$location.path('home/conversation/' + index.referenceIndex + '/' + index.conversationIndex);
+  	//$location.path('home/conversation/');
+    $state.go('home.conversation');
   };
 
   // Create reference after creating post
@@ -95,7 +96,7 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
     	return conditions;
     },
     message: function(post) {
-    	console.log('Messaging: ' + post.user.name);
+    	console.log('Messaging: ' + post.user);
 
     	$localStorage.post = post;
     	post = $localStorage.post;
@@ -160,7 +161,7 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
 
 // Posts Controller
 
-app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, $sessionStorage, $location, Posts, Results, References, Me, User) {
+app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, $sessionStorage, $location, Posts, Results, References, User) {
 
   // Fake posts from factory
   //$scope.posts = Posts.selling();
@@ -209,7 +210,9 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
     // New Post
     var post = { 
       id: '',   // Set in factory
-      user: $scope.me.user,
+      user: $scope.me.name,
+      userID: $scope.me.id,
+      userIcon: $scope.me.icon,
       price: $scope.data.price, 
       edition: $scope.data.edition, 
       condition: $scope.data.condition,
@@ -232,9 +235,9 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
       return;
     }
 
-    // if (post.comments === '') {
-    //   post.comments = "none";
-    // }
+    if (post.comments === '') {
+      post.comments = ' ';
+    }
 
     // Add Post
     console.log('New Post: ');
@@ -424,10 +427,14 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 
 
 
-app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate,Posts, Results, References, Me) {
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate,Posts, Results, References, User) {
 
   // Fake posts from factory
-  $scope.posts = Posts.selling();
+  //$scope.posts = Posts.selling();
+
+  $scope.posts = [
+    { id: '', user: 'Elias G', userIcon: 'img/test/boy1.jpg', price: 10, edition: 7, condition: 'Good', images: [], comments: '', type: 'sell'}
+  ];
 
   // Posts.getPosts().then(function(posts) {
   //  $scope.posts = posts.sell;
@@ -435,7 +442,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
   //$scope.posts = Posts.getPosts().sell;
 
   // My user information
-  $scope.me = Me.get();
+  $scope.me = User.user();
 
   // Get selected book for subheader
   $scope.book = Results.getBook();
@@ -465,7 +472,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
     $scope.post = post;
     $scope.detailModal.show();
 
-    console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
+    console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user);
   }
 
   $scope.closePostDetail = function() {
@@ -527,7 +534,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 
 // Posts Controller
 
-app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, Me) {
+app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, User) {
 
   // Fake posts from factory
   $scope.posts = Posts.buying();
@@ -539,7 +546,7 @@ app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams
   //$scope.posts = Posts.getPosts().buy;
 
   // My user information
-  $scope.me = Me.get();
+  $scope.me = User.user();
 
   // Get selected book for subheader
   $scope.book = Results.getBook();

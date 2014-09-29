@@ -1380,10 +1380,11 @@ var config = {
     s3Bucket: 'qbprod'
   },
   chatProtocol: {
+    bosh: 'http://chat.quickblox.com',
     //bosh: 'http://chat.quickblox.com:8080',
-    bosh: 'https://chat.quickblox.com:8081', // With SSL
+    //bosh: 'https://chat.quickblox.com:8081', // With SSL
     websocket: 'ws://chat.quickblox.com:5290',
-    active: 1
+    active: 0
   },
   urls: {
     session: 'session',
@@ -1399,8 +1400,8 @@ var config = {
     data: 'data',
     type: '.json'
   },
-  ssl: true,
-  debug: false
+  ssl: false,
+  debug: true
 };
 
 // Browserify exports

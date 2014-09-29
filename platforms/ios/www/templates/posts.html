@@ -1,14 +1,18 @@
 <!-- posts.html
 Posts after selecting a result -->
 
-<!-- ng-click="back()" -->
 
 <!-- Nav Bar -->
 <ion-nav-bar class="bar-light nav-title-slide-ios7 stotle-nav-bar-clear">
-  <button class="button-icon icon ion-ios7-arrow-left stotle-button" ng-click="back()"></button>
-  <button class="button button-clear pull-right stotle-button create-post-button" ng-click="openCreatePost()" ng-if="showPostButtons">
-  Create Post
-  </button>
+	<div class="buttons" ng-click="back()">
+  		<button class="button-icon icon ion-ios7-arrow-left stotle-button back-button" ng-click="back()"></button>
+  	</div>
+  	<h1 class="title"></h1>
+  	<div class="buttons">
+	  	<button class="button button-clear stotle-button create-post-button" ng-click="openCreatePost()" ng-if="showPostButtons">
+			Create Post
+  		</button>
+  	</div>
 </ion-nav-bar>
 
 <ion-view title="Posts">

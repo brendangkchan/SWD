@@ -1,6 +1,7 @@
 <!-- Nav Bar -->
 <ion-nav-bar class="nav-title-slide-ios7 stotle-nav-bar-clear" ng-click="back()">
   <button class="button-icon icon ion-ios7-arrow-left stotle-button conversation-back" ng-click="back()"></button>
+  <!-- <img class="button button-icon icon clip-circle" src="{{conversation.userIcon}}"/> -->
 </ion-nav-bar>
 
 <ion-view title="{{conversation.name}}">
@@ -25,12 +26,12 @@
 			</div>
 
 			<!-- Comments -->
-			<div class="comments">
+			<div class="comments" ng-if="conversation.comments != ' '">
 					{{conversation.comments}}
 			</div>
 
 			<!-- Images -->
-				<div class="row">
+				<div class="row" ng-if="conversation.images.length > 0">
 					<div class="col">
 						<img ng-repeat="image in conversation.images" class="image" src={{image}} ng-click="openImage(image)">
 					</div>
@@ -41,13 +42,14 @@
 			<!-- Messages -->
 			<div ng-repeat="message in conversation.messages track by message.id">
 
-				<ion-item class="item item-avatar message-item-left">
+				<!-- <ion-item class="item item-avatar message-item-left">
 					<img class="clip-circle message-icon-left" src={{conversation.icon}}>
 					<p class="message-body-left">{{message.body}}</p>
-				</ion-item>
+				</ion-item> -->
 
 				<ion-item class="item item-avatar-right message-item-right">
-					<img class="clip-circle message-icon-right" src={{conversation.icon}}>
+					<!-- <img class="clip-circle message-icon-right" src={{message.userIcon}}> -->
+					<img class="clip-circle message-icon-right" src="{{message.userIcon}}"/>
 					<p class="message-body-right">{{message.body}}</p>
 				</ion-item>
 				
@@ -56,13 +58,15 @@
 	</ion-content>
 
 	<!-- Text Input -->
-		<ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
-			<label class="item-input-wrapper">
-				<input type="text" placeholder="Type your message" on-return="sendMessage()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+		<ion-footer-bar keyboard-attach class="chat-footer">
+			<label class="item item-input chat-box">
+				<input class="chat-input" type="text" placeholder="Type your message" on-return="sendMessage()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
 			</label>
-			<button class="button button-clear" ng-click="sendMessage()">
-				Send
-			</button>
+			<buttons>
+				<button class="button button-clear chat-send stotle-button" ng-click="sendMessage()">
+					Send
+				</button>
+			</buttons>
 		</ion-footer-bar>
 
 </ion-view>

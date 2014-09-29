@@ -9,16 +9,23 @@
  */
 angular.module('openfb', [])
 
-    .factory('OpenFB', function ($rootScope, $q, $window, $http, $location, AWSService) {
+    .factory('OpenFB', function ($rootScope, $q, $window, $http, $location, $state, AWSService) {
 
         var FB_LOGIN_URL = 'https://www.facebook.com/dialog/oauth',
+            FB_LOGOUT_URL = 'https://www.facebook.com/logout.php',
 
         // By default we store fbtoken in sessionStorage. This can be overriden in init()
             tokenStore = window.sessionStorage,
 
             fbAppId,
 
+            context = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2)),
+
+            baseURL = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + context,
+
             oauthRedirectURL,
+
+            logoutRedirectURL = baseURL + '/logoutcallback.html',
 
         // Because the OAuth login spans multiple processes, we need to keep the success/error handlers as variables
         // inside the module instead of keeping them local within the login function.
@@ -149,7 +156,24 @@ angular.module('openfb', [])
          * Application-level logout: we simply discard the token.
          */
         function logout() {
-            tokenStore['fbtoken'] = undefined;
+            //tokenStore['fbtoken'] = undefined;
+
+            console.log('Logging out of Facebook');
+
+            var logoutWindow,
+            token = tokenStore['fbtoken'];
+            /* Remove token. Will fail silently if does not exist */
+            tokenStore.removeItem('fbtoken');
+            if (token) {
+                logoutWindow = window.open(FB_LOGOUT_URL + '?access_token=' + token + '&next=' + logoutRedirectURL, '_blank', 'location=no');
+                if (runningInCordova) {
+                    setTimeout(function() {
+                        logoutWindow.close();
+                    }, 700);
+                }
+            }
+            
+            $state.go('home.login');
         }
 
         /**

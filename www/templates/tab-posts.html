@@ -1,6 +1,28 @@
 <ion-view>
+
 	<!-- Column Headers -->
-	<div class="has-header post-column-headers">
+	<!-- <div class="has-header post-column-headers">
+		<div class="row row-center">
+			<div class="col header-col user">
+				User
+			</div>
+			<div class="col header-col">
+				Price
+			</div>
+			<div class="col header-col">
+				Edition
+			</div>
+			<div class="col header-col">
+				Condition
+			</div>
+		</div>
+	</div> -->
+
+	<ion-content class="posts-content" delegate-handle="postScroll">
+		<!-- Results Content -->
+		<ion-list>
+
+			<div class="post-column-headers">
 		<div class="row row-center">
 			<div class="col header-col user">
 				User
@@ -17,9 +39,6 @@
 		</div>
 	</div>
 
-	<ion-content class="posts-content" delegate-handle="postScroll">
-		<!-- Results Content -->
-		<ion-list>
 			<!-- Messages -->
 			<div ng-repeat="post in posts | orderObjectBy: 'price' track by post.id">
 
@@ -27,7 +46,8 @@
 
 					<div class="row row-center">
 						<div class="col simple-col">
-							<div class="center-cropped" style="background-image: url({{post.user.icon}});"></div>
+							<!-- <div class="center-cropped" style="background-image: url({{post.userIcon}});"></div> -->
+							<img class="clip-circle" src="{{post.userIcon}}"/>
 						</div>
 						<div class="col simple-col">
 							<div class="price">${{post.price}}</div>
@@ -42,7 +62,7 @@
 
 					<div class"row bottom-row">
 						<div class="col col-25 bottom-col">
-							<p class="name">{{post.user.name}}</p>
+							<p class="name">{{post.user}}</p>
 						</div>
 					</div>
 					

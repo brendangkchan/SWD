@@ -23,16 +23,17 @@ app.controller('CamCtrl', ['$scope', '$location', 'GetUU',
 
 		// on DeviceReady check if already logged in (in our case CODE saved)
 		ionic.Platform.ready(function() {
-		console.log("ready get camera types");
-		if (!navigator.camera)
-		{
-			// error handling
-			return;
-		}
+			console.log("ready get camera types");
+			if (!navigator.camera)
+			{
+				// error handling
+				return;
+			}
 
-		//pictureSource=navigator.camera.PictureSourceType.PHOTOLIBRARY;
-		pictureSource=navigator.camera.PictureSourceType.CAMERA;
-		destinationType=navigator.camera.DestinationType.FILE_URI;
+			//pictureSource=navigator.camera.PictureSourceType.PHOTOLIBRARY;
+			pictureSource=navigator.camera.PictureSourceType.CAMERA;
+			//destinationType=navigator.camera.DestinationType.FILE_URI;
+			destinationType=navigator.camera.DestinationType.DATA_URL;
 	});
 
 	// get upload URL for FORM
@@ -48,6 +49,7 @@ app.controller('CamCtrl', ['$scope', '$location', 'GetUU',
 			quality: 50,
 			destinationType: destinationType,
 			sourceType: pictureSource,
+			correctOrientation: true,
 			encodingType: 0
 		};
 		if (!navigator.camera)
@@ -56,8 +58,7 @@ app.controller('CamCtrl', ['$scope', '$location', 'GetUU',
 			return;
 		}
 
-		navigator.camera.getPicture(
-			function (imageURI) {
+		navigator.camera.getPicture(function (imageURI) {
 				console.log("got camera success ", imageURI);
 				$scope.mypicture = imageURI;
 			},
@@ -84,13 +85,17 @@ app.controller('CamCtrl', ['$scope', '$location', 'GetUU',
 		}
 
 		var options = new FileUploadOptions();
-		options.fileKey="ffile";
+
+		options.fileKey="file";
 		options.fileName=$scope.mypicture.substr($scope.mypicture.lastIndexOf('/')+1);
 		options.mimeType="image/jpeg";
+
 		var params = {};
+
 		params.other = obj.text; // some other POST fields
 		options.params = params;
 		console.log("new imp: prepare upload now");
+
 		var ft = new FileTransfer();
 		ft.upload($scope.mypicture, encodeURI($scope.data.uploadurl), uploadSuccess, uploadError, options);
 		

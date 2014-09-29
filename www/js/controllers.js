@@ -33,20 +33,30 @@ angular.module('sociogram.controllers', ['user'])
 })
 .controller('LoginCtrl', function ($scope, $state, OpenFB, User, References) {
 	$scope.facebookLogin = function () {
+
+		OpenFB.logout(function(response) {
+  			// user is now logged out
+  			console.log(response);
+		});
+
 		OpenFB.login('email,public_profile,user_education_history,publish_stream').then(
 			function () {
 				console.log('Login successful');
 
-				// Get user id
-				// OpenFB.get('/me').success(function (user) {
-				// 	User.setUser(user);
-				// });
-				//User.setUser();
-
 				User.getUser().then(
 					function(response) {
-						References.getReferences();
-						$state.go('home.tab.selling');
+						References.getReferences()
+							.then(function() {
+								References.getConversations()
+									.then(function(conversations) {
+										console.log(conversations);
+
+										// Give back conversations to be put into references
+										References.setConversations(conversations)
+										$state.go('home.tab.selling');				
+									});
+							});
+						
 					}
 				);
 

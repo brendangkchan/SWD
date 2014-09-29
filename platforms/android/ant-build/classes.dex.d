@@ -81,4 +81,8 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowserDialog.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppChromeClient.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar$1.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar$2.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar$3.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/dexedLibs/classes-bc655fa311047f8f8d01691e864858fc.jar \

@@ -64,14 +64,16 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 
 				// We have a handle of our s3 bucket
 				var file = image; // Get the first file
-				var key = user.id + '-' + postID + '-' + imageID + '.jpg';
+				//var key = user.id + '-' + postID + '-' + imageID + '.jpg';
+
+				var key = image.substr(image.lastIndexOf('/') + 1);
 
 				var params = {
 					Key: key,
 					Body: file,
+					//ContentType: file.type
 					//ACL: 'public-read',
-					//ContentType: 'image/jpeg'
-					ContentType: file.type
+					ContentType: 'image/jpeg'
 				}
 
 				console.log('Uploading image: ' + image);
@@ -87,6 +89,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 					// or an error has occurred during the upload
 					if (!err) {
 						console.log('Upload successful!');
+						console.log(data);
 
 						var params = {
 							Bucket: AWSService.Bucket(), 
@@ -110,6 +113,114 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 		});
 		return d.promise;
 	};
+
+
+ 	var accessKeyId, secretAccessKey;
+
+
+    var  uploadImageAlt = function(imageURI, postID, imageID) {
+ 
+        var deferred = $.Deferred(),
+            ft = new FileTransfer(),
+            options = new FileUploadOptions();
+
+        var user = User.user();
+
+        var fileName = user.id + '-' + postID + '-' + imageID + '.jpg';
+
+
+        var s3URI = encodeURI("http://bgchan-swd.s3.amazonaws.com/"),
+	    //policyBase64 = "YOUR_BASE64_ENCODED_POLICY_FILE",
+	    //signature = "YOUR_BASE64_ENCODED_SIGNATURE",
+	    //awsKey = AWS.config.credentials.accessKeyId,
+	    acl = "public-read";
+
+
+	    var 
+		    //crypto = require('crypto'),
+		    crypto,
+		    secret = secretAccessKey,
+		    policy,
+		    policyBase64,
+		    signature;
+	 
+		policy = {
+		    "expiration": "2020-12-31T12:00:00.000Z",
+		    "conditions": [
+		        {"bucket": "bgchan-swd"},
+		        ["starts-with", "$key", ""],
+		        {"acl": 'public-read'},
+		        ["starts-with", "$Content-Type", ""],
+        		["content-length-range", 0, 524288000]
+		    ]
+		};
+
+		//["starts-with", "$key", ""],
+		//["starts-with", "$Content-Type", ""],
+        //["content-length-range", 0, 524288000]
+		 
+		//policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
+		policyBase64 = encodeURI(JSON.stringify(policy)).toString(CryptoJS.enc.Base64);
+		console.log("Policy Base64:");
+		console.log(policyBase64);
+		 
+		//signature = crypto.createHmac('sha1', secret).update(policyBase64).digest('base64');
+		signature = CryptoJS.SHA1(secret).toString(CryptoJS.enc.Base64);
+
+		console.log("Signature:");
+		console.log(signature);
+
+
+
+        console.log('Uploading image: ' + imageURI);
+		console.log('With key: ' + fileName);
+ 
+        options.fileKey = "file";
+        options.fileName = fileName;
+        options.mimeType = "image/jpeg";
+        options.chunkedMode = false;
+        var params = {
+            "key": fileName,
+            "AWSAccessKeyId": accessKeyId,
+            "acl": acl,
+        	"policy": policyBase64,
+            "signature": signature,
+            "Content-Type": "image/jpeg",
+            //"file": "file"
+            // with file: no key, without file: no awsaccess
+        };
+
+        //options.params = JSON.stringify(params);
+        options.params = params;
+
+
+        console.log('params:');
+        console.log(JSON.stringify(options));
+ 
+        // ft.upload(imageURI, s3URI,
+        //     function (e) {
+        //     	// Success
+        //     	console.log(e);
+        //         deferred.resolve(e);
+        //     },
+        //     function (e) {
+        //     	// Fail
+        //     	console.log(e);
+        //         deferred.reject(e);
+        //     }, 
+        //     options);
+
+ 
+        // return deferred.promise();
+
+        return $http.post("http://bgchan-swd.s3.amazonaws.com/",
+        		imageURI,
+        		options);
+ 
+    };
+	 
+
+
 
 	return {
 		getReferences: function() {
@@ -164,7 +275,8 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 										type: item.type.S,
 										price: item.price.S,
 										posts: item.posts.S,
-										status: item.status.S
+										status: item.status.S,
+										conversations: item.conversations.SS
 									}					            	
 				            	);
 					          });
@@ -300,10 +412,8 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 										school: item.school.S,
 										title: item.title.S,
 										type: item.type.S,
-										user: {
-											name: item.user.S,
-											icon: item.userIcon.S
-										},
+										user: item.user.S,
+										userIcon: item.userIcon.S,
 										userID: item.userID.S,
 									}					            	
 				            	);
@@ -323,12 +433,24 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 			var user = User.user();
 
 			// Load AWS credentials
-	        AWSService.credentials().then(function() {
+	        AWSService.credentials().then(function(response) {
+
+	        	console.log(angular.fromJson(response));
+
+	        	accessKeyId = response.AccessKeyId;
+	        	secretAccessKey = response.SecretAccessKey;
+
+	        	console.log(response.data.Credentials.AccessKeyId);
+	    		console.log(response.data.Credentials.SecretAccessKey);
 
 	        	// Upload images
 	        	for (var i = 0; i < post.images.length; i++) {
 
-	        		uploadImage(post.images[i], post.id, i);
+	        		//uploadImage(post.images[i], post.id, i);
+	        		uploadImageAlt(post.images[i], post.id, i)
+	        			.then(function (response) {
+							console.log(response);
+						});
 	        		// .then(function(imageURL) {
 	        		// 	// Have image URL
 	        		// 	post.images[i] = imageURL;
@@ -407,7 +529,8 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 	                		'author': { 'S': book.author },
 	                		'icon': { 'S': book.icon },
 	                		'type': { 'S': post.type },
-	                		'status': { 'S': 'open' }
+	                		'status': { 'S': 'open' },
+	                		'conversations': { 'SS': ['null'] }
                     	}
                     };
 
@@ -432,6 +555,8 @@ app.provider('AWSService', function() {
 
 	var self = this;
 	self.arn = null;
+
+	var accessKeyId, secretAccessKey;
 
 	self.setArn = function(arn) {
 		console.log('Setting ARN: ' + arn);
@@ -465,6 +590,9 @@ app.provider('AWSService', function() {
 	    		self.config = config;
 	    		AWS.config.credentials = new AWS.WebIdentityCredentials(config);
 	    		AWS.config.region = 'us-west-1';
+
+	    		//console.log(AWS.config.credentials);
+
 	    		credentialsDefer.resolve(AWS.config.credentials);
 	    	},
 	    	dynamo: function(params) {

@@ -2,7 +2,7 @@ var app = angular.module('conversation', []);
 
 
 // Conversation Controller
-app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, References, $window, $ionicModal, $ionicScrollDelegate, $timeout) {
+app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, References, $window, $ionicModal, $ionicScrollDelegate, $timeout, Chat, User) {
 
   // Setting $scope variables
   $scope.reference = References.getSelectedReference();
@@ -11,18 +11,13 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
   console.log('Loading conversation with: ' + $scope.conversation.name);
   console.log('Comments: ' + $scope.conversation.comments);
 
-
-  // LOGGING HERE BREAKS CODE
-  //console.log(reference);
-  //console.log(conversation);
-
   // Back Navigation
   $scope.back = function () {
     //$window.history.back();
     $rootScope.back();
   }
 
-
+  var me = User.user();
 
   // Methods for input directive
 
@@ -38,10 +33,17 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
 
     // Add message to conversation
     $scope.conversation.messages.push({
-      name: "name",
+      user: me.name,
+      userIcon: me.icon,
       body: $scope.data.message,
       id: id
     });
+
+
+    // Actual chat
+    Chat.send($scope.conversation.id, $scope.data.message, $scope.reference);
+
+
     
     // Update conversation preview
     $scope.conversation.preview = $scope.data.message;

@@ -93,12 +93,12 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
 
     // New conversation
     var conversation = { 
-        id: Math.random().toString(36).slice(2),
+        id: post.userID,
         post_id: post.id, 
-        name: post.user.name, 
+        name: post.user, 
         preview: '', 
         price: post.price, 
-        icon: post.user.icon, 
+        userIcon: post.userIcon, 
         messages: [],
         images: post.images,
         comments: post.comments
@@ -175,7 +175,7 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
 
   // Check if post already exists
   var conversationExists = function (post) {
-    console.log('Checking if conversation: ' + post.user.name + ' in ' + post.type);
+    console.log('Checking if conversation: ' + post.user + ' in ' + post.type);
 
     // References to check
     var references;

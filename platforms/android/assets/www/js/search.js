@@ -272,34 +272,34 @@ app.factory("Notifications", function (User) {
 
 
 	// Add text
-	for (var i = 0; i < notifications.length; i++) {
-		var notification = notifications[i];
+	// for (var i = 0; i < notifications.length; i++) {
+	// 	var notification = notifications[i];
 
-		// Set Name
-		var name = notification.user.name
-		if (name === me.name) {
-			name = 'You';
-		}
+	// 	// Set Name
+	// 	var name = notification.user.name
+	// 	if (name === me.name) {
+	// 		name = 'You';
+	// 	}
 
-		if (notification.type === 'message') {
-			notifications[i].text = name + ' messaged you';
-		}
-		if (notification.type === 'buy') {
-			notifications[i].text = ' 5 new buyers';
-		}
-		if (notification.type === 'sell') {
-			notifications[i].text = ' 3 new sellers';
-		}
-		if (notification.type === 'sold') {
-			notifications[i].text = name + ' sold';
-		}
-		if (notification.type === 'bought') {
-			notifications[i].text = name + ' bought';
-		}
-		if (notification.type === 'deleted') {
-			notifications[i].text = name + ' deleted their post';
-		}
-	}
+	// 	if (notification.type === 'message') {
+	// 		notifications[i].text = name + ' messaged you';
+	// 	}
+	// 	if (notification.type === 'buy') {
+	// 		notifications[i].text = ' 5 new buyers';
+	// 	}
+	// 	if (notification.type === 'sell') {
+	// 		notifications[i].text = ' 3 new sellers';
+	// 	}
+	// 	if (notification.type === 'sold') {
+	// 		notifications[i].text = name + ' sold';
+	// 	}
+	// 	if (notification.type === 'bought') {
+	// 		notifications[i].text = name + ' bought';
+	// 	}
+	// 	if (notification.type === 'deleted') {
+	// 		notifications[i].text = name + ' deleted their post';
+	// 	}
+	// }
 
 	return {
 		all: function() {
@@ -515,12 +515,11 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 // Search Controller
 
-app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, $ionicLoading, Results, Notifications, Chat) {
+app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, $ionicLoading, Results, Notifications, Chat, AWSHelper) {
 
 
-	// Chat.loadQBScript().then(function(QB) {
-	// 	Chat.initializeQB(QB);
-	// });
+	// Image upload test
+	//AWSHelper.testImageUpload()
 
 
 	// Configure Results button

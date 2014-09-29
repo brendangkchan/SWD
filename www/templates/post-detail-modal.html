@@ -1,10 +1,11 @@
 <div class="modal post-detail-modal">
 
 	<!-- Post Info -->
-	<div class="post-detail-header" ng-click="closePostDetail()">
+	<!-- <div class="post-detail-header  has-header has-tabs-top" ng-click="closePostDetail()">
 		<div class="row row-center">
 			<div class="col simple-col">
-				<div class="center-cropped" style="background-image: url({{post.user.icon}});"></div>
+				
+				<img class="clip-circle" src="{{post.userIcon}}"/>
 			</div>
 			<div class="col simple-col">
 				<div class="price">${{post.price}}</div>
@@ -18,16 +19,42 @@
 		</div>
 		<div class"row bottom-row">
 			<div class="col col-25 bottom-col">
-				<p class="name">{{post.user.name}}</p>
+				<p class="name">{{post.user}}</p>
+			</div>
+		</div>
+	</div> -->
+
+
+
+	<!-- Post Details -->
+	<div class="post-detail-content has-header">
+
+	<!-- Post Info -->
+	<div class="post-detail-header" ng-click="closePostDetail()">
+		<div class="row row-center">
+			<div class="col simple-col">
+				<!-- <div class="center-cropped" style="background-image: url({{post.userIcon}});"></div> -->
+				<img class="clip-circle" src="{{post.userIcon}}"/>
+			</div>
+			<div class="col simple-col">
+				<div class="price">${{post.price}}</div>
+			</div>
+			<div class="col simple-col">
+				<div class="edition">{{post.edition}}</div>
+			</div>
+			<div class="col simple-col">
+				<div class="condition">{{post.condition}}</div>
+			</div>
+		</div>
+		<div class"row bottom-row">
+			<div class="col col-25 bottom-col">
+				<p class="name">{{post.user}}</p>
 			</div>
 		</div>
 	</div>
-
-	<!-- Post Details -->
-	<div class="post-detail-content">
 		
 		<!-- Comments -->
-		<div ng-show="post.comments != ''" class="comments" ng-click="closePostDetail()">
+		<div ng-show="post.comments != ' '" class="comments" ng-click="closePostDetail()">
 				{{post.comments}}
 		</div>
 
@@ -44,7 +71,7 @@
 
 	<!-- Footer Buttons -->
 	<div class="bar bar-footer post-detail-footer">
-		<button class="button button-full stotle-button-bar message" ng-click="message(post)" ng-show="post.userID != $scope.me.id">
+		<button class="button button-full stotle-button-bar message" ng-click="message(post)">
 			Message
 		</button>
 	</div>

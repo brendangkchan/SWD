@@ -1,5 +1,18 @@
-var app = angular.module('user', ['ngStorage']);
+/*
+ *	User Information
 
+ 	User fields:
+
+ 		icon: 		facebook icon url
+ 		id: 		facebook id
+ 		name: 		first name and last initial
+ 		schoolID: 	facebook school ID
+ 		school: 	facebook school name
+ */
+
+
+
+var app = angular.module('user', ['ngStorage']);
 
 // User data 
 
@@ -68,8 +81,9 @@ app.factory("User", function($sessionStorage, $window, $http, $q, OpenFB, AWSSer
             		},
                 TableName: AWSService.UsersTable()
             }, function(err, data) {
-            	console.log(data);
+            	
             	if (data) {
+            		console.log(data);
             		console.log('User already exists');
             	} else {
             		console.log('Storing new user');

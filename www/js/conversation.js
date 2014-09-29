@@ -2,46 +2,145 @@ var app = angular.module('conversation', []);
 
 
 // Conversation Controller
-app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, References, $window, $ionicModal, $ionicScrollDelegate, $timeout) {
+app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, References, $window, $ionicModal, $ionicScrollDelegate, $timeout, Chat, User, AWSHelper) {
 
   // Setting $scope variables
   $scope.reference = References.getSelectedReference();
   $scope.conversation = References.getSelectedConversation();
 
   console.log('Loading conversation with: ' + $scope.conversation.name);
-  console.log('Comments: ' + $scope.conversation.comments);
+
+  var me = User.user();
 
 
-  // LOGGING HERE BREAKS CODE
-  //console.log(reference);
-  //console.log(conversation);
+  var referenceOnline, conversationOnline;
 
-  // Back Navigation
-  $scope.back = function () {
-    //$window.history.back();
-    $rootScope.back();
-  }
+  // Initialization
+  var init = function() {
+    console.log("Initializing ConversationCtrl")
 
+    referenceOnline = References.referenceOnline();
+    conversationOnline = References.conversationOnline();
+
+
+    if (conversationOnline) {
+      console.log('Reference: YES');
+      console.log('Conversation: YES');
+
+      // Retrieve conversation if it exists in S3
+      AWSHelper.getS3Conversation($scope.conversation)
+        .then(function(response) {
+          // Conversation exists, retrieved
+          //$scope.conversation = response.
+
+        });
+    }
+      
+
+
+    // TODO: Load bottom of list without scrolling
+    $timeout(function() {
+      $ionicScrollDelegate.scrollBottom(false);
+    }, 0);
+  };
 
 
   // Methods for input directive
-
   var alternate,
   isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
+
   // Send Message
   $scope.sendMessage = function() {
-    console.log('New message: ' + $scope.data.message);
 
-    // Message id
-    var id = Math.random().toString(36).slice(2);
+    if (!referenceOnline) {
+      // Create both
+      console.log('Reference: NO');
+      console.log('Conversation: NO');
+
+      // REMOTE: Create reference
+        AWSHelper.createReference(References.book(), References.post())
+          .then(function(data) {
+
+          // REMOTE: Add conversation to my (messenger) reference
+          AWSHelper.addConversationToReference($scope.conversation, $scope.reference, 'me')
+            .then(function(data) {
+
+              // REMOTE: Add conversation to poster's reference
+              AWSHelper.addConversationToReference($scope.conversation, $scope.reference, 'other')
+                .then(function(data) {
+
+                  // Create JSON conversation in S3
+                  AWSHelper.createS3Conversation($scope.conversation, $scope.reference)
+                    .then(function() {
+                        referenceOnline = true;
+                        conversationOnline = true;
+
+                        // Get S3 Conversation
+                        AWSHelper.getS3Conversation($scope.conversation)
+                          .then(function(retrievedConversation) {
+
+                            $scope.conversation = retrievedConversation;
+                            addMessageToConversation();
+                          });
+                    });
+              });
+          });
+        });
+      
+    }
+    else if (referenceOnline && !conversationOnline) {
+      // Create conversation
+      console.log('Reference: YES');
+      console.log('Conversation: NO');
+
+      // REMOTE: Add conversation to my (messenger) reference
+      AWSHelper.addConversationToReference($scope.conversation, $scope.reference, 'me')
+        .then(function(data) {
+
+          // REMOTE: Add conversation to poster's reference
+          AWSHelper.addConversationToReference($scope.conversation, $scope.reference, 'other')
+            .then(function(data) {
+
+              // Create JSON conversation in S3
+              AWSHelper.createS3Conversation($scope.conversation, $scope.reference)
+                .then(function(data) {
+                    referenceOnline = true;
+                    conversationOnline = true;
+
+                    // Get S3 Conversation
+                    AWSHelper.getS3Conversation($scope.conversation)
+                      .then(function(retrievedConversation) {
+
+                          $scope.conversation = retrievedConversation;
+                          addMessageToConversation();
+                      });
+                });
+          });
+      });
+    }
+    else {
+      // continue
+      //addMessageToConversation();
+    }
+  }
+
+
+  var addMessageToConversation = function() {
+    console.log('New message: ' + $scope.data.message);
 
     // Add message to conversation
     $scope.conversation.messages.push({
-      name: "name",
+      user: me.name,
+      userIcon: me.icon,
       body: $scope.data.message,
-      id: id
     });
+
+
+    // Actual chat
+    Chat.send($scope.conversation.id, $scope.data.message, $scope.reference);
+
+
     
     // Update conversation preview
     $scope.conversation.preview = $scope.data.message;
@@ -51,6 +150,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
     
     $ionicScrollDelegate.scrollBottom(false);
   }
+
 
   // Show Keyboard
   $scope.inputUp = function() {
@@ -68,19 +168,6 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
 
   // Message Data
   $scope.data = {};
-  $scope.myId = '12345';
-
-
-  // Initialization
-  var init = function() {
-    console.log("Initializing ConversationCtrl")
-    //$ionicScrollDelegate.scrollBottom(true);
-
-    // TODO: Load bottom of list without scrolling
-    $timeout(function() {
-      $ionicScrollDelegate.scrollBottom(false);
-    }, 0);
-  };
 
 
   // Image Modal
@@ -114,6 +201,12 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
   });
   $scope.$on('modal.shown', function() {
   });
+
+    // Back Navigation
+  $scope.back = function () {
+    //$window.history.back();
+    $rootScope.back();
+  }
 
   init();
 })

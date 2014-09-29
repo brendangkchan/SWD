@@ -22,26 +22,26 @@
   </ion-nav-bar>
 
   <!-- Search Bar -->
-  <!-- <div class="bar bar-subheader" id="search-bar-container"> -->
+  <div class="bar bar-subheader" id="search-bar-container">
     <label class="item item-input" id="search-bar">
       <i class="icon ion-ios7-search-strong placeholder-icon"></i>
       <input enterShowResults type="text" placeholder="Title, Author, ISBN..." ng-model="query" ng-enter="search(query)" >
     </label>
-  <!-- </div> -->
+  </div>
 
-<!-- Reference Tabs -->
-<ion-tabs class="has-tabs-top tabs-top">
+  <!-- Reference Tabs -->
+  <ion-tabs class="tabs-top has-header">
 
-  <!-- Selling Tab -->
-  <ion-tab title="Selling" ui-sref="home.tab.selling" class="tab-left">
-    <ion-nav-view name="tab-selling"></ion-nav-view>
-  </ion-tab>
+    <!-- Selling Tab -->
+    <ion-tab title="Selling" ui-sref="home.tab.selling" class="tab-left">
+      <ion-nav-view name="tab-selling"></ion-nav-view>
+    </ion-tab>
 
-  <!-- Buying Tab -->
-  <ion-tab title="Buying" ui-sref="home.tab.buying" class="tab-right">
-    <ion-nav-view name="tab-buying"></ion-nav-view>
-  </ion-tab>
+    <!-- Buying Tab -->
+    <ion-tab title="Buying" ui-sref="home.tab.buying" class="tab-right">
+      <ion-nav-view name="tab-buying"></ion-nav-view>
+    </ion-tab>
 
-</ion-tabs>
+  </ion-tabs>
 </ion-view>
 

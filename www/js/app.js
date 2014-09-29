@@ -5,13 +5,16 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'user', 'openfb', 'aws', 'sociogram.controllers', 'camera'])
+angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'user', 'openfb', 'aws', 'sociogram.controllers', 'ngS3upload.services'])
 
 .run(function($rootScope, $state, $ionicPlatform, $window, OpenFB) {
   $ionicPlatform.ready(function() {
 
     // Clear session storage for testing
     window.sessionStorage.clear();
+
+    // hide the status bar using the StatusBar plugin
+    //StatusBar.hide();
 
     OpenFB.init('1455184368090857');
 
@@ -102,7 +105,7 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
 
     // Conversation 
     .state('home.conversation', {
-      url: '/conversation/:referenceIndex/:conversationIndex',
+      url: '/conversation',
       templateUrl: 'templates/conversation.html',
       controller: 'ConversationCtrl'
     })
@@ -167,28 +170,9 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
     // })
 
 
-    // .state('home.tab.friends', {
-    //   url: '/friends',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/tab-friends.html',
-    //       controller: 'FriendsCtrl'
-    //     }
-    //   }
-    // })
-    // .state('home.tab.friend-detail', {
-    //   url: '/friend/:friendId',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/friend-detail.html',
-    //       controller: 'FriendDetailCtrl'
-    //     }
-    //   }
-    // })
-
-
   // if none of the above states are matched, use this as the fallback
   //$urlRouterProvider.otherwise('/home/tab/selling');
+  //$urlRouterProvider.otherwise('/home/posts/selling');
   $urlRouterProvider.otherwise('/home/login');
 
 

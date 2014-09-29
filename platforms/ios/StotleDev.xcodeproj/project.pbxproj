@@ -50,6 +50,7 @@
 		CBB557212AE54AE3B0D1BD9B /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6BAA68CA2D480B9052BCD5 /* CDVLocalFilesystem.m */; };
 		D68D6885DE84426B81B8396F /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD5287C1C2405E8B22EB74 /* CDVAssetLibraryFilesystem.m */; };
 		8D7D5BC9299D4A6FA3BA05F3 /* CDVFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = A23BC66200A245498EF352DB /* CDVFileTransfer.m */; };
+		72E32E017B954594B35D6D4F /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1882727D8244CEA7671884 /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,8 @@
 		2C951A0B2C8F427EB97B316F /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVAssetLibraryFilesystem.h"; path = "org.apache.cordova.file/CDVAssetLibraryFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		A23BC66200A245498EF352DB /* CDVFileTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVFileTransfer.m"; path = "org.apache.cordova.file-transfer/CDVFileTransfer.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		0C70B7FAB32D4E0F8E9249D0 /* CDVFileTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVFileTransfer.h"; path = "org.apache.cordova.file-transfer/CDVFileTransfer.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		4B1882727D8244CEA7671884 /* CDVStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVStatusBar.m"; path = "org.apache.cordova.statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		71B24EBDFDCC4AD8B3F7A967 /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "org.apache.cordova.statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +286,8 @@
 				2C951A0B2C8F427EB97B316F /* CDVAssetLibraryFilesystem.h */,
 				A23BC66200A245498EF352DB /* CDVFileTransfer.m */,
 				0C70B7FAB32D4E0F8E9249D0 /* CDVFileTransfer.h */,
+				4B1882727D8244CEA7671884 /* CDVStatusBar.m */,
+				71B24EBDFDCC4AD8B3F7A967 /* CDVStatusBar.h */,
 			);
 			name = Plugins;
 			path = "StotleDev/Plugins";
@@ -488,6 +493,7 @@
 				CBB557212AE54AE3B0D1BD9B /* CDVLocalFilesystem.m in Sources */,
 				D68D6885DE84426B81B8396F /* CDVAssetLibraryFilesystem.m in Sources */,
 				8D7D5BC9299D4A6FA3BA05F3 /* CDVFileTransfer.m in Sources */,
+				72E32E017B954594B35D6D4F /* CDVStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

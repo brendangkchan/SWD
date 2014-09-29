@@ -13,6 +13,9 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
     // Clear session storage for testing
     window.sessionStorage.clear();
 
+    // hide the status bar using the StatusBar plugin
+    //StatusBar.hide();
+
     OpenFB.init('1455184368090857');
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -27,16 +30,16 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
     }
 
     //$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-    $rootScope.$on('$stateChangeStart', function(event, toState) {
-      if (toState.name !== "home.login" && toState.name !== "home.logout" && !$window.sessionStorage['fbtoken']) {
-        console.log('Going to login state');
-        $state.go('home.login');
-        event.preventDefault();
-      }
-    });
-    $rootScope.$on('OAuthException', function() {
-      $state.go('home.login');
-    });
+    // $rootScope.$on('$stateChangeStart', function(event, toState) {
+    //   if (toState.name !== "home.login" && toState.name !== "home.logout" && !$window.sessionStorage['fbtoken']) {
+    //     console.log('Going to login state');
+    //     $state.go('home.login');
+    //     event.preventDefault();
+    //   }
+    // });
+    // $rootScope.$on('OAuthException', function() {
+    //   $state.go('home.login');
+    // });
 
     //$state.go('home.tab.selling');
 
@@ -102,7 +105,7 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
 
     // Conversation 
     .state('home.conversation', {
-      url: '/conversation/:referenceIndex/:conversationIndex',
+      url: '/conversation',
       templateUrl: 'templates/conversation.html',
       controller: 'ConversationCtrl'
     })
@@ -167,29 +170,10 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
     // })
 
 
-    // .state('home.tab.friends', {
-    //   url: '/friends',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/tab-friends.html',
-    //       controller: 'FriendsCtrl'
-    //     }
-    //   }
-    // })
-    // .state('home.tab.friend-detail', {
-    //   url: '/friend/:friendId',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/friend-detail.html',
-    //       controller: 'FriendDetailCtrl'
-    //     }
-    //   }
-    // })
-
-
   // if none of the above states are matched, use this as the fallback
-  //$urlRouterProvider.otherwise('/home/tab/selling');
-  $urlRouterProvider.otherwise('/home/login');
+  $urlRouterProvider.otherwise('/home/tab/selling');
+  //$urlRouterProvider.otherwise('/home/posts/selling');
+  //$urlRouterProvider.otherwise('/home/login');
 
 
 

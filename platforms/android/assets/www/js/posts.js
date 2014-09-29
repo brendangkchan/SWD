@@ -2,7 +2,7 @@ var app = angular.module('posts', ['ionic', 'ngAnimate', 'ngStorage']);
 
 // Dummy Posts
 
-app.factory("Posts", function($rootScope, $location, $localStorage, References, Results, AWSHelper) {
+app.factory("Posts", function($rootScope, $location, $state, $localStorage, References, Results, AWSHelper) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -61,11 +61,11 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
   // Add to references after messaging someone
   var addToReferences = function(post) {
   	var book = Results.getBook();
-  	console.log(book);
-  	console.log(post);
+  	console.log('Attempting to add to references: ' + book.title);
   	var index = References.addConversation(Results.getBook(), post);
 
-  	$location.path('home/conversation/' + index.referenceIndex + '/' + index.conversationIndex);
+  	//$location.path('home/conversation/');
+    $state.go('home.conversation');
   };
 
   // Create reference after creating post
@@ -95,7 +95,7 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
     	return conditions;
     },
     message: function(post) {
-    	console.log('Messaging: ' + post.user.name);
+    	console.log('Messaging: ' + post.user);
 
     	$localStorage.post = post;
     	post = $localStorage.post;
@@ -113,11 +113,10 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
 			var posts = data;
 
 			sell_posts = new Array();
-	    	buy_posts = new Array();
+    	buy_posts = new Array();
 
 	    	for (var i = 0; i < posts.length; i++) {
 	    		var post = posts[i];
-	    		console.log(post);
 	    		if ( post.type === 'sell') {
 	    			sell_posts.push(post);
 	    		}
@@ -137,10 +136,11 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
 
     	
     },
-    addPost: function(book, post) {
+    createPost: function(book, post) {
 
     	// Check for existing book
     	if (References.checkForBook(book, post)) {
+        $ionicLoading.show({ template: 'You already have a post for this book!', noBackdrop: true, duration: 1500 });
     		return;
     	}
 
@@ -151,8 +151,9 @@ app.factory("Posts", function($rootScope, $location, $localStorage, References, 
     	createReference(post);
 
     	// Upload post to db
-    	AWSHelper.uploadPost(book, post);
+    	return AWSHelper.uploadPost(book, post)
     }
+
   }
 });
 
@@ -209,7 +210,9 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
     // New Post
     var post = { 
       id: '',   // Set in factory
-      user: $scope.me.id,
+      user: $scope.me.name,
+      userID: $scope.me.id,
+      userIcon: $scope.me.icon,
       price: $scope.data.price, 
       edition: $scope.data.edition, 
       condition: $scope.data.condition,
@@ -236,10 +239,6 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
       post.comments = ' ';
     }
 
-    // Add Post
-    console.log('New Post: ');
-    console.log(post);
-    Posts.addPost($scope.book, post);
     $ionicLoading.show({ template: 'Nice, your post will be up shortly!', noBackdrop: true, duration: 2000 });
 
     // Hide Modal
@@ -247,6 +246,15 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 
     // Clear form data
     clearFormData();
+
+
+    // Add Post
+    console.log('New Post: ');
+    console.log(post);
+    Posts.createPost($scope.book, post)
+      .then(function() {
+        Posts.getPosts($scope.book);
+      });
 
     // Resize scroll container
     $ionicScrollDelegate.$getByHandle('postScroll').scrollBottom();
@@ -376,9 +384,10 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
       return;
     }
 
-    //pictureSource=navigator.camera.PictureSourceType.PHOTOLIBRARY;
-    pictureSource = navigator.camera.PictureSourceType.CAMERA;
+    pictureSource=navigator.camera.PictureSourceType.PHOTOLIBRARY;
+    //pictureSource = navigator.camera.PictureSourceType.CAMERA;
     destinationType = navigator.camera.DestinationType.FILE_URI;
+    //destinationType = navigator.camera.DestinationType.DATA_URL;
   });
 
 
@@ -429,6 +438,10 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
   // Fake posts from factory
   $scope.posts = Posts.selling();
 
+  // $scope.posts = [
+  //   { id: '', user: 'Elias G', userIcon: 'img/test/boy1.jpg', price: 10, edition: 7, condition: 'Good', images: [], comments: '', type: 'sell'}
+  // ];
+
   // Posts.getPosts().then(function(posts) {
   //  $scope.posts = posts.sell;
   // });
@@ -465,7 +478,7 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
     $scope.post = post;
     $scope.detailModal.show();
 
-    console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user.name);
+    console.log('Opened detail for ' + $scope.post.type + ' post from ' + $scope.post.user);
   }
 
   $scope.closePostDetail = function() {
