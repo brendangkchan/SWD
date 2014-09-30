@@ -105,33 +105,34 @@ app.factory("Posts", function($rootScope, $location, $state, $localStorage, Refe
     getPost: function() {
     	return post;
     },
-    getPosts: function() {
-    	//var posts = AWSHelper.getPosts(book);
-    	//console.log(posts);
 
-    	AWSHelper.getPosts(Results.getBook()).then(function (data) {
-			var posts = data;
+    // Can take book or reference
+    getPosts: function(book) {
 
-			sell_posts = new Array();
-    	buy_posts = new Array();
+    	AWSHelper.getPosts(book)
+        .then(function (data) {
+    			var posts = data;
 
-	    	for (var i = 0; i < posts.length; i++) {
-	    		var post = posts[i];
-	    		if ( post.type === 'sell') {
-	    			sell_posts.push(post);
-	    		}
-	    		if (post.type === 'buy') {
-	    			buy_posts.push(post);	
-	    		}
-	    	}
+    			sell_posts = new Array();
+        	buy_posts = new Array();
 
-	    	console.log(sell_posts);
-	    	console.log(buy_posts);
+    	    	for (var i = 0; i < posts.length; i++) {
+    	    		var post = posts[i];
+    	    		if ( post.type === 'sell') {
+    	    			sell_posts.push(post);
+    	    		}
+    	    		if (post.type === 'buy') {
+    	    			buy_posts.push(post);	
+    	    		}
+    	    	}
 
-	    	return {
-	    		sell: sell_posts,
-	    		buy: buy_posts,
-	    	};
+    	    	console.log(sell_posts);
+    	    	console.log(buy_posts);
+
+    	    	return {
+    	    		sell: sell_posts,
+    	    		buy: buy_posts,
+    	    	};
 		});
 
     	

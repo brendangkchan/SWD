@@ -74,7 +74,7 @@ angular.module('openfb', [])
 
             loginProcessed = false;
 
-            logout();
+            //logout();
 
             // Check if an explicit oauthRedirectURL has been provided in init(). If not, infer the appropriate value
             if (!oauthRedirectURL) {

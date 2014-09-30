@@ -1,0 +1,35 @@
+<!-- Search Bar -->
+<ion-nav-bar class="bar-light nav-title-slide-ios7 stotle-nav-bar-clear">
+	<h1 class='title'>Where Do You Go To School?</h1>
+</ion-nav-bar>
+
+  <!-- Search Bar -->
+<div class="bar bar-subheader" id="search-bar-container">
+
+
+	
+</div>
+
+<ion-view>
+	<label class="item item-input item-select condition">
+	    <select name='options' ng-model="data.condition">
+            <option  ng-repeat="condition in conditions" ng-value="condition.value">{{ condition.value }}
+            </option>
+      	</select>
+  	</label>
+  	
+  	<label class="item item-input" id="search-bar">
+  		<i class="icon ion-ios7-search-strong placeholder-icon"></i>
+ 		<input type="text" ng-model="search.name">
+	</label>
+
+	<ion-content class="results-content">
+
+		<ion-list>
+			<!-- <div ng-repeat="school in schools track by school.id | filter:search | limitTo: 10"> -->
+			<!-- <div ng-repeat="school in schools" ng-show="([school] | filter:search).length > 0">
+				<p>{{school.name}}</p>
+			</div> -->
+		</ion-list>
+	</ion-content>
+</ion-view>

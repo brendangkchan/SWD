@@ -291,6 +291,14 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
                     		var items = [];
 					        if (data) {
 					          angular.forEach(data.Items, function(item) {
+					          	
+					          	var conversations;
+					          	if (item.conversations !== undefined) {
+					          		conversations = item.conversations.SS;
+					          	} else {
+					          		conversations = [];
+					          	}
+
 					            items.push(
 									{
 										title: item.title.S,
@@ -300,7 +308,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 										price: item.price.S,
 										posts: item.posts.S,
 										status: item.status.S,
-										conversations: item.conversations.SS
+										conversations: conversations
 									}					            	
 				            	);
 					          });
@@ -372,6 +380,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 			return d.promise;
 		},
 
+		// Can take book or reference
 		getPosts: function(book) {
 			var user = User.user();
 
@@ -668,15 +677,21 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 
 		},
 
-		createS3Conversation: function(conversation, reference) {
+		createS3Conversation: function(conversation) {
 
 			var d = $q.defer();
 			var user = User.user();
 
-			// Add messenger information
-			conversation.messengerId = user.id;
-			conversation.messengerName = user.name;
-			conversation.messengerIcon = user.icon;
+			// Add messenger information if first time
+			if (conversation.messengerId == undefined) {
+				conversation.messengerId = user.id;
+				conversation.messengerName = user.name;
+				conversation.messengerIcon = user.icon;
+			}
+
+			// Conversation key: post id, poster id, messenger id
+			var conversationKey = conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json';
+			conversation.key = conversationKey;
 
 			AWSService.credentials().then(function() {
 
@@ -687,18 +702,14 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 			    	}
 			    }).then(function(s3) {
 
-			    	// Conversation key: post id, poster id, messenger id
-					var conversationKey = conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json';
-					conversationKey = conversationKey.toString();
-
 					var params = {
 						//ACL: 'public-read',
-						Key: conversationKey,
+						Key: conversation.key,
 						ContentType: 'application/json',
 						Body: JSON.stringify(conversation)
 					}
 
-					console.log('Creating conversation: ' + conversationKey);
+					console.log('Creating conversation: ' + conversation.key);
 
 					s3.putObject(params, function(err, data) {
 
@@ -712,7 +723,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 
 							var params = {
 								Bucket: AWSService.Bucket(), 
-								Key: conversationKey
+								Key: conversation.key
 							};
 							s3.getSignedUrl('getObject', params, 
 								function(err, url) {
@@ -783,6 +794,57 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 							console.log(JSON.parse(data.Body.toString()));
 
 							d.resolve(JSON.parse(data.Body.toString()));
+						}
+					});
+			  	});
+			});
+			return d.promise;
+		},
+
+		uploadToS3: function(object, key) {
+
+			var d = $q.defer();
+
+			AWSService.credentials().then(function() {
+
+			    // Get S3 bucket object
+			    AWSService.s3({
+			    	params: {
+			    		Bucket: AWSService.Bucket()
+			    	}
+			    }).then(function(s3) {
+
+					var params = {
+						Key: key,
+						ContentType: 'application/json',
+						Body: JSON.stringify(object)
+					}
+
+					s3.putObject(params, function(err, data) {
+
+						if (err) console.log(err, err.stack);
+
+						if (!err) {
+							console.log('Upload successful!');
+
+							var params = {
+								Bucket: AWSService.Bucket(), 
+								Key: key
+							};
+							s3.getSignedUrl('getObject', params, 
+								function(err, url) {
+									
+									if (err) {
+										console.log(err);
+										d.reject(err);
+									}
+
+									if (url) {
+										// Now have signed url
+										console.log('Object URL: ' + url);
+										d.resolve(url);
+									}
+							});
 						}
 					});
 			  	});

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'user', 'openfb', 'aws', 'sociogram.controllers', 'ngS3upload.services'])
+angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'user', 'openfb', 'aws', 'sociogram.controllers', 'ngS3upload.services', 'signup'])
 
 .run(function($rootScope, $state, $ionicPlatform, $window, OpenFB) {
   $ionicPlatform.ready(function() {
@@ -147,16 +147,13 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
       }
     })
 
-    // the pet tab has its own child nav-view and history
-    .state('home.camera', {
-      url: '/camera',
-      //views: {
-        //'camera': {
-          templateUrl: 'templates/cam.html',
-          controller: 'CamCtrl'
-       // }
-     // }
+    // School
+    .state('home.signup', {
+      url: '/signup',
+      templateUrl: 'templates/signup.html',
+      controller: 'SignupCtrl'
     })
+
 
     // Conversation page
     // .state('tab.conversation', {

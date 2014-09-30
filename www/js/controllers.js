@@ -53,7 +53,8 @@ angular.module('sociogram.controllers', ['user'])
 
 										// Give back conversations to be put into references
 										References.setConversations(conversations)
-										$state.go('home.tab.selling');				
+										$state.go('home.tab.selling');
+										//$state.go('home.signup');
 									});
 							});
 						

@@ -63,6 +63,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/oauthcallback.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/README.md \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/css/deperecated.css \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/css/style.css \
@@ -101,6 +102,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/core-min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/enc-base64-min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/jquery.min.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/ngAutocomplete.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/ngStorage.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/ngStorage.min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/openfb-angular.js \
@@ -115,6 +117,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/services.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/sha1-min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/sha1.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/signup.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/user.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-animate \
@@ -275,6 +278,8 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.statusbar/www \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.statusbar/www/statusbar.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/schools.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/states.json \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/cam.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/conversation.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/create-post-modal.html \
@@ -290,6 +295,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/results.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/search.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/settings-modal.html \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/signup.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/tab-account.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/tab-dash.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/tab-friends.html \

@@ -29,10 +29,9 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
 
       // Retrieve conversation if it exists in S3
       AWSHelper.getS3Conversation($scope.conversation)
-        .then(function(response) {
+        .then(function(retrievedConversation) {
           // Conversation exists, retrieved
-          //$scope.conversation = response.
-
+          $scope.conversation = retrievedConversation;
         });
     }
       
@@ -53,6 +52,23 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
   // Send Message
   $scope.sendMessage = function() {
 
+    console.log('New message: ' + $scope.data.message);
+
+    // Add message to conversation
+    $scope.conversation.messages.push({
+      user: me.name,
+      userIcon: me.icon,
+      body: $scope.data.message,
+      time: new Date().toString()
+    });
+
+    // Update conversation preview
+    $scope.conversation.preview = $scope.data.message;
+
+    var message;
+    angular.copy($scope.data.message, message);
+
+
     if (!referenceOnline) {
       // Create both
       console.log('Reference: NO');
@@ -71,7 +87,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
                 .then(function(data) {
 
                   // Create JSON conversation in S3
-                  AWSHelper.createS3Conversation($scope.conversation, $scope.reference)
+                  AWSHelper.createS3Conversation($scope.conversation)
                     .then(function() {
                         referenceOnline = true;
                         conversationOnline = true;
@@ -81,7 +97,12 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
                           .then(function(retrievedConversation) {
 
                             $scope.conversation = retrievedConversation;
-                            addMessageToConversation();
+                            Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+
+                            // Clean up
+                            delete $scope.data.message;
+                            
+                            $ionicScrollDelegate.scrollBottom(false);
                           });
                     });
               });
@@ -103,7 +124,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
             .then(function(data) {
 
               // Create JSON conversation in S3
-              AWSHelper.createS3Conversation($scope.conversation, $scope.reference)
+              AWSHelper.createS3Conversation($scope.conversation)
                 .then(function(data) {
                     referenceOnline = true;
                     conversationOnline = true;
@@ -113,42 +134,38 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
                       .then(function(retrievedConversation) {
 
                           $scope.conversation = retrievedConversation;
-                          addMessageToConversation();
+                          Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+                          // Clean up
+                            delete $scope.data.message;
+                            
+                            $ionicScrollDelegate.scrollBottom(false);
                       });
                 });
           });
       });
     }
     else {
-      // continue
-      //addMessageToConversation();
+      // Create JSON conversation in S3
+      AWSHelper.createS3Conversation($scope.conversation)
+        .then(function(data) {
+            referenceOnline = true;
+            conversationOnline = true;
+
+            // Get S3 Conversation
+            AWSHelper.getS3Conversation($scope.conversation)
+              .then(function(retrievedConversation) {
+
+                  $scope.conversation = retrievedConversation;
+                  Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+                  // Clean up
+                            delete $scope.data.message;
+                            
+                            $ionicScrollDelegate.scrollBottom(false);
+              });
+        });
     }
-  }
 
 
-  var addMessageToConversation = function() {
-    console.log('New message: ' + $scope.data.message);
-
-    // Add message to conversation
-    $scope.conversation.messages.push({
-      user: me.name,
-      userIcon: me.icon,
-      body: $scope.data.message,
-    });
-
-
-    // Actual chat
-    Chat.send($scope.conversation.id, $scope.data.message, $scope.reference);
-
-
-    
-    // Update conversation preview
-    $scope.conversation.preview = $scope.data.message;
-
-    // Clean up
-    delete $scope.data.message;
-    
-    $ionicScrollDelegate.scrollBottom(false);
   }
 
 

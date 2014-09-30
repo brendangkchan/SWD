@@ -523,13 +523,41 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
     referenceOnline: function() { return referenceOnline; },
     conversationOnline: function() { return conversationOnline; },
     book: function() { return $localStorage.book; },
-    post: function() { return $localStorage.post; }
+    post: function() { return $localStorage.post; },
+    updateConversation: function(updatedConversation) {
+      console.log('Updating conversations');
+      var count = 0;
+
+      var references = $localStorage.sell_references;
+
+      for (var i = 0; i < references.length; i++) {
+        for (var j = 0; j < references[i].conversations.length; j++) {
+          
+          if (references[i].conversations[j].key === updatedConversation.key) {
+            references[i].conversations[j] = updatedConversation;
+            return;
+          }
+        }
+      }
+
+      var references = $localStorage.buy_references;
+
+      for (var i = 0; i < references.length; i++) {
+        for (var j = 0; j < references[i].conversations.length; j++) {
+          
+          if (references[i].conversations[j].key === updatedConversation.key) {
+            references[i].conversations[j] = updatedConversation;
+            return;
+          }
+        }
+      }
+    }
   }
 });
 
 // Reference Sell Tab Controller
 
-app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper){
+app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state){
 
   //$localStorage.$reset();
 
@@ -561,6 +589,13 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
     return $scope.shownReference === reference;
   };
 
+  // Search for reference
+  $scope.search = function(reference) {
+    console.log('Searching for reference: ' + reference.title);
+    Posts.getPosts(reference);
+    $state.go('home.posts.selling');
+  };
+
   // Delete reference permanantly
   $scope.delete = function(reference) {
     updateReferenceStatus(reference, 'deleted');
@@ -590,7 +625,7 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
 
 // Reference Buy Tab Controller
 
-app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper){
+app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper, Posts, $state){
 
   // Load references and conversations
   $scope.references = References.buying();
@@ -616,6 +651,13 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHe
   $scope.isReferenceShown = function(reference) {
     $scope.shownReference = References.getShownReferenceBuy();
     return $scope.shownReference === reference;
+  };
+
+  // Search for reference
+  $scope.search = function(reference) {
+    console.log('Searching for reference: ' + reference.title);
+    Posts.getPosts(reference);
+    $state.go('home.posts.selling');
   };
 
   // Delete reference permanantly
