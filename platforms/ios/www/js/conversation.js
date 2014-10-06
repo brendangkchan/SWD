@@ -2,57 +2,177 @@ var app = angular.module('conversation', []);
 
 
 // Conversation Controller
-app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, References, $window, $ionicModal, $ionicScrollDelegate, $timeout, Chat, User) {
+app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, References, $window, $ionicModal, $ionicScrollDelegate, $timeout, Chat, User, AWSHelper) {
 
   // Setting $scope variables
   $scope.reference = References.getSelectedReference();
   $scope.conversation = References.getSelectedConversation();
 
   console.log('Loading conversation with: ' + $scope.conversation.name);
-  console.log('Comments: ' + $scope.conversation.comments);
-
-  // Back Navigation
-  $scope.back = function () {
-    //$window.history.back();
-    $rootScope.back();
-  }
 
   var me = User.user();
+  $scope.me = me;
+
+
+  var referenceOnline, conversationOnline;
+
+  // Initialization
+  var init = function() {
+    console.log("Initializing ConversationCtrl")
+
+    referenceOnline = References.referenceOnline();
+    conversationOnline = References.conversationOnline();
+
+
+    if (conversationOnline) {
+      console.log('Reference: YES');
+      console.log('Conversation: YES');
+
+      // Retrieve conversation if it exists in S3
+      AWSHelper.getS3Conversation($scope.conversation)
+        .then(function(retrievedConversation) {
+          // Conversation exists, retrieved
+          $scope.conversation = retrievedConversation;
+        });
+    }
+      
+
+
+    // TODO: Load bottom of list without scrolling
+    $timeout(function() {
+      $ionicScrollDelegate.scrollBottom(false);
+    }, 0);
+  };
+
 
   // Methods for input directive
-
   var alternate,
   isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
+  $scope.updateConversation = function() {
+    $scope.conversation = References.getSelectedConversation();
+  };
+
+
   // Send Message
   $scope.sendMessage = function() {
-    console.log('New message: ' + $scope.data.message);
 
-    // Message id
-    var id = Math.random().toString(36).slice(2);
+    console.log('New message: ' + $scope.data.message);
 
     // Add message to conversation
     $scope.conversation.messages.push({
       user: me.name,
       userIcon: me.icon,
       body: $scope.data.message,
-      id: id
+      time: new Date().toString()
     });
 
-
-    // Actual chat
-    Chat.send($scope.conversation.id, $scope.data.message, $scope.reference);
-
-
-    
     // Update conversation preview
     $scope.conversation.preview = $scope.data.message;
 
-    // Clean up
-    delete $scope.data.message;
-    
-    $ionicScrollDelegate.scrollBottom(false);
+    var message;
+    angular.copy($scope.data.message, message);
+
+
+    if (!referenceOnline) {
+      // Create both
+      console.log('Reference: NO');
+      console.log('Conversation: NO');
+
+      // REMOTE: Create reference
+        AWSHelper.createReference(References.book(), References.post())
+          .then(function(data) {
+
+          // REMOTE: Add conversation to my (messenger) reference
+          AWSHelper.addConversationToReference($scope.conversation, $scope.reference, 'me')
+            .then(function(data) {
+
+              // REMOTE: Add conversation to poster's reference
+              AWSHelper.addConversationToReference($scope.conversation, $scope.reference, 'other')
+                .then(function(data) {
+
+                  // Create JSON conversation in S3
+                  AWSHelper.createS3Conversation($scope.conversation)
+                    .then(function() {
+                        referenceOnline = true;
+                        conversationOnline = true;
+
+                        // Get S3 Conversation
+                        AWSHelper.getS3Conversation($scope.conversation)
+                          .then(function(retrievedConversation) {
+
+                            $scope.conversation = retrievedConversation;
+                            Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+
+                            // Clean up
+                            delete $scope.data.message;
+                            
+                            $ionicScrollDelegate.scrollBottom(false);
+                          });
+                    });
+              });
+          });
+        });
+      
+    }
+    else if (referenceOnline && !conversationOnline) {
+      // Create conversation
+      console.log('Reference: YES');
+      console.log('Conversation: NO');
+
+      // REMOTE: Add conversation to my (messenger) reference
+      AWSHelper.addConversationToReference($scope.conversation, $scope.reference, 'me')
+        .then(function(data) {
+
+          // REMOTE: Add conversation to poster's reference
+          AWSHelper.addConversationToReference($scope.conversation, $scope.reference, 'other')
+            .then(function(data) {
+
+              // Create JSON conversation in S3
+              AWSHelper.createS3Conversation($scope.conversation)
+                .then(function(data) {
+                    referenceOnline = true;
+                    conversationOnline = true;
+
+                    // Get S3 Conversation
+                    AWSHelper.getS3Conversation($scope.conversation)
+                      .then(function(retrievedConversation) {
+
+                          $scope.conversation = retrievedConversation;
+                          Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+                          // Clean up
+                            delete $scope.data.message;
+                            
+                            $ionicScrollDelegate.scrollBottom(false);
+                      });
+                });
+          });
+      });
+    }
+    else {
+      // Create JSON conversation in S3
+      AWSHelper.createS3Conversation($scope.conversation)
+        .then(function(data) {
+            referenceOnline = true;
+            conversationOnline = true;
+
+            // Get S3 Conversation
+            AWSHelper.getS3Conversation($scope.conversation)
+              .then(function(retrievedConversation) {
+
+                  $scope.conversation = retrievedConversation;
+                  Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+                  // Clean up
+                            delete $scope.data.message;
+                            
+                            $ionicScrollDelegate.scrollBottom(false);
+              });
+        });
+    }
+
+
   }
+
 
   // Show Keyboard
   $scope.inputUp = function() {
@@ -65,24 +185,11 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
   // Hide Keyboard
   $scope.inputDown = function() {
     if (isIOS) $scope.data.keyboardHeight = 0;
-    $ionicScrollDelegate.resize();
+    //$ionicScrollDelegate.resize();
   }
 
   // Message Data
   $scope.data = {};
-  $scope.myId = '12345';
-
-
-  // Initialization
-  var init = function() {
-    console.log("Initializing ConversationCtrl")
-    //$ionicScrollDelegate.scrollBottom(true);
-
-    // TODO: Load bottom of list without scrolling
-    $timeout(function() {
-      $ionicScrollDelegate.scrollBottom(false);
-    }, 0);
-  };
 
 
   // Image Modal
@@ -116,6 +223,12 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
   });
   $scope.$on('modal.shown', function() {
   });
+
+    // Back Navigation
+  $scope.back = function () {
+    //$window.history.back();
+    $rootScope.back();
+  }
 
   init();
 })

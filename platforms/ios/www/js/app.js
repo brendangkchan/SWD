@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'user', 'openfb', 'aws', 'sociogram.controllers', 'camera'])
+angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'user', 'openfb', 'aws', 'sociogram.controllers', 'ngS3upload.services', 'signup', 'base64'])
 
 .run(function($rootScope, $state, $ionicPlatform, $window, OpenFB) {
   $ionicPlatform.ready(function() {
@@ -30,16 +30,16 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
     }
 
     //$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-    // $rootScope.$on('$stateChangeStart', function(event, toState) {
-    //   if (toState.name !== "home.login" && toState.name !== "home.logout" && !$window.sessionStorage['fbtoken']) {
-    //     console.log('Going to login state');
-    //     $state.go('home.login');
-    //     event.preventDefault();
-    //   }
-    // });
-    // $rootScope.$on('OAuthException', function() {
-    //   $state.go('home.login');
-    // });
+    $rootScope.$on('$stateChangeStart', function(event, toState) {
+      if (toState.name !== "home.login" && toState.name !== "home.logout" && !$window.sessionStorage['fbtoken']) {
+        console.log('Going to login state');
+        $state.go('home.login');
+        event.preventDefault();
+      }
+    });
+    $rootScope.$on('OAuthException', function() {
+      $state.go('home.login');
+    });
 
     //$state.go('home.tab.selling');
 
@@ -147,16 +147,13 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
       }
     })
 
-    // the pet tab has its own child nav-view and history
-    .state('home.camera', {
-      url: '/camera',
-      //views: {
-        //'camera': {
-          templateUrl: 'templates/cam.html',
-          controller: 'CamCtrl'
-       // }
-     // }
+    // School
+    .state('home.signup', {
+      url: '/signup',
+      templateUrl: 'templates/signup.html',
+      controller: 'SignupCtrl'
     })
+
 
     // Conversation page
     // .state('tab.conversation', {
@@ -171,9 +168,10 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home/tab/selling');
+  //$urlRouterProvider.otherwise('/home/tab/selling');
   //$urlRouterProvider.otherwise('/home/posts/selling');
-  //$urlRouterProvider.otherwise('/home/login');
+  $urlRouterProvider.otherwise('/home/login');
+  //$urlRouterProvider.otherwise('/home/signup');
 
 
 

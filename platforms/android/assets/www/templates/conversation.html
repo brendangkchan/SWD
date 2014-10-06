@@ -42,12 +42,13 @@
 			<!-- Messages -->
 			<div ng-repeat="message in conversation.messages track by message.time">
 
-				<!-- <ion-item class="item item-avatar message-item-left">
-					<img class="clip-circle message-icon-left" src={{conversation.icon}}>
+				<ion-item class="item item-avatar-left message-item-left" ng-if="me.name !== message.user">
+					<!-- <img class="clip-circle message-icon-right" src={{message.userIcon}}> -->
+					<img class="clip-circle message-icon-left" src="{{message.userIcon}}"/>
 					<p class="message-body-left">{{message.body}}</p>
-				</ion-item> -->
+				</ion-item>
 
-				<ion-item class="item item-avatar-right message-item-right">
+				<ion-item class="item item-avatar-right message-item-right" ng-if="me.name == message.user">
 					<!-- <img class="clip-circle message-icon-right" src={{message.userIcon}}> -->
 					<img class="clip-circle message-icon-right" src="{{message.userIcon}}"/>
 					<p class="message-body-right">{{message.body}}</p>

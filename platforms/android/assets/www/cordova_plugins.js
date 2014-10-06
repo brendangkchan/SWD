@@ -215,19 +215,35 @@ module.exports = [
         "clobbers": [
             "window.StatusBar"
         ]
+    },
+    {
+        "file": "plugins/com.jcesarmobile.IDFVPlugin/www/IDFVPlugin.js",
+        "id": "com.jcesarmobile.IDFVPlugin.IDFVPlugin",
+        "clobbers": [
+            "IDFVPlugin"
+        ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
+        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
+        "clobbers": [
+            "PushNotification"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "com.ionic.keyboard": "1.0.2",
+    "com.ionic.keyboard": "1.0.3",
     "org.apache.cordova.console": "0.2.10",
     "org.apache.cordova.device": "0.2.11",
     "org.apache.cordova.inappbrowser": "0.5.1",
     "org.apache.cordova.camera": "0.3.1",
     "org.apache.cordova.file": "1.3.0",
     "org.apache.cordova.file-transfer": "0.4.5",
-    "org.apache.cordova.statusbar": "0.1.7"
+    "org.apache.cordova.statusbar": "0.1.7",
+    "com.jcesarmobile.IDFVPlugin": "1.0.0",
+    "com.phonegap.plugins.PushPlugin": "2.3.1"
 }
 // BOTTOM OF METADATA
 });

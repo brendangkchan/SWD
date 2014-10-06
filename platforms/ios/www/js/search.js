@@ -515,12 +515,11 @@ app.run(function($rootScope, $location, $localStorage, $window, Results) {
 
 // Search Controller
 
-app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, $ionicLoading, Results, Notifications, Chat) {
+app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParams, $sessionStorage, $localStorage, $window, $ionicModal, $ionicLoading, Results, Notifications, Chat, AWSHelper) {
 
 
-	// Chat.loadQBScript().then(function(QB) {
-	// 	Chat.initializeQB(QB);
-	// });
+	// Image upload test
+	//AWSHelper.testImageUpload()
 
 
 	// Configure Results button
@@ -641,7 +640,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 	$scope.selectBook = function(book) {
 		console.log("Selected book: " + book.title);
 		Results.selectBook(book);
-		Posts.getPosts(book);
+		//Posts.getPosts(book);
 		$rootScope.resultsButtonToPosts = true;
 	}
 

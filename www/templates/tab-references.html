@@ -32,7 +32,7 @@
 				</ion-item>
 
 				<!-- Accordian Item -->
-				<ion-item class="item-accordion item-avatar conversation-item" ng-repeat="conversation in reference.conversations track by conversation.id" ng-show="isReferenceShown(reference)" 
+				<ion-item class="item-accordion item-avatar conversation-item" ng-repeat="conversation in reference.conversations track by conversation.key" ng-show="isReferenceShown(reference)" 
 				ui-sref="home.conversation({ referenceIndex: $parent.$parent.$index, conversationIndex: $index})" ng-click="selectConversation($parent.$parent.$index, $index)">
 					
 

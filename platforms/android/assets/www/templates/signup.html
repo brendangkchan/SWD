@@ -1,35 +1,49 @@
 <!-- Search Bar -->
-<ion-nav-bar class="bar-light nav-title-slide-ios7 stotle-nav-bar-clear">
+<ion-nav-bar class="bar bar-header bar-light">
+
+	<button class="button button-icon icon ion-ios7-arrow-left stotle-button" ng-click="back()" ng-if="stateSelected == true"></button>
+
 	<h1 class='title'>Where Do You Go To School?</h1>
+
+	<!-- Search Bar -->
+		<!-- <label class="item item-input" id="search-bar" ng-if="stateSelected == true">
+			<i class="icon ion-ios7-search-strong placeholder-icon"></i>
+			<input enterShowResults type="text" placeholder="School Name" ng-model="search.name">
+		</label> -->
+
+
 </ion-nav-bar>
 
-  <!-- Search Bar -->
-<div class="bar bar-subheader" id="search-bar-container">
-
-
-	
-</div>
-
-<ion-view>
-	<label class="item item-input item-select condition">
-	    <select name='options' ng-model="data.condition">
-            <option  ng-repeat="condition in conditions" ng-value="condition.value">{{ condition.value }}
-            </option>
-      	</select>
-  	</label>
-  	
-  	<label class="item item-input" id="search-bar">
-  		<i class="icon ion-ios7-search-strong placeholder-icon"></i>
- 		<input type="text" ng-model="search.name">
+<!-- Search Bar -->
+<ion-header-bar class="bar bar-subheader school-search-subheader">
+	<label class="item item-input">
+		<i class="icon ion-ios7-search-strong placeholder-icon"></i>
+		<input enterShowResults type="text" placeholder="{{placeholder}}" ng-model="search.name">
 	</label>
+</ion-header-bar>
 
-	<ion-content class="results-content">
 
-		<ion-list>
-			<!-- <div ng-repeat="school in schools track by school.id | filter:search | limitTo: 10"> -->
-			<!-- <div ng-repeat="school in schools" ng-show="([school] | filter:search).length > 0">
-				<p>{{school.name}}</p>
-			</div> -->
+<ion-view class="has-header has-subheader">
+
+	<ion-content class="has-margin has-padding">
+
+		<ion-list ng-if="stateSelected == false">
+			<div ng-repeat="state in states | filter:search | orderBy: 'name'" ng-click="selectState(state.name)">
+				<div class="item">
+					<h2>{{state.name}}</h2>
+				</div>
+			</div> 
 		</ion-list>
+
+		<ion-list ng-if="stateSelected == true">
+			<div ng-repeat="school in schools | filter:search" ng-click="selectSchool(school)">
+				<div class="item">
+					<h2>{{school.name}}</h2>
+				</div>
+			</div> 
+		</ion-list>
+
+
+
 	</ion-content>
 </ion-view>

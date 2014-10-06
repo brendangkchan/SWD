@@ -51,6 +51,14 @@
                         {
                             "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"IDFVPlugin\"><param name=\"ios-package\" value=\"IDFVPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PushPlugin\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -115,6 +123,12 @@
         },
         "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "com.ionicframework.stotledev425747"
+        },
+        "com.jcesarmobile.IDFVPlugin": {
+            "PACKAGE_NAME": "com.ionicframework.stotledev425747"
+        },
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.stotle.${PRODUCT_NAME:rfc1034identifier}"
         }
     },
     "dependent_plugins": {}

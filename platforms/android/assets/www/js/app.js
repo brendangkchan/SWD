@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'user', 'openfb', 'aws', 'sociogram.controllers', 'ngS3upload.services', 'signup'])
+angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'user', 'openfb', 'aws', 'sociogram.controllers', 'ngS3upload.services', 'signup', 'base64'])
 
 .run(function($rootScope, $state, $ionicPlatform, $window, OpenFB) {
   $ionicPlatform.ready(function() {
@@ -171,6 +171,7 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
   //$urlRouterProvider.otherwise('/home/tab/selling');
   //$urlRouterProvider.otherwise('/home/posts/selling');
   $urlRouterProvider.otherwise('/home/login');
+  //$urlRouterProvider.otherwise('/home/signup');
 
 
 

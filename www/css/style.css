@@ -137,13 +137,18 @@ html *
 }
 
 #search-bar {
-	//top: 70px;
 	font-size: 1.3em;
 	border-color: #EEE !important;
-	//border-top-width: 0px !important;
-	//padding: 0px 0 0px 15px !important;
 }
 
+.school-search-subheader {
+	padding: 0 !important;
+}
+
+.school-search-bar {
+	font-size: 1em;
+	border-color: #EEE !important;
+}
 
 /*.search-button {
 	padding: 5px !important;

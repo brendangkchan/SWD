@@ -16,7 +16,7 @@
 		          		<ion-option-button class="button-clear edit" ng-click="edit(item)" ng-if="reference.status == 'open'">
 		            		Edit
 		          		</ion-option-button>
-		          		<ion-option-button class="button-clear search" ng-click="search(item)" ng-if="reference.status == 'open'">
+		          		<ion-option-button class="button-clear search" ng-click="search(reference)" ng-if="reference.status == 'open'">
 		            		Search
 		          		</ion-option-button>
 		          		<ion-option-button class="button-clear delete" ng-click="delete(reference)" ng-if="reference.status == 'open'">
@@ -32,7 +32,7 @@
 				</ion-item>
 
 				<!-- Accordian Item -->
-				<ion-item class="item-accordion item-avatar conversation-item" ng-repeat="conversation in reference.conversations track by conversation.id" ng-show="isReferenceShown(reference)" 
+				<ion-item class="item-accordion item-avatar conversation-item" ng-repeat="conversation in reference.conversations track by conversation.key" ng-show="isReferenceShown(reference)" 
 				ui-sref="home.conversation({ referenceIndex: $parent.$parent.$index, conversationIndex: $index})" ng-click="selectConversation($parent.$parent.$index, $index)">
 					
 
@@ -44,7 +44,7 @@
 						<div class="conversation-name">{{conversation.name}}</div>
 						<p class="conversation-price">${{conversation.price}}</p>
 					</div>
-					<p class="conversation-preview">{{conversation.preview}}</p>
+					<p class="conversation-preview">{{conversation.messages[conversation.messages.length - 1].body}}</p>
 				</ion-item>
 
 			</div>

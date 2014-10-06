@@ -1,7 +1,23 @@
 var app = angular.module('aws', ['ngStorage']);
 
 
-app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) {
+// app.factory('sessionInjector', function() {
+//     var sessionInjector = {
+//         request: function(config) {
+//         	if (config.method == 'POST') {
+//             	console.log(config);
+//             }
+//         }
+//     };
+//     return sessionInjector;
+// });
+
+// app.config(['$httpProvider', function($httpProvider) {
+//     $httpProvider.interceptors.push('sessionInjector');
+// }]);
+
+
+app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, S3Uploader) {
 
 	//var user = $sessionStorage['user'];
 	//var user = User.user();
@@ -64,16 +80,15 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 
 				// We have a handle of our s3 bucket
 				var file = image; // Get the first file
-				//var key = user.id + '-' + postID + '-' + imageID + '.jpg';
+				var key = user.id + '-' + postID + '-' + imageID + '.jpg';
 
-				var key = image.substr(image.lastIndexOf('/') + 1);
+				//var key = image.substr(image.lastIndexOf('/') + 1);
 
 				var params = {
-					Key: key,
-					Body: file,
-					//ContentType: file.type
 					//ACL: 'public-read',
-					ContentType: 'image/jpeg'
+					Key: key,
+					ContentType: 'image/jpeg',
+					Body: file
 				}
 
 				console.log('Uploading image: ' + image);
@@ -130,9 +145,6 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 
 
         var s3URI = encodeURI("http://bgchan-swd.s3.amazonaws.com/"),
-	    //policyBase64 = "YOUR_BASE64_ENCODED_POLICY_FILE",
-	    //signature = "YOUR_BASE64_ENCODED_SIGNATURE",
-	    //awsKey = AWS.config.credentials.accessKeyId,
 	    acl = "public-read";
 
 
@@ -161,6 +173,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 		 
 		//policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
 		policyBase64 = encodeURI(JSON.stringify(policy)).toString(CryptoJS.enc.Base64);
+		//policyBase64 = JSON.stringify(policy).toString(CryptoJS.enc.Base64);
 		console.log("Policy Base64:");
 		console.log(policyBase64);
 		 
@@ -182,41 +195,52 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
         var params = {
             "key": fileName,
             "AWSAccessKeyId": accessKeyId,
-            "acl": acl,
+            "acl": "public-read",
         	"policy": policyBase64,
             "signature": signature,
             "Content-Type": "image/jpeg",
-            //"file": "file"
-            // with file: no key, without file: no awsaccess
+            //"file": imageURI
+            // ft. upload with file: no key, without file: no awsaccess
+            // http post with file: nothing happens, without: conflicting acl, policy
         };
 
-        //options.params = JSON.stringify(params);
-        options.params = params;
+        options.params = JSON.stringify(params);
+        //options.params = params;
 
 
         console.log('params:');
         console.log(JSON.stringify(options));
  
-        // ft.upload(imageURI, s3URI,
-        //     function (e) {
-        //     	// Success
-        //     	console.log(e);
-        //         deferred.resolve(e);
-        //     },
-        //     function (e) {
-        //     	// Fail
-        //     	console.log(e);
-        //         deferred.reject(e);
-        //     }, 
-        //     options);
+        ft.upload(imageURI, s3URI,
+            function (e) {
+            	// Success
+            	console.log(e);
+                deferred.resolve(e);
+            },
+            function (e) {
+            	// Fail
+            	console.log(e);
+                deferred.reject(e);
+            }, 
+            options);
 
  
-        // return deferred.promise();
+        return deferred.promise();
 
-        return $http.post("http://bgchan-swd.s3.amazonaws.com/",
-        		imageURI,
-        		options);
- 
+      //   $http.post("http://bgchan-swd.s3.amazonaws.com/",
+      //   		imageURI,
+      //   		options).
+	     //    success(function(data, status) {
+	     //      console.log(data);
+	     //      console.log(status);
+	     //    }).
+	     //    error(function(data, status) {
+	     //      console.log(data);
+	     //      console.log(status);
+     	// });
+
+
+        
     };
 	 
 
@@ -267,6 +291,14 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
                     		var items = [];
 					        if (data) {
 					          angular.forEach(data.Items, function(item) {
+					          	
+					          	var conversations;
+					          	if (item.conversations !== undefined) {
+					          		conversations = item.conversations.SS;
+					          	} else {
+					          		conversations = [];
+					          	}
+
 					            items.push(
 									{
 										title: item.title.S,
@@ -276,7 +308,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 										price: item.price.S,
 										posts: item.posts.S,
 										status: item.status.S,
-										conversations: item.conversations.SS
+										conversations: conversations
 									}					            	
 				            	);
 					          });
@@ -330,23 +362,17 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 					            "Action": "PUT"
 					        }
 					    },
-					    // "Expected": {
-					    //     "status": {
-					    //     "ComparisonOperator":"EQ",
-					    //     "AttributeValueList": [ { "S": "open"} ]
-					    //     }
-					    // },
 					    "ReturnValues": "ALL_NEW"
                     };
                     // Put entry in table
                     table.updateItem(itemParams, 
                     	function(err, data) {
-                    		console.log(data);
-
                     		if (data) {
-					          d.resolve(data);
+                    			console.log(data);
+					          	d.resolve(data);
 					        } else {
-					          d.reject(err);
+					        	console.log(err);
+					          	d.reject(err);
 					        }
                 	});  
 				});
@@ -354,9 +380,9 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 			return d.promise;
 		},
 
+		// Can take book or reference
 		getPosts: function(book) {
 			var user = User.user();
-			console.log(user);
 
 			var d = $q.defer();
 
@@ -386,6 +412,14 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
                     			'AttributeValueList': [
                     				{
                     					'S': book.title
+                    				}
+                    			],
+                    			'ComparisonOperator': 'EQ'
+            			 	},
+            			 	'author' : { 
+                    			'AttributeValueList': [
+                    				{
+                    					'S': book.author
                     				}
                     			],
                     			'ComparisonOperator': 'EQ'
@@ -431,25 +465,26 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 
 		uploadPost: function(book, post) {
 			var user = User.user();
+			var d = $q.defer();
 
 			// Load AWS credentials
 	        AWSService.credentials().then(function(response) {
 
-	        	console.log(angular.fromJson(response));
+	        	//console.log(angular.fromJson(response));
 
 	        	accessKeyId = response.AccessKeyId;
 	        	secretAccessKey = response.SecretAccessKey;
 
-	        	console.log(response.data.Credentials.AccessKeyId);
-	    		console.log(response.data.Credentials.SecretAccessKey);
+	        	console.log('ACCKID: ' + response.data.Credentials.AccessKeyId);
+	    		console.log('SACCK: ' + response.data.Credentials.SecretAccessKey);
 
 	        	// Upload images
 	        	for (var i = 0; i < post.images.length; i++) {
 
-	        		//uploadImage(post.images[i], post.id, i);
+	        		//uploadImage(post.images[i], post.id, i)
 	        		uploadImageAlt(post.images[i], post.id, i)
 	        			.then(function (response) {
-							console.log(response);
+							console.log(data);
 						});
 	        		// .then(function(imageURL) {
 	        		// 	// Have image URL
@@ -493,17 +528,24 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
                     table.putItem(itemParams, 
                     	function(err, data) {
                     		//console.log(data);
-                    		if (err) { console.log(err); }
+                    		if (data) { d.resolve(data); }
+                    		if (err) { 
+                    			console.log(err); 
+                    			d.reject(err);
+                    		}
                 	});  
 				});
 	        });
 
 			// Create new reference for book (new post = new reference)
 			this.createReference(book, post);
+
+			return d.promise;
 		},
 
 		createReference: function(book, post) {
 			var user = User.user();
+			var d = $q.defer();
 
 			// Load AWS credentials
 	        AWSService.credentials().then(function() {
@@ -511,9 +553,8 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 	              params: {TableName: AWSService.ReferencesTable()}
 	            })
 	            .then(function(table) {
-
 				// Query table for user
-				console.log('Creating reference: ' + book.title + ' in table: ' + AWSService.PostsTable());
+				console.log('Creating reference: ' + book.title + ' in table: ' + AWSService.ReferencesTable());
                     
 					// Reference from own created post
                     var itemParams = {
@@ -529,20 +570,296 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User) 
 	                		'author': { 'S': book.author },
 	                		'icon': { 'S': book.icon },
 	                		'type': { 'S': post.type },
-	                		'status': { 'S': 'open' },
-	                		'conversations': { 'SS': ['null'] }
-                    	}
+	                		'status': { 'S': 'open' }
+	                		//'conversations': { 'SS': ['null'] }
+                    	},
+                    	ReturnValues: 'ALL_OLD'
                     };
+
+                    console.log(itemParams.Item);
 
                     // Put entry in table
                     table.putItem(itemParams, 
                     	function(err, data) {
-                    		//console.log(data);
-                    		if (err) { console.log(err); }
-                	});  
+                    		if (data) {
+                    			//console.log(data);
+					          	d.resolve(data);
+					        } else {
+					        	console.log(err, err.stack);
+					          	d.reject(err);
+					        }
+                	}); 
 				});
 	        });
+			return d.promise;
+		},
 
+		// Triggered when a user messages another
+		// Adds conversation to both users' references
+		addConversationToReference: function(conversation, reference, person) {
+			var user = User.user();
+			var d = $q.defer();
+
+			// Post ID, Poster ID, Messager ID
+			var conversationKey = conversation.post_id + '_' + conversation.id + '_' + user.id + '.json';
+			conversationKey = conversationKey.toString();
+
+			console.log('Adding conversation: ' + conversationKey);
+			console.log('Reference: ' + reference.title);
+
+			var otherType;
+			if (reference.type === 'sell') {
+				otherType = 'buy';
+			} else {
+				otherType = 'sell';
+			}
+
+
+			// Determine which reference to add to
+			var userID, title;
+
+			if (person === 'me') {
+				userID = user.id;
+				title = reference.type + ' ' + reference.title;
+				console.log('My own reference: ' + title);
+			}
+			if (person === 'other') {
+				userID = conversation.id;
+				title = otherType + ' ' + reference.title;
+				console.log('Other reference: ' + title);
+			}
+
+			// Load AWS credentials
+	        AWSService.credentials().then(function() {
+	            AWSService.dynamo({
+	              params: {TableName: AWSService.ReferencesTable()}
+	            })
+	            .then(function(table) {
+
+    				// Query table for user
+                    var itemParams = {
+
+                    	// My reference
+                    	'Key': {
+                			 'userID' : { 
+                    			'S': userID
+                			 },
+                			 'title' : {
+                			 	'S': title
+                			 }
+                    	},
+                    	"AttributeUpdates": {
+					        "conversations": {
+					            "Action": "ADD",
+					            "Value": {
+					                "SS": [conversationKey]
+					            }
+					        }
+					    },
+					    "ReturnValues": "ALL_NEW"
+                    };
+                    // Put entry in table
+                    table.updateItem(itemParams, 
+                    	function(err, data) {
+                    		if (data) {
+                    			console.log(data);
+					          	d.resolve(data);
+					        } else {
+					        	console.log(err, err.stack);
+					          	d.reject(err);
+					        }
+                	});
+
+					  
+				});
+	        });
+			return d.promise;
+
+		},
+
+		createS3Conversation: function(conversation) {
+
+			var d = $q.defer();
+			var user = User.user();
+
+			// Add messenger information if first time
+			if (conversation.messengerId == undefined) {
+				conversation.messengerId = user.id;
+				conversation.messengerName = user.name;
+				conversation.messengerIcon = user.icon;
+			}
+
+			// Conversation key: post id, poster id, messenger id
+			var conversationKey = conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json';
+			conversation.key = conversationKey;
+
+			AWSService.credentials().then(function() {
+
+			    // Get S3 bucket object
+			    AWSService.s3({
+			    	params: {
+			    		Bucket: AWSService.Bucket()
+			    	}
+			    }).then(function(s3) {
+
+					var params = {
+						//ACL: 'public-read',
+						Key: conversation.key,
+						ContentType: 'application/json',
+						Body: JSON.stringify(conversation)
+					}
+
+					console.log('Creating conversation: ' + conversation.key);
+
+					s3.putObject(params, function(err, data) {
+
+						if (err) {
+							console.log(err, err.stack);
+						}
+
+						if (!err) {
+							console.log('Upload successful!');
+							console.log(data);
+
+							var params = {
+								Bucket: AWSService.Bucket(), 
+								Key: conversation.key
+							};
+							s3.getSignedUrl('getObject', params, 
+								function(err, url) {
+									
+									if (err) {
+										console.log(err);
+										d.reject(err);
+									}
+
+									if (url) {
+										// Now have signed url
+										console.log('Conversation JSON URL: ' + url);
+										d.resolve(url);
+									}
+							});
+						}
+					});
+			  	});
+			});
+			return d.promise;
+		},
+
+		getS3Conversation: function(conversation) {
+			var d = $q.defer();
+			var user = User.user();
+
+			AWSService.credentials().then(function() {
+
+			    // Get S3 bucket object
+			    AWSService.s3({
+			    	params: {
+			    		Bucket: AWSService.Bucket()
+			    	}
+			    }).then(function(s3) {
+
+			    	// Conversation key: post id, poster id, messenger id
+					var conversationKey;
+
+					// Given conversation object
+					if (conversation.post_id !== undefined) {
+						conversationKey = (conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json').toString();
+						
+						// Add messenger information
+						conversation.messengerId = user.id;
+					} 
+					// Given conversation key
+					else {
+						conversationKey = conversation;
+					}
+
+					var params = {
+						Key: conversationKey,
+						//ResponseContentType: 'application/json',
+						//ResponseContentType: 'text/html',
+					}
+
+					console.log('Retrieving conversation: ' + conversationKey);
+
+					s3.getObject(params, function(err, data) {
+
+						if (err) {
+							console.log(err, err.stack);
+							d.reject(err);
+						}
+
+						if (data) {
+							console.log('Conversation retrieval successful!');
+							var retrievedConversation = JSON.parse(data.Body.toString());
+							console.log(retrievedConversation);
+
+							if (retrievedConversation.messengerName === user.name) {
+								retrievedConversation.name = retrievedConversation.posterName;
+								retrievedConversation.userIcon = retrievedConversation.posterIcon;
+							} else {
+								retrievedConversation.name = retrievedConversation.messengerName;
+								retrievedConversation.userIcon = retrievedConversation.messengerIcon;
+							}
+
+
+							d.resolve(retrievedConversation);
+						}
+					});
+			  	});
+			});
+			return d.promise;
+		},
+
+		uploadToS3: function(object, key) {
+
+			var d = $q.defer();
+
+			AWSService.credentials().then(function() {
+
+			    // Get S3 bucket object
+			    AWSService.s3({
+			    	params: {
+			    		Bucket: AWSService.Bucket()
+			    	}
+			    }).then(function(s3) {
+
+					var params = {
+						Key: key,
+						ContentType: 'application/json',
+						Body: JSON.stringify(object)
+					}
+
+					s3.putObject(params, function(err, data) {
+
+						if (err) console.log(err, err.stack);
+
+						if (!err) {
+							console.log('Upload successful!');
+
+							var params = {
+								Bucket: AWSService.Bucket(), 
+								Key: key
+							};
+							s3.getSignedUrl('getObject', params, 
+								function(err, url) {
+									
+									if (err) {
+										console.log(err);
+										d.reject(err);
+									}
+
+									if (url) {
+										// Now have signed url
+										console.log('Object URL: ' + url);
+										d.resolve(url);
+									}
+							});
+						}
+					});
+			  	});
+			});
+			return d.promise;
 		}
 
 	}
@@ -596,8 +913,7 @@ app.provider('AWSService', function() {
 	    		credentialsDefer.resolve(AWS.config.credentials);
 	    	},
 	    	dynamo: function(params) {
-	    		console.log('Getting dynamoDB object with params: ');
-	    		console.log(params);
+	    		console.log('Getting dynamoDB object from table: ' + params.params.TableName);
 
 	    		var d = $q.defer();
 	    		credentialsPromise.then(function() {

@@ -43,6 +43,9 @@
     </feature>
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <feature name="IDFVPlugin">
+        <param name="ios-package" value="IDFVPlugin" />
+    </feature>
     <name>StotleDev</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -59,5 +62,8 @@
     <preference name="StatusBarOverlaysWebView" value="true" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <feature name="PushPlugin">
+        <param name="ios-package" value="PushPlugin" />
     </feature>
 </widget>

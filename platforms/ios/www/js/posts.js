@@ -2,7 +2,7 @@ var app = angular.module('posts', ['ionic', 'ngAnimate', 'ngStorage']);
 
 // Dummy Posts
 
-app.factory("Posts", function($rootScope, $location, $state, $localStorage, References, Results, AWSHelper) {
+app.factory("Posts", function($rootScope, $location, $state, $localStorage, $q, References, Results, AWSHelper) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -61,8 +61,7 @@ app.factory("Posts", function($rootScope, $location, $state, $localStorage, Refe
   // Add to references after messaging someone
   var addToReferences = function(post) {
   	var book = Results.getBook();
-  	console.log(book);
-  	console.log(post);
+  	console.log('Attempting to add to references: ' + book.title);
   	var index = References.addConversation(Results.getBook(), post);
 
   	//$location.path('home/conversation/');
@@ -76,6 +75,11 @@ app.factory("Posts", function($rootScope, $location, $state, $localStorage, Refe
 
   	References.addReference(book, post);
   }
+
+
+  // Book chosen from reference
+  var referenceBook;
+  var fromReference = false;
 
 
   return {
@@ -106,42 +110,54 @@ app.factory("Posts", function($rootScope, $location, $state, $localStorage, Refe
     getPost: function() {
     	return post;
     },
-    getPosts: function() {
-    	//var posts = AWSHelper.getPosts(book);
-    	//console.log(posts);
 
-    	AWSHelper.getPosts(Results.getBook()).then(function (data) {
-			var posts = data;
+    setBook: function(book) {
+      referenceBook = book;
+      fromReference = true;
+    },
 
-			sell_posts = new Array();
-	    	buy_posts = new Array();
+    // Can take book or reference
+    getPosts: function(book) {
+      var d = $q.defer();
 
-	    	for (var i = 0; i < posts.length; i++) {
-	    		var post = posts[i];
-	    		console.log(post);
-	    		if ( post.type === 'sell') {
-	    			sell_posts.push(post);
-	    		}
-	    		if (post.type === 'buy') {
-	    			buy_posts.push(post);	
-	    		}
-	    	}
+      if (fromReference) {
+        book = referenceBook;
+        console.log('From reference: ' + book.title);
+        fromReference = false;
+      }
 
-	    	console.log(sell_posts);
-	    	console.log(buy_posts);
+    	AWSHelper.getPosts(book)
+        .then(function (data) {
+    			var posts = data;
 
-	    	return {
-	    		sell: sell_posts,
-	    		buy: buy_posts,
-	    	};
-		});
+    			sell_posts = new Array();
+        	buy_posts = new Array();
 
+    	    	for (var i = 0; i < posts.length; i++) {
+    	    		var post = posts[i];
+    	    		if ( post.type === 'sell') {
+    	    			sell_posts.push(post);
+    	    		}
+    	    		if (post.type === 'buy') {
+    	    			buy_posts.push(post);	
+    	    		}
+    	    	}
+
+    	    	console.log(sell_posts);
+    	    	console.log(buy_posts);
+
+            d.resolve({sell: sell_posts, buy: buy_posts});
+
+    	    	
+	    });
+        return d.promise;
     	
     },
-    addPost: function(book, post) {
+    createPost: function(book, post) {
 
     	// Check for existing book
     	if (References.checkForBook(book, post)) {
+        $ionicLoading.show({ template: 'You already have a post for this book!', noBackdrop: true, duration: 1500 });
     		return;
     	}
 
@@ -152,8 +168,9 @@ app.factory("Posts", function($rootScope, $location, $state, $localStorage, Refe
     	createReference(post);
 
     	// Upload post to db
-    	AWSHelper.uploadPost(book, post);
+    	return AWSHelper.uploadPost(book, post)
     }
+
   }
 });
 
@@ -161,7 +178,7 @@ app.factory("Posts", function($rootScope, $location, $state, $localStorage, Refe
 
 // Posts Controller
 
-app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, $sessionStorage, $location, Posts, Results, References, User) {
+app.controller('PostCtrl', function($rootScope, $scope, $window, $state, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, $sessionStorage, $location, Posts, Results, References, User) {
 
   // Fake posts from factory
   //$scope.posts = Posts.selling();
@@ -239,10 +256,6 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
       post.comments = ' ';
     }
 
-    // Add Post
-    console.log('New Post: ');
-    console.log(post);
-    Posts.addPost($scope.book, post);
     $ionicLoading.show({ template: 'Nice, your post will be up shortly!', noBackdrop: true, duration: 2000 });
 
     // Hide Modal
@@ -250,6 +263,24 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 
     // Clear form data
     clearFormData();
+
+
+    // Add Post
+    console.log('New Post: ');
+    console.log(post);
+    Posts.createPost($scope.book, post)
+      .then(function() {
+        //Posts.getPosts($scope.book);
+
+        $state.transitionTo($state.current, $stateParams, {
+          reload: true,
+          inherit: false,
+          notify: true
+      });
+    });
+
+
+
 
     // Resize scroll container
     $ionicScrollDelegate.$getByHandle('postScroll').scrollBottom();
@@ -379,9 +410,10 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
       return;
     }
 
-    //pictureSource=navigator.camera.PictureSourceType.PHOTOLIBRARY;
-    pictureSource = navigator.camera.PictureSourceType.CAMERA;
+    pictureSource=navigator.camera.PictureSourceType.PHOTOLIBRARY;
+    //pictureSource = navigator.camera.PictureSourceType.CAMERA;
     destinationType = navigator.camera.DestinationType.FILE_URI;
+    //destinationType = navigator.camera.DestinationType.DATA_URL;
   });
 
 
@@ -427,19 +459,12 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $stateParams, $
 
 
 
-app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate,Posts, Results, References, User) {
+app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, Posts, Results, References, User) {
 
-  // Fake posts from factory
-  //$scope.posts = Posts.selling();
-
-  $scope.posts = [
-    { id: '', user: 'Elias G', userIcon: 'img/test/boy1.jpg', price: 10, edition: 7, condition: 'Good', images: [], comments: '', type: 'sell'}
-  ];
-
-  // Posts.getPosts().then(function(posts) {
-  //  $scope.posts = posts.sell;
-  // });
-  //$scope.posts = Posts.getPosts().sell;
+  Posts.getPosts(Results.getBook())
+    .then(function(posts) {
+      $scope.posts = posts.sell;
+    });
 
   // My user information
   $scope.me = User.user();
@@ -537,13 +562,10 @@ app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParam
 app.controller('PostBuyCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicPopup, Posts, Results, User) {
 
   // Fake posts from factory
-  $scope.posts = Posts.buying();
-
-  // Posts.getPosts().then(function(posts) {
-  //  $scope.posts = posts.buy;
-  // });
-
-  //$scope.posts = Posts.getPosts().buy;
+  Posts.getPosts(Results.getBook())
+    .then(function(posts) {
+      $scope.posts = posts.buy;
+    });
 
   // My user information
   $scope.me = User.user();

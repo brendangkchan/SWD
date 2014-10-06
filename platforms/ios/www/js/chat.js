@@ -1,6 +1,6 @@
 var app = angular.module('chat', []);
 
-app.factory("Chat", function($rootScope, $sessionStorage, $http, $q, $document, $ionicLoading, AWSService, User) {
+app.factory("Chat", function($rootScope, $sessionStorage, $http, $q, $document, $window, $ionicLoading, $base64, AWSService, AWSHelper, User, References) {
 
 
 	var appID;
@@ -22,7 +22,34 @@ app.factory("Chat", function($rootScope, $sessionStorage, $http, $q, $document, 
 
 		// JavaScript SDK initialization
 		QB.init(QBAPP.appID, QBAPP.authKey, QBAPP.authSecret);
+
+		// Get device info
+		var platform, udid, channel, APIkey, pushType;
+		var device = window.device;
+		if (device.platform === 'Android') {
+			platform = 'android';
+			udid = device.uuid;
+			channel = 'gcm';
+			pushType = 'gcm';
+			APIkey = 'AIzaSyBxIKoiwvDncYOXLLZUzayD-4uPtwGypdg';
+		}
+		if (device.platform === 'iOS') {
+			platform = 'ios';
+			//window.IDFVPlugin.getIdentifier(function(result){ udid = result; },function(error){ console.log(error); });
+			udid = device.uuid;
+			channel = 'apns';
+			pushType = 'apns';
+			APIkey = device.uuid;
+		}
 		 
+		console.log('DEVICE INFO:');
+		console.log(device.platform);
+		console.log('PLATFORM: ' + platform);
+		console.log('UDID: ' + udid);
+		console.log('CHANNEL: ' + channel);
+		console.log('PUSH TYPE: ' + pushType);
+		console.log('APIKey: ' + APIkey);
+			
 		QB.createSession({provider:'facebook', keys: { token: fbToken }}, 
 			function(error,response){
 				//_this.sessionCallback(e,r);
@@ -49,93 +76,72 @@ app.factory("Chat", function($rootScope, $sessionStorage, $http, $q, $document, 
 							console.log(error);
 						}
 
-						if (roster) {
-							console.log(roster);
-						}
-
-
-
-						// var params = {
-						//   filter: { field: 'id', param: 'in', value: [3,45,2241] },
-						//   order: { sort: 'desc', field: 'id' }
-						// };
-						// QB.users.listUsers(params, function(error, response){
-						//   // callback function
-						// });
-
-
-						var filters = [
-								//'number sender_id in ' + myID.toString() + ',' + userId.toString(),
-								//'number receiver_id in ' + myID.toString() + ',' + userId.toString()
-								//'number sender_id in 1590783'
-								//'sender_id[nin]=1590783,1590784'
-								'receiver_id = 0'
-							];
-
-  							// Trigger call to get chat history from custom objects
-  							QB.data.list("chat_history", filters, function(error, response){
-							//QB.data.list("chat_history", function(error, response){
-  								// callback function
-  								if (error) console.log(error);
-
-  								if (response) {
-  									console.log('Retrieved chat history');
-  									console.log(response);
-  								}
-							});
-
-
-
-
-
-						console.log('Set listener');
+						console.log('Setting listener');
 
 						// General type listener
-						QB.chat.addListener({name: 'message', type: 'chat'}, 
-							function() {
-							  // This is a handler - the user callback function
-							  //console.log('Caught message!!!');
-							});
+						QB.chat.addListener({name: 'message', type: 'chat'}, function() { });
+
+						// Create push token
+						QB.messages.tokens.create({ 
+							environment: 'development', 
+							client_identification_sequence: APIkey,
+							udid: udid,
+							platform: platform
+						}, function(err, data) {
+							//if (data) console.log(data);
+						}); 
+
+						// Suscribe to channels
+						QB.messages.subscriptions.create({
+							 notification_channels: channel 
+						}, function(err, data) {
+							if (err) console.log(err);
+							if (data) console.log(data);
+
+							QB.messages.subscriptions.list(function(err, data) {
+								console.log('Listing subscriptions');
+								//console.log(data);
+							})
+						}); 
 
 						// Message listener
 						QB.chat.onMessageListener = function(userId, message) {
   							// callback function
-  							console.log('Message from: ' + message.extension.user + ': ');
+  							console.log('New message from: ' + message.extension.sender);
   							console.log(message);
 
+  							var body = $base64.encode('New message from: ' + message.extension.sender);
+  							//body = body.toString(CryptoJS.enc.Base64);
 
-  					// 		var params = {
-						 //  		// filter: 
-						 //  		//{
-						 //  			// { field: 'message', param: 'ne', value: 'Hey' },
-						 //  			 //field: 'sender_id', param: 'or', value: [myID, userId] ,
-						 //  			 // field: 'receiver_id', param: 'or', value: [myID, userId] 
-						 //  		//},
-							//   	order: { sort: 'desc', field: 'created_at' }
-							// };
-
-							var filters = [
-								//'number sender_id in ' + myID.toString() + ',' + userId.toString(),
-								//'number receiver_id in ' + myID.toString() + ',' + userId.toString()
-								'string message in Hey'
-							];
-
-  							// Trigger call to get chat history from custom objects
-  							QB.data.list("chat_history", filters, function(error, response){
-							//QB.data.list("chat_history", function(error, response){
-  								// callback function
-  								if (error) console.log(error);
-
-  								if (response) {
-  									console.log('Retrieved chat history');
-  									console.log(response);
-  								}
-							});
+  							console.log('Creating push event');
+  							QB.messages.events.create({
+  								notification_type: 'push',
+  								//push_type: pushType,
+  								environment: 'development',
+  								user: {
+  									ids: myID.toString()
+  								},
+  								message: body
+  							}, function(response) {
+  								if (response) console.log(response);
+  							})
   							
+
+							References.getReferences()
+						      .then(function() {
+						       References.getConversations()
+						         .then(function(conversations) {
+						           console.log(conversations);
+
+						           // Give back conversations to be put into references
+						           References.setConversations(conversations)
+						           //$state.go('home.tab.selling');
+
+						         });
+						      });
+		
+
 						};
-
-
-
 					});
 				}
 		});
@@ -144,8 +150,25 @@ app.factory("Chat", function($rootScope, $sessionStorage, $http, $q, $document, 
 
 
 	return {
-		send: function (receipient, body, reference) {
+		send: function (conversation, reference, message) {
 
+			var me = User.user();
+			var receipient;
+
+			// Send to user that is not me
+			receipient = conversation.posterId;
+			if (conversation.posterId === me.id) {
+				receipient = conversation.messengerId;
+			} 
+
+			// Message body
+			var conversationKey = conversation.key;
+			var body = message;
+			console.log('Sending message: ' + message);
+
+			console.log('ID of receipient: ' + receipient);
+
+			// Get receipient QB id
 			QB.users.get({facebook_id: receipient}, function(error, response){
   				
 				if (error) {
@@ -154,49 +177,24 @@ app.factory("Chat", function($rootScope, $sessionStorage, $http, $q, $document, 
 				}
 
   				if (response) {
+  					console.log(response);
   					var userID = response.id;
 	  				var jid = userID + '-' + appID + '@chat.quickblox.com';
+	  				
 
-					console.log('Sending message to: ' + receipient);
+					console.log('Sending message to: ' + response.id);
 
 					// Chat message
-					var me = User.user();
 					var extension = {
-						title: reference.title,
-						user: me.name,
-						fbID: me.id,
-						userIcon: me.icon
+						conversation: conversationKey,
+						sender: me.name
 					};
 					
+					// Send message
 					QB.chat.send(jid, {
 						type: 'chat',
 						body: body,
 						extension: extension
-					});
-
-					// Chat history object
-					var data = {
-						sender_id: myID,
-			  			receiver_id: userID,
-			  			message: body,
-			  			token: $sessionStorage.token,
-						class: 'chat_history',
-
-						title: reference.title,
-						user: me.name,
-						fbID: me.id,
-						userIcon: me.icon
-					}
-					 
-					QB.data.create("chat_history", data, function(err, response){
-
-			  			if (err) {
-			  				console.log(err);
-			  			}
-			  			if (response) {
-			  				console.log('Created custom object');
-			  				console.log(response);
-			  			}
 					});
 				}
 

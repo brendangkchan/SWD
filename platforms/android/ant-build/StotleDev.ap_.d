@@ -93,6 +93,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/user2.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/woman1.jpg \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/woman2.jpg \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/angular-base64.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/app.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/aws.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/camera.js \
@@ -121,6 +122,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/user.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-animate \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-base64 \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-sanitize \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-ui-router \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/aws \
@@ -138,6 +140,11 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-animate/angular-animate.min.js.map \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-animate/bower.json \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-animate/README.md \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-base64/angular-base64.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-base64/angular-base64.min.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-base64/bower.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-base64/LICENSE \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-base64/README.md \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-sanitize/angular-sanitize.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-sanitize/angular-sanitize.min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-sanitize/angular-sanitize.min.js.map \
@@ -233,6 +240,8 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/ng-file-upload/LICENSE \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/ng-file-upload/README.md \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.ionic.keyboard \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.jcesarmobile.IDFVPlugin \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.phonegap.plugins.PushPlugin \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.camera \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.file \
@@ -241,6 +250,10 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.statusbar \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.ionic.keyboard/www \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.ionic.keyboard/www/keyboard.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.jcesarmobile.IDFVPlugin/www \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.jcesarmobile.IDFVPlugin/www/IDFVPlugin.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.phonegap.plugins.PushPlugin/www \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.camera/www \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/Camera.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.camera/www/CameraConstants.js \

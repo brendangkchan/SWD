@@ -1,66 +1,68 @@
 var app = angular.module('references', []);
 
 
-app.factory("References", function($location, $localStorage, $ionicLoading, AWSHelper) {
+app.factory("References", function($location, $localStorage, $ionicLoading, $q, AWSHelper) {
   // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
-  var references = [
-    { id: 0, title: 'Introductory Chemistry Essentials', author: 'Nivaldo Tro', icon: 'img/test/book_chem.jpg', isbn: '978-0321725998', price: 9, count: '', conversations: [], type: 'sell'},
-    { id: 1, title: 'Campbell Biology', author: 'Jane Reece', icon: 'img/test/book_bio.jpg', isbn: '978-0321775658', price: 8, count: '', conversations: [], type: 'sell'},
-    { id: 2, title: 'Lehninger Principles of Biochemistry', author: 'David Nelson', icon: 'img/test/book_biochem.jpg', isbn: ' 978-1429234146', price: 9, count: '', conversations: [], type: 'buy'},
-    { id: 3, title: 'Calculus', author: 'Ron Larson', icon: 'img/test/book_math.jpg', isbn: '978-0547167022', price: 8, count: '', conversations: [], type: 'buy'}
-  ];
+  // // Some fake testing data
+  // var references = [
+  //   { id: 0, title: 'Introductory Chemistry Essentials', author: 'Nivaldo Tro', icon: 'img/test/book_chem.jpg', isbn: '978-0321725998', price: 9, count: '', conversations: [], type: 'sell'},
+  //   { id: 1, title: 'Campbell Biology', author: 'Jane Reece', icon: 'img/test/book_bio.jpg', isbn: '978-0321775658', price: 8, count: '', conversations: [], type: 'sell'},
+  //   { id: 2, title: 'Lehninger Principles of Biochemistry', author: 'David Nelson', icon: 'img/test/book_biochem.jpg', isbn: ' 978-1429234146', price: 9, count: '', conversations: [], type: 'buy'},
+  //   { id: 3, title: 'Calculus', author: 'Ron Larson', icon: 'img/test/book_math.jpg', isbn: '978-0547167022', price: 8, count: '', conversations: [], type: 'buy'}
+  // ];
 
-  var conversations = [
-    { id: 0, name: 'Matthew P', preview: 'Is this book still for sale?', price: 10, icon: 'img/test/boy1.jpg', images: '', comments: '', messages: []},
-    { id: 1, name: 'Manuel D', preview: 'When will you be on campus?', price: 8, icon: 'img/test/boy2.jpg', images: '', comments: '', messages: []},
-    { id: 2, name: 'Angel M', preview: 'I will be in front of the gym wearing a red shirt.', price: 10, icon: 'img/test/girl1.jpg', images: '', comments: '', messages: []},
-    { id: 3, name: 'Rachel F', preview: 'Yea, the book has some highlighting, but nothing huge', price: 8, icon: 'img/test/girl2.jpg', images: '', comments: '', messages: []},
-    { id: 4, name: 'Sandra R', preview: 'I am free Mondays after 5.', price: 8, icon: 'img/test/girl3.jpg', images: '', comments: '', messages: []}
-  ];
+  // var conversations = [
+  //   { id: 0, name: 'Matthew P', preview: 'Is this book still for sale?', price: 10, icon: 'img/test/boy1.jpg', images: '', comments: '', messages: []},
+  //   { id: 1, name: 'Manuel D', preview: 'When will you be on campus?', price: 8, icon: 'img/test/boy2.jpg', images: '', comments: '', messages: []},
+  //   { id: 2, name: 'Angel M', preview: 'I will be in front of the gym wearing a red shirt.', price: 10, icon: 'img/test/girl1.jpg', images: '', comments: '', messages: []},
+  //   { id: 3, name: 'Rachel F', preview: 'Yea, the book has some highlighting, but nothing huge', price: 8, icon: 'img/test/girl2.jpg', images: '', comments: '', messages: []},
+  //   { id: 4, name: 'Sandra R', preview: 'I am free Mondays after 5.', price: 8, icon: 'img/test/girl3.jpg', images: '', comments: '', messages: []}
+  // ];
 
-  // Build conversations
-  for (var i = 0; i < conversations.length; i++) {
-    // Add ID
-    var id = Math.random().toString(36).slice(2);
-    conversations[i].id = id;
+  // // Build conversations
+  // for (var i = 0; i < conversations.length; i++) {
+  //   // Add ID
+  //   var id = Math.random().toString(36).slice(2);
+  //   conversations[i].id = id;
 
-    // Add messages
-    for (var j=0; j<8; j++) {
-      var id = Math.random().toString(36).slice(2);
-      conversations[i].messages.push(
-        {
-          name: 'name',
-          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-          id: id
-        });
-    }
+  //   // Add messages
+  //   for (var j=0; j<8; j++) {
+  //     var id = Math.random().toString(36).slice(2);
+  //     conversations[i].messages.push(
+  //       {
+  //         name: 'name',
+  //         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  //         id: id
+  //       });
+  //   }
 
-    // Add images
-    conversations[i].images = [
-      'img/test/image1.jpg',
-      'img/test/image2.jpg',
-      'img/test/image3.jpg',
-      'img/test/image4.jpg',
-    ];
+  //   // Add images
+  //   conversations[i].images = [
+  //     'img/test/image1.jpg',
+  //     'img/test/image2.jpg',
+  //     'img/test/image3.jpg',
+  //     'img/test/image4.jpg',
+  //   ];
 
-    // Add comments
-    conversations[i].comments = 'Lorem ipsum dolor sit amet, consectetur consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
-  }
+  //   // Add comments
+  //   conversations[i].comments = 'Lorem ipsum dolor sit amet, consectetur consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+  // }
 
-  // Build references
-  for (var i = 0; i < references.length; i++) {
-    references[i].conversations.push(conversations[i]);
-    references[i].conversations.push(conversations[i+1]);
-    references[i].count = references[i].conversations.length;
-  }
+  // // Build references
+  // for (var i = 0; i < references.length; i++) {
+  //   references[i].conversations.push(conversations[i]);
+  //   references[i].conversations.push(conversations[i+1]);
+  //   references[i].count = references[i].conversations.length;
+  // }
 
   // Reference types
   // var sell_references = references.slice(0, 2);
   // var buy_references = references.slice(2);
-  var sell_references;
-  var buy_references;
+  var sell_references, buy_references;
+  $localStorage.sell_references;
+  $localStorage.buy_references;
+
 
   // Track expanded references
   var shownReferenceSell = null;
@@ -69,8 +71,10 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
   // Current conversation
   $localStorage.reference;
   $localStorage.conversation;
-  var reference;
-  var conversation;
+  var reference, conversation
+
+  // Online status
+  var referenceOnline, conversationOnline;
 
   // Load last conversation after refresh
 
@@ -93,9 +97,12 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
 
     // New conversation
     var conversation = { 
-        id: post.userID,
-        post_id: post.id, 
-        name: post.user, 
+        post_id: post.id,
+        id: post.userID, 
+        name: post.user,
+        posterId: post.userID,
+        posterIcon: post.userIcon,
+        posterName: post.user,
         preview: '', 
         price: post.price, 
         userIcon: post.userIcon, 
@@ -113,53 +120,95 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
     // Conversation
     var conversationIndex;
 
+    // Newly created reference type (opposite of messaged post)
+    var referenceType;
+
     // Determine target references 
     // SWITCH REFERENCES
     if (post.type === 'sell') {
-      references = buy_references;
+        references = $localStorage.buy_references;
+        referenceType = 'buy';
     }
     else {
-      references = sell_references;
+        references = $localStorage.sell_references;
+        referenceType = 'sell';
     }
 
     // Reference already exists
-    if (referenceExists(book, post) !== false) {
+    if (referenceExists(book, post)) {
 
-      // Index of matched reference
-      referenceIndex = referenceExists(book, post);
+        //  Matched reference
+        referenceIndex = referenceExists(book, post);
+        var reference = references[referenceIndex];
 
-      conversationIndex = references[referenceIndex].conversations.length;
 
-      // Add new conversation to existing reference
-      references[referenceIndex].conversations.push(conversation);
-      references[referenceIndex].count++;
-      reference = references[referenceIndex];
+        // LOCAL
+        // Conversation Index
+        conversationIndex = references[referenceIndex].conversations.length;
 
-      console.log('Adding conversation with: ' + conversation.name + ' to Reference id: ' + referenceIndex);
+        // Add new conversation to existing reference
+        references[referenceIndex].conversations.push(conversation);
+        references[referenceIndex].count++;
+        reference = references[referenceIndex];
+
+        referenceOnline = true;
+        conversationOnline = false;  
+
+        // REMOTE
+        // Add Conversation to Reference
+        //AWSHelper.addConversationToReferences(conversation, reference);
+
     }
 
     // New reference
     else {
-      referenceIndex = references.length;
-      conversationIndex = 0;
-    
-      // New book
-      reference = { 
-        id: referenceIndex, 
-        title: book.title, 
-        author: book.author, 
-        icon: book.icon, 
-        count: 1, 
-        conversations: [conversation],
-        type: post.type,
-        price: '',
-        status: 'open'
-      };
+        referenceIndex = references.length;
+        conversationIndex = 0;
+      
+        // New book
+        reference = { 
+          id: referenceIndex, 
+          title: book.title, 
+          author: book.author, 
+          icon: book.icon, 
+          count: 1, 
+          conversations: [conversation],
+          type: referenceType,
+          price: '',
+          status: 'open'
+        };
 
-      // Push new reference
-      references.push(reference);
+        // LOCAL: Push new reference
+        references.push(reference);
 
-      console.log('Adding new reference id: ' + referenceIndex);
+        // Switch reference type to opposite of post's when messaging
+        post.type = referenceType;
+
+        // // REMOTE: Create reference
+        // AWSHelper.createReference(book, post)
+        //   .then(function(data) {
+
+        //   // REMOTE: Add conversation to my (messenger) reference
+        //   AWSHelper.addConversationToReference(conversation, reference, 'me')
+        //     .then(function(data) {
+
+        //       // REMOTE: Add conversation to poster's reference
+        //       AWSHelper.addConversationToReference(conversation, reference, 'other')
+        //         .then(function(data) {
+
+        //           // Create JSON conversation in S3
+        //           AWSHelper.createS3Conversation(conversation, reference);
+
+        //       });
+
+        //   });
+
+        // });
+
+        referenceOnline = false;
+        conversationOnline = false;  
+
+        //console.log('Adding new reference id: ' + referenceIndex);
     }
 
     // Set current conversation
@@ -181,10 +230,10 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
     var references;
 
     if (post.type === 'sell') {
-      references = buy_references;
+      references = $localStorage.buy_references;
     }
     else {
-      references = sell_references;
+      references = $localStorage.sell_references;
     }
 
     // Check each reference
@@ -212,29 +261,17 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
 
   // Check if reference already exists
   var referenceExists = function (book, post) {
-    console.log('Checking if book: ' + book.title + ' in ' + post.type);
+    var newPost = post;
 
-    // References to check
-    var references;
-
+    // Check opposite type when messaging
     if (post.type === 'sell') {
-      references = buy_references;
+      newPost.type = 'buy';
     }
     else {
-      references = sell_references;
+      newPost.type = 'sell';
     }
 
-    // Check each reference
-    for (var i = 0; i < references.length; i++) {
-      // Check each conversation
-      if (book.title === references[i].title) {
-        console.log('Matching book found!');
-        return i;
-      }
-    }
-    // No conversation match
-    console.log('No matching book!');
-    return false; 
+   return checkBookInReferences(book, newPost);
   }
 
 
@@ -249,10 +286,10 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
 
     // Determine target references 
     if (post.type === 'sell') {
-      references = sell_references;
+      references = $localStorage.sell_references;
     }
     else {
-      references = buy_references;
+      references = $localStorage.buy_references;
     }
 
     // Reference already exists
@@ -298,10 +335,10 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
     var references;
 
     if (post.type === 'sell') {
-      references = sell_references;
+      references = $localStorage.sell_references;
     }
     else {
-      references = buy_references;
+      references = $localStorage.buy_references;
     }
 
     // Check each reference
@@ -321,43 +358,106 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
 
   return {
     getReferences: function() {
-      //return references;
+      var d = $q.defer();
 
       AWSHelper.getReferences().then(function (data) {
-      var posts = data;
-      console.log(posts);
+        var references = data;
 
-      sell_references = new Array();
-      buy_references = new Array();
+        sell_references = new Array();
+        buy_references = new Array();
 
-      for (var i = 0; i < posts.length; i++) {
-        var post = posts[i];
-        post.title = post.title.substr(post.title.indexOf(" ") + 1);
+        for (var i = 0; i < references.length; i++) {
+          var reference = references[i];
+          reference.title = reference.title.substr(reference.title.indexOf(" ") + 1);
 
-        console.log(post);
-        if ( post.type === 'sell') {
-          sell_references.push(post);
+          if ( reference.type === 'sell') {
+            sell_references.push(reference);
+          }
+          if (reference.type === 'buy') {
+            buy_references.push(reference); 
+          }
         }
-        if (post.type === 'buy') {
-          buy_references.push(post); 
+
+        $localStorage.sell_references = sell_references;
+        $localStorage.buy_references = buy_references;
+
+        console.log(sell_references);
+        console.log(buy_references);
+
+        d.resolve(data);
+      });
+
+      return d.promise;
+
+    },
+
+    getConversations: function() {
+      console.log('Retrieving all conversations');
+
+      var d = $q.defer();
+      var promise;
+      var promises = [];
+
+      var references = $localStorage.sell_references;
+
+      for (var i = 0; i < references.length; i++) {
+        console.log(references[i]);
+        for (var j = 0; j < references[i].conversations.length; j++) {
+
+          promise = AWSHelper.getS3Conversation(references[i].conversations[j])
+            .then(function(conversation) {
+                return conversation;
+            });
+            promises.push(promise);
         }
       }
 
-      console.log(sell_references);
-      console.log(buy_references);
+      references = $localStorage.buy_references;
 
-      // return {
-      //   sell: sell_posts,
-      //   buy: buy_posts,
-      // };
-    });
+      for (var i = 0; i < references.length; i++) {
+        for (var j = 0; j < references[i].conversations.length; j++) {
 
+          promise = AWSHelper.getS3Conversation(references[i].conversations[j])
+            .then(function(conversation) {
+                return conversation;
+            });
+            promises.push(promise);
+        }
+      }
+
+      $q.all(promises).then(function(values) {
+          d.resolve(values);
+      });
+
+      return d.promise;
     },
+
+    setConversations: function(conversations) {
+      console.log('Resetting loaded conversations');
+      var count = 0;
+
+      var references = $localStorage.sell_references;
+
+      for (var i = 0; i < references.length; i++) {
+        for (var j = 0; j < references[i].conversations.length; j++) {
+          references[i].conversations[j] = conversations[count++];
+        }
+      }
+
+      var references = $localStorage.buy_references;
+
+      for (var i = 0; i < references.length; i++) {
+        for (var j = 0; j < references[i].conversations.length; j++) {
+          references[i].conversations[j] = conversations[count++];
+        }
+      }
+    },
+
     selling: function() {
-      return sell_references;
+      return $localStorage.sell_references;
     },
     buying: function() {
-      return buy_references;
+      return $localStorage.buy_references;
     },
     get: function(referenceId) {
       // Simple index lookup
@@ -409,27 +509,80 @@ app.factory("References", function($location, $localStorage, $ionicLoading, AWSH
       reference = $localStorage.reference;
       conversation = $localStorage.conversation;
 
+      $localStorage.book = book;
+      $localStorage.post = post;
+
       return indices;
     },
     addReference: function (book, post) {
       addReference(book, post);
     },
     checkForBook: function (book, post) {
-      console.log(book);
       return checkBookInReferences(book, post);
+    },
+    referenceOnline: function() { return referenceOnline; },
+    conversationOnline: function() { return conversationOnline; },
+    book: function() { return $localStorage.book; },
+    post: function() { return $localStorage.post; },
+    updateConversation: function(updatedConversation) {
+      console.log('Updating conversations');
+      var count = 0;
+
+      var references = $localStorage.sell_references;
+
+      for (var i = 0; i < references.length; i++) {
+        for (var j = 0; j < references[i].conversations.length; j++) {
+          
+          if (references[i].conversations[j].key === updatedConversation.key) {
+            references[i].conversations[j] = updatedConversation;
+            return;
+          }
+        }
+      }
+
+      var references = $localStorage.buy_references;
+
+      for (var i = 0; i < references.length; i++) {
+        for (var j = 0; j < references[i].conversations.length; j++) {
+          
+          if (references[i].conversations[j].key === updatedConversation.key) {
+            references[i].conversations[j] = updatedConversation;
+            return;
+          }
+        }
+      }
     }
   }
 });
 
 // Reference Sell Tab Controller
 
-app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper){
+app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state, Results){
 
   //$localStorage.$reset();
 
+  var init = function() {
+     References.getReferences()
+      .then(function() {
+       References.getConversations()
+         .then(function(conversations) {
+           console.log(conversations);
+
+           // Give back conversations to be put into references
+           References.setConversations(conversations)
+           //$state.go('home.tab.selling');
+
+         });
+      });
+  };
+
+  init();
+
   // Load references and conversations
   $scope.references = References.selling();
-  $scope.conversations = References.conversations();
+
+  console.log($scope.references);
+  //$scope.conversations = References.conversations();
 
   // Store clicked conversation
   $scope.selectConversation = function (referenceIndex, conversationIndex) {
@@ -453,11 +606,13 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
     return $scope.shownReference === reference;
   };
 
-  // Remove reference permanantly
-  // $scope.removeReference = function(reference) {
-  //   console.log("Removing reference: " + reference.id);
-  //   $scope.references.splice($scope.references.indexOf(reference), 1);
-  // };
+  // Search for reference
+  $scope.search = function(reference) {
+    console.log('Searching for reference: ' + reference.title);
+    Results.selectBook(reference);
+    Posts.setBook(reference);
+    $state.go('home.posts.selling');
+  };
 
   // Delete reference permanantly
   $scope.delete = function(reference) {
@@ -488,11 +643,11 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
 
 // Reference Buy Tab Controller
 
-app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper){
+app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper, Posts, $state, Results){
 
   // Load references and conversations
   $scope.references = References.buying();
-  $scope.conversations = References.conversations();
+  //$scope.conversations = References.conversations();
 
   // Store clicked conversation
   $scope.selectConversation = function (referenceIndex, conversationIndex) {
@@ -514,6 +669,14 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHe
   $scope.isReferenceShown = function(reference) {
     $scope.shownReference = References.getShownReferenceBuy();
     return $scope.shownReference === reference;
+  };
+
+  // Search for reference
+  $scope.search = function(reference) {
+    console.log('Searching for reference: ' + reference.title);
+    Results.selectBook(reference);
+    Posts.setBook(reference);
+    $state.go('home.posts.selling');
   };
 
   // Delete reference permanantly

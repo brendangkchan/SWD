@@ -791,9 +791,19 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 
 						if (data) {
 							console.log('Conversation retrieval successful!');
-							console.log(JSON.parse(data.Body.toString()));
+							var retrievedConversation = JSON.parse(data.Body.toString());
+							console.log(retrievedConversation);
 
-							d.resolve(JSON.parse(data.Body.toString()));
+							if (retrievedConversation.messengerName === user.name) {
+								retrievedConversation.name = retrievedConversation.posterName;
+								retrievedConversation.userIcon = retrievedConversation.posterIcon;
+							} else {
+								retrievedConversation.name = retrievedConversation.messengerName;
+								retrievedConversation.userIcon = retrievedConversation.messengerIcon;
+							}
+
+
+							d.resolve(retrievedConversation);
 						}
 					});
 			  	});

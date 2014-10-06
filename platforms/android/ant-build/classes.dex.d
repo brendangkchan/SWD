@@ -3,12 +3,18 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$2.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/BuildConfig.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/Manifest$permission.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/Manifest.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/R$attr.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/R$drawable.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/R$string.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/R$xml.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/R.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/StotleDev.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/plugin/gcm/CordovaGCMBroadcastReceiver.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/plugin/gcm/GCMIntentService.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/plugin/gcm/PushHandlerActivity.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/plugin/gcm/PushPlugin.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/camera/CameraLauncher.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/camera/ExifHelper.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/camera/FileHelper.class \
@@ -86,3 +92,5 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar$3.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/dexedLibs/classes-bc655fa311047f8f8d01691e864858fc.jar \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/dexedLibs/gcm-df569ce2eebd489898a4af239c03de0f.jar \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/dexedLibs/android-support-v13-c19511f148d196bf337027683f2a7e87.jar \

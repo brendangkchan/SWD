@@ -16,7 +16,7 @@ var app = angular.module('user', ['ngStorage']);
 
 // User data 
 
-app.factory("User", function($sessionStorage, $window, $http, $q, OpenFB, AWSService) {
+app.factory("User", function($sessionStorage, $window, $http, $q, $state, OpenFB, AWSService) {
 
 	var storage = $sessionStorage;
 
@@ -36,29 +36,31 @@ app.factory("User", function($sessionStorage, $window, $http, $q, OpenFB, AWSSer
 				school: null
 			};
 
-			parseCollege(me, user);
+			//parseCollege(me, user);
 
 			storage['user'] = me;
+
+			return me;
 
 			console.log('Current User: ');
 			console.log(storage['user']);
 	}
 
 
-	var parseCollege = function(me, user) {
-		// Check education array
-		if (user.education.length === 0) {
-			return;
-		} else {
-			for (var i = 0; i < user.education.length; i++) {
-				if (user.education[i].type === 'College') {
-					me.schoolID = user.education[i].school.id;
-					me.school = user.education[i].school.name;
-					return;
-				}
-			}
-		}
-	}
+	// var parseCollege = function(me, user) {
+	// 	// Check education array
+	// 	if (user.education.length === 0) {
+	// 		return;
+	// 	} else {
+	// 		for (var i = 0; i < user.education.length; i++) {
+	// 			if (user.education[i].type === 'College') {
+	// 				me.schoolID = user.education[i].school.id;
+	// 				me.school = user.education[i].school.name;
+	// 				return;
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	var checkUser = function() {
 
@@ -68,7 +70,6 @@ app.factory("User", function($sessionStorage, $window, $http, $q, OpenFB, AWSSer
               params: {TableName: AWSService.UsersTable()}
             })
             .then(function(table) {
-            	console.log('DynamoDB object: ' + table);
 
 			// Query table for user
 			console.log('Looking for user: ' + storage['user'].id + ' in table: ' + AWSService.UsersTable());
@@ -76,32 +77,21 @@ app.factory("User", function($sessionStorage, $window, $http, $q, OpenFB, AWSSer
       		{
                 Key: 
                 	{
-            			'userEmail': { S: storage['user'].id },
-                		'school': { S: storage['user'].schoolID }
+            			'userID': { S: storage['user'].id },
             		},
                 TableName: AWSService.UsersTable()
             }, function(err, data) {
-            	
-            	if (data) {
-            		console.log(data);
-            		console.log('User already exists');
-            	} else {
-            		console.log('Storing new user');
-                    // Create an entry
-                    var itemParams = {
-                    	Item: {
-                    		'userEmail': {S: storage['user'].id},
-                    		'school': {S: storage['user'].schoolID}
-                    	},
-                    	ReturnItemCollectionMetrics: 'SIZE'
-                    };
-                    // Put entry in table
-                    table.putItem(itemParams, 
-                    	function(err, data) {
-                    		console.log(data);
-                    		console.log(err);
-                	});  
-                  }
+            	console.log(data)
+	            	if (!angular.isUndefined(data.Item)) {
+	            		console.log(data);
+	            		console.log('User already exists');
+	            		storage['user'].schoolID = data.Item.schoolID.S;
+	            		$state.go('home.tab.selling');
+	            	} else {
+	            		// Get school
+	            		console.log('New user');
+	            		$state.go('home.signup'); 
+	              	}
            		});
 			});
         });
@@ -109,6 +99,11 @@ app.factory("User", function($sessionStorage, $window, $http, $q, OpenFB, AWSSer
 
 
 	return {
+		setSchool: function(school) {
+			storage['user'].schoolID = school.id;
+			storage['user'].schoolz = school.name;
+		},
+
 		getUser: function() {
 			console.log('Retrieving user information');
 
@@ -157,6 +152,33 @@ app.factory("User", function($sessionStorage, $window, $http, $q, OpenFB, AWSSer
 		},
 		access_token: function() {
 			return window.sessionStorage['fbtoken'];
+		},
+		uploadUser: function(user) {
+
+			// Load AWS credentials
+        	AWSService.credentials().then(function() {
+	            AWSService.dynamo({
+	              params: {TableName: AWSService.UsersTable()}
+	            })
+	            .then(function(table) {
+
+					// Query table for user
+					console.log('Uploading user: ' + storage['user'].id + ' in table: ' + AWSService.UsersTable());
+
+					// Create an entry
+	                var itemParams = {
+	                	Item: {
+	                		'userID': {S: storage['user'].id},
+	                		'schoolID': {S: storage['user'].schoolID}
+	                	}
+	                };
+	                // Put entry in table
+	                table.putItem(itemParams, 
+	                	function(err, data) {
+	                		console.log(err);
+	            		});  
+            	});
+	        });
 		}
 	}
 

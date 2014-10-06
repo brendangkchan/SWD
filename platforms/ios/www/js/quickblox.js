@@ -913,13 +913,29 @@ DataProxy.prototype.create = function(className, data, callback) {
 };
 
 DataProxy.prototype.list = function(className, filters, callback) {
+  var item, newFilters = [];
   // make filters an optional parameter
   if (typeof callback === 'undefined' && typeof filters === 'function') {
     callback = filters;
     filters = null;
+  } else {
+    if (filters) {
+      if (filters instanceof Array) {
+        filters.forEach(function(el) {
+          item = generateFilter(el);
+          newFilters.push(item);
+        });
+      } else {
+        item = generateFilter(filters);
+        newFilters.push(item);
+      }
+    }
   }
-  if (config.debug) { console.log('DataProxy.list', className, filters);}
-  this.service.ajax({url: Utils.getUrl(config.urls.data, className), data: filters}, function(err,result){
+
+
+
+  if (config.debug) { console.log('DataProxy.list', className, filters, newFilters);}
+  this.service.ajax({url: Utils.getUrl(config.urls.data, className), data: newFilters}, function(err,result){
     if (err){ callback(err, null); }
     else { callback (err, result); }
   });

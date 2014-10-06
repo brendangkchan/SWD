@@ -640,7 +640,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 	$scope.selectBook = function(book) {
 		console.log("Selected book: " + book.title);
 		Results.selectBook(book);
-		Posts.getPosts(book);
+		//Posts.getPosts(book);
 		$rootScope.resultsButtonToPosts = true;
 	}
 

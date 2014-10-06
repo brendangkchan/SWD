@@ -242,6 +242,85 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 
         
     };
+
+    var updateConversationStatusesFromReference = function(reference, status) {
+
+    	var user = User.user();
+
+    	// Keep track of changed posts so no repeats
+    	var seenPosts = new Array();
+
+    	// For each conversation
+    	angular.forEach(reference.conversations, function(conversation) {
+			
+			// Update status
+    		conversation.status = status;
+
+    		// Upload revised conversation
+    		this.createS3Conversation(conversation);
+
+    		// Change post status if your own
+    		if (conversation.posterId = user.id && seenPosts.indexOf(conversation.post_id) > -1) {
+    			// Add to seen posts
+    			seenPosts.push(conversation.post_id);
+    			// Update post
+    			updatePostStatus(conversation, status);
+    		}
+    	});
+    };
+
+    // Update own post status after reference changed
+    var updatePostStatus = function(conversation, status) {
+
+    	var postID = conversation.post_id;
+    	var schoolID = User.user().schoolID;
+
+    	console.log('Updating post status from reference: ' + conversation.title);
+
+		var d = $q.defer();
+
+		// Load AWS credentials
+        AWSService.credentials().then(function() {
+            AWSService.dynamo({
+              params: {TableName: AWSService.PostsTable()}
+            })
+            .then(function(table) {
+
+			// Update parameters
+                var itemParams = {
+                	'Key': {
+            			 'schoolID' : { 
+                			'S': schoolID
+            			 },
+            			 'postID' : {
+            			 	'S': postID
+            			 }
+                	},
+                	"AttributeUpdates": {
+				        "status": {
+				            "Value": {
+				                "S": status
+				            },
+				            "Action": "PUT"
+				        }
+				    },
+				    "ReturnValues": "ALL_NEW"
+                };
+                // Put entry in table
+                table.updateItem(itemParams, 
+                	function(err, data) {
+                		if (data) {
+                			console.log(data);
+				          	d.resolve(data);
+				        } else {
+				        	console.log(err);
+				          	d.reject(err);
+				        }
+            	});  
+			});
+        });
+		return d.promise;
+    };
 	 
 
 
@@ -328,6 +407,12 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 
 			var user = User.user();
 			var d = $q.defer();
+
+			// Update all conversations for notification
+			updateConversationStatusesFromReference(reference, status);
+
+			// Update post status if reference is your own
+			updatePostStatusesFromReference(reference, status);
 
 			var title;
 			if (reference.type === 'sell') {
@@ -636,7 +721,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 	            })
 	            .then(function(table) {
 
-    				// Query table for user
+    				// Update parameters
                     var itemParams = {
 
                     	// My reference
@@ -687,6 +772,22 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 				conversation.messengerId = user.id;
 				conversation.messengerName = user.name;
 				conversation.messengerIcon = user.icon;
+
+				// Read markers
+				conversation.read = new Array();
+
+				// Status
+				conversation.status = 'open';
+			}
+
+			// Mark conversation read by you
+			conversation.read[user.id] = true;
+
+			// Mark unread for other user
+			if (conversation.messengerId === user.id) {
+				conversation.read[conversation.posterId] = false;
+			} else {
+				conversation.read[conversation.messengerId] = false;
 			}
 
 			// Conversation key: post id, poster id, messenger id
@@ -791,9 +892,19 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 
 						if (data) {
 							console.log('Conversation retrieval successful!');
-							console.log(JSON.parse(data.Body.toString()));
+							var retrievedConversation = JSON.parse(data.Body.toString());
+							console.log(retrievedConversation);
 
-							d.resolve(JSON.parse(data.Body.toString()));
+							if (retrievedConversation.messengerName === user.name) {
+								retrievedConversation.name = retrievedConversation.posterName;
+								retrievedConversation.userIcon = retrievedConversation.posterIcon;
+							} else {
+								retrievedConversation.name = retrievedConversation.messengerName;
+								retrievedConversation.userIcon = retrievedConversation.messengerIcon;
+							}
+
+
+							d.resolve(retrievedConversation);
 						}
 					});
 			  	});

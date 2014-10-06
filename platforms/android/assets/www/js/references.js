@@ -557,9 +557,26 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
 
 // Reference Sell Tab Controller
 
-app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state){
+app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state, Results){
 
   //$localStorage.$reset();
+
+  var init = function() {
+     References.getReferences()
+      .then(function() {
+       References.getConversations()
+         .then(function(conversations) {
+           console.log(conversations);
+
+           // Give back conversations to be put into references
+           References.setConversations(conversations)
+           //$state.go('home.tab.selling');
+
+         });
+      });
+  };
+
+  init();
 
   // Load references and conversations
   $scope.references = References.selling();
@@ -592,7 +609,8 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
   // Search for reference
   $scope.search = function(reference) {
     console.log('Searching for reference: ' + reference.title);
-    Posts.getPosts(reference);
+    Results.selectBook(reference);
+    Posts.setBook(reference);
     $state.go('home.posts.selling');
   };
 
@@ -625,7 +643,7 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
 
 // Reference Buy Tab Controller
 
-app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper, Posts, $state){
+app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper, Posts, $state, Results){
 
   // Load references and conversations
   $scope.references = References.buying();
@@ -656,7 +674,8 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHe
   // Search for reference
   $scope.search = function(reference) {
     console.log('Searching for reference: ' + reference.title);
-    Posts.getPosts(reference);
+    Results.selectBook(reference);
+    Posts.setBook(reference);
     $state.go('home.posts.selling');
   };
 

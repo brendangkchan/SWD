@@ -43,23 +43,28 @@ angular.module('sociogram.controllers', ['user'])
 			function () {
 				console.log('Login successful');
 
-				User.getUser().then(
-					function(response) {
-						References.getReferences()
-							.then(function() {
-								References.getConversations()
-									.then(function(conversations) {
-										console.log(conversations);
+				User.getUser();
+				// .then(
+				// 	function(response) {
 
-										// Give back conversations to be put into references
-										References.setConversations(conversations)
-										$state.go('home.tab.selling');
-										//$state.go('home.signup');
-									});
-							});
+
+
+
+						// References.getReferences()
+						// 	.then(function() {
+						// 		References.getConversations()
+						// 			.then(function(conversations) {
+						// 				console.log(conversations);
+
+						// 				// Give back conversations to be put into references
+						// 				References.setConversations(conversations)
+						// 				//$state.go('home.tab.selling');
+						// 				$state.go('home.signup');
+						// 			});
+						// 	});
 						
-					}
-				);
+				// 	}
+				// );
 
 				
 			},

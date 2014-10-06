@@ -11,6 +11,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
   console.log('Loading conversation with: ' + $scope.conversation.name);
 
   var me = User.user();
+  $scope.me = me;
 
 
   var referenceOnline, conversationOnline;
@@ -30,8 +31,12 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
       // Retrieve conversation if it exists in S3
       AWSHelper.getS3Conversation($scope.conversation)
         .then(function(retrievedConversation) {
+          
           // Conversation exists, retrieved
           $scope.conversation = retrievedConversation;
+
+          // Mark the conversation read
+          AWSHelper.createS3Conversation($scope.conversation);
         });
     }
       
@@ -47,6 +52,10 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
   // Methods for input directive
   var alternate,
   isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
+  $scope.updateConversation = function() {
+    $scope.conversation = References.getSelectedConversation();
+  };
 
 
   // Send Message
@@ -180,7 +189,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
   // Hide Keyboard
   $scope.inputDown = function() {
     if (isIOS) $scope.data.keyboardHeight = 0;
-    $ionicScrollDelegate.resize();
+    //$ionicScrollDelegate.resize();
   }
 
   // Message Data
