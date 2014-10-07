@@ -184,27 +184,6 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
         // Switch reference type to opposite of post's when messaging
         post.type = referenceType;
 
-        // // REMOTE: Create reference
-        // AWSHelper.createReference(book, post)
-        //   .then(function(data) {
-
-        //   // REMOTE: Add conversation to my (messenger) reference
-        //   AWSHelper.addConversationToReference(conversation, reference, 'me')
-        //     .then(function(data) {
-
-        //       // REMOTE: Add conversation to poster's reference
-        //       AWSHelper.addConversationToReference(conversation, reference, 'other')
-        //         .then(function(data) {
-
-        //           // Create JSON conversation in S3
-        //           AWSHelper.createS3Conversation(conversation, reference);
-
-        //       });
-
-        //   });
-
-        // });
-
         referenceOnline = false;
         conversationOnline = false;  
 
@@ -486,6 +465,9 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
 
       reference = $localStorage.reference;
       conversation = $localStorage.conversation;
+
+      referenceOnline = true;
+      conversationOnline = true;
     },
     selectBuyConversation: function (referenceIndex, conversationIndex) {
       console.log('Selected Buying Reference: ' + referenceIndex + ' Conversation: ' + conversationIndex);
@@ -495,7 +477,8 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
       reference = $localStorage.reference;
       conversation = $localStorage.conversation;
 
-      console.log(conversation);
+      referenceOnline = true;
+      conversationOnline = true;
     },
     getSelectedReference: function() {
       return reference;
@@ -558,7 +541,7 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
 
 // Reference Sell Tab Controller
 
-app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state, Results){
+app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state, Results, Notifications){
 
   //$localStorage.$reset();
 
@@ -573,6 +556,10 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
            References.setConversations(conversations)
            //$state.go('home.tab.selling');
 
+
+           Notifications.createMessageAndPostStatusNotifications(References.selling());
+           Notifications.createMessageAndPostStatusNotifications(References.buying());
+           Notifications.consolidateMessageNotifications();
          });
       });
   };

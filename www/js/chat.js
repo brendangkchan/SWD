@@ -113,18 +113,18 @@ app.factory("Chat", function($rootScope, $sessionStorage, $http, $q, $document, 
   							var body = $base64.encode('New message from: ' + message.extension.sender);
   							//body = body.toString(CryptoJS.enc.Base64);
 
-  							console.log('Creating push event');
-  							QB.messages.events.create({
-  								notification_type: 'push',
-  								//push_type: pushType,
-  								environment: 'development',
-  								user: {
-  									ids: myID.toString()
-  								},
-  								message: body
-  							}, function(response) {
-  								if (response) console.log(response);
-  							})
+  							// console.log('Creating push event');
+  							// QB.messages.events.create({
+  							// 	notification_type: 'push',
+  							// 	//push_type: pushType,
+  							// 	environment: 'development',
+  							// 	user: {
+  							// 		ids: myID.toString()
+  							// 	},
+  							// 	message: body
+  							// }, function(response) {
+  							// 	if (response) console.log(response);
+  							// })
   							
 
 							References.getReferences()

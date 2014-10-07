@@ -1417,7 +1417,7 @@ var config = {
     type: '.json'
   },
   ssl: false,
-  debug: true
+  debug: false
 };
 
 // Browserify exports

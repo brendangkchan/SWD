@@ -228,87 +228,6 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
         return deferred.promise();    
     };
 
-  //   var updateConversationStatusesFromReference = function(reference, status) {
-
-  //   	var user = User.user();
-
-  //   	// Keep track of changed posts so no repeats
-  //   	var seenPosts = new Array();
-
-  //   	// For each conversation
-  //   	angular.forEach(reference.conversations, function(conversation) {
-			
-		// 	// Update status
-  //   		conversation.status = status;
-
-  //   		// Upload revised conversation
-  //   		AWSHelper.createS3Conversation(conversation);
-
-  //   		// Change post status if your own
-  //   		if (conversation.posterId = user.id && seenPosts.indexOf(conversation.post_id) > -1) {
-  //   			// Add to seen posts
-  //   			seenPosts.push(conversation.post_id);
-  //   			// Update post
-  //   			updatePostStatus(conversation, status);
-  //   		}
-  //   	});
-  //   };
-
-  //   // Update own post status after reference changed
-  //   var updatePostStatus = function(conversation, status) {
-
-  //   	var postID = conversation.post_id;
-  //   	var schoolID = User.user().schoolID;
-
-  //   	console.log('Updating post status from reference: ' + conversation.title);
-
-		// var d = $q.defer();
-
-		// // Load AWS credentials
-  //       AWSService.credentials().then(function() {
-  //           AWSService.dynamo({
-  //             params: {TableName: AWSService.PostsTable()}
-  //           })
-  //           .then(function(table) {
-
-		// 	// Update parameters
-  //               var itemParams = {
-  //               	'Key': {
-  //           			 'schoolID' : { 
-  //               			'S': schoolID
-  //           			 },
-  //           			 'postID' : {
-  //           			 	'S': postID
-  //           			 }
-  //               	},
-  //               	"AttributeUpdates": {
-		// 		        "status": {
-		// 		            "Value": {
-		// 		                "S": status
-		// 		            },
-		// 		            "Action": "PUT"
-		// 		        }
-		// 		    },
-		// 		    "ReturnValues": "ALL_NEW"
-  //               };
-  //               // Put entry in table
-  //               table.updateItem(itemParams, 
-  //               	function(err, data) {
-  //               		if (data) {
-  //               			console.log(data);
-		// 		          	d.resolve(data);
-		// 		        } else {
-		// 		        	console.log(err);
-		// 		          	d.reject(err);
-		// 		        }
-  //           	});  
-		// 	});
-  //       });
-		// return d.promise;
-  //   };
-	 
-
-
 
 	return {
 
@@ -467,15 +386,15 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 				conversation.status = 'open';
 			}
 
-			// Mark conversation read by you
-			conversation.read[user.id] = true;
-
 			// Mark unread for other user
 			if (conversation.messengerId === user.id) {
 				conversation.read[conversation.posterId] = false;
 			} else {
 				conversation.read[conversation.messengerId] = false;
 			}
+			
+			// Mark conversation read by you
+			conversation.read[user.id] = true;
 
 			// Conversation key: post id, poster id, messenger id
 			var conversationKey = conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json';

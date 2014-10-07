@@ -106,6 +106,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/ngAutocomplete.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/ngStorage.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/ngStorage.min.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/notifications.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/openfb-angular.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/posts.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/quickblox.chat.js \
