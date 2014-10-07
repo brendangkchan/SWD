@@ -313,6 +313,7 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
         conversations: [],
         type: post.type,
         price: post.price,
+        post: post.id,
         status: 'open'
       };
 

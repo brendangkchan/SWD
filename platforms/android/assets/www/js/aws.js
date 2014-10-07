@@ -225,28 +225,406 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
             options);
 
  
-        return deferred.promise();
-
-      //   $http.post("http://bgchan-swd.s3.amazonaws.com/",
-      //   		imageURI,
-      //   		options).
-	     //    success(function(data, status) {
-	     //      console.log(data);
-	     //      console.log(status);
-	     //    }).
-	     //    error(function(data, status) {
-	     //      console.log(data);
-	     //      console.log(status);
-     	// });
-
-
-        
+        return deferred.promise();    
     };
+
+  //   var updateConversationStatusesFromReference = function(reference, status) {
+
+  //   	var user = User.user();
+
+  //   	// Keep track of changed posts so no repeats
+  //   	var seenPosts = new Array();
+
+  //   	// For each conversation
+  //   	angular.forEach(reference.conversations, function(conversation) {
+			
+		// 	// Update status
+  //   		conversation.status = status;
+
+  //   		// Upload revised conversation
+  //   		AWSHelper.createS3Conversation(conversation);
+
+  //   		// Change post status if your own
+  //   		if (conversation.posterId = user.id && seenPosts.indexOf(conversation.post_id) > -1) {
+  //   			// Add to seen posts
+  //   			seenPosts.push(conversation.post_id);
+  //   			// Update post
+  //   			updatePostStatus(conversation, status);
+  //   		}
+  //   	});
+  //   };
+
+  //   // Update own post status after reference changed
+  //   var updatePostStatus = function(conversation, status) {
+
+  //   	var postID = conversation.post_id;
+  //   	var schoolID = User.user().schoolID;
+
+  //   	console.log('Updating post status from reference: ' + conversation.title);
+
+		// var d = $q.defer();
+
+		// // Load AWS credentials
+  //       AWSService.credentials().then(function() {
+  //           AWSService.dynamo({
+  //             params: {TableName: AWSService.PostsTable()}
+  //           })
+  //           .then(function(table) {
+
+		// 	// Update parameters
+  //               var itemParams = {
+  //               	'Key': {
+  //           			 'schoolID' : { 
+  //               			'S': schoolID
+  //           			 },
+  //           			 'postID' : {
+  //           			 	'S': postID
+  //           			 }
+  //               	},
+  //               	"AttributeUpdates": {
+		// 		        "status": {
+		// 		            "Value": {
+		// 		                "S": status
+		// 		            },
+		// 		            "Action": "PUT"
+		// 		        }
+		// 		    },
+		// 		    "ReturnValues": "ALL_NEW"
+  //               };
+  //               // Put entry in table
+  //               table.updateItem(itemParams, 
+  //               	function(err, data) {
+  //               		if (data) {
+  //               			console.log(data);
+		// 		          	d.resolve(data);
+		// 		        } else {
+		// 		        	console.log(err);
+		// 		          	d.reject(err);
+		// 		        }
+  //           	});  
+		// 	});
+  //       });
+		// return d.promise;
+  //   };
 	 
 
 
 
 	return {
+
+		// Triggered when a user messages another
+		// Adds conversation to both users' references
+		addConversationToReference: function(conversation, reference, person) {
+			var user = User.user();
+			var d = $q.defer();
+
+			// Post ID, Poster ID, Messager ID
+			var conversationKey = conversation.post_id + '_' + conversation.id + '_' + user.id + '.json';
+			conversationKey = conversationKey.toString();
+
+			console.log('Adding conversation: ' + conversationKey);
+			console.log('Reference: ' + reference.title);
+
+			var otherType;
+			if (reference.type === 'sell') {
+				otherType = 'buy';
+			} else {
+				otherType = 'sell';
+			}
+
+
+			// Determine which reference to add to
+			var userID, title;
+
+			if (person === 'me') {
+				userID = user.id;
+				title = reference.type + ' ' + reference.title;
+				console.log('My own reference: ' + title);
+			}
+			if (person === 'other') {
+				userID = conversation.id;
+				title = otherType + ' ' + reference.title;
+				console.log('Other reference: ' + title);
+			}
+
+			// Load AWS credentials
+	        AWSService.credentials().then(function() {
+	            AWSService.dynamo({
+	              params: {TableName: AWSService.ReferencesTable()}
+	            })
+	            .then(function(table) {
+
+    				// Update parameters
+                    var itemParams = {
+
+                    	// My reference
+                    	'Key': {
+                			 'userID' : { 
+                    			'S': userID
+                			 },
+                			 'title' : {
+                			 	'S': title
+                			 }
+                    	},
+                    	"AttributeUpdates": {
+					        "conversations": {
+					            "Action": "ADD",
+					            "Value": {
+					                "SS": [conversationKey]
+					            }
+					        }
+					    },
+					    "ReturnValues": "ALL_NEW"
+                    };
+                    // Put entry in table
+                    table.updateItem(itemParams, 
+                    	function(err, data) {
+                    		if (data) {
+                    			console.log(data);
+					          	d.resolve(data);
+					        } else {
+					        	console.log(err, err.stack);
+					          	d.reject(err);
+					        }
+                	});
+
+					  
+				});
+	        });
+			return d.promise;
+
+		},
+
+		createReference: function(book, post) {
+			var user = User.user();
+			var d = $q.defer();
+
+			// Load AWS credentials
+	        AWSService.credentials().then(function() {
+	            AWSService.dynamo({
+	              params: {TableName: AWSService.ReferencesTable()}
+	            })
+	            .then(function(table) {
+				// Query table for user
+				console.log('Creating reference: ' + book.title + ' in table: ' + AWSService.ReferencesTable());
+                    
+					// Reference from own created post
+                    var itemParams = {
+                    	Item: {
+                    		// User's id
+	            			'userEmail': { 'S': user.id },
+	            			'userID': { 'S': user.id },
+	            			'school': { 'S': user.schoolID },
+	            			// add post id to list
+	                		'post': { 'S': post.id },
+	                		'price': { 'S': post.price.toString() },
+	                		'title': { 'S': post.type + ' ' + book.title },
+	                		'author': { 'S': book.author },
+	                		'icon': { 'S': book.icon },
+	                		'type': { 'S': post.type },
+	                		'status': { 'S': 'open' }
+	                		//'conversations': { 'SS': ['null'] }
+                    	},
+                    	ReturnValues: 'ALL_OLD'
+                    };
+
+                    console.log(itemParams.Item);
+
+                    // Put entry in table
+                    table.putItem(itemParams, 
+                    	function(err, data) {
+                    		if (data) {
+                    			//console.log(data);
+					          	d.resolve(data);
+					        } else {
+					        	console.log(err, err.stack);
+					          	d.reject(err);
+					        }
+                	}); 
+				});
+	        });
+			return d.promise;
+		},
+
+		createS3Conversation: function(conversation) {
+
+			var d = $q.defer();
+			var user = User.user();
+
+			// Add messenger information if first time
+			if (conversation.messengerId == undefined) {
+				conversation.messengerId = user.id;
+				conversation.messengerName = user.name;
+				conversation.messengerIcon = user.icon;
+
+				// Read markers when we first message another user
+				var read = {};
+				read[user.id] = true;
+				read[conversation.posterId] = false;
+				conversation.read = read;
+
+				// Status
+				conversation.status = 'open';
+			}
+
+			// Mark conversation read by you
+			conversation.read[user.id] = true;
+
+			// Mark unread for other user
+			if (conversation.messengerId === user.id) {
+				conversation.read[conversation.posterId] = false;
+			} else {
+				conversation.read[conversation.messengerId] = false;
+			}
+
+			// Conversation key: post id, poster id, messenger id
+			var conversationKey = conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json';
+			conversation.key = conversationKey;
+
+			AWSService.credentials().then(function() {
+
+			    // Get S3 bucket object
+			    AWSService.s3({
+			    	params: {
+			    		Bucket: AWSService.Bucket()
+			    	}
+			    }).then(function(s3) {
+
+					var params = {
+						//ACL: 'public-read',
+						Key: conversation.key,
+						ContentType: 'application/json',
+						Body: JSON.stringify(conversation)
+					}
+
+					console.log('Creating conversation: ' + conversation.key);
+
+					s3.putObject(params, function(err, data) {
+
+						if (err) {
+							console.log(err, err.stack);
+						}
+
+						if (!err) {
+							console.log('Upload successful!');
+							console.log(data);
+
+							var params = {
+								Bucket: AWSService.Bucket(), 
+								Key: conversation.key
+							};
+							s3.getSignedUrl('getObject', params, 
+								function(err, url) {
+									
+									if (err) {
+										console.log(err);
+										d.reject(err);
+									}
+
+									if (url) {
+										// Now have signed url
+										console.log('Conversation JSON URL: ' + url);
+										d.resolve(url);
+									}
+							});
+						}
+					});
+			  	});
+			});
+			return d.promise;
+		},
+
+		// Can take book or reference
+		getPosts: function(book) {
+			var user = User.user();
+
+			var d = $q.defer();
+
+			// Load AWS credentials
+	        AWSService.credentials().then(function() {
+	            AWSService.dynamo({
+	              params: {TableName: AWSService.PostsTable()}
+	            })
+	            .then(function(table) {
+
+				// Query table for user
+				console.log('Getting posts for book: ' + book.title);
+                    var itemParams = {
+                    	'Select': "ALL_ATTRIBUTES",
+                    	'KeyConditions': {
+                			 'school' : { 
+                    			'AttributeValueList': [
+                    				{
+                    					'S': user.schoolID
+                    				}
+                    			],
+                    			'ComparisonOperator': 'EQ'
+                			 }
+                    	},
+                    	'QueryFilter': {
+                    		'title' : { 
+                    			'AttributeValueList': [
+                    				{
+                    					'S': book.title
+                    				}
+                    			],
+                    			'ComparisonOperator': 'EQ'
+            			 	},
+            			 	'author' : { 
+                    			'AttributeValueList': [
+                    				{
+                    					'S': book.author
+                    				}
+                    			],
+                    			'ComparisonOperator': 'EQ'
+            			 	},
+            			 	'status' : { 
+                    			'AttributeValueList': [
+                    				{
+                    					'S': 'open'
+                    				}
+                    			],
+                    			'ComparisonOperator': 'EQ'
+            			 	}
+                    	}
+                    };
+                    // Put entry in table
+                    table.query(itemParams, 
+                    	function(err, data) {
+                    		console.log(data);
+
+                    		var items = [];
+					        if (data) {
+					          angular.forEach(data.Items, function(item) {
+					            items.push(
+									{
+										author: item.author.S,
+										comments: item.comments.S,
+										condition: item.condition.S,
+										edition: item.edition.N,
+										icon: item.icon.S,
+										id: item.postID.S,
+										price: item.price.N,
+										school: item.school.S,
+										title: item.title.S,
+										type: item.type.S,
+										user: item.user.S,
+										userIcon: item.userIcon.S,
+										userID: item.userID.S,
+									}					            	
+				            	);
+					          });
+
+					          d.resolve(items);
+					        } else {
+					          d.reject(err);
+					        }
+                	});  
+				});
+	        });
+			return d.promise;
+		},
+
 		getReferences: function() {
 			var user = User.user();
 			var d = $q.defer();
@@ -306,7 +684,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 										icon: item.icon.S,
 										type: item.type.S,
 										price: item.price.S,
-										posts: item.posts.S,
+										post: item.post.S,
 										status: item.status.S,
 										conversations: conversations
 									}					            	
@@ -323,11 +701,180 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 			return d.promise;
 		},
 
+
+
+		getS3Conversation: function(conversation) {
+			var d = $q.defer();
+			var user = User.user();
+
+			AWSService.credentials().then(function() {
+
+			    // Get S3 bucket object
+			    AWSService.s3({
+			    	params: {
+			    		Bucket: AWSService.Bucket()
+			    	}
+			    }).then(function(s3) {
+
+			    	// Conversation key: post id, poster id, messenger id
+					var conversationKey;
+
+					// Given conversation object
+					if (conversation.post_id !== undefined) {
+						conversationKey = (conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json').toString();
+						
+						// Add messenger information
+						conversation.messengerId = user.id;
+					} 
+					// Given conversation key
+					else {
+						conversationKey = conversation;
+					}
+
+					var params = {
+						Key: conversationKey,
+						//ResponseContentType: 'application/json',
+						//ResponseContentType: 'text/html',
+					}
+
+					console.log('Retrieving conversation: ' + conversationKey);
+
+					s3.getObject(params, function(err, data) {
+
+						if (err) {
+							console.log(err, err.stack);
+							d.reject(err);
+						}
+
+						if (data) {
+							console.log('Conversation retrieval successful!');
+							var retrievedConversation = JSON.parse(data.Body.toString());
+							console.log(retrievedConversation);
+
+							if (retrievedConversation.messengerName === user.name) {
+								retrievedConversation.name = retrievedConversation.posterName;
+								retrievedConversation.userIcon = retrievedConversation.posterIcon;
+							} else {
+								retrievedConversation.name = retrievedConversation.messengerName;
+								retrievedConversation.userIcon = retrievedConversation.messengerIcon;
+							}
+
+
+							d.resolve(retrievedConversation);
+						}
+					});
+			  	});
+			});
+			return d.promise;
+		},
+
+		// Updates conversation status
+		updateConversationStatusesFromReference: function(reference, status) {
+
+			console.log('Updating conversation statuses');
+			console.log(reference);
+
+	    	var user = User.user();
+
+			// Update post
+			this.updatePostStatus(reference.post, status);
+
+
+	    	// For each conversation
+    		for (var i = 0; i < reference.conversations.length; i++) {
+    			var conversation = reference.conversations[i];
+				
+				// Update status
+	    		conversation.status = status;
+
+				// Upload revised conversation
+	    		this.createS3Conversation(conversation);
+			}
+	    },
+
+		// Update own post status after reference changed
+	    updatePostStatus: function(postID, status) {
+	    	var userID = User.user().id;
+	    	var schoolID = User.user().schoolID;
+
+	    	console.log('Updating post status for id: ' + postID + ' in school ' + schoolID);
+
+			var d = $q.defer();
+
+			// Load AWS credentials
+	        AWSService.credentials().then(function() {
+	            AWSService.dynamo({
+	              params: {TableName: AWSService.PostsTable()}
+	            })
+	            .then(function(table) {
+
+	            	// Get item parameters
+	                var itemParams = {
+	                	'Key': {
+	            			 'school' : { 
+	                			'S': schoolID
+	            			 },
+	            			 'postID' : {
+	            			 	'S': postID
+	            			 }
+	                	}
+	                };
+
+	                // Get post to check if belongs to us
+	                table.getItem(itemParams, function(err, data) {
+	                	if (err) {
+	                		console.log(err);
+	                		console.log(err.stack);
+	                	}
+	                	if (data && data.Item.userID.S === userID) {
+	                		console.log('Post belongs to me, updating status to: ' + status);
+
+	                		// Update parameters
+			                var updateParams = {
+			                	'Key': {
+			            			 'school' : { 
+			                			'S': schoolID
+			            			 },
+			            			 'postID' : {
+			            			 	'S': postID
+			            			 }
+			                	},
+			                	"AttributeUpdates": {
+							        "status": {
+							            "Value": {
+							                "S": status
+							            },
+							            "Action": "PUT"
+							        }
+							    },
+							    "ReturnValues": "ALL_NEW"
+			                };
+			                // Put entry in table
+			                table.updateItem(updateParams, 
+			                	function(err, data) {
+			                		if (data) {
+			                			console.log(data);
+							          	d.resolve(data);
+							        } else {
+							        	console.log(err);
+							          	d.reject(err);
+							        }
+			            	});  
+	                	}
+	                });
+				});
+	        });
+			return d.promise;
+	    },
+
 		updateReferenceStatus: function(reference, status) {
 			console.log('Deleting reference: ' + reference.title);
 
 			var user = User.user();
 			var d = $q.defer();
+
+			// Update all conversations and posts
+			this.updateConversationStatusesFromReference(reference, status);
 
 			var title;
 			if (reference.type === 'sell') {
@@ -380,89 +927,7 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 			return d.promise;
 		},
 
-		// Can take book or reference
-		getPosts: function(book) {
-			var user = User.user();
-
-			var d = $q.defer();
-
-			// Load AWS credentials
-	        AWSService.credentials().then(function() {
-	            AWSService.dynamo({
-	              params: {TableName: AWSService.PostsTable()}
-	            })
-	            .then(function(table) {
-
-				// Query table for user
-				console.log('Getting posts for book: ' + book.title);
-                    var itemParams = {
-                    	'Select': "ALL_ATTRIBUTES",
-                    	'KeyConditions': {
-                			 'school' : { 
-                    			'AttributeValueList': [
-                    				{
-                    					'S': user.schoolID
-                    				}
-                    			],
-                    			'ComparisonOperator': 'EQ'
-                			 }
-                    	},
-                    	'QueryFilter': {
-                    		'title' : { 
-                    			'AttributeValueList': [
-                    				{
-                    					'S': book.title
-                    				}
-                    			],
-                    			'ComparisonOperator': 'EQ'
-            			 	},
-            			 	'author' : { 
-                    			'AttributeValueList': [
-                    				{
-                    					'S': book.author
-                    				}
-                    			],
-                    			'ComparisonOperator': 'EQ'
-            			 	}
-                    	}
-                    };
-                    // Put entry in table
-                    table.query(itemParams, 
-                    	function(err, data) {
-                    		console.log(data);
-
-                    		var items = [];
-					        if (data) {
-					          angular.forEach(data.Items, function(item) {
-					            items.push(
-									{
-										author: item.author.S,
-										comments: item.comments.S,
-										condition: item.condition.S,
-										edition: item.edition.N,
-										icon: item.icon.S,
-										id: item.postID.S,
-										price: item.price.N,
-										school: item.school.S,
-										title: item.title.S,
-										type: item.type.S,
-										user: item.user.S,
-										userIcon: item.userIcon.S,
-										userID: item.userID.S,
-									}					            	
-				            	);
-					          });
-
-					          d.resolve(items);
-					        } else {
-					          d.reject(err);
-					        }
-                	});  
-				});
-	        });
-			return d.promise;
-		},
-
+		
 		uploadPost: function(book, post) {
 			var user = User.user();
 			var d = $q.defer();
@@ -540,274 +1005,6 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 			// Create new reference for book (new post = new reference)
 			this.createReference(book, post);
 
-			return d.promise;
-		},
-
-		createReference: function(book, post) {
-			var user = User.user();
-			var d = $q.defer();
-
-			// Load AWS credentials
-	        AWSService.credentials().then(function() {
-	            AWSService.dynamo({
-	              params: {TableName: AWSService.ReferencesTable()}
-	            })
-	            .then(function(table) {
-				// Query table for user
-				console.log('Creating reference: ' + book.title + ' in table: ' + AWSService.ReferencesTable());
-                    
-					// Reference from own created post
-                    var itemParams = {
-                    	Item: {
-                    		// User's id
-	            			'userEmail': { 'S': user.id },
-	            			'userID': { 'S': user.id },
-	            			'school': { 'S': user.schoolID },
-	            			// add post id to list
-	                		'posts': { 'S': post.id },
-	                		'price': { 'S': post.price.toString() },
-	                		'title': { 'S': post.type + ' ' + book.title },
-	                		'author': { 'S': book.author },
-	                		'icon': { 'S': book.icon },
-	                		'type': { 'S': post.type },
-	                		'status': { 'S': 'open' }
-	                		//'conversations': { 'SS': ['null'] }
-                    	},
-                    	ReturnValues: 'ALL_OLD'
-                    };
-
-                    console.log(itemParams.Item);
-
-                    // Put entry in table
-                    table.putItem(itemParams, 
-                    	function(err, data) {
-                    		if (data) {
-                    			//console.log(data);
-					          	d.resolve(data);
-					        } else {
-					        	console.log(err, err.stack);
-					          	d.reject(err);
-					        }
-                	}); 
-				});
-	        });
-			return d.promise;
-		},
-
-		// Triggered when a user messages another
-		// Adds conversation to both users' references
-		addConversationToReference: function(conversation, reference, person) {
-			var user = User.user();
-			var d = $q.defer();
-
-			// Post ID, Poster ID, Messager ID
-			var conversationKey = conversation.post_id + '_' + conversation.id + '_' + user.id + '.json';
-			conversationKey = conversationKey.toString();
-
-			console.log('Adding conversation: ' + conversationKey);
-			console.log('Reference: ' + reference.title);
-
-			var otherType;
-			if (reference.type === 'sell') {
-				otherType = 'buy';
-			} else {
-				otherType = 'sell';
-			}
-
-
-			// Determine which reference to add to
-			var userID, title;
-
-			if (person === 'me') {
-				userID = user.id;
-				title = reference.type + ' ' + reference.title;
-				console.log('My own reference: ' + title);
-			}
-			if (person === 'other') {
-				userID = conversation.id;
-				title = otherType + ' ' + reference.title;
-				console.log('Other reference: ' + title);
-			}
-
-			// Load AWS credentials
-	        AWSService.credentials().then(function() {
-	            AWSService.dynamo({
-	              params: {TableName: AWSService.ReferencesTable()}
-	            })
-	            .then(function(table) {
-
-    				// Query table for user
-                    var itemParams = {
-
-                    	// My reference
-                    	'Key': {
-                			 'userID' : { 
-                    			'S': userID
-                			 },
-                			 'title' : {
-                			 	'S': title
-                			 }
-                    	},
-                    	"AttributeUpdates": {
-					        "conversations": {
-					            "Action": "ADD",
-					            "Value": {
-					                "SS": [conversationKey]
-					            }
-					        }
-					    },
-					    "ReturnValues": "ALL_NEW"
-                    };
-                    // Put entry in table
-                    table.updateItem(itemParams, 
-                    	function(err, data) {
-                    		if (data) {
-                    			console.log(data);
-					          	d.resolve(data);
-					        } else {
-					        	console.log(err, err.stack);
-					          	d.reject(err);
-					        }
-                	});
-
-					  
-				});
-	        });
-			return d.promise;
-
-		},
-
-		createS3Conversation: function(conversation) {
-
-			var d = $q.defer();
-			var user = User.user();
-
-			// Add messenger information if first time
-			if (conversation.messengerId == undefined) {
-				conversation.messengerId = user.id;
-				conversation.messengerName = user.name;
-				conversation.messengerIcon = user.icon;
-			}
-
-			// Conversation key: post id, poster id, messenger id
-			var conversationKey = conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json';
-			conversation.key = conversationKey;
-
-			AWSService.credentials().then(function() {
-
-			    // Get S3 bucket object
-			    AWSService.s3({
-			    	params: {
-			    		Bucket: AWSService.Bucket()
-			    	}
-			    }).then(function(s3) {
-
-					var params = {
-						//ACL: 'public-read',
-						Key: conversation.key,
-						ContentType: 'application/json',
-						Body: JSON.stringify(conversation)
-					}
-
-					console.log('Creating conversation: ' + conversation.key);
-
-					s3.putObject(params, function(err, data) {
-
-						if (err) {
-							console.log(err, err.stack);
-						}
-
-						if (!err) {
-							console.log('Upload successful!');
-							console.log(data);
-
-							var params = {
-								Bucket: AWSService.Bucket(), 
-								Key: conversation.key
-							};
-							s3.getSignedUrl('getObject', params, 
-								function(err, url) {
-									
-									if (err) {
-										console.log(err);
-										d.reject(err);
-									}
-
-									if (url) {
-										// Now have signed url
-										console.log('Conversation JSON URL: ' + url);
-										d.resolve(url);
-									}
-							});
-						}
-					});
-			  	});
-			});
-			return d.promise;
-		},
-
-		getS3Conversation: function(conversation) {
-			var d = $q.defer();
-			var user = User.user();
-
-			AWSService.credentials().then(function() {
-
-			    // Get S3 bucket object
-			    AWSService.s3({
-			    	params: {
-			    		Bucket: AWSService.Bucket()
-			    	}
-			    }).then(function(s3) {
-
-			    	// Conversation key: post id, poster id, messenger id
-					var conversationKey;
-
-					// Given conversation object
-					if (conversation.post_id !== undefined) {
-						conversationKey = (conversation.post_id + '_' + conversation.posterId + '_' + conversation.messengerId + '.json').toString();
-						
-						// Add messenger information
-						conversation.messengerId = user.id;
-					} 
-					// Given conversation key
-					else {
-						conversationKey = conversation;
-					}
-
-					var params = {
-						Key: conversationKey,
-						//ResponseContentType: 'application/json',
-						//ResponseContentType: 'text/html',
-					}
-
-					console.log('Retrieving conversation: ' + conversationKey);
-
-					s3.getObject(params, function(err, data) {
-
-						if (err) {
-							console.log(err, err.stack);
-							d.reject(err);
-						}
-
-						if (data) {
-							console.log('Conversation retrieval successful!');
-							var retrievedConversation = JSON.parse(data.Body.toString());
-							console.log(retrievedConversation);
-
-							if (retrievedConversation.messengerName === user.name) {
-								retrievedConversation.name = retrievedConversation.posterName;
-								retrievedConversation.userIcon = retrievedConversation.posterIcon;
-							} else {
-								retrievedConversation.name = retrievedConversation.messengerName;
-								retrievedConversation.userIcon = retrievedConversation.messengerIcon;
-							}
-
-
-							d.resolve(retrievedConversation);
-						}
-					});
-			  	});
-			});
 			return d.promise;
 		},
 
