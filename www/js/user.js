@@ -86,7 +86,8 @@ app.factory("User", function($sessionStorage, $window, $http, $q, $state, OpenFB
 	            		console.log(data);
 	            		console.log('User already exists');
 	            		storage['user'].schoolID = data.Item.schoolID.S;
-	            		$state.go('home.tab.selling');
+	            		//$state.go('home.tab.selling');
+	            		$state.go('home.signup'); 
 	            	} else {
 	            		// Get school
 	            		console.log('New user');

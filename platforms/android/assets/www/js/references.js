@@ -544,6 +544,7 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
 app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state, Results, Notifications){
 
   //$localStorage.$reset();
+  $scope.markCompletePrompt = 'Mark Sold';
 
   var init = function() {
      References.getReferences()
@@ -554,12 +555,12 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
 
            // Give back conversations to be put into references
            References.setConversations(conversations)
-           //$state.go('home.tab.selling');
 
-
+           // Create Notifications
            Notifications.createMessageAndPostStatusNotifications(References.selling());
            Notifications.createMessageAndPostStatusNotifications(References.buying());
            Notifications.consolidateMessageNotifications();
+           Notifications.consolidateNotifications();
          });
       });
   };
@@ -609,7 +610,7 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
   };
 
   // Delete reference permanantly
-  $scope.markSold = function(reference) {
+  $scope.markComplete = function(reference) {
     updateReferenceStatus(reference, 'sold');
     reference.status = 'sold';
   };
@@ -633,9 +634,10 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
 
 app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper, Posts, $state, Results){
 
+  $scope.markCompletePrompt = 'Mark Bought';
+
   // Load references and conversations
   $scope.references = References.buying();
-  //$scope.conversations = References.conversations();
 
   // Store clicked conversation
   $scope.selectConversation = function (referenceIndex, conversationIndex) {
@@ -674,9 +676,9 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHe
   };
 
   // Delete reference permanantly
-  $scope.markSold = function(reference) {
-    updateReferenceStatus(reference, 'sold');
-    reference.status = 'sold';
+  $scope.markComplete = function(reference) {
+    updateReferenceStatus(reference, 'bought');
+    reference.status = 'bought';
   };
 
   // Undo reference mark

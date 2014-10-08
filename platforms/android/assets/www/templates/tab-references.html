@@ -22,8 +22,8 @@
 		          		<ion-option-button class="button-clear delete" ng-click="delete(reference)" ng-if="reference.status == 'open'">
 		            		Delete
 		          		</ion-option-button>
-		          		<ion-option-button class="button-clear sold" ng-click="markSold(reference)" ng-if="reference.status == 'open'">
-		            		Mark Sold
+		          		<ion-option-button class="button-clear sold" ng-click="markComplete(reference)" ng-if="reference.status == 'open'">
+		            		{{markCompletePrompt}}
 		          		</ion-option-button>
 		          		<ion-option-button class="button-clear" ng-click="undoMark(reference)" ng-if="reference.status !== 'open'">
 		            		Undo

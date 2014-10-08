@@ -49,35 +49,47 @@ app.controller('SignupCtrl', function($scope, $state, $http, $ionicLoading, $ses
         $scope.states = schoolDB;
     });
 
+
+	// Choose state from initial list
 	$scope.selectState = function(state) {
 		console.log('Selected state: ' + state);
 
-		$ionicLoading.show({
-	     	template: "<div class='button-icon icon ion-loading-c'></div>",
-			animation: 'fade-in',
-			showBackdrop: false,
-			maxWidth: 200,
-			showDelay: 0
-	    });
+		// $ionicLoading.show({
+	 //     	template: "<div class='button-icon icon ion-loading-c'></div>",
+		// 	animation: 'fade-in',
+		// 	showBackdrop: false,
+		// 	maxWidth: 200,
+		// 	showDelay: 0
+	 //    });
 
 		// Find matching state
     	angular.forEach(schoolDB, function(object) {
     		if (object.name === state) {
-    			$scope.schools = object.schools;
+    			$scope.stateSchools = object.schools;
     		}
     		$scope.stateSelected = true;
-    		$scope.placeholder = 'Filter by school name';
-
-    		$ionicLoading.hide();
+    		$scope.placeholder = 'Search by school name';
     	});
 	};
 
-	$scope.back = function() {
-		console.log('Back pressed');
-		$scope.stateSelected = false;
-		$scope.placeholder = 'Filter by state';
+	// Search for specific school after choosing state
+	$scope.searchSchool = function(query) {
+
+		var matchingSchools = [];
+
+		angular.forEach($scope.stateSchools, function(school) {
+
+			// Check if query in name
+			if (school.name.indexOf(query) >= 0) {
+				matchingSchools.push(school);
+			}
+		});
+
+		$scope.schools = matchingSchools;
 	};
 
+
+	// Choose school
 	$scope.selectSchool = function(school) {
 		console.log('Selected school: ' + school);
 
@@ -86,6 +98,14 @@ app.controller('SignupCtrl', function($scope, $state, $http, $ionicLoading, $ses
 
 		User.uploadUser();
 		$state.go('home.tab.selling');
+	};
+
+	
+	// Go back to lsit of states
+	$scope.back = function() {
+		console.log('Back pressed');
+		$scope.stateSelected = false;
+		$scope.placeholder = 'Filter by state';
 	};
 
 

@@ -9,6 +9,7 @@ var app = angular.module('notifications', ['ionic'])
 // title
 // bookIcon
 // body: determined by type
+// read
 
 
 // Notifications Factory
@@ -49,7 +50,8 @@ app.factory("Notifications", function (User) {
 	// 		notifications[i].text = name + ' deleted their post';
 	// 	}
 	// }
-	var notifications = new Array();
+	var newNotifications = new Array();
+	var oldNotifications = new Array();
 	var messageNotifications = new Array();
 	var newPostsNotifications = new Array();
 	var postStatusNotifications = new Array();
@@ -59,7 +61,6 @@ app.factory("Notifications", function (User) {
 	}
 
 	consolidateMessageNotifications = function() {
-		console.log(messageNotifications);
 		console.log('Consolidating message notifications');
 
 		//Determine counts for each reference
@@ -96,7 +97,6 @@ app.factory("Notifications", function (User) {
 		});
 
 		// Set new notifications
-		// messageNotifications = consolidatedMessageNotifications;
 		angular.copy(consolidatedMessageNotifications, messageNotifications);
 
 		console.log(messageNotifications);
@@ -120,6 +120,7 @@ app.factory("Notifications", function (User) {
 			userIcon: otherUser.icon,
 			title: reference.title,
 			bookIcon: reference.icon,
+			read: false
 		}
 
 		// New messages
@@ -144,6 +145,7 @@ app.factory("Notifications", function (User) {
 					notification.body = conversation.name + ' has sold';
 					break;
 			}
+			console.log(notification);
 			postStatusNotifications.push(notification);
 		}
 
@@ -182,6 +184,7 @@ app.factory("Notifications", function (User) {
 			for (var j = 0; j < references.length; j++) {
 				
 				var reference = references[j];
+				console.log('Reference: ' + reference.title);
 
 				for (var i = 0; i < reference.conversations.length; i++) {
 					createMessageAndPostStatusNotifications(reference, reference.conversations[i]);
@@ -193,6 +196,16 @@ app.factory("Notifications", function (User) {
 
 		consolidateMessageNotifications: function() {
 			consolidateMessageNotifications();
+
+			angular.copy(messageNotifications, newNotifications);
+		},
+
+		consolidateNotifications: function() {
+			console.log('Consolidating all notifications');
+
+			angular.forEach(postStatusNotifications, function(notification) {
+				newNotifications.push(notification);
+			});
 		},
 
 
@@ -200,8 +213,18 @@ app.factory("Notifications", function (User) {
 
 		},
 
+		markNotificationsSeen: function() {
+
+			angular.forEach(newNotifications, function(notification) {
+				notification.read = true;
+				oldNotifications.push(notification);
+			});
+
+			newNotifications = new Array();
+		},
+
 		all: function() {
-			return messageNotifications;
+			return newNotifications;
 		}
 	}
 })
