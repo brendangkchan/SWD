@@ -1,28 +1,29 @@
 <div class="modal settings-modal">
 	<!-- Nav Bar -->
-	<ion-nav-bar class="bar-light nav-title-slide-ios7 stotle-nav-bar-clear"  ng-click="closeNotifications()">
+	<div class="bar bar-header bar-light nav-title-slide-ios7 stotle-nav-bar-clear"  ng-click="closeNotifications()">
 	  <button class="button button-clear pull-right stotle-button" ng-click="closeNotifications()">Done</button>
-	</ion-nav-bar>
+	  <h1 class="title">Notifications</h1>
+	</div>
 
-	<ion-view title="Notifications{{count}}" class="notifications-content">
+	<ion-view class="notifications-content">
 
 		<ion-list>
 			<div ng-repeat="notification in notifications">
 
 				<ion-item class="item notification-item" ng-class="{'count-notification': notification.user == ''}" ng-click="goToItem(notification)">
 					<!-- Optional User Picture -->
-					<img src={{notification.user.icon}} class="user-icon clip-circle" ng-if="notification.user !== ''">
+					<img src={{notification.userIcon}} class="user-icon clip-circle" ng-if="notification.user !== ''">
 
 					<!-- <div class="center-cropped" style="background-image: url({{notification.user.icon}});" ng-if="notification.user !== ''"></div> -->
 
 					<!-- Optional User Picture -->
-					<img src={{notification.book.icon}} class="book-icon">
+					<img src={{notification.bookIcon}} class="book-icon">
 
 
 					<!-- Notification Text -->
 					<div class="text">
-						<div class="message">{{notification.text}}</div>
-						<div class="book">{{notification.book.title}}</div>
+						<div class="message">{{notification.body}}</div>
+						<div class="book">{{notification.title}}</div>
 					</div>
 
 

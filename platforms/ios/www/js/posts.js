@@ -169,6 +169,10 @@ app.factory("Posts", function($rootScope, $location, $state, $localStorage, $q, 
 
     	// Upload post to db
     	return AWSHelper.uploadPost(book, post)
+    },
+
+    fakePosts: function() {
+      return posts;
     }
 
   }
@@ -196,10 +200,6 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $state, $stateP
   // Back Navigation
   $scope.back = $rootScope.back;
 
-  // Message post
-  // $scope.message = function(post) {
-  //  Posts.message(post);
-  // }
 
   // Selector data
   $scope.data = {
@@ -208,16 +208,6 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $state, $stateP
     'condition': '',
     'comments': ''
   }
-
-  // Post type
-  // if ($rootScope.currentState === 'home.posts.selling') {
-  //  $scope.type = 'sell';
-  // }
-  // if ($rootScope.currentState === 'home.posts.buying') {
-  //  $scope.type = 'buy';
-  // }
-  //$scope.type = 'sell';
-
 
   // Possible conditions
   $scope.conditions = Posts.conditions();
@@ -461,10 +451,14 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $state, $stateP
 
 app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, Posts, Results, References, User) {
 
-  Posts.getPosts(Results.getBook())
-    .then(function(posts) {
-      $scope.posts = posts.sell;
-    });
+  // Posts.getPosts(Results.getBook())
+  //   .then(function(posts) {
+  //     $scope.posts = posts.sell;
+  //   });
+
+  // Fake posts for UI
+  $scope.posts = Posts.fakePosts();
+
 
   // My user information
   $scope.me = User.user();

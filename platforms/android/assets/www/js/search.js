@@ -1,4 +1,4 @@
-var app = angular.module('search', ['ionic', 'ngAnimate', 'ngStorage'])
+var app = angular.module('search', ['ionic'])
 
 
 // Dummy Search Results
@@ -466,13 +466,14 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 		// Go to Results 
 		$location.path( '/home/search/' + $scope.query);
 
-		$ionicLoading.show({
-	     	template: "<div class='button-icon icon ion-loading-c'></div>",
-			animation: 'fade-in',
-			showBackdrop: false,
-			maxWidth: 200,
-			showDelay: 0
-	    });
+		// $ionicLoading.show({
+	 //     	template: "<div class='button-icon icon ion-loading-c'></div>",
+		// 	animation: 'fade-in',
+		// 	showBackdrop: false,
+		// 	maxWidth: 200,
+		// 	showDelay: 0,
+		// 	duration: 2000
+	 //    });
 	}
 
 	//Result Button
@@ -501,6 +502,7 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 	$scope.closeNotifications = function() {
 		$scope.notificationsModal.hide();
 		Notifications.markNotificationsSeen();
+		$scope.notifications = Notifications.all();
 	}
 
 
@@ -553,7 +555,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 		var initial_results = data.data;
 		console.log(data,data);
 		$scope.results = Results.getResults(initial_results);
-		$ionicLoading.hide();
+		//$ionicLoading.hide();
 	});
 	
 	// Select book from initial search

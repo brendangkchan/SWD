@@ -198,6 +198,8 @@ app.factory("Notifications", function (User) {
 			consolidateMessageNotifications();
 
 			angular.copy(messageNotifications, newNotifications);
+
+			messageNotifications = [];
 		},
 
 		consolidateNotifications: function() {
@@ -206,6 +208,8 @@ app.factory("Notifications", function (User) {
 			angular.forEach(postStatusNotifications, function(notification) {
 				newNotifications.push(notification);
 			});
+
+			postStatusNotifications = [];
 		},
 
 
@@ -213,14 +217,17 @@ app.factory("Notifications", function (User) {
 
 		},
 
-		markNotificationsSeen: function() {
+		markNotificationsSeen: function() {	
+			console.log('Marking notifications read');
 
 			angular.forEach(newNotifications, function(notification) {
 				notification.read = true;
 				oldNotifications.push(notification);
 			});
 
-			newNotifications = new Array();
+			newNotifications = [];
+
+			console.log(newNotifications);
 		},
 
 		all: function() {

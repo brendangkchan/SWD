@@ -10,14 +10,14 @@
 		<ion-list>
 			<div ng-repeat="notification in notifications">
 
-				<ion-item class="item notification-item" ng-class="{'count-notification': notification.user == ''}" ng-click="goToItem(notification)">
+				<ion-item class="item notification-item" ng-click="goToItem(notification)">
 					<!-- Optional User Picture -->
 					<img src={{notification.userIcon}} class="user-icon clip-circle" ng-if="notification.user !== ''">
 
 					<!-- <div class="center-cropped" style="background-image: url({{notification.user.icon}});" ng-if="notification.user !== ''"></div> -->
 
 					<!-- Optional User Picture -->
-					<img src={{notification.bookIcon}} class="book-icon">
+					<img src={{notification.bookIcon}} class="book-icon" err-src="img/test/blank_cover.png">
 
 
 					<!-- Notification Text -->

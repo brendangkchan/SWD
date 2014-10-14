@@ -1,4 +1,4 @@
-var app = angular.module('search', ['ionic', 'ngAnimate', 'ngStorage'])
+var app = angular.module('search', ['ionic'])
 
 
 // Dummy Search Results
@@ -226,87 +226,6 @@ app.factory("Results", function($localStorage,  $http, AWSHelper) {
 });
 
 
-
-
-// Me factory
-
-// app.factory("Me", function(User) {
-
-// 	// var me = { user: { name: 'Brendan C', icon: 'img/test/me.jpg' } };
-// 	var me = { user: { name: 'Brendan C', icon: 'img/test/girl1.jpg' } };
-
-// 	return {
-// 		get: function() {
-// 			return me;
-// 		}
-// 	}
-// });
-
-
-
-// Notifications Factory
-
-app.factory("Notifications", function (User) {
-
-	// Notification Types
-	// message
-	// bought / sold
-	// buy / sell (new posts)
-	// deleted
-
-	var me = User.user();
-
-	var notifications= [
-		// YOU HAVE SOLD
-		{ user: me, book: { title: 'Introductory Chemistry Essentials', icon: 'img/test/book_chem.jpg' }, type: 'sold', text: '' },
-		{ user: { name: 'Leah P', icon: 'img/test/girl2.jpg' }, book: { title: 'Campbell Biology', icon: 'img/test/book_bio.jpg' }, type: 'message', text: '' },
-		// YOU HAVE BOUGHT
-		{ user: me, book: { title: 'Lehninger Principles of Biochemistry', icon: 'img/test/book_biochem.jpg' }, type: 'bought', text: '' },
-		//{ user: { name: 'Lucy R', icon: 'img/test/woman2.jpg' }, book: { title: 'Planets Without Borders', icon: 'img/test/book2.jpg' }, type: 'buy', text: '' },
-		//{ user: { name: 'Toby H', icon: 'img/test/man1.jpg' }, book: { title: 'Complete History of the 17th & 18th Century', icon: 'img/test/book3.jpg' }, type: 'sell', text: '' },
-		{ user: '', book: { title: 'Calculus: A Deeper Look', icon: 'img/test/book_math.jpg' }, type: 'sell', text: '' }
-		
-	];
-
-	// Sort messages by book to consolidate
-
-
-	// Add text
-	// for (var i = 0; i < notifications.length; i++) {
-	// 	var notification = notifications[i];
-
-	// 	// Set Name
-	// 	var name = notification.user.name
-	// 	if (name === me.name) {
-	// 		name = 'You';
-	// 	}
-
-	// 	if (notification.type === 'message') {
-	// 		notifications[i].text = name + ' messaged you';
-	// 	}
-	// 	if (notification.type === 'buy') {
-	// 		notifications[i].text = ' 5 new buyers';
-	// 	}
-	// 	if (notification.type === 'sell') {
-	// 		notifications[i].text = ' 3 new sellers';
-	// 	}
-	// 	if (notification.type === 'sold') {
-	// 		notifications[i].text = name + ' sold';
-	// 	}
-	// 	if (notification.type === 'bought') {
-	// 		notifications[i].text = name + ' bought';
-	// 	}
-	// 	if (notification.type === 'deleted') {
-	// 		notifications[i].text = name + ' deleted their post';
-	// 	}
-	// }
-
-	return {
-		all: function() {
-			return notifications;
-		}
-	}
-})
 
 // Root Scope Variables
 
@@ -547,13 +466,14 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 		// Go to Results 
 		$location.path( '/home/search/' + $scope.query);
 
-		$ionicLoading.show({
-	     	template: "<div class='button-icon icon ion-loading-c'></div>",
-			animation: 'fade-in',
-			showBackdrop: false,
-			maxWidth: 200,
-			showDelay: 0
-	    });
+		// $ionicLoading.show({
+	 //     	template: "<div class='button-icon icon ion-loading-c'></div>",
+		// 	animation: 'fade-in',
+		// 	showBackdrop: false,
+		// 	maxWidth: 200,
+		// 	showDelay: 0,
+		// 	duration: 2000
+	 //    });
 	}
 
 	//Result Button
@@ -581,6 +501,7 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 
 	$scope.closeNotifications = function() {
 		$scope.notificationsModal.hide();
+		Notifications.markNotificationsSeen();
 	}
 
 
@@ -633,7 +554,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 		var initial_results = data.data;
 		console.log(data,data);
 		$scope.results = Results.getResults(initial_results);
-		$ionicLoading.hide();
+		//$ionicLoading.hide();
 	});
 	
 	// Select book from initial search

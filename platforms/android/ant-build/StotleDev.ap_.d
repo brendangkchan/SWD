@@ -101,6 +101,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/controllers.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/conversation.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/core-min.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/deprecated-s3-image.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/enc-base64-min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/jquery.min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/ngAutocomplete.js \
@@ -157,7 +158,6 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-ui-router/README.md \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-ui-router/release \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-ui-router/src \
-/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-ui-router/release/angular-ui-router.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-ui-router/release/angular-ui-router.min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-ui-router/src/common.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-ui-router/src/compat.js \

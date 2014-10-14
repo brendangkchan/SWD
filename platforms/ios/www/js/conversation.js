@@ -31,8 +31,15 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
       // Retrieve conversation if it exists in S3
       AWSHelper.getS3Conversation($scope.conversation)
         .then(function(retrievedConversation) {
+
+          // Set read marker
+          retrievedConversation.read[me.id] = true;
+
           // Conversation exists, retrieved
           $scope.conversation = retrievedConversation;
+
+          // Mark the conversation read
+          AWSHelper.createS3Conversation($scope.conversation);
         });
     }
       

@@ -190,6 +190,12 @@ html *
  * Reference List Item
  */
 
+.zero-things-placeholder {
+	font-weight: 400 !important;
+	margin-top: 20%;
+	text-align: center;
+} 
+
 .reference-item {
 	line-height: 10px;
 	height: 100px !important;
@@ -649,7 +655,12 @@ html *
 .post-detail-modal {
 	width: 100% !important;
 	//height: calc(100% - 243px) !important;
+	
+	/*// ios*/
 	top: 243px !important;
+
+/*	android*/
+	/*top: 225px !important;*/
 
 	//background: transparent;
 }
@@ -754,7 +765,7 @@ html *
 .post-detail-content .comments {
 	margin: 5px 15px 5px 15px;
 	padding: 10px 10px 0 10px;
-	height: 50% !important;
+	height: 30% !important;
 
 	font-size: 1.2em;
 	color: #555;
@@ -771,7 +782,7 @@ html *
 	overflow: hidden;
 	white-space: nowrap;
 	min-width: 100%;
-	height: 50%;
+	height: 30%;
 	padding: 0px 10px 20px 10px;
 }
 
@@ -876,8 +887,13 @@ html *
 
 .create-post-modal {
 	width: 100% !important;
-	height: calc(100% - 133px) !important;
-	top: 133px !important;
+	height: calc(100% - 151px) !important;
+	
+	/* android */
+	/*top: 133px !important;*/
+
+	/* ios */
+	top: 151px !important;
 }
 
 .create-post-modal .modal-backdrop {
@@ -890,7 +906,7 @@ html *
 
 .create-post-tabs {
 	height: 49px; /*From tabs*/
-	margin: 0 0 30px 0 !important;
+	margin: 0 0 15px 0 !important;
 	top: 0 !important;
 }
 
@@ -900,7 +916,7 @@ html *
 
 .create-post-column-headers {
 	position: absolute;
-	top: 65px !important;
+	top: 50px !important;
 	padding: 7px 0 0 0 !important;
 	//margin: 30px 0 0px 0 !important;
 	width: 100%;
@@ -929,7 +945,7 @@ html *
 
 .create-post-header {
 	position: absolute;
-	top: 110px !important;
+	top: 100px !important;
 
 	border-top-width: 1px;
 	border-top-color: #FFF !important;
@@ -999,7 +1015,7 @@ html *
 	margin-left: 25% !important;
 	height: 100% !important;
 	font-size: 1.2em;
-	padding: 0 0 0 10px !important;
+	padding: 0 0 0 0px !important;
 	//color: #4bbd64;
 }
 
@@ -1009,7 +1025,7 @@ html *
 	margin-left: 25% !important;
 	height: 100% !important;
 	font-size: 1.2em;
-	padding: 0 0 0 20px !important;
+	padding: 0 0 0 10px !important;
 }
 
 .create-post-header .condition {
@@ -1029,7 +1045,7 @@ html *
 	height: 35%;
 	width: 100%;
 	position: absolute;
-	top: 200px;
+	top: 180px;
 	//padding: 10px;
 	//border-top-width: 1px;
 	//border-top-color: #DDD;
@@ -1037,7 +1053,7 @@ html *
 }
 
 .create-post-content .comments {
-	margin: 10px 15px 5% 15px;
+	margin: 0px 15px 5px 15px;
 	padding: 5px 0px 0 10px;
 	height: 35% !important;
 	//min-height: 25% !important;

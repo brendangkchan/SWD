@@ -47,8 +47,6 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
       $state.go('home.login');
     });
 
-    //$state.go('home.tab.selling');
-    $state.go('home.signup');
 
   });
 })

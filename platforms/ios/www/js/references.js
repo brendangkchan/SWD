@@ -184,27 +184,6 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
         // Switch reference type to opposite of post's when messaging
         post.type = referenceType;
 
-        // // REMOTE: Create reference
-        // AWSHelper.createReference(book, post)
-        //   .then(function(data) {
-
-        //   // REMOTE: Add conversation to my (messenger) reference
-        //   AWSHelper.addConversationToReference(conversation, reference, 'me')
-        //     .then(function(data) {
-
-        //       // REMOTE: Add conversation to poster's reference
-        //       AWSHelper.addConversationToReference(conversation, reference, 'other')
-        //         .then(function(data) {
-
-        //           // Create JSON conversation in S3
-        //           AWSHelper.createS3Conversation(conversation, reference);
-
-        //       });
-
-        //   });
-
-        // });
-
         referenceOnline = false;
         conversationOnline = false;  
 
@@ -313,6 +292,7 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
         conversations: [],
         type: post.type,
         price: post.price,
+        post: post.id,
         status: 'open'
       };
 
@@ -485,6 +465,9 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
 
       reference = $localStorage.reference;
       conversation = $localStorage.conversation;
+
+      referenceOnline = true;
+      conversationOnline = true;
     },
     selectBuyConversation: function (referenceIndex, conversationIndex) {
       console.log('Selected Buying Reference: ' + referenceIndex + ' Conversation: ' + conversationIndex);
@@ -494,7 +477,8 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
       reference = $localStorage.reference;
       conversation = $localStorage.conversation;
 
-      console.log(conversation);
+      referenceOnline = true;
+      conversationOnline = true;
     },
     getSelectedReference: function() {
       return reference;
@@ -557,9 +541,10 @@ app.factory("References", function($location, $localStorage, $ionicLoading, $q, 
 
 // Reference Sell Tab Controller
 
-app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state, Results){
+app.controller('ReferenceSellCtrl', function($scope, References, $location, $localStorage, AWSHelper, Posts, $state, Results, Notifications){
 
   //$localStorage.$reset();
+  $scope.markCompletePrompt = 'Mark Sold';
 
   var init = function() {
      References.getReferences()
@@ -570,8 +555,12 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
 
            // Give back conversations to be put into references
            References.setConversations(conversations)
-           //$state.go('home.tab.selling');
 
+           // Create Notifications
+           Notifications.createMessageAndPostStatusNotifications(References.selling());
+           Notifications.createMessageAndPostStatusNotifications(References.buying());
+           Notifications.consolidateMessageNotifications();
+           Notifications.consolidateNotifications();
          });
       });
   };
@@ -621,7 +610,7 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
   };
 
   // Delete reference permanantly
-  $scope.markSold = function(reference) {
+  $scope.markComplete = function(reference) {
     updateReferenceStatus(reference, 'sold');
     reference.status = 'sold';
   };
@@ -645,9 +634,10 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
 
 app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper, Posts, $state, Results){
 
+  $scope.markCompletePrompt = 'Mark Bought';
+
   // Load references and conversations
   $scope.references = References.buying();
-  //$scope.conversations = References.conversations();
 
   // Store clicked conversation
   $scope.selectConversation = function (referenceIndex, conversationIndex) {
@@ -686,9 +676,9 @@ app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHe
   };
 
   // Delete reference permanantly
-  $scope.markSold = function(reference) {
-    updateReferenceStatus(reference, 'sold');
-    reference.status = 'sold';
+  $scope.markComplete = function(reference) {
+    updateReferenceStatus(reference, 'bought');
+    reference.status = 'bought';
   };
 
   // Undo reference mark

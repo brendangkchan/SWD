@@ -632,12 +632,34 @@ app.controller('ReferenceSellCtrl', function($scope, References, $location, $loc
 
 // Reference Buy Tab Controller
 
-app.controller('ReferenceBuyCtrl', function($scope, References, $location, AWSHelper, Posts, $state, Results){
+app.controller('ReferenceBuyCtrl', function($scope, References, Notifications, $location, AWSHelper, Posts, $state, Results){
+
+  var init = function() {
+     References.getReferences()
+      .then(function() {
+       References.getConversations()
+         .then(function(conversations) {
+           console.log(conversations);
+
+           // Give back conversations to be put into references
+           References.setConversations(conversations)
+
+           // Create Notifications
+           Notifications.createMessageAndPostStatusNotifications(References.selling());
+           Notifications.createMessageAndPostStatusNotifications(References.buying());
+           Notifications.consolidateMessageNotifications();
+           Notifications.consolidateNotifications();
+         });
+      });
+  };
+
+  init();
 
   $scope.markCompletePrompt = 'Mark Bought';
 
   // Load references and conversations
   $scope.references = References.buying();
+
 
   // Store clicked conversation
   $scope.selectConversation = function (referenceIndex, conversationIndex) {

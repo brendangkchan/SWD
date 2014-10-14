@@ -5947,3 +5947,667 @@ Terminating in response to SpringBoard's termination.
 2014-09-24 03:34:47.035 StotleDev[69948:70b] ready get camera types
 2014-09-24 03:34:48.904 StotleDev[69948:70b] Opened detail for sell post from Elias G
 2014-09-24 03:34:51.167 StotleDev[69948:70b] Opened detail for sell post from Elias G
+2014-10-08 13:35:04.127 StotleDev[44190:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-08 13:35:04.137 StotleDev[44190:70b] Unlimited access to network resources
+2014-10-08 13:35:04.162 StotleDev[44190:70b] [CDVTimer][keyboard] 0.083983ms
+2014-10-08 13:35:04.165 StotleDev[44190:70b] [CDVTimer][file] 2.234995ms
+2014-10-08 13:35:04.178 StotleDev[44190:70b] [CDVTimer][statusbar] 11.020005ms
+2014-10-08 13:35:04.179 StotleDev[44190:70b] [CDVTimer][TotalPluginStartup] 17.143011ms
+2014-10-08 13:35:04.184 StotleDev[44190:70b] active
+2014-10-08 13:35:04.332 StotleDev[44190:70b] Resetting plugins due to page load.
+2014-10-08 13:35:05.292 StotleDev[44190:70b] Finished load of: http://192.168.1.103:8100/#/home/login
+2014-10-08 13:35:11.871 StotleDev[44190:70b] Logging out of Facebook
+2014-10-08 13:35:11.922 StotleDev[44190:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-08 13:35:11.927 StotleDev[44190:70b] THREAD WARNING: ['InAppBrowser'] took '49.655029' ms. Plugin should use a background thread.
+2014-10-08 13:35:12.311 StotleDev[44190:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBAMDnhkZCGysgwu5o7vrSzxgDAOusMdN3gvta48CeN1cojQRPEtwTZCVxeZC1c1vI7ZAbnsh6BwiUOUoZAPsXwjYBxgoJHGxwhkxujBrVi7e4uXwLgdeZAPb6zI6XlVjdJtUogsmcSXVsWijdeDJe2CuUzea1cBvTBAMrprGNWQuiNuhif3OA3fwa515rIjw4RRa1AhdjE1&expires_in=5183086
+2014-10-08 13:35:12.311 StotleDev[44190:70b] Creating AWS Credentials with token: CAAUre4NXvukBAMDnhkZCGysgwu5o7vrSzxgDAOusMdN3gvta48CeN1cojQRPEtwTZCVxeZC1c1vI7ZAbnsh6BwiUOUoZAPsXwjYBxgoJHGxwhkxujBrVi7e4uXwLgdeZAPb6zI6XlVjdJtUogsmcSXVsWijdeDJe2CuUzea1cBvTBAMrprGNWQuiNuhif3OA3fwa515rIjw4RRa1AhdjE1
+2014-10-08 13:35:12.311 StotleDev[44190:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa37ad60> while a presentation or dismiss is in progress!
+2014-10-08 13:35:12.325 StotleDev[44190:70b] Login successful
+2014-10-08 13:35:12.325 StotleDev[44190:70b] Retrieving user information
+2014-10-08 13:35:12.581 StotleDev[44190:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBAMDnhkZCGysgwu5o7vrSzxgDAOusMdN3gvta48CeN1cojQRPEtwTZCVxeZC1c1vI7ZAbnsh6BwiUOUoZAPsXwjYBxgoJHGxwhkxujBrVi7e4uXwLgdeZAPb6zI6XlVjdJtUogsmcSXVsWijdeDJe2CuUzea1cBvTBAMrprGNWQuiNuhif3OA3fwa515rIjw4RRa1AhdjE1"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBAMDnhkZCGysgwu5o7vrSzxgDAOusMdN3gvta48CeN1cojQRPEtwTZCVxeZC1c1vI7ZAbnsh6BwiUOUoZAPsXwjYBxgoJHGxwhkxujBrVi7e4uXwLgdeZAPb6zI6XlVjdJtUogsmcSXVsWijdeDJe2CuUzea1cBvTBAMrprGNWQuiNuhif3OA3fwa515rIjw4RRa1AhdjE1"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-08 13:35:12.582 StotleDev[44190:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-08 13:35:12.582 StotleDev[44190:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-08 13:35:13.737 StotleDev[44190:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 13:35:13.737 StotleDev[44190:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 13:35:13.737 StotleDev[44190:70b] User already exists
+2014-10-08 13:35:13.813 StotleDev[44190:70b] home.login -> home.tab.selling
+2014-10-08 13:35:13.813 StotleDev[44190:70b] DEVICE INFO:
+2014-10-08 13:35:13.814 StotleDev[44190:70b] iOS
+2014-10-08 13:35:13.814 StotleDev[44190:70b] PLATFORM: ios
+2014-10-08 13:35:13.814 StotleDev[44190:70b] UDID: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 13:35:13.814 StotleDev[44190:70b] CHANNEL: apns
+2014-10-08 13:35:13.814 StotleDev[44190:70b] PUSH TYPE: apns
+2014-10-08 13:35:13.815 StotleDev[44190:70b] APIKey: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 13:35:13.815 StotleDev[44190:70b] setting headers on request to http://api.quickblox.com/session.json
+2014-10-08 13:35:13.815 StotleDev[44190:70b] Getting dynamoDB object from table: references-stotle-dev
+2014-10-08 13:35:13.815 StotleDev[44190:70b] Getting references
+2014-10-08 13:35:13.897 StotleDev[44190:70b] {"Count":1,"Items":[{"author":{"S":"Rodari, Florian"},"price":{"S":"8"},"userID":{"S":"10154440676845276"},"post":{"S":"tyrswc5rl3fmvx6r"},"school":{"S":"110644"},"icon":{"S":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false"},"userEmail":{"S":"10154440676845276"},"title":{"S":"sell Kosta Alex"},"status":{"S":"open"},"type":{"S":"sell"}}],"ScannedCount":204}
+2014-10-08 13:35:13.897 StotleDev[44190:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 13:35:13.898 StotleDev[44190:70b] []
+2014-10-08 13:35:13.898 StotleDev[44190:70b] Retrieving all conversations
+2014-10-08 13:35:13.898 StotleDev[44190:70b] {"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}
+2014-10-08 13:35:13.899 StotleDev[44190:70b] []
+2014-10-08 13:35:13.899 StotleDev[44190:70b] Resetting loaded conversations
+2014-10-08 13:35:13.899 StotleDev[44190:70b] Creating notifications from references
+2014-10-08 13:35:13.899 StotleDev[44190:70b] Reference: Kosta Alex
+2014-10-08 13:35:13.899 StotleDev[44190:70b] []
+2014-10-08 13:35:13.900 StotleDev[44190:70b] Creating notifications from references
+2014-10-08 13:35:13.900 StotleDev[44190:70b] []
+2014-10-08 13:35:13.900 StotleDev[44190:70b] Consolidating message notifications
+2014-10-08 13:35:13.901 StotleDev[44190:70b] {}
+2014-10-08 13:35:13.901 StotleDev[44190:70b] []
+2014-10-08 13:35:13.901 StotleDev[44190:70b] Consolidating all notifications
+2014-10-08 13:35:14.157 StotleDev[44190:70b] {"_id":"5435a001535c12e12b006fa1","application_id":14462,"created_at":"2014-10-08T20:35:13Z","device_id":0,"nonce":3772,"token":"80d5a8a1237543d11db8a9ccb95238f8f616cb10","ts":1412800513,"updated_at":"2014-10-08T20:35:14Z","user_id":1590783,"id":49018}
+2014-10-08 13:35:14.157 StotleDev[44190:70b] jid: 1590783-14462@chat.quickblox.com
+2014-10-08 13:35:14.157 StotleDev[44190:70b] [QBChat]: Status.CONNECTING
+2014-10-08 13:35:14.157 StotleDev[44190:70b] [QBChat]: Chat Protocol - WebSocket
+2014-10-08 13:35:14.358 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:35:14.451 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:14.455 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:14.455 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:35:14.550 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:14.550 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:35:14.650 StotleDev[44190:70b] [QBChat RECV]: [object HTMLUnknownElement]
+2014-10-08 13:35:14.650 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:14.651 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:35:14.746 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:14.746 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:35:14.847 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:14.847 StotleDev[44190:70b] [QBChat]: Status.CONNECTED at 13:35:14
+2014-10-08 13:35:14.847 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:35:14.950 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:14.950 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:35:14.950 StotleDev[44190:70b] Setting listener
+2014-10-08 13:35:14.951 StotleDev[44190:70b] setting headers on request to http://api.quickblox.com/push_tokens.json
+2014-10-08 13:35:14.951 StotleDev[44190:70b] setting headers on request to http://api.quickblox.com/subscriptions.json
+2014-10-08 13:35:15.044 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:15.044 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:35:15.278 StotleDev[44190:70b] []
+2014-10-08 13:35:15.278 StotleDev[44190:70b] setting headers on request to http://api.quickblox.com/subscriptions.json? 
+2014-10-08 13:35:15.486 StotleDev[44190:70b] Listing subscriptions
+2014-10-08 13:35:19.162 StotleDev[44190:70b] SearchCtrl search: post
+2014-10-08 13:35:19.230 StotleDev[44190:70b] home.tab.selling -> home.search
+2014-10-08 13:35:19.231 StotleDev[44190:70b] URL: http://isbndb.com/api/v2/json/13JXGETH/books?q=post
+2014-10-08 13:35:37.439 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:36:10.024 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:36:10.096 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:36:32.421 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:05.045 StotleDev[44190:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:37:05.154 StotleDev[44190:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:43.850 StotleDev[44579:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-08 13:37:43.881 StotleDev[44579:70b] Unlimited access to network resources
+2014-10-08 13:37:43.920 StotleDev[44579:70b] [CDVTimer][keyboard] 0.117958ms
+2014-10-08 13:37:43.924 StotleDev[44579:70b] [CDVTimer][file] 2.974987ms
+2014-10-08 13:37:43.942 StotleDev[44579:70b] [CDVTimer][statusbar] 17.150998ms
+2014-10-08 13:37:43.943 StotleDev[44579:70b] [CDVTimer][TotalPluginStartup] 22.828996ms
+2014-10-08 13:37:43.948 StotleDev[44579:70b] active
+2014-10-08 13:37:44.179 StotleDev[44579:70b] Resetting plugins due to page load.
+2014-10-08 13:37:45.035 StotleDev[44579:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-08 13:37:45.038 StotleDev[44579:70b] bottom -> home.login
+2014-10-08 13:37:45.038 StotleDev[44579:70b] Retrieving reference from storage
+2014-10-08 13:37:45.039 StotleDev[44579:70b] Retrieving conversation from storage
+2014-10-08 13:37:45.104 StotleDev[44579:70b] Finished load of: file:///Users/brendan/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/A8E0DE55-68CF-4B2C-B590-3D15B0403120/StotleDev.app/www/index.html#/home/login
+2014-10-08 13:37:55.405 StotleDev[44579:70b] Logging out of Facebook
+2014-10-08 13:37:55.453 StotleDev[44579:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-08 13:37:55.459 StotleDev[44579:70b] THREAD WARNING: ['InAppBrowser'] took '53.980713' ms. Plugin should use a background thread.
+2014-10-08 13:37:55.884 StotleDev[44579:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBAJ5sKSkvpA8qkVW3jJP0FglCk8cuBUZA7YUlMWZBhyGjqkEpVZAvoFCK8Xi7SFPVCH93sFcqtTsbd6KF0ufjuqUFSdhovXrgTjTysZA4KxXK8ZAuCI7ZBj1XaOclZATZBAeEHLo2dKDtqdj8WC1JG7rW7CP3DTZBZCe6tOeiW3Bh1Qx4mAjaeKf1ftUep2QZABLZCXcA76grjyqO&expires_in=5182923
+2014-10-08 13:37:55.884 StotleDev[44579:70b] Creating AWS Credentials with token: CAAUre4NXvukBAJ5sKSkvpA8qkVW3jJP0FglCk8cuBUZA7YUlMWZBhyGjqkEpVZAvoFCK8Xi7SFPVCH93sFcqtTsbd6KF0ufjuqUFSdhovXrgTjTysZA4KxXK8ZAuCI7ZBj1XaOclZATZBAeEHLo2dKDtqdj8WC1JG7rW7CP3DTZBZCe6tOeiW3Bh1Qx4mAjaeKf1ftUep2QZABLZCXcA76grjyqO
+2014-10-08 13:37:55.885 StotleDev[44579:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa45cc80> while a presentation or dismiss is in progress!
+2014-10-08 13:37:55.902 StotleDev[44579:70b] Login successful
+2014-10-08 13:37:55.903 StotleDev[44579:70b] Retrieving user information
+2014-10-08 13:37:56.109 StotleDev[44579:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBAJ5sKSkvpA8qkVW3jJP0FglCk8cuBUZA7YUlMWZBhyGjqkEpVZAvoFCK8Xi7SFPVCH93sFcqtTsbd6KF0ufjuqUFSdhovXrgTjTysZA4KxXK8ZAuCI7ZBj1XaOclZATZBAeEHLo2dKDtqdj8WC1JG7rW7CP3DTZBZCe6tOeiW3Bh1Qx4mAjaeKf1ftUep2QZABLZCXcA76grjyqO"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBAJ5sKSkvpA8qkVW3jJP0FglCk8cuBUZA7YUlMWZBhyGjqkEpVZAvoFCK8Xi7SFPVCH93sFcqtTsbd6KF0ufjuqUFSdhovXrgTjTysZA4KxXK8ZAuCI7ZBj1XaOclZATZBAeEHLo2dKDtqdj8WC1JG7rW7CP3DTZBZCe6tOeiW3Bh1Qx4mAjaeKf1ftUep2QZABLZCXcA76grjyqO"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-08 13:37:56.111 StotleDev[44579:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-08 13:37:56.111 StotleDev[44579:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-08 13:37:57.027 StotleDev[44579:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 13:37:57.027 StotleDev[44579:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 13:37:57.027 StotleDev[44579:70b] User already exists
+2014-10-08 13:37:57.112 StotleDev[44579:70b] home.login -> home.tab.selling
+2014-10-08 13:37:57.112 StotleDev[44579:70b] DEVICE INFO:
+2014-10-08 13:37:57.113 StotleDev[44579:70b] iOS
+2014-10-08 13:37:57.113 StotleDev[44579:70b] PLATFORM: ios
+2014-10-08 13:37:57.113 StotleDev[44579:70b] UDID: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 13:37:57.113 StotleDev[44579:70b] CHANNEL: apns
+2014-10-08 13:37:57.114 StotleDev[44579:70b] PUSH TYPE: apns
+2014-10-08 13:37:57.114 StotleDev[44579:70b] APIKey: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 13:37:57.114 StotleDev[44579:70b] setting headers on request to http://api.quickblox.com/session.json
+2014-10-08 13:37:57.114 StotleDev[44579:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 13:37:57.115 StotleDev[44579:70b] Getting dynamoDB object from table: references-stotle-dev
+2014-10-08 13:37:57.115 StotleDev[44579:70b] Getting references
+2014-10-08 13:37:57.175 StotleDev[44579:70b] {"Count":1,"Items":[{"author":{"S":"Rodari, Florian"},"price":{"S":"8"},"userID":{"S":"10154440676845276"},"post":{"S":"tyrswc5rl3fmvx6r"},"school":{"S":"110644"},"icon":{"S":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false"},"userEmail":{"S":"10154440676845276"},"title":{"S":"sell Kosta Alex"},"status":{"S":"open"},"type":{"S":"sell"}}],"ScannedCount":204}
+2014-10-08 13:37:57.175 StotleDev[44579:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 13:37:57.175 StotleDev[44579:70b] []
+2014-10-08 13:37:57.176 StotleDev[44579:70b] Retrieving all conversations
+2014-10-08 13:37:57.176 StotleDev[44579:70b] {"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}
+2014-10-08 13:37:57.176 StotleDev[44579:70b] []
+2014-10-08 13:37:57.176 StotleDev[44579:70b] Resetting loaded conversations
+2014-10-08 13:37:57.177 StotleDev[44579:70b] Creating notifications from references
+2014-10-08 13:37:57.177 StotleDev[44579:70b] Reference: Kosta Alex
+2014-10-08 13:37:57.177 StotleDev[44579:70b] []
+2014-10-08 13:37:57.177 StotleDev[44579:70b] Creating notifications from references
+2014-10-08 13:37:57.178 StotleDev[44579:70b] []
+2014-10-08 13:37:57.178 StotleDev[44579:70b] Consolidating message notifications
+2014-10-08 13:37:57.178 StotleDev[44579:70b] {}
+2014-10-08 13:37:57.179 StotleDev[44579:70b] []
+2014-10-08 13:37:57.179 StotleDev[44579:70b] Consolidating all notifications
+2014-10-08 13:37:57.630 StotleDev[44579:70b] {"_id":"5435a0a5535c123f5e00862e","application_id":14462,"created_at":"2014-10-08T20:37:57Z","device_id":0,"nonce":6207,"token":"f12a7074b6e86cf67e52448c36ed5032692d3676","ts":1412800677,"updated_at":"2014-10-08T20:37:57Z","user_id":1590783,"id":63589}
+2014-10-08 13:37:57.630 StotleDev[44579:70b] jid: 1590783-14462@chat.quickblox.com
+2014-10-08 13:37:57.630 StotleDev[44579:70b] [QBChat]: Status.CONNECTING
+2014-10-08 13:37:57.631 StotleDev[44579:70b] [QBChat]: Chat Protocol - WebSocket
+2014-10-08 13:37:57.857 StotleDev[44579:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:37:57.954 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:57.957 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:57.957 StotleDev[44579:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:37:58.055 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:58.055 StotleDev[44579:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:37:58.189 StotleDev[44579:70b] [QBChat RECV]: [object HTMLUnknownElement]
+2014-10-08 13:37:58.190 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:58.191 StotleDev[44579:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:37:58.283 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:58.283 StotleDev[44579:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:37:58.386 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:58.387 StotleDev[44579:70b] [QBChat]: Status.CONNECTED at 13:37:58
+2014-10-08 13:37:58.387 StotleDev[44579:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:37:58.491 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:58.491 StotleDev[44579:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:37:58.491 StotleDev[44579:70b] Setting listener
+2014-10-08 13:37:58.492 StotleDev[44579:70b] setting headers on request to http://api.quickblox.com/push_tokens.json
+2014-10-08 13:37:58.492 StotleDev[44579:70b] setting headers on request to http://api.quickblox.com/subscriptions.json
+2014-10-08 13:37:58.601 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:58.602 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:37:58.713 StotleDev[44579:70b] []
+2014-10-08 13:37:58.714 StotleDev[44579:70b] setting headers on request to http://api.quickblox.com/subscriptions.json? 
+2014-10-08 13:37:58.824 StotleDev[44579:70b] Listing subscriptions
+2014-10-08 13:38:06.134 StotleDev[44579:70b] Searching for reference: Kosta Alex
+2014-10-08 13:38:06.171 StotleDev[44579:70b] home.tab.selling -> home.posts.selling
+2014-10-08 13:38:06.171 StotleDev[44579:70b] ready get camera types
+2014-10-08 13:38:07.358 StotleDev[44579:70b] Opened detail for sell post from [object Object]
+2014-10-08 13:38:15.785 StotleDev[44579:70b] Opened detail for sell post from [object Object]
+2014-10-08 13:38:18.057 StotleDev[44579:70b] Opened detail for sell post from [object Object]
+2014-10-08 13:38:22.612 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:38:53.555 StotleDev[44579:70b] [QBChat SENT]: [object Element]
+2014-10-08 13:38:53.646 StotleDev[44579:70b] [QBChat RECV]: [object Element]
+2014-10-08 13:39:08.251 StotleDev[44579:70b] Opened detail for sell post from [object Object]
+Terminating in response to SpringBoard's termination.
+2014-10-08 16:43:19.819 StotleDev[48582:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-08 16:43:19.836 StotleDev[48582:70b] Unlimited access to network resources
+2014-10-08 16:43:19.878 StotleDev[48582:70b] [CDVTimer][keyboard] 0.088036ms
+2014-10-08 16:43:19.881 StotleDev[48582:70b] [CDVTimer][file] 2.983987ms
+2014-10-08 16:43:19.895 StotleDev[48582:70b] [CDVTimer][statusbar] 12.599945ms
+2014-10-08 16:43:19.897 StotleDev[48582:70b] [CDVTimer][TotalPluginStartup] 19.178987ms
+2014-10-08 16:43:19.904 StotleDev[48582:70b] active
+2014-10-08 16:43:20.048 StotleDev[48582:70b] Resetting plugins due to page load.
+2014-10-08 16:43:20.233 StotleDev[48582:6407] ERROR: unable to get the receiver data from the DB!
+2014-10-08 16:43:20.234 StotleDev[48582:683f] ERROR: unable to get the receiver data from the DB!
+2014-10-08 16:43:20.699 StotleDev[48582:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-08 16:43:20.755 StotleDev[48582:70b] bottom -> home.login
+2014-10-08 16:43:20.771 StotleDev[48582:70b] Finished load of: http://192.168.1.103:8100/#/home/login
+2014-10-08 16:43:22.723 StotleDev[48582:70b] Logging out of Facebook
+2014-10-08 16:43:22.758 StotleDev[48582:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-08 16:43:22.763 StotleDev[48582:70b] THREAD WARNING: ['InAppBrowser'] took '39.305176' ms. Plugin should use a background thread.
+2014-10-08 16:43:23.185 StotleDev[48582:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBAOzUESpfEKYcWJ5HATcbKiHCQWtZA87NIElNhj1ki2QQKLcO0Ve41x0nTL76HUMKy9IgXMHBcrOZClKfMrXzFe8ZAw18PDAiqfp1BIjC0YAi4dOt9pVOAvYuF9SQrKwZBNOkjPyKlXNu1IlgZC5RtmdUXteZCgAtAtVeZCZAecgSAWRPTxhDrqpd0xJLC8BO81kkd7NaRZAv4&expires_in=5171795
+2014-10-08 16:43:23.186 StotleDev[48582:70b] Creating AWS Credentials with token: CAAUre4NXvukBAOzUESpfEKYcWJ5HATcbKiHCQWtZA87NIElNhj1ki2QQKLcO0Ve41x0nTL76HUMKy9IgXMHBcrOZClKfMrXzFe8ZAw18PDAiqfp1BIjC0YAi4dOt9pVOAvYuF9SQrKwZBNOkjPyKlXNu1IlgZC5RtmdUXteZCgAtAtVeZCZAecgSAWRPTxhDrqpd0xJLC8BO81kkd7NaRZAv4
+2014-10-08 16:43:23.186 StotleDev[48582:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa399340> while a presentation or dismiss is in progress!
+2014-10-08 16:43:23.209 StotleDev[48582:70b] Login successful
+2014-10-08 16:43:23.209 StotleDev[48582:70b] Retrieving user information
+2014-10-08 16:43:23.444 StotleDev[48582:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBAOzUESpfEKYcWJ5HATcbKiHCQWtZA87NIElNhj1ki2QQKLcO0Ve41x0nTL76HUMKy9IgXMHBcrOZClKfMrXzFe8ZAw18PDAiqfp1BIjC0YAi4dOt9pVOAvYuF9SQrKwZBNOkjPyKlXNu1IlgZC5RtmdUXteZCgAtAtVeZCZAecgSAWRPTxhDrqpd0xJLC8BO81kkd7NaRZAv4"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBAOzUESpfEKYcWJ5HATcbKiHCQWtZA87NIElNhj1ki2QQKLcO0Ve41x0nTL76HUMKy9IgXMHBcrOZClKfMrXzFe8ZAw18PDAiqfp1BIjC0YAi4dOt9pVOAvYuF9SQrKwZBNOkjPyKlXNu1IlgZC5RtmdUXteZCgAtAtVeZCZAecgSAWRPTxhDrqpd0xJLC8BO81kkd7NaRZAv4"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-08 16:43:23.445 StotleDev[48582:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-08 16:43:23.445 StotleDev[48582:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-08 16:43:24.627 StotleDev[48582:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 16:43:24.627 StotleDev[48582:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 16:43:24.627 StotleDev[48582:70b] User already exists
+2014-10-08 16:43:24.705 StotleDev[48582:70b] home.login -> home.posts.selling
+2014-10-08 16:43:24.705 StotleDev[48582:70b] ready get camera types
+2014-10-08 16:43:30.068 StotleDev[48582:70b] Opened detail for sell post from [object Object]
+2014-10-08 16:43:40.239 StotleDev[48582:70b] Opened detail for sell post from [object Object]
+2014-10-08 17:38:26.223 StotleDev[58790:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-08 17:38:26.234 StotleDev[58790:70b] Unlimited access to network resources
+2014-10-08 17:38:26.264 StotleDev[58790:70b] [CDVTimer][keyboard] 0.093997ms
+2014-10-08 17:38:26.270 StotleDev[58790:70b] [CDVTimer][file] 5.621016ms
+2014-10-08 17:38:26.286 StotleDev[58790:70b] [CDVTimer][statusbar] 15.816987ms
+2014-10-08 17:38:26.287 StotleDev[58790:70b] [CDVTimer][TotalPluginStartup] 23.478985ms
+2014-10-08 17:38:26.294 StotleDev[58790:70b] active
+2014-10-08 17:38:26.484 StotleDev[58790:70b] Resetting plugins due to page load.
+2014-10-08 17:38:26.671 StotleDev[58790:6303] ERROR: unable to get the receiver data from the DB!
+2014-10-08 17:38:26.678 StotleDev[58790:6403] ERROR: unable to get the receiver data from the DB!
+2014-10-08 17:38:27.759 StotleDev[58790:70b] Finished load of: http://192.168.1.103:8100/#/home/login
+2014-10-08 17:38:42.372 StotleDev[58790:70b] Logging out of Facebook
+2014-10-08 17:38:42.424 StotleDev[58790:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-08 17:38:42.436 StotleDev[58790:70b] THREAD WARNING: ['InAppBrowser'] took '62.802002' ms. Plugin should use a background thread.
+2014-10-08 17:38:42.865 StotleDev[58790:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBAKRGVnJIeyvNqWagEIReG29NVCmnDfHzzG9XeLV3KZCO6RLwbaoF5yaUDIQTbxL4GRxF0vEBWWx5CoqnCGpp3ca8lA58HZAQueJ2TViE0T9rrUzcmaBYusejaYJO7GRgbSGAECRpFK4p83dgm6983RmxC6FCmeZBINgy0qisNfpMn8pWYlPfOtPgOmHswgXq67jF5NC&expires_in=5168476
+2014-10-08 17:38:42.868 StotleDev[58790:70b] Creating AWS Credentials with token: CAAUre4NXvukBAKRGVnJIeyvNqWagEIReG29NVCmnDfHzzG9XeLV3KZCO6RLwbaoF5yaUDIQTbxL4GRxF0vEBWWx5CoqnCGpp3ca8lA58HZAQueJ2TViE0T9rrUzcmaBYusejaYJO7GRgbSGAECRpFK4p83dgm6983RmxC6FCmeZBINgy0qisNfpMn8pWYlPfOtPgOmHswgXq67jF5NC
+2014-10-08 17:38:42.868 StotleDev[58790:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa45b180> while a presentation or dismiss is in progress!
+2014-10-08 17:38:42.891 StotleDev[58790:70b] Login successful
+2014-10-08 17:38:42.892 StotleDev[58790:70b] Retrieving user information
+2014-10-08 17:38:43.117 StotleDev[58790:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBAKRGVnJIeyvNqWagEIReG29NVCmnDfHzzG9XeLV3KZCO6RLwbaoF5yaUDIQTbxL4GRxF0vEBWWx5CoqnCGpp3ca8lA58HZAQueJ2TViE0T9rrUzcmaBYusejaYJO7GRgbSGAECRpFK4p83dgm6983RmxC6FCmeZBINgy0qisNfpMn8pWYlPfOtPgOmHswgXq67jF5NC"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBAKRGVnJIeyvNqWagEIReG29NVCmnDfHzzG9XeLV3KZCO6RLwbaoF5yaUDIQTbxL4GRxF0vEBWWx5CoqnCGpp3ca8lA58HZAQueJ2TViE0T9rrUzcmaBYusejaYJO7GRgbSGAECRpFK4p83dgm6983RmxC6FCmeZBINgy0qisNfpMn8pWYlPfOtPgOmHswgXq67jF5NC"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-08 17:38:43.118 StotleDev[58790:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-08 17:38:43.119 StotleDev[58790:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-08 17:38:44.061 StotleDev[58790:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 17:38:44.062 StotleDev[58790:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 17:38:44.062 StotleDev[58790:70b] User already exists
+2014-10-08 17:38:44.154 StotleDev[58790:70b] home.login -> home.posts.selling
+2014-10-08 17:38:44.155 StotleDev[58790:70b] ready get camera types
+2014-10-08 17:38:53.162 StotleDev[58790:70b] Toggle to post type: buy
+2014-10-08 17:38:54.103 StotleDev[58790:70b] Toggle to post type: sell
+2014-10-08 18:08:07.151 StotleDev[61650:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-08 18:08:07.168 StotleDev[61650:70b] Unlimited access to network resources
+2014-10-08 18:08:07.352 StotleDev[61650:70b] [CDVTimer][keyboard] 0.087023ms
+2014-10-08 18:08:07.354 StotleDev[61650:70b] [CDVTimer][file] 1.994967ms
+2014-10-08 18:08:07.463 StotleDev[61650:70b] [CDVTimer][statusbar] 107.665002ms
+2014-10-08 18:08:07.463 StotleDev[61650:70b] [CDVTimer][TotalPluginStartup] 111.519992ms
+2014-10-08 18:08:07.472 StotleDev[61650:70b] active
+2014-10-08 18:08:07.677 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:08:07.893 StotleDev[61650:6517] ERROR: unable to get the receiver data from the DB!
+2014-10-08 18:08:07.893 StotleDev[61650:6927] ERROR: unable to get the receiver data from the DB!
+2014-10-08 18:08:08.407 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/#/home/login
+2014-10-08 18:08:08.482 StotleDev[61650:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-08 18:08:08.484 StotleDev[61650:70b] bottom -> home.login
+2014-10-08 18:08:21.129 StotleDev[61650:70b] Logging out of Facebook
+2014-10-08 18:08:21.180 StotleDev[61650:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-08 18:08:21.194 StotleDev[61650:70b] THREAD WARNING: ['InAppBrowser'] took '64.026123' ms. Plugin should use a background thread.
+2014-10-08 18:08:21.719 StotleDev[61650:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBANcL8AFKCHS9hw3AjReWzZC002dhYjDscD0SvUeQrQw5GtGqIl48yi6ZCyZATtptCAPCQTpG8ZCPoFpH5yxwMGLC0K2j6LZCcUM3HyVPS1MTnAeTV8IBh4pZCr1GIrZBMZBqzAdssk1k3Gb4Klje99IvilCWEZAZCOa9qwZAwZBYvsP65XZCGx7Eu4aaw0BpCsrRxzZAOYZAZASOQpw2&expires_in=5166697
+2014-10-08 18:08:21.719 StotleDev[61650:70b] Creating AWS Credentials with token: CAAUre4NXvukBANcL8AFKCHS9hw3AjReWzZC002dhYjDscD0SvUeQrQw5GtGqIl48yi6ZCyZATtptCAPCQTpG8ZCPoFpH5yxwMGLC0K2j6LZCcUM3HyVPS1MTnAeTV8IBh4pZCr1GIrZBMZBqzAdssk1k3Gb4Klje99IvilCWEZAZCOa9qwZAwZBYvsP65XZCGx7Eu4aaw0BpCsrRxzZAOYZAZASOQpw2
+2014-10-08 18:08:21.728 StotleDev[61650:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa54d590> while a presentation or dismiss is in progress!
+2014-10-08 18:08:21.802 StotleDev[61650:70b] Login successful
+2014-10-08 18:08:21.803 StotleDev[61650:70b] Retrieving user information
+2014-10-08 18:08:22.818 StotleDev[61650:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBANcL8AFKCHS9hw3AjReWzZC002dhYjDscD0SvUeQrQw5GtGqIl48yi6ZCyZATtptCAPCQTpG8ZCPoFpH5yxwMGLC0K2j6LZCcUM3HyVPS1MTnAeTV8IBh4pZCr1GIrZBMZBqzAdssk1k3Gb4Klje99IvilCWEZAZCOa9qwZAwZBYvsP65XZCGx7Eu4aaw0BpCsrRxzZAOYZAZASOQpw2"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBANcL8AFKCHS9hw3AjReWzZC002dhYjDscD0SvUeQrQw5GtGqIl48yi6ZCyZATtptCAPCQTpG8ZCPoFpH5yxwMGLC0K2j6LZCcUM3HyVPS1MTnAeTV8IBh4pZCr1GIrZBMZBqzAdssk1k3Gb4Klje99IvilCWEZAZCOa9qwZAwZBYvsP65XZCGx7Eu4aaw0BpCsrRxzZAOYZAZASOQpw2"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-08 18:08:22.819 StotleDev[61650:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-08 18:08:22.819 StotleDev[61650:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-08 18:08:23.638 StotleDev[61650:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 18:08:23.638 StotleDev[61650:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 18:08:23.639 StotleDev[61650:70b] User already exists
+2014-10-08 18:08:23.786 StotleDev[61650:70b] home.login -> home.tab.selling
+2014-10-08 18:08:23.786 StotleDev[61650:70b] DEVICE INFO:
+2014-10-08 18:08:23.786 StotleDev[61650:70b] iOS
+2014-10-08 18:08:23.786 StotleDev[61650:70b] PLATFORM: ios
+2014-10-08 18:08:23.786 StotleDev[61650:70b] UDID: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 18:08:23.787 StotleDev[61650:70b] CHANNEL: apns
+2014-10-08 18:08:23.787 StotleDev[61650:70b] PUSH TYPE: apns
+2014-10-08 18:08:23.787 StotleDev[61650:70b] APIKey: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 18:08:23.787 StotleDev[61650:70b] setting headers on request to http://api.quickblox.com/session.json
+2014-10-08 18:08:23.788 StotleDev[61650:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:08:23.788 StotleDev[61650:70b] Getting dynamoDB object from table: references-stotle-dev
+2014-10-08 18:08:23.788 StotleDev[61650:70b] Getting references
+2014-10-08 18:08:23.879 StotleDev[61650:70b] {"Count":1,"Items":[{"author":{"S":"Rodari, Florian"},"price":{"S":"8"},"userID":{"S":"10154440676845276"},"post":{"S":"tyrswc5rl3fmvx6r"},"school":{"S":"110644"},"icon":{"S":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false"},"userEmail":{"S":"10154440676845276"},"title":{"S":"sell Kosta Alex"},"status":{"S":"open"},"type":{"S":"sell"}}],"ScannedCount":204}
+2014-10-08 18:08:23.880 StotleDev[61650:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:08:23.880 StotleDev[61650:70b] []
+2014-10-08 18:08:23.880 StotleDev[61650:70b] Retrieving all conversations
+2014-10-08 18:08:23.880 StotleDev[61650:70b] {"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}
+2014-10-08 18:08:23.880 StotleDev[61650:70b] []
+2014-10-08 18:08:23.880 StotleDev[61650:70b] Resetting loaded conversations
+2014-10-08 18:08:23.881 StotleDev[61650:70b] Creating notifications from references
+2014-10-08 18:08:23.881 StotleDev[61650:70b] Reference: Kosta Alex
+2014-10-08 18:08:23.881 StotleDev[61650:70b] []
+2014-10-08 18:08:23.881 StotleDev[61650:70b] Creating notifications from references
+2014-10-08 18:08:23.881 StotleDev[61650:70b] []
+2014-10-08 18:08:23.881 StotleDev[61650:70b] Consolidating message notifications
+2014-10-08 18:08:23.882 StotleDev[61650:70b] {}
+2014-10-08 18:08:23.882 StotleDev[61650:70b] []
+2014-10-08 18:08:23.882 StotleDev[61650:70b] Consolidating all notifications
+2014-10-08 18:08:24.098 StotleDev[61650:70b] {"_id":"5435e007535c121fbc00983b","application_id":14462,"created_at":"2014-10-09T01:08:23Z","device_id":0,"nonce":4501,"token":"cc0ef8a6129a0ad1bcdd55922826af4a83ece709","ts":1412816903,"updated_at":"2014-10-09T01:08:24Z","user_id":1590783,"id":59291}
+2014-10-08 18:08:24.098 StotleDev[61650:70b] jid: 1590783-14462@chat.quickblox.com
+2014-10-08 18:08:24.098 StotleDev[61650:70b] [QBChat]: Status.CONNECTING
+2014-10-08 18:08:24.098 StotleDev[61650:70b] [QBChat]: Chat Protocol - WebSocket
+2014-10-08 18:08:24.308 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:08:24.413 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:08:24.413 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:08:24.413 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:08:24.509 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:08:24.509 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:08:24.617 StotleDev[61650:70b] [QBChat RECV]: [object HTMLUnknownElement]
+2014-10-08 18:08:24.617 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:08:24.617 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:08:24.707 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:08:24.708 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:08:24.808 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:08:24.808 StotleDev[61650:70b] [QBChat]: Status.CONNECTED at 18:08:24
+2014-10-08 18:08:24.808 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:08:24.913 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:08:24.913 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:08:24.913 StotleDev[61650:70b] Setting listener
+2014-10-08 18:08:24.913 StotleDev[61650:70b] setting headers on request to http://api.quickblox.com/push_tokens.json
+2014-10-08 18:08:24.914 StotleDev[61650:70b] setting headers on request to http://api.quickblox.com/subscriptions.json
+2014-10-08 18:08:25.009 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:08:25.234 StotleDev[61650:70b] []
+2014-10-08 18:08:25.235 StotleDev[61650:70b] setting headers on request to http://api.quickblox.com/subscriptions.json? 
+2014-10-08 18:08:25.448 StotleDev[61650:70b] Listing subscriptions
+2014-10-08 18:09:20.009 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:09:20.073 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:10:14.999 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:10:15.090 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:11:10.055 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:11:10.144 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:12:05.146 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:12:05.233 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:13:00.205 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:13:00.295 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:13:55.298 StotleDev[61650:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:13:55.386 StotleDev[61650:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:14:21.492 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:14:21.493 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:14:21.540 StotleDev[61650:70b] Failed to load webpage with error: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2014-10-08 18:14:21.540 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:14:21.541 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:14:22.250 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/#/home/tab/selling
+2014-10-08 18:14:22.319 StotleDev[61650:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-08 18:14:22.320 StotleDev[61650:70b] bottom -> home.tab.selling
+2014-10-08 18:14:22.320 StotleDev[61650:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:14:57.813 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:14:57.819 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:14:58.510 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/#/home/tab/selling
+2014-10-08 18:14:58.512 StotleDev[61650:70b] bottom -> home.tab.selling
+2014-10-08 18:14:58.513 StotleDev[61650:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:17:22.562 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:17:22.568 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:17:22.579 StotleDev[61650:70b] Failed to load webpage with error: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2014-10-08 18:17:22.580 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:17:22.580 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:17:23.038 StotleDev[61650:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-08 18:17:23.046 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/#/home/tab/selling
+2014-10-08 18:17:23.161 StotleDev[61650:70b] bottom -> home.tab.selling
+2014-10-08 18:17:23.162 StotleDev[61650:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:28:36.356 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:28:36.357 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:28:37.124 StotleDev[61650:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-08 18:28:37.125 StotleDev[61650:70b] bottom -> home.tab.selling
+2014-10-08 18:28:37.125 StotleDev[61650:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:28:37.155 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/#/home/tab/selling
+2014-10-08 18:28:45.365 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:28:45.370 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:28:45.970 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/#/home/tab/selling
+2014-10-08 18:28:57.901 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:28:57.908 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:28:58.364 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/#/home/tab/selling
+2014-10-08 18:29:10.413 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:29:10.413 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:29:10.736 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/#/home/tab/selling
+2014-10-08 18:29:37.070 StotleDev[61650:70b] Resetting plugins due to page load.
+2014-10-08 18:29:37.076 StotleDev[61650:70b] IAB.close() called but it was already closed.
+2014-10-08 18:29:37.449 StotleDev[61650:70b] Finished load of: http://192.168.1.103:8100/?restart=242675
+Terminating in response to SpringBoard's termination.
+2014-10-08 18:30:01.625 StotleDev[62077:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-08 18:30:01.745 StotleDev[62077:70b] Unlimited access to network resources
+2014-10-08 18:30:01.831 StotleDev[62077:70b] [CDVTimer][keyboard] 0.096023ms
+2014-10-08 18:30:01.834 StotleDev[62077:70b] [CDVTimer][file] 2.205014ms
+2014-10-08 18:30:01.851 StotleDev[62077:70b] [CDVTimer][statusbar] 16.041040ms
+2014-10-08 18:30:01.852 StotleDev[62077:70b] [CDVTimer][TotalPluginStartup] 20.805001ms
+2014-10-08 18:30:01.864 StotleDev[62077:70b] active
+2014-10-08 18:30:01.999 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:30:02.252 StotleDev[62077:6003] ERROR: unable to get the receiver data from the DB!
+2014-10-08 18:30:02.274 StotleDev[62077:6403] ERROR: unable to get the receiver data from the DB!
+2014-10-08 18:30:03.412 StotleDev[62077:70b] Finished load of: http://192.168.1.103:8100/
+2014-10-08 18:30:26.401 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:30:26.415 StotleDev[62077:70b] Failed to load webpage with error: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2014-10-08 18:30:26.415 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:30:26.926 StotleDev[62077:70b] Finished load of: http://192.168.1.103:8100/#/home/login
+2014-10-08 18:30:32.417 StotleDev[62077:70b] Logging out of Facebook
+2014-10-08 18:30:32.418 StotleDev[62077:70b] No explicit oauthRedirectURL
+2014-10-08 18:30:32.418 StotleDev[62077:70b] Running in cordova
+2014-10-08 18:30:32.474 StotleDev[62077:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-08 18:30:32.498 StotleDev[62077:70b] THREAD WARNING: ['InAppBrowser'] took '79.969238' ms. Plugin should use a background thread.
+2014-10-08 18:30:32.954 StotleDev[62077:70b] Closing login window
+2014-10-08 18:30:32.955 StotleDev[62077:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBAEdVik1ce4vwGZA2rGEPBehst4TZBq76aklXmJrJxdpE1v3gZBV2magOHSXxm4VNh0QJMT2S08IZCqnZB1qrJiqnrV6LgqsIqWsbfuKA2wiZC72EQyFVbK8ZBYZAZCq9YWaOpnEGttVtHdAt9jw1QXLLrMKLacCEVl2WM0cNgVf2uie6yVZCH5u5exy3f8pVJhFsDlUZBsQLvbK&expires_in=5165366
+2014-10-08 18:30:32.956 StotleDev[62077:70b] Creating AWS Credentials with token: CAAUre4NXvukBAEdVik1ce4vwGZA2rGEPBehst4TZBq76aklXmJrJxdpE1v3gZBV2magOHSXxm4VNh0QJMT2S08IZCqnZB1qrJiqnrV6LgqsIqWsbfuKA2wiZC72EQyFVbK8ZBYZAZCq9YWaOpnEGttVtHdAt9jw1QXLLrMKLacCEVl2WM0cNgVf2uie6yVZCH5u5exy3f8pVJhFsDlUZBsQLvbK
+2014-10-08 18:30:32.964 StotleDev[62077:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa349dc0> while a presentation or dismiss is in progress!
+2014-10-08 18:30:32.977 StotleDev[62077:70b] Login successful
+2014-10-08 18:30:32.978 StotleDev[62077:70b] Retrieving user information
+2014-10-08 18:30:33.206 StotleDev[62077:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBAEdVik1ce4vwGZA2rGEPBehst4TZBq76aklXmJrJxdpE1v3gZBV2magOHSXxm4VNh0QJMT2S08IZCqnZB1qrJiqnrV6LgqsIqWsbfuKA2wiZC72EQyFVbK8ZBYZAZCq9YWaOpnEGttVtHdAt9jw1QXLLrMKLacCEVl2WM0cNgVf2uie6yVZCH5u5exy3f8pVJhFsDlUZBsQLvbK"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBAEdVik1ce4vwGZA2rGEPBehst4TZBq76aklXmJrJxdpE1v3gZBV2magOHSXxm4VNh0QJMT2S08IZCqnZB1qrJiqnrV6LgqsIqWsbfuKA2wiZC72EQyFVbK8ZBYZAZCq9YWaOpnEGttVtHdAt9jw1QXLLrMKLacCEVl2WM0cNgVf2uie6yVZCH5u5exy3f8pVJhFsDlUZBsQLvbK"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-08 18:30:33.207 StotleDev[62077:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-08 18:30:33.207 StotleDev[62077:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-08 18:30:34.148 StotleDev[62077:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 18:30:34.148 StotleDev[62077:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 18:30:34.148 StotleDev[62077:70b] User already exists
+2014-10-08 18:30:34.241 StotleDev[62077:70b] home.login -> home.tab.selling
+2014-10-08 18:30:34.241 StotleDev[62077:70b] DEVICE INFO:
+2014-10-08 18:30:34.241 StotleDev[62077:70b] iOS
+2014-10-08 18:30:34.241 StotleDev[62077:70b] PLATFORM: ios
+2014-10-08 18:30:34.241 StotleDev[62077:70b] UDID: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 18:30:34.242 StotleDev[62077:70b] CHANNEL: apns
+2014-10-08 18:30:34.242 StotleDev[62077:70b] PUSH TYPE: apns
+2014-10-08 18:30:34.242 StotleDev[62077:70b] APIKey: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 18:30:34.242 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/session.json
+2014-10-08 18:30:34.242 StotleDev[62077:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:30:34.242 StotleDev[62077:70b] Getting dynamoDB object from table: references-stotle-dev
+2014-10-08 18:30:34.243 StotleDev[62077:70b] Getting references
+2014-10-08 18:30:34.316 StotleDev[62077:70b] {"Count":1,"Items":[{"author":{"S":"Rodari, Florian"},"price":{"S":"8"},"userID":{"S":"10154440676845276"},"post":{"S":"tyrswc5rl3fmvx6r"},"school":{"S":"110644"},"icon":{"S":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false"},"userEmail":{"S":"10154440676845276"},"title":{"S":"sell Kosta Alex"},"status":{"S":"open"},"type":{"S":"sell"}}],"ScannedCount":204}
+2014-10-08 18:30:34.317 StotleDev[62077:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:30:34.317 StotleDev[62077:70b] []
+2014-10-08 18:30:34.317 StotleDev[62077:70b] Retrieving all conversations
+2014-10-08 18:30:34.317 StotleDev[62077:70b] {"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}
+2014-10-08 18:30:34.318 StotleDev[62077:70b] []
+2014-10-08 18:30:34.318 StotleDev[62077:70b] Resetting loaded conversations
+2014-10-08 18:30:34.318 StotleDev[62077:70b] Creating notifications from references
+2014-10-08 18:30:34.319 StotleDev[62077:70b] Reference: Kosta Alex
+2014-10-08 18:30:34.319 StotleDev[62077:70b] []
+2014-10-08 18:30:34.319 StotleDev[62077:70b] Creating notifications from references
+2014-10-08 18:30:34.319 StotleDev[62077:70b] []
+2014-10-08 18:30:34.320 StotleDev[62077:70b] Consolidating message notifications
+2014-10-08 18:30:34.320 StotleDev[62077:70b] {}
+2014-10-08 18:30:34.320 StotleDev[62077:70b] []
+2014-10-08 18:30:34.320 StotleDev[62077:70b] Consolidating all notifications
+2014-10-08 18:30:34.547 StotleDev[62077:70b] {"_id":"5435e53a535c12e12b009be3","application_id":14462,"created_at":"2014-10-09T01:30:34Z","device_id":0,"nonce":4865,"token":"72976dc8564861d88dc8b335385304478f67d6aa","ts":1412818234,"updated_at":"2014-10-09T01:30:34Z","user_id":1590783,"id":40744}
+2014-10-08 18:30:34.547 StotleDev[62077:70b] jid: 1590783-14462@chat.quickblox.com
+2014-10-08 18:30:34.547 StotleDev[62077:70b] [QBChat]: Status.CONNECTING
+2014-10-08 18:30:34.547 StotleDev[62077:70b] [QBChat]: Chat Protocol - WebSocket
+2014-10-08 18:30:34.767 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:30:34.855 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:34.860 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:34.860 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:30:34.952 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:34.953 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:30:35.059 StotleDev[62077:70b] [QBChat RECV]: [object HTMLUnknownElement]
+2014-10-08 18:30:35.062 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:35.062 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:30:35.152 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:35.152 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:30:35.260 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:35.261 StotleDev[62077:70b] [QBChat]: Status.CONNECTED at 18:30:35
+2014-10-08 18:30:35.261 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:30:35.359 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:35.359 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:30:35.360 StotleDev[62077:70b] Setting listener
+2014-10-08 18:30:35.360 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/push_tokens.json
+2014-10-08 18:30:35.360 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/subscriptions.json
+2014-10-08 18:30:35.455 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:35.455 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:35.457 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:30:35.699 StotleDev[62077:70b] []
+2014-10-08 18:30:35.700 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/subscriptions.json? 
+2014-10-08 18:30:35.962 StotleDev[62077:70b] Listing subscriptions
+2014-10-08 18:31:30.430 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:31:30.506 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:07.090 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:32:07.096 StotleDev[62077:70b] IAB.close() called but it was already closed.
+2014-10-08 18:32:07.105 StotleDev[62077:70b] Failed to load webpage with error: The operation couldn’t be completed. (NSURLErrorDomain error -999.)
+2014-10-08 18:32:07.106 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:32:07.106 StotleDev[62077:70b] IAB.close() called but it was already closed.
+2014-10-08 18:32:07.665 StotleDev[62077:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-08 18:32:07.666 StotleDev[62077:70b] bottom -> home.tab.selling
+2014-10-08 18:32:07.666 StotleDev[62077:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:32:07.671 StotleDev[62077:70b] Finished load of: http://192.168.1.103:8100/#/home/tab/selling
+2014-10-08 18:32:12.369 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:32:12.370 StotleDev[62077:70b] IAB.close() called but it was already closed.
+2014-10-08 18:32:12.576 StotleDev[62077:70b] Finished load of: http://192.168.1.103:8100/?restart=133598#/home/login
+2014-10-08 18:32:20.909 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:32:20.915 StotleDev[62077:70b] IAB.close() called but it was already closed.
+2014-10-08 18:32:21.173 StotleDev[62077:70b] Finished load of: http://192.168.1.103:8100/?restart=750859#/home/login
+2014-10-08 18:32:23.113 StotleDev[62077:70b] Logging out of Facebook
+2014-10-08 18:32:23.114 StotleDev[62077:70b] No explicit oauthRedirectURL
+2014-10-08 18:32:23.114 StotleDev[62077:70b] Running in cordova
+2014-10-08 18:32:23.119 StotleDev[62077:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-08 18:32:23.460 StotleDev[62077:70b] Closing login window
+2014-10-08 18:32:23.461 StotleDev[62077:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBAFgZBIZBZCHs32qd2EfL3PffSolyi1A45K8OF8HYpxsWKOprXvZCjoOBkn6Apk9nQVZApBWdStcT0SRjYUZAIRxWMeTc8bpC3NICKFVZCKI5zwOZB9jRrAL6hLNrsNYy8MhK51ondZCuTdZAZADYSE3akb8JJVMjrqWZChQ06sSWkauLPqN2eeBA7DfD3ZCjazTvvZAZC0ZCZBPEsA4Q3&expires_in=5165255
+2014-10-08 18:32:23.461 StotleDev[62077:70b] Creating AWS Credentials with token: CAAUre4NXvukBAFgZBIZBZCHs32qd2EfL3PffSolyi1A45K8OF8HYpxsWKOprXvZCjoOBkn6Apk9nQVZApBWdStcT0SRjYUZAIRxWMeTc8bpC3NICKFVZCKI5zwOZB9jRrAL6hLNrsNYy8MhK51ondZCuTdZAZADYSE3akb8JJVMjrqWZChQ06sSWkauLPqN2eeBA7DfD3ZCjazTvvZAZC0ZCZBPEsA4Q3
+2014-10-08 18:32:23.461 StotleDev[62077:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa349dc0> while a presentation or dismiss is in progress!
+2014-10-08 18:32:23.638 StotleDev[62077:70b] Login successful
+2014-10-08 18:32:23.639 StotleDev[62077:70b] Retrieving user information
+2014-10-08 18:32:23.639 StotleDev[62077:70b] home.login -> home.tab.selling
+2014-10-08 18:32:23.640 StotleDev[62077:70b] DEVICE INFO:
+2014-10-08 18:32:23.640 StotleDev[62077:70b] iOS
+2014-10-08 18:32:23.640 StotleDev[62077:70b] PLATFORM: ios
+2014-10-08 18:32:23.640 StotleDev[62077:70b] UDID: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 18:32:23.641 StotleDev[62077:70b] CHANNEL: apns
+2014-10-08 18:32:23.641 StotleDev[62077:70b] PUSH TYPE: apns
+2014-10-08 18:32:23.641 StotleDev[62077:70b] APIKey: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 18:32:23.641 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/session.json
+2014-10-08 18:32:23.642 StotleDev[62077:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:32:23.642 StotleDev[62077:70b] Getting dynamoDB object from table: references-stotle-dev
+2014-10-08 18:32:23.642 StotleDev[62077:70b] Getting references
+2014-10-08 18:32:23.684 StotleDev[62077:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBAFgZBIZBZCHs32qd2EfL3PffSolyi1A45K8OF8HYpxsWKOprXvZCjoOBkn6Apk9nQVZApBWdStcT0SRjYUZAIRxWMeTc8bpC3NICKFVZCKI5zwOZB9jRrAL6hLNrsNYy8MhK51ondZCuTdZAZADYSE3akb8JJVMjrqWZChQ06sSWkauLPqN2eeBA7DfD3ZCjazTvvZAZC0ZCZBPEsA4Q3"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBAFgZBIZBZCHs32qd2EfL3PffSolyi1A45K8OF8HYpxsWKOprXvZCjoOBkn6Apk9nQVZApBWdStcT0SRjYUZAIRxWMeTc8bpC3NICKFVZCKI5zwOZB9jRrAL6hLNrsNYy8MhK51ondZCuTdZAZADYSE3akb8JJVMjrqWZChQ06sSWkauLPqN2eeBA7DfD3ZCjazTvvZAZC0ZCZBPEsA4Q3"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-08 18:32:23.685 StotleDev[62077:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-08 18:32:23.685 StotleDev[62077:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-08 18:32:23.864 StotleDev[62077:70b] {"_id":"5435e5a7535c120fa9009a5c","application_id":14462,"created_at":"2014-10-09T01:32:23Z","device_id":0,"nonce":3171,"token":"215c2c33ad7a54e4b0db33e1762466dda6211946","ts":1412818343,"updated_at":"2014-10-09T01:32:23Z","user_id":1590783,"id":15442}
+2014-10-08 18:32:23.864 StotleDev[62077:70b] jid: 1590783-14462@chat.quickblox.com
+2014-10-08 18:32:23.864 StotleDev[62077:70b] [QBChat]: Status.CONNECTING
+2014-10-08 18:32:23.865 StotleDev[62077:70b] [QBChat]: Chat Protocol - WebSocket
+2014-10-08 18:32:24.068 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:32:24.166 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.167 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.167 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:32:24.264 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.265 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:32:24.378 StotleDev[62077:70b] [QBChat RECV]: [object HTMLUnknownElement]
+2014-10-08 18:32:24.379 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.379 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:32:24.398 StotleDev[62077:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 18:32:24.399 StotleDev[62077:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 18:32:24.399 StotleDev[62077:70b] User already exists
+2014-10-08 18:32:24.474 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.475 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:32:24.574 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.575 StotleDev[62077:70b] [QBChat]: Status.CONNECTED at 18:32:24
+2014-10-08 18:32:24.575 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:32:24.677 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.678 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:32:24.678 StotleDev[62077:70b] Setting listener
+2014-10-08 18:32:24.678 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/push_tokens.json
+2014-10-08 18:32:24.678 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/subscriptions.json
+2014-10-08 18:32:24.770 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.771 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.771 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:32:24.903 StotleDev[62077:70b] []
+2014-10-08 18:32:24.903 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/subscriptions.json? 
+2014-10-08 18:32:25.031 StotleDev[62077:70b] Listing subscriptions
+2014-10-08 18:32:34.315 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:32:34.315 StotleDev[62077:70b] IAB.close() called but it was already closed.
+2014-10-08 18:32:34.681 StotleDev[62077:70b] Finished load of: http://192.168.1.103:8100/?restart=750859#/home/tab/selling
+2014-10-08 18:40:43.637 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:40:43.644 StotleDev[62077:70b] IAB.close() called but it was already closed.
+2014-10-08 18:40:44.003 StotleDev[62077:70b] Finished load of: http://192.168.1.103:8100/?restart=514655#/home/login
+2014-10-08 18:40:44.026 StotleDev[62077:70b] bottom -> home.login
+2014-10-08 18:40:48.385 StotleDev[62077:70b] Resetting plugins due to page load.
+2014-10-08 18:40:48.385 StotleDev[62077:70b] IAB.close() called but it was already closed.
+2014-10-08 18:40:48.672 StotleDev[62077:70b] Finished load of: http://192.168.1.103:8100/?restart=469458#/home/login
+2014-10-08 18:40:55.512 StotleDev[62077:70b] Logging out of Facebook
+2014-10-08 18:40:55.519 StotleDev[62077:70b] No explicit oauthRedirectURL
+2014-10-08 18:40:55.519 StotleDev[62077:70b] Running in cordova
+2014-10-08 18:40:55.523 StotleDev[62077:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-08 18:40:55.932 StotleDev[62077:70b] Closing login window
+2014-10-08 18:40:55.933 StotleDev[62077:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBAFnMmkskHTKtnZBbESNEXTD4QszK3qLwGnDegsHjKWGfN0P0q36vfaWhexHZAV8XcAnq2G4qVJLCaJYGiCEcZBmOZBdaazOLfjcK3GvFSU7ZCM7ZByHkTu4C86lqYIEqSpx7VB7tZA8PQ7eBoG3NZAtc6n3ZBAqs37DzPaz9MMReOBJxpdAK2SB9XkS8dmeYWDxZCmkSKHRoji&expires_in=5164743
+2014-10-08 18:40:55.933 StotleDev[62077:70b] Creating AWS Credentials with token: CAAUre4NXvukBAFnMmkskHTKtnZBbESNEXTD4QszK3qLwGnDegsHjKWGfN0P0q36vfaWhexHZAV8XcAnq2G4qVJLCaJYGiCEcZBmOZBdaazOLfjcK3GvFSU7ZCM7ZByHkTu4C86lqYIEqSpx7VB7tZA8PQ7eBoG3NZAtc6n3ZBAqs37DzPaz9MMReOBJxpdAK2SB9XkS8dmeYWDxZCmkSKHRoji
+2014-10-08 18:40:55.934 StotleDev[62077:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa349dc0> while a presentation or dismiss is in progress!
+2014-10-08 18:40:55.945 StotleDev[62077:70b] Login successful
+2014-10-08 18:40:55.945 StotleDev[62077:70b] Retrieving user information
+2014-10-08 18:40:56.253 StotleDev[62077:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBAFnMmkskHTKtnZBbESNEXTD4QszK3qLwGnDegsHjKWGfN0P0q36vfaWhexHZAV8XcAnq2G4qVJLCaJYGiCEcZBmOZBdaazOLfjcK3GvFSU7ZCM7ZByHkTu4C86lqYIEqSpx7VB7tZA8PQ7eBoG3NZAtc6n3ZBAqs37DzPaz9MMReOBJxpdAK2SB9XkS8dmeYWDxZCmkSKHRoji"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBAFnMmkskHTKtnZBbESNEXTD4QszK3qLwGnDegsHjKWGfN0P0q36vfaWhexHZAV8XcAnq2G4qVJLCaJYGiCEcZBmOZBdaazOLfjcK3GvFSU7ZCM7ZByHkTu4C86lqYIEqSpx7VB7tZA8PQ7eBoG3NZAtc6n3ZBAqs37DzPaz9MMReOBJxpdAK2SB9XkS8dmeYWDxZCmkSKHRoji"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-08 18:40:56.254 StotleDev[62077:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-08 18:40:56.254 StotleDev[62077:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-08 18:40:57.114 StotleDev[62077:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 18:40:57.114 StotleDev[62077:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-08 18:40:57.114 StotleDev[62077:70b] User already exists
+2014-10-08 18:40:57.197 StotleDev[62077:70b] home.login -> home.tab.selling
+2014-10-08 18:40:57.197 StotleDev[62077:70b] DEVICE INFO:
+2014-10-08 18:40:57.197 StotleDev[62077:70b] iOS
+2014-10-08 18:40:57.197 StotleDev[62077:70b] PLATFORM: ios
+2014-10-08 18:40:57.198 StotleDev[62077:70b] UDID: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 18:40:57.198 StotleDev[62077:70b] CHANNEL: apns
+2014-10-08 18:40:57.198 StotleDev[62077:70b] PUSH TYPE: apns
+2014-10-08 18:40:57.199 StotleDev[62077:70b] APIKey: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-08 18:40:57.199 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/session.json
+2014-10-08 18:40:57.199 StotleDev[62077:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:40:57.200 StotleDev[62077:70b] Getting dynamoDB object from table: references-stotle-dev
+2014-10-08 18:40:57.200 StotleDev[62077:70b] Getting references
+2014-10-08 18:40:57.224 StotleDev[62077:70b] {"Count":1,"Items":[{"author":{"S":"Rodari, Florian"},"price":{"S":"8"},"userID":{"S":"10154440676845276"},"post":{"S":"tyrswc5rl3fmvx6r"},"school":{"S":"110644"},"icon":{"S":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false"},"userEmail":{"S":"10154440676845276"},"title":{"S":"sell Kosta Alex"},"status":{"S":"open"},"type":{"S":"sell"}}],"ScannedCount":204}
+2014-10-08 18:40:57.251 StotleDev[62077:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}]
+2014-10-08 18:40:57.251 StotleDev[62077:70b] []
+2014-10-08 18:40:57.251 StotleDev[62077:70b] Retrieving all conversations
+2014-10-08 18:40:57.252 StotleDev[62077:70b] {"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":[]}
+2014-10-08 18:40:57.252 StotleDev[62077:70b] []
+2014-10-08 18:40:57.252 StotleDev[62077:70b] Resetting loaded conversations
+2014-10-08 18:40:57.252 StotleDev[62077:70b] Creating notifications from references
+2014-10-08 18:40:57.252 StotleDev[62077:70b] Reference: Kosta Alex
+2014-10-08 18:40:57.252 StotleDev[62077:70b] []
+2014-10-08 18:40:57.253 StotleDev[62077:70b] Creating notifications from references
+2014-10-08 18:40:57.253 StotleDev[62077:70b] []
+2014-10-08 18:40:57.253 StotleDev[62077:70b] Consolidating message notifications
+2014-10-08 18:40:57.253 StotleDev[62077:70b] {}
+2014-10-08 18:40:57.253 StotleDev[62077:70b] []
+2014-10-08 18:40:57.253 StotleDev[62077:70b] Consolidating all notifications
+2014-10-08 18:40:57.547 StotleDev[62077:70b] {"_id":"5435e7a9535c12ae1900a2d2","application_id":14462,"created_at":"2014-10-09T01:40:57Z","device_id":0,"nonce":2234,"token":"927097a22b1b21a532638e21046ee877aa4063b6","ts":1412818857,"updated_at":"2014-10-09T01:40:57Z","user_id":1590783,"id":3756}
+2014-10-08 18:40:57.547 StotleDev[62077:70b] jid: 1590783-14462@chat.quickblox.com
+2014-10-08 18:40:57.547 StotleDev[62077:70b] [QBChat]: Status.CONNECTING
+2014-10-08 18:40:57.548 StotleDev[62077:70b] [QBChat]: Chat Protocol - WebSocket
+2014-10-08 18:40:57.748 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:40:57.840 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:57.840 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:57.840 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:40:57.948 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:57.948 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:40:58.046 StotleDev[62077:70b] [QBChat RECV]: [object HTMLUnknownElement]
+2014-10-08 18:40:58.048 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:58.048 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:40:58.145 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:58.146 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:40:58.241 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:58.242 StotleDev[62077:70b] [QBChat]: Status.CONNECTED at 18:40:58
+2014-10-08 18:40:58.242 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:40:58.347 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:58.347 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:40:58.347 StotleDev[62077:70b] Setting listener
+2014-10-08 18:40:58.348 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/push_tokens.json
+2014-10-08 18:40:58.348 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/subscriptions.json
+2014-10-08 18:40:58.441 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:58.441 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:58.443 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+2014-10-08 18:40:58.658 StotleDev[62077:70b] []
+2014-10-08 18:40:58.659 StotleDev[62077:70b] setting headers on request to http://api.quickblox.com/subscriptions.json? 
+2014-10-08 18:40:58.868 StotleDev[62077:70b] Listing subscriptions
+2014-10-08 18:41:53.412 StotleDev[62077:70b] [QBChat SENT]: [object Element]
+2014-10-08 18:41:53.500 StotleDev[62077:70b] [QBChat RECV]: [object Element]
+Terminating in response to SpringBoard's termination.
+2014-10-09 09:51:28.732 StotleDev[66054:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-09 09:51:28.742 StotleDev[66054:70b] Unlimited access to network resources
+2014-10-09 09:51:28.776 StotleDev[66054:70b] [CDVTimer][keyboard] 0.091016ms
+2014-10-09 09:51:28.784 StotleDev[66054:70b] [CDVTimer][file] 6.480038ms
+2014-10-09 09:51:28.838 StotleDev[66054:70b] [CDVTimer][statusbar] 53.425968ms
+2014-10-09 09:51:28.839 StotleDev[66054:70b] [CDVTimer][TotalPluginStartup] 62.918007ms
+2014-10-09 09:51:28.846 StotleDev[66054:70b] active
+2014-10-09 09:51:29.021 StotleDev[66054:70b] Resetting plugins due to page load.
+2014-10-09 09:51:29.229 StotleDev[66054:6203] ERROR: unable to get the receiver data from the DB!
+2014-10-09 09:51:29.230 StotleDev[66054:6717] ERROR: unable to get the receiver data from the DB!
+2014-10-09 09:51:31.692 StotleDev[66054:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-09 09:51:31.750 StotleDev[66054:70b] bottom -> home.login
+2014-10-09 09:51:32.649 StotleDev[66054:70b] Finished load of: http://192.168.1.103:8100/#/home/login
+2014-10-09 09:51:33.641 StotleDev[66054:70b] Logging out of Facebook
+2014-10-09 09:51:33.641 StotleDev[66054:70b] No explicit oauthRedirectURL
+2014-10-09 09:51:33.642 StotleDev[66054:70b] Running in cordova
+2014-10-09 09:51:33.680 StotleDev[66054:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-09 09:51:33.684 StotleDev[66054:70b] THREAD WARNING: ['InAppBrowser'] took '42.325928' ms. Plugin should use a background thread.
+2014-10-09 09:51:35.607 StotleDev[66054:70b] Closing login window
+2014-10-09 09:51:35.608 StotleDev[66054:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBACKREOux2XQzZCVsdZAsxOIunw8uEXCoIeXZBkRhooxWveKuBB4sbW5n06pOfNKhfc6PRaIUiDXcvkecfE9gNJfeZAQZCW7BEVcXNU1oZAz0Y7YTNU1YRcDSrfWjwxFub9QvlnLC9GMmFcitPRLA4BHuUZBWEpFkY8lmAHt4fmDR9YLuGLzeB066HHLZAVErk3t62aLQMbQL&expires_in=5110103
+2014-10-09 09:51:35.608 StotleDev[66054:70b] Creating AWS Credentials with token: CAAUre4NXvukBACKREOux2XQzZCVsdZAsxOIunw8uEXCoIeXZBkRhooxWveKuBB4sbW5n06pOfNKhfc6PRaIUiDXcvkecfE9gNJfeZAQZCW7BEVcXNU1oZAz0Y7YTNU1YRcDSrfWjwxFub9QvlnLC9GMmFcitPRLA4BHuUZBWEpFkY8lmAHt4fmDR9YLuGLzeB066HHLZAVErk3t62aLQMbQL
+2014-10-09 09:51:35.637 StotleDev[66054:70b] Login successful
+2014-10-09 09:51:35.637 StotleDev[66054:70b] Retrieving user information
+2014-10-09 09:51:36.507 StotleDev[66054:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBACKREOux2XQzZCVsdZAsxOIunw8uEXCoIeXZBkRhooxWveKuBB4sbW5n06pOfNKhfc6PRaIUiDXcvkecfE9gNJfeZAQZCW7BEVcXNU1oZAz0Y7YTNU1YRcDSrfWjwxFub9QvlnLC9GMmFcitPRLA4BHuUZBWEpFkY8lmAHt4fmDR9YLuGLzeB066HHLZAVErk3t62aLQMbQL"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBACKREOux2XQzZCVsdZAsxOIunw8uEXCoIeXZBkRhooxWveKuBB4sbW5n06pOfNKhfc6PRaIUiDXcvkecfE9gNJfeZAQZCW7BEVcXNU1oZAz0Y7YTNU1YRcDSrfWjwxFub9QvlnLC9GMmFcitPRLA4BHuUZBWEpFkY8lmAHt4fmDR9YLuGLzeB066HHLZAVErk3t62aLQMbQL"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-09 09:51:36.508 StotleDev[66054:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-09 09:51:36.508 StotleDev[66054:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-09 09:51:39.538 StotleDev[66054:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-09 09:51:39.538 StotleDev[66054:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-09 09:51:39.538 StotleDev[66054:70b] User already exists
+2014-10-09 09:51:39.748 StotleDev[66054:70b] home.login -> home.posts.selling
+2014-10-09 09:51:39.748 StotleDev[66054:70b] ready get camera types
+2014-10-09 09:54:26.328 StotleDev[66054:70b] Opened detail for sell post from [object Object]
+2014-10-09 09:54:26.340 StotleDev[66054:70b] THREAD WARNING: ['Console'] took '11.653076' ms. Plugin should use a background thread.
+2014-10-09 09:54:33.900 StotleDev[66054:70b] Opened detail for sell post from [object Object]
+2014-10-09 09:57:01.849 StotleDev[66054:70b] Opened detail for sell post from [object Object]
+2014-10-09 09:57:30.758 StotleDev[66054:70b] Opened detail for buy post from [object Object]
+2014-10-09 09:58:11.902 StotleDev[66054:70b] Opened detail for sell post from [object Object]
+2014-10-09 09:58:17.298 StotleDev[66054:70b] Opened detail for sell post from [object Object]

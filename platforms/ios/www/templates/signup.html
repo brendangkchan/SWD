@@ -1,16 +1,9 @@
 <!-- Search Bar -->
 <ion-nav-bar class="bar bar-header bar-light">
 
-	<button class="button button-icon icon ion-ios7-arrow-left stotle-button" ng-click="back()" ng-if="stateSelected == true"></button>
+	<button class="button button-icon icon ion-ios7-arrow-left stotle-button" ng-click="back()"></button>
 
 	<h1 class='title'>Where Do You Go To School?</h1>
-
-	<!-- Search Bar -->
-		<!-- <label class="item item-input" id="search-bar" ng-if="stateSelected == true">
-			<i class="icon ion-ios7-search-strong placeholder-icon"></i>
-			<input enterShowResults type="text" placeholder="School Name" ng-model="search.name">
-		</label> -->
-
 
 </ion-nav-bar>
 
@@ -18,30 +11,27 @@
 <ion-header-bar class="bar bar-subheader school-search-subheader">
 	<label class="item item-input">
 		<i class="icon ion-ios7-search-strong placeholder-icon"></i>
-		<input enterShowResults type="text" placeholder="{{placeholder}}" ng-model="search.name">
+		<input enterShowResults type="text" placeholder="Search by school name" ng-model="query" ng-enter="searchSchool(query)">
 	</label>
 </ion-header-bar>
 
 
 <ion-view class="has-header has-subheader">
 
-	<ion-content class="has-margin has-padding">
+	<ion-content>
 
-		<ion-list ng-if="stateSelected == false">
-			<div ng-repeat="state in states | filter:search | orderBy: 'name'" ng-click="selectState(state.name)">
-				<div class="item">
-					<h2>{{state.name}}</h2>
+		<ion-list>
+			<div ng-repeat="school in schools" ng-click="selectSchool(school)">
+				<div class="item padding">
+					<h2>{{school.NAME}}</h2>
+					<p>{{school.STATE}}</p>
 				</div>
 			</div> 
 		</ion-list>
 
-		<ion-list ng-if="stateSelected == true">
-			<div ng-repeat="school in schools | filter:search" ng-click="selectSchool(school)">
-				<div class="item">
-					<h2>{{school.name}}</h2>
-				</div>
-			</div> 
-		</ion-list>
+		<div ng-if="noResults" class="padding">
+			<p>Sorry no matches found!</p>
+		</div>
 
 
 
