@@ -502,6 +502,7 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 	$scope.closeNotifications = function() {
 		$scope.notificationsModal.hide();
 		Notifications.markNotificationsSeen();
+		$scope.notifications = Notifications.all();
 	}
 
 

@@ -1,7 +1,7 @@
 var app = angular.module('signup', []);
 
 
-// Conversation Controller
+// Signup Controller
 app.controller('SignupCtrl', function($scope, $state, $http, $ionicLoading, $sessionStorage, AWSHelper, User) {
 
 	var schoolDB = [];

@@ -6611,3 +6611,653 @@ Terminating in response to SpringBoard's termination.
 2014-10-09 09:57:30.758 StotleDev[66054:70b] Opened detail for buy post from [object Object]
 2014-10-09 09:58:11.902 StotleDev[66054:70b] Opened detail for sell post from [object Object]
 2014-10-09 09:58:17.298 StotleDev[66054:70b] Opened detail for sell post from [object Object]
+2014-10-14 11:21:28.867 StotleDev[76304:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-14 11:21:28.899 StotleDev[76304:70b] Unlimited access to network resources
+2014-10-14 11:21:29.072 StotleDev[76304:70b] [CDVTimer][keyboard] 0.090003ms
+2014-10-14 11:21:29.074 StotleDev[76304:70b] [CDVTimer][file] 2.299011ms
+2014-10-14 11:21:29.124 StotleDev[76304:70b] [CDVTimer][statusbar] 49.335957ms
+2014-10-14 11:21:29.125 StotleDev[76304:70b] [CDVTimer][TotalPluginStartup] 53.176999ms
+2014-10-14 11:21:29.132 StotleDev[76304:70b] active
+2014-10-14 11:21:29.286 StotleDev[76304:70b] Resetting plugins due to page load.
+2014-10-14 11:21:29.931 StotleDev[76304:70b] Finished load of: http://192.168.1.100:8100/
+2014-10-14 11:22:38.170 StotleDev[76304:70b] Resetting plugins due to page load.
+2014-10-14 11:22:38.525 StotleDev[76304:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-14 11:22:38.527 StotleDev[76304:70b] bottom -> home.login
+2014-10-14 11:22:38.623 StotleDev[76304:70b] Finished load of: http://192.168.1.100:8100/#/home/login
+2014-10-14 11:22:41.864 StotleDev[76304:70b] ERROR: Error: [$rootScope:inprog] $digest already in progress
+http://errors.angularjs.org/1.2.17/$rootScope/inprog?p0=%24digest
+beginPhase@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:21857:88
+$apply@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:21646:21
+http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:42908:19
+http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:11841:14
+forEach@[native code]
+forEach@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:9351:18
+eventHandler@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:11840:12
+dispatchEvent@[native code]
+triggerMouseEvent@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:2740:20
+tapClick@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:2729:20
+tapTouchEnd@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:2847:13
+send@[native code]
+sendConsoleLog@http://192.168.1.100:8100/:18:21
+http://192.168.1.100:8100/:27:31
+http://192.168.1.100:8100/plugins/org.apache.cordova.console/www/console-via-logger.js:173:28
+http://192.168.1.100:8100/js/textbooks.js:14:20
+http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:17007:13
+wrappedCallback@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:20439:81
+wrappedCallback@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:20439:81
+http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:20525:34
+$eval@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:21549:28
+$digest@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:21361:36
+$apply@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:21653:31
+done@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:17265:51
+completeRequest@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:17470:15
+onreadystatechange@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:17409:26
+2014-10-14 11:22:41.865 StotleDev[76304:70b] Logging out of Facebook
+2014-10-14 11:22:41.865 StotleDev[76304:70b] No explicit oauthRedirectURL
+2014-10-14 11:22:41.865 StotleDev[76304:70b] Running in cordova
+2014-10-14 11:22:41.913 StotleDev[76304:70b] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-14 11:22:41.935 StotleDev[76304:70b] THREAD WARNING: ['InAppBrowser'] took '69.947021' ms. Plugin should use a background thread.
+2014-10-14 11:22:41.961 StotleDev[76304:70b] Parsing 213589 textbooks
+2014-10-14 11:22:41.961 StotleDev[76304:70b] ERROR: Error: Can't find variable: batches
+http://192.168.1.100:8100/js/textbooks.js:65:30
+forEach@[native code]
+forEach@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:9351:18
+http://192.168.1.100:8100/js/textbooks.js:21:24
+http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:17007:13
+wrappedCallback@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:20439:81
+wrappedCallback@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:20439:81
+http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:20525:34
+$eval@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:21549:28
+$digest@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:21361:36
+$apply@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:21653:31
+done@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:17265:51
+completeRequest@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:17470:15
+onreadystatechange@http://192.168.1.100:8100/lib/ionic/js/ionic.bundle.js:17409:26
+2014-10-14 11:22:42.366 StotleDev[76304:70b] Closing login window
+2014-10-14 11:22:42.367 StotleDev[76304:70b] OAuth from FB: https://www.facebook.com/connect/login_success.html#access_token=CAAUre4NXvukBAFDVeXP1rvNBQWFM1hlZBO2bdNiiMBAmSr50xylgdrLOm4iP8DYZAEIm40NbexDZCHA3mHZAlvpM7ZBbU8sMIoOF1UrZBqzxo2gpZAAZBkGZBrxnRd1MVhnqgqmBjPwVzIVViuOeYCsCPgIK7Lmvu093cr8PJZC3KN961Q5rHkiy9CGNrIIFfbZCBUuAMR7IsIQS382OjrFDJAs&expires_in=5134760
+2014-10-14 11:22:42.367 StotleDev[76304:70b] Creating AWS Credentials with token: CAAUre4NXvukBAFDVeXP1rvNBQWFM1hlZBO2bdNiiMBAmSr50xylgdrLOm4iP8DYZAEIm40NbexDZCHA3mHZAlvpM7ZBbU8sMIoOF1UrZBqzxo2gpZAAZBkGZBrxnRd1MVhnqgqmBjPwVzIVViuOeYCsCPgIK7Lmvu093cr8PJZC3KN961Q5rHkiy9CGNrIIFfbZCBUuAMR7IsIQS382OjrFDJAs
+2014-10-14 11:22:42.367 StotleDev[76304:70b] Warning: Attempt to dismiss from view controller <MainViewController: 0xa374090> while a presentation or dismiss is in progress!
+2014-10-14 11:22:42.385 StotleDev[76304:70b] Login successful
+2014-10-14 11:22:42.385 StotleDev[76304:70b] Retrieving user information
+2014-10-14 11:22:42.593 StotleDev[76304:70b] [{"data":{"id":"10154440676845276","education":[{"school":{"id":"111985588828577","name":"Lick - Wilmerding High School"},"type":"High School","year":{"id":"142963519060927","name":"2010"}},{"school":{"id":"13917075214","name":"UC Davis"},"type":"College","year":{"id":"143641425651920","name":"2014"}}],"first_name":"Brendan","gender":"male","last_name":"Chan","link":"https://www.facebook.com/app_scoped_user_id/10154440676845276/","locale":"en_US","name":"Brendan Chan","timezone":-7,"updated_time":"2014-04-14T22:54:07+0000","verified":true},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me","params":{"access_token":"CAAUre4NXvukBAFDVeXP1rvNBQWFM1hlZBO2bdNiiMBAmSr50xylgdrLOm4iP8DYZAEIm40NbexDZCHA3mHZAlvpM7ZBbU8sMIoOF1UrZBqzxo2gpZAAZBkGZBrxnRd1MVhnqgqmBjPwVzIVViuOeYCsCPgIK7Lmvu093cr8PJZC3KN961Q5rHkiy9CGNrIIFfbZCBUuAMR7IsIQS382OjrFDJAs"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"},{"data":{"data":{"url":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","width":100,"height":100,"is_silhouette":false}},"status":200,"config":{"method":"GET","transformRequest":[null],"transformResponse":[null],"url":"https://graph.facebook.com/me/picture","params":{"redirect":false,"height":"100","type":"small","width":"100","access_token":"CAAUre4NXvukBAFDVeXP1rvNBQWFM1hlZBO2bdNiiMBAmSr50xylgdrLOm4iP8DYZAEIm40NbexDZCHA3mHZAlvpM7ZBbU8sMIoOF1UrZBqzxo2gpZAAZBkGZBrxnRd1MVhnqgqmBjPwVzIVViuOeYCsCPgIK7Lmvu093cr8PJZC3KN961Q5rHkiy9CGNrIIFfbZCBUuAMR7IsIQS382OjrFDJAs"},"headers":{"Accept":"application/json, text/plain, */*"}},"statusText":"OK"}]
+2014-10-14 11:22:42.594 StotleDev[76304:70b] Getting dynamoDB object from table: users-stotle-dev
+2014-10-14 11:22:42.594 StotleDev[76304:70b] Looking for user: 10154440676845276 in table: users-stotle-dev
+2014-10-14 11:22:43.643 StotleDev[76304:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-14 11:22:43.643 StotleDev[76304:70b] {"Item":{"userID":{"S":"10154440676845276"},"schoolID":{"S":"110644"}}}
+2014-10-14 11:22:43.643 StotleDev[76304:70b] User already exists
+2014-10-14 11:22:43.837 StotleDev[76304:70b] home.login -> home.tab.selling
+2014-10-14 11:22:43.838 StotleDev[76304:70b] DEVICE INFO:
+2014-10-14 11:22:43.838 StotleDev[76304:70b] iOS
+2014-10-14 11:22:43.838 StotleDev[76304:70b] PLATFORM: ios
+2014-10-14 11:22:43.838 StotleDev[76304:70b] UDID: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-14 11:22:43.838 StotleDev[76304:70b] CHANNEL: apns
+2014-10-14 11:22:43.839 StotleDev[76304:70b] PUSH TYPE: apns
+2014-10-14 11:22:43.839 StotleDev[76304:70b] APIKey: 1579BB3A-4DF2-4BE1-BB94-FAA991726CC5
+2014-10-14 11:22:43.839 StotleDev[76304:70b] setting headers on request to http://api.quickblox.com/session.json
+2014-10-14 11:22:43.839 StotleDev[76304:70b] Getting dynamoDB object from table: references-stotle-dev
+2014-10-14 11:22:43.839 StotleDev[76304:70b] Getting references
+2014-10-14 11:22:43.839 StotleDev[76304:70b] {"Count":1,"Items":[{"conversations":{"SS":["tyrswc5rl3fmvx6r_10154440676845276_10103813657481656.json"]},"author":{"S":"Rodari, Florian"},"price":{"S":"8"},"userID":{"S":"10154440676845276"},"post":{"S":"tyrswc5rl3fmvx6r"},"school":{"S":"110644"},"icon":{"S":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false"},"userEmail":{"S":"10154440676845276"},"title":{"S":"sell Kosta Alex"},"status":{"S":"open"},"type":{"S":"sell"}}],"ScannedCount":204}
+2014-10-14 11:22:43.840 StotleDev[76304:70b] [{"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":["tyrswc5rl3fmvx6r_10154440676845276_10103813657481656.json"]}]
+2014-10-14 11:22:43.840 StotleDev[76304:70b] []
+2014-10-14 11:22:43.840 StotleDev[76304:70b] Retrieving all conversations
+2014-10-14 11:22:43.840 StotleDev[76304:70b] {"title":"Kosta Alex","author":"Rodari, Florian","icon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","type":"sell","price":"8","post":"tyrswc5rl3fmvx6r","status":"open","conversations":["tyrswc5rl3fmvx6r_10154440676845276_10103813657481656.json"]}
+2014-10-14 11:22:43.840 StotleDev[76304:70b] Retrieving conversation: tyrswc5rl3fmvx6r_10154440676845276_10103813657481656.json
+2014-10-14 11:22:44.041 StotleDev[76304:70b] Conversation retrieval successful!
+2014-10-14 11:22:44.041 StotleDev[76304:70b] {"post_id":"tyrswc5rl3fmvx6r","id":"10154440676845276","name":"Brendan C","posterId":"10154440676845276","posterIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","posterName":"Brendan C","preview":"Hi","price":"8","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","messages":[{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Hi is this still for sale","time":"Mon Oct 13 2014 22:08:12 GMT-0700 (PDT)"},{"user":"Brendan C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","body":"Yes are you free?","time":"Mon Oct 13 2014 22:08:43 GMT-0700 (PDT)"},{"user":"Brendan C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","body":"Djcnfnf","time":"Mon Oct 13 2014 22:56:58 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Benihana","time":"Mon Oct 13 2014 22:57:30 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Call","time":"Mon Oct 13 2014 22:58:04 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Hudson","time":"Mon Oct 13 2014 22:59:04 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Me","time":"Mon Oct 13 2014 23:01:10 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Again","time":"Mon Oct 13 2014 23:02:32 GMT-0700 (PDT)"},{"user":"Brendan C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","body":"Hi","time":"Mon Oct 13 2014 23:02:38 GMT-0700 (PDT)"}],"comments":" ","messengerId":"10103813657481656","messengerName":"Justine C","messengerIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","read":{"10103813657481656":true,"10154440676845276":false},"status":"open","key":"tyrswc5rl3fmvx6r_10154440676845276_10103813657481656.json"}
+2014-10-14 11:22:44.096 StotleDev[76304:70b] [{"post_id":"tyrswc5rl3fmvx6r","id":"10154440676845276","name":"Justine C","posterId":"10154440676845276","posterIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","posterName":"Brendan C","preview":"Hi","price":"8","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","messages":[{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Hi is this still for sale","time":"Mon Oct 13 2014 22:08:12 GMT-0700 (PDT)"},{"user":"Brendan C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","body":"Yes are you free?","time":"Mon Oct 13 2014 22:08:43 GMT-0700 (PDT)"},{"user":"Brendan C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","body":"Djcnfnf","time":"Mon Oct 13 2014 22:56:58 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Benihana","time":"Mon Oct 13 2014 22:57:30 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Call","time":"Mon Oct 13 2014 22:58:04 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Hudson","time":"Mon Oct 13 2014 22:59:04 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Me","time":"Mon Oct 13 2014 23:01:10 GMT-0700 (PDT)"},{"user":"Justine C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","body":"Again","time":"Mon Oct 13 2014 23:02:32 GMT-0700 (PDT)"},{"user":"Brendan C","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/c25.0.100.100/p100x100/1510998_10153573851100276_1658442975_n.jpg?oh=6c555af429382b509d9d4648d8677dea&oe=54B204DE&__gda__=1421805787_6b50e310ed3b74f58b0f83ea52774698","body":"Hi","time":"Mon Oct 13 2014 23:02:38 GMT-0700 (PDT)"}],"comments":" ","messengerId":"10103813657481656","messengerName":"Justine C","messengerIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","read":{"10103813657481656":true,"10154440676845276":false},"status":"open","key":"tyrswc5rl3fmvx6r_10154440676845276_10103813657481656.json"}]
+2014-10-14 11:22:44.098 StotleDev[76304:70b] Resetting loaded conversations
+2014-10-14 11:22:44.098 StotleDev[76304:70b] Creating notifications from references
+2014-10-14 11:22:44.098 StotleDev[76304:70b] Reference: Kosta Alex
+2014-10-14 11:22:44.098 StotleDev[76304:70b] Conversation with: Justine C STATUS: open READ: false
+2014-10-14 11:22:44.099 StotleDev[76304:70b] New message from Justine C
+2014-10-14 11:22:44.099 StotleDev[76304:70b] [{"type":"message","user":"Justine C","userID":"10103813657481656","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","title":"Kosta Alex","bookIcon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","read":false,"body":"New message from Justine C"}]
+2014-10-14 11:22:44.099 StotleDev[76304:70b] [{"type":"message","user":"Justine C","userID":"10103813657481656","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","title":"Kosta Alex","bookIcon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","read":false,"body":"New message from Justine C"}]
+2014-10-14 11:22:44.099 StotleDev[76304:70b] Creating notifications from references
+2014-10-14 11:22:44.099 StotleDev[76304:70b] [{"type":"message","user":"Justine C","userID":"10103813657481656","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","title":"Kosta Alex","bookIcon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","read":false,"body":"New message from Justine C"}]
+2014-10-14 11:22:44.100 StotleDev[76304:70b] Consolidating message notifications
+2014-10-14 11:22:44.100 StotleDev[76304:70b] {"Kosta Alex":1}
+2014-10-14 11:22:44.100 StotleDev[76304:70b] {"type":"message","user":"Justine C","userID":"10103813657481656","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","title":"Kosta Alex","bookIcon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","read":false,"body":"New message from Justine C"}
+2014-10-14 11:22:44.100 StotleDev[76304:70b] [{"type":"message","user":"Justine C","userID":"10103813657481656","userIcon":"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c50.50.621.621/s100x100/401884_10102241793664346_980508166_n.jpg?oh=50593bdfb5db7e5073308a259de5d31d&oe=54F8BB2C&__gda__=1425099663_1704e928333117f18effc1c706cf384a","title":"Kosta Alex","bookIcon":"http://covers.openlibrary.org/b/isbn/0300176651-S.jpg?default=false","read":false,"body":"New message from Justine C"}]
+2014-10-14 11:22:44.100 StotleDev[76304:70b] Consolidating all notifications
+2014-10-14 11:22:44.100 StotleDev[76304:70b] {"_id":"543d69f3535c12f021001cd9","application_id":14462,"created_at":"2014-10-14T18:22:43Z","device_id":0,"nonce":9201,"token":"7d88bc1c2d7cf488a729dfeae687e38f6237ffbd","ts":1413310963,"updated_at":"2014-10-14T18:22:44Z","user_id":1590783,"id":15724}
+2014-10-14 11:22:44.101 StotleDev[76304:70b] jid: 1590783-14462@chat.quickblox.com
+2014-10-14 11:22:44.101 StotleDev[76304:70b] [QBChat]: Status.CONNECTING
+2014-10-14 11:22:44.101 StotleDev[76304:70b] [QBChat]: Chat Protocol - WebSocket
+2014-10-14 11:22:44.301 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:22:44.391 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.394 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.394 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:22:44.488 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.489 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:22:44.595 StotleDev[76304:70b] [QBChat RECV]: [object HTMLUnknownElement]
+2014-10-14 11:22:44.595 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.595 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:22:44.684 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.684 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:22:44.782 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.782 StotleDev[76304:70b] [QBChat]: Status.CONNECTED at 11:22:44
+2014-10-14 11:22:44.782 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:22:44.892 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.892 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:22:44.892 StotleDev[76304:70b] Setting listener
+2014-10-14 11:22:44.893 StotleDev[76304:70b] setting headers on request to http://api.quickblox.com/push_tokens.json
+2014-10-14 11:22:44.893 StotleDev[76304:70b] setting headers on request to http://api.quickblox.com/subscriptions.json
+2014-10-14 11:22:44.989 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.989 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:44.989 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:22:45.203 StotleDev[76304:70b] []
+2014-10-14 11:22:45.203 StotleDev[76304:70b] setting headers on request to http://api.quickblox.com/subscriptions.json? 
+2014-10-14 11:22:45.419 StotleDev[76304:70b] Listing subscriptions
+2014-10-14 11:23:39.901 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:23:39.988 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:24:34.980 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:24:35.055 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:25:30.031 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:25:30.122 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:26:25.097 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:26:25.188 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:27:20.130 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:27:20.242 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:28:15.143 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:28:15.255 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:29:10.176 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:29:10.265 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:30:05.285 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:30:05.363 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:31:00.322 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:31:00.411 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:31:55.431 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:31:55.506 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:32:50.514 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:32:50.611 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:33:45.551 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:33:45.641 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:34:40.596 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:34:40.684 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:35:35.596 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:35:35.685 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:36:30.618 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:36:30.705 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:37:25.737 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:37:25.809 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:38:20.746 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:38:20.834 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:39:15.749 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:39:15.838 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:40:10.784 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:40:10.872 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:41:05.786 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:41:05.877 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:42:00.860 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:42:00.949 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:42:55.916 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:42:55.993 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:43:50.902 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:43:50.991 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:44:45.917 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:44:46.006 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:45:40.973 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:45:41.045 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:46:36.026 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:46:36.118 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:47:31.057 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:47:31.131 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:48:26.088 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:48:26.178 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:49:21.103 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:49:21.193 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:50:16.207 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:50:16.282 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:51:11.271 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:51:11.361 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:52:06.364 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:52:06.457 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:53:01.422 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:53:01.535 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:53:56.429 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:53:56.548 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:54:51.480 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:54:51.569 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:55:46.589 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:55:46.662 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:56:41.647 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:56:41.737 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:57:36.710 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:57:36.801 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:58:31.766 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:58:31.841 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 11:59:26.792 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 11:59:26.884 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:00:21.862 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:00:21.975 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:01:16.949 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:01:17.021 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:02:12.004 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:02:12.093 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:03:07.081 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:03:07.171 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:04:02.109 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:04:02.222 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:04:57.205 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:04:57.295 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:05:52.303 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:05:52.394 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:06:47.324 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:06:47.398 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:07:42.390 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:07:42.482 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:08:37.445 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:08:37.534 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:09:32.546 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:09:32.620 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:10:27.592 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:10:27.787 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:11:22.607 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:11:22.698 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:12:17.651 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:12:17.739 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:13:12.747 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:13:12.830 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:14:07.742 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:14:07.860 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:15:02.841 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:15:02.956 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:15:57.871 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:15:57.943 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:16:52.897 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:16:52.986 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:17:47.959 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:17:48.051 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:18:43.054 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:18:43.214 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:19:38.105 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:19:38.180 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:20:33.143 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:20:33.259 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:21:28.186 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:21:28.276 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:22:23.282 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:22:23.368 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:23:18.357 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:23:18.446 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:24:13.391 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:24:13.481 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:25:08.412 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:25:08.505 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:26:03.468 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:26:16.440 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:26:58.472 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:27:24.560 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:27:53.541 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:28:06.558 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:28:48.571 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:28:48.643 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:29:43.580 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:29:43.671 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:30:38.642 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:30:38.733 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:31:33.654 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:31:33.744 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:32:28.710 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:32:36.341 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:33:23.729 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:33:23.908 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:34:18.782 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:34:18.855 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:35:13.808 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:35:13.897 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:36:08.849 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:36:08.924 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:37:03.841 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:37:03.932 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:37:58.868 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:37:58.958 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:38:53.961 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:38:54.052 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:39:48.977 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:39:49.052 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:40:43.975 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:40:44.065 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:41:39.005 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:41:39.084 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:42:34.006 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:42:34.107 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:43:29.099 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:43:29.276 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:44:24.117 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:44:24.210 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:45:19.144 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:45:19.219 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:46:14.181 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:46:14.272 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:47:09.182 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:47:09.273 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:48:04.192 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:48:04.283 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:48:59.227 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:48:59.318 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:49:54.256 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:49:54.348 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:50:49.305 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:50:49.395 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:51:44.387 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:51:44.476 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:52:39.418 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:52:39.507 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:53:34.477 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:53:34.549 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:54:29.525 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:54:29.622 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:55:24.600 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:55:24.674 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:56:19.658 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:56:19.747 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:57:14.662 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:57:14.752 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:58:09.763 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:58:09.852 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:59:04.871 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 12:59:04.944 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 12:59:59.941 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:00:00.032 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:00:55.004 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:00:55.095 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:01:50.081 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:01:50.155 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:02:45.150 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:02:45.240 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:03:40.232 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:03:40.323 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:04:35.286 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:04:35.362 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:05:30.282 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:05:30.373 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:06:25.313 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:06:25.404 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:07:20.325 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:07:20.416 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:08:15.401 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:08:15.490 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:09:10.420 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:09:10.511 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:10:05.540 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:10:05.666 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:11:00.532 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:11:00.622 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:11:55.628 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:11:55.702 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:12:50.629 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:12:50.718 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:13:45.648 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:13:45.739 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:14:40.676 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:14:40.750 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:15:35.758 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:15:35.850 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:16:30.794 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:16:30.884 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:17:25.798 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:17:25.888 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:18:20.825 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:18:20.919 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:19:15.903 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:19:16.004 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:20:10.928 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:20:11.017 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:21:06.036 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:21:06.110 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:22:01.030 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:22:01.120 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:22:56.124 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:22:56.197 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:23:51.206 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:23:51.303 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:24:46.288 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:24:46.387 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:25:41.306 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:25:41.394 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:26:36.313 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:26:36.402 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:27:31.399 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:27:31.491 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:28:26.433 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:28:26.522 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:29:21.551 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:29:21.624 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:30:16.536 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:30:16.653 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:31:11.572 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:31:11.659 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:32:06.559 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:32:06.649 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:33:01.585 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:33:01.693 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:33:56.676 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:33:56.766 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:34:51.695 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:34:51.770 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:35:46.690 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:35:46.780 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:36:41.740 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:36:41.823 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:37:36.736 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:37:36.837 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:38:31.757 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:38:31.848 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:39:26.841 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:39:26.932 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:40:21.953 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:40:22.028 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:41:16.958 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:41:17.048 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:42:11.970 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:42:12.061 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:43:06.998 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:43:07.088 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:44:02.006 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:44:02.097 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:44:57.029 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:44:57.101 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:45:52.087 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:45:52.178 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:46:47.100 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:46:47.189 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:47:42.104 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:47:42.194 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:48:37.181 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:48:37.252 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:49:32.203 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:49:32.292 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:50:27.292 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:50:27.399 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:51:22.349 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:51:22.423 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:52:17.386 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:52:17.478 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:53:12.394 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:53:12.485 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:54:07.419 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:54:07.510 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:55:02.443 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:55:02.535 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:55:57.474 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:55:57.548 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:56:52.554 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:56:52.649 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:57:47.570 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:57:47.663 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:58:42.650 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:58:42.741 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 13:59:37.708 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 13:59:37.781 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:00:32.786 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:00:32.875 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:01:27.785 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:01:27.875 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:02:22.818 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:02:22.894 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:03:17.813 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:03:17.906 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:04:12.840 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:04:12.927 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:05:07.843 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:05:07.919 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:06:02.892 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:06:02.991 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:06:57.982 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:06:58.071 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:07:52.996 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:07:53.087 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:08:48.003 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:08:48.093 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:09:43.067 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:09:43.141 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:10:38.146 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:10:38.237 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:11:33.234 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:11:33.325 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:12:28.307 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:12:28.398 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:13:23.336 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:13:23.426 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:14:18.392 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:14:18.483 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:15:13.409 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:15:13.498 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:16:08.438 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:16:08.513 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:17:03.505 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:17:03.612 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:17:58.549 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:17:58.640 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:18:53.640 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:18:53.715 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:19:48.713 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:19:48.803 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:20:43.829 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:20:43.905 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:21:38.908 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:21:39.017 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:22:33.939 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:22:34.029 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:23:28.973 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:23:29.062 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:24:24.023 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:24:24.113 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:25:19.080 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:25:19.157 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:26:14.162 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:26:14.252 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:27:09.222 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:27:09.314 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:28:04.237 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:28:04.334 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:28:59.281 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:28:59.370 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:29:54.303 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:29:54.392 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:30:49.340 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:30:49.581 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:31:44.344 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:31:44.435 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:32:39.436 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:32:39.526 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:33:34.482 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:33:34.557 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:34:29.517 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:34:29.607 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:35:24.645 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:35:24.727 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:36:19.638 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:36:19.736 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:37:14.753 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:37:14.827 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:38:09.739 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:38:09.828 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:39:04.799 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:39:04.891 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:39:59.864 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:39:59.939 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:40:54.947 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:40:55.112 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:41:50.034 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:41:50.124 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:42:45.120 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:42:45.211 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:43:40.198 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:43:40.302 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:44:35.296 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:44:35.387 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:45:30.317 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:45:30.407 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:46:25.374 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:46:25.446 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:47:20.398 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:47:20.487 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:48:15.413 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:48:15.502 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:49:10.498 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:49:10.574 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:50:05.575 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:50:05.666 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:51:00.590 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:51:00.684 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:51:55.623 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:51:55.696 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:52:50.618 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:52:50.708 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:53:45.623 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:53:45.714 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:54:40.688 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:54:40.777 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:55:35.727 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:55:35.802 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:56:30.763 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:56:30.854 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:57:25.853 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:57:25.927 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:58:20.868 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:58:20.959 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 14:59:15.873 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 14:59:15.964 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 15:00:10.920 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 15:00:11.008 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 15:01:05.946 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 15:01:06.046 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 15:02:01.033 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 15:02:01.123 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 15:02:56.080 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 15:02:56.156 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 15:03:51.061 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 15:03:51.327 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 15:04:46.153 StotleDev[76304:70b] [QBChat SENT]: [object Element]
+2014-10-14 15:04:46.244 StotleDev[76304:70b] [QBChat RECV]: [object Element]
+2014-10-14 15:05:12.123 StotleDev[76304:70b] Resetting plugins due to page load.
+2014-10-14 15:05:12.127 StotleDev[76304:70b] IAB.close() called but it was already closed.
+2014-10-14 15:05:12.760 StotleDev[76304:70b] THREAD WARNING: ['StatusBar'] took '42.319092' ms. Plugin should use a background thread.
+2014-10-14 15:05:12.793 StotleDev[76304:70b] THREAD WARNING: ['File'] took '29.239990' ms. Plugin should use a background thread.
+2014-10-14 15:05:12.911 StotleDev[76304:70b] Finished load of: http://192.168.1.100:8100/#/home/tab/selling
+2014-10-14 22:09:20.305 StotleDev[80741:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-14 22:09:20.333 StotleDev[80741:70b] Unlimited access to network resources
+2014-10-14 22:09:20.466 StotleDev[80741:70b] [CDVTimer][keyboard] 0.082016ms
+2014-10-14 22:09:20.469 StotleDev[80741:70b] [CDVTimer][file] 2.394974ms
+2014-10-14 22:09:20.575 StotleDev[80741:70b] [CDVTimer][statusbar] 105.228007ms
+2014-10-14 22:09:20.576 StotleDev[80741:70b] [CDVTimer][TotalPluginStartup] 110.460997ms
+2014-10-14 22:09:20.584 StotleDev[80741:70b] active
+2014-10-14 22:09:20.757 StotleDev[80741:70b] Resetting plugins due to page load.
+2014-10-15 09:42:55.560 StotleDev[81726:70b] Multi-tasking -> Device: YES, App: YES
+2014-10-15 09:42:55.594 StotleDev[81726:70b] Unlimited access to network resources
+2014-10-15 09:42:55.836 StotleDev[81726:70b] [CDVTimer][keyboard] 0.088990ms
+2014-10-15 09:42:55.840 StotleDev[81726:70b] [CDVTimer][file] 3.265977ms
+2014-10-15 09:42:55.925 StotleDev[81726:70b] [CDVTimer][statusbar] 84.066987ms
+2014-10-15 09:42:55.926 StotleDev[81726:70b] [CDVTimer][TotalPluginStartup] 90.243042ms
+2014-10-15 09:42:55.934 StotleDev[81726:70b] active
+2014-10-15 09:42:56.051 StotleDev[81726:70b] Resetting plugins due to page load.
+2014-10-15 09:42:56.650 StotleDev[81726:70b] Setting ARN: arn:aws:iam::395994426563:role/stotledev
+2014-10-15 09:42:56.652 StotleDev[81726:70b] bottom -> home.login
+2014-10-15 09:42:56.652 StotleDev[81726:70b] Retrieving reference from storage
+2014-10-15 09:42:56.652 StotleDev[81726:70b] Retrieving conversation from storage
+2014-10-15 09:42:56.973 StotleDev[81726:70b] Finished load of: file:///Users/brendan/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/13FE2D90-3405-4ED8-890A-D85DE3C80661/StotleDev.app/www/index.html#/home/login
+2014-10-15 09:42:56.977 StotleDev[81726:70b] Parsing 38453 textbooks
+2014-10-15 09:42:56.978 StotleDev[81726:70b] {"RequestItems":{"test-textbook-3":[{"PutRequest":{"Item":{"id":{"S":1401},"course_id":{"S":822},"title":{"S":"Saunders Comprehensive Review for the NCLEX-RN� Examination 5e..."},"author":{"S":"Linda Anne Silvestri"},"isbn13":{"S":9781437708257},"isbn10":{"S":"1437708250"}}}},{"PutRequest":{"Item":{"id":{"S":1402},"course_id":{"S":823},"title":{"S":"Foundations of Psychiatric Mental Health Nursing: A Clinical..."},"author":{"S":"Elizabeth M. Varcarolis RN  MA"},"isbn13":{"S":9781416066675},"isbn10":{"S":"1416066675"}}}},{"PutRequest":{"Item":{"id":{"S":1403},"course_id":{"S":823},"title":{"S":"NCLEX-RN� Psychiatric Nursing Made Incredibly Easy! (Incredibly..."},"author":{"S":"null"},"isbn13":{"S":9781451108170},"isbn10":{"S":"1451108176"}}}},{"PutRequest":{"Item":{"id":{"S":1404},"course_id":{"S":824},"title":{"S":"Prioritization Delegation and Assignment: Practice Exercises for..."},"author":{"S":"Linda LaCharity"},"isbn13":{"S":9780323065702},"isbn10":{"S":"323065708"}}}},{"PutRequest":{"Item":{"id":{"S":1405},"course_id":{"S":824},"title":{"S":"Flip and See ECG 4e"},"author":{"S":"Elizabeth Gross Cohn RN  MS  NP  ACNP  DNSc  CEN  EMT-CC"},"isbn13":{"S":9780323084529},"isbn10":{"S":"323084524"}}}},{"PutRequest":{"Item":{"id":{"S":1406},"course_id":{"S":824},"title":{"S":"Davis's Q&amp;A for the NCLEX-RN� Examination"},"author":{"S":"Kathleen Ohman"},"isbn13":{"S":9780803621879},"isbn10":{"S":"803621876"}}}},{"PutRequest":{"Item":{"id":{"S":1407},"course_id":{"S":824},"title":{"S":"Medical-Surgical Nursing: Patient-Centered Collaborative Care..."},"author":{"S":"Donna D. Ignatavicius MS  RN  ANEF"},"isbn13":{"S":9781437727999},"isbn10":{"S":"1437727999"}}}},{"PutRequest":{"Item":{"id":{"S":1408},"course_id":{"S":824},"title":{"S":"Clinical Decision-Making Study Guide for Medical-Surgical Nursing:..."},"author":{"S":"Donna D. Ignatavicius MS  RN  ANEF"},"isbn13":{"S":9781437728033},"isbn10":{"S":"1437728030"}}}},{"PutRequest":{"Item":{"id":{"S":1409},"course_id":{"S":824},"title":{"S":"Virtual Clinical Excursions 3.0 for Medical-Surgical Nursing:..."},"author":{"S":"Donna D. Ignatavicius MS  RN  ANEF"},"isbn13":{"S":9781455728718},"isbn10":{"S":"1455728713"}}}},{"PutRequest":{"Item":{"id":{"S":1410},"course_id":{"S":827},"title":{"S":"Health Promotion in Nursing with Premium Website Printed Access Card"},"author":{"S":"Janice A Maville"},"isbn13":{"S":9781111640460},"isbn10":{"S":"1111640467"}}}},{"PutRequest":{"Item":{"id":{"S":1411},"course_id":{"S":828},"title":{"S":"Policy &amp; Politics in Nursing and Health Care 6e (Policy and..."},"author":{"S":"Diana J. Mason RN  PhD  FAAN"},"isbn13":{"S":9781437714166},"isbn10":{"S":"1437714161"}}}},{"PutRequest":{"Item":{"id":{"S":1412},"course_id":{"S":828},"title":{"S":"Professional Issues in Nursing: Challenges and Opportunities"},"author":{"S":"Carol J. Huston"},"isbn13":{"S":9781605473956},"isbn10":{"S":"1605473952"}}}},{"PutRequest":{"Item":{"id":{"S":1413},"course_id":{"S":829},"title":{"S":"Project Management for Healthcare Informatics (Health Informatics)"},"author":{"S":"Susan Houston"},"isbn13":{"S":9780387736822},"isbn10":{"S":"387736824"}}}},{"PutRequest":{"Item":{"id":{"S":1414},"course_id":{"S":829},"title":{"S":"Project Management for Healthcare Informatics (Health Informatics)"},"author":{"S":"Susan Houston"},"isbn13":{"S":9781441925275},"isbn10":{"S":"1441925279"}}}},{"PutRequest":{"Item":{"id":{"S":1415},"course_id":{"S":830},"title":{"S":"Coping with Chronic Illness: Overcoming Powerlessness"},"author":{"S":"null"},"isbn13":{"S":9780803602984},"isbn10":{"S":"803602987"}}}},{"PutRequest":{"Item":{"id":{"S":1416},"course_id":{"S":833},"title":{"S":"Gerontologic Nursing 4e"},"author":{"S":"Sue E. Meiner EdD  APRN  BC  GNP"},"isbn13":{"S":9780323069991},"isbn10":{"S":"323069991"}}}},{"PutRequest":{"Item":{"id":{"S":1417},"course_id":{"S":833},"title":{"S":"EBK GERONTOLOGY NURSING CASE STUDIES"},"author":{"S":"null"},"isbn13":{"S":9780826108340},"isbn10":{"S":"null"}}}},{"PutRequest":{"Item":{"id":{"S":1418},"course_id":{"S":833},"title":{"S":"Evidence-Based Geriatric Nursing Protocols for Best Practice:..."},"author":{"S":"null"},"isbn13":{"S":9780826171283},"isbn10":{"S":"826171281"}}}},{"PutRequest":{"Item":{"id":{"S":1419},"course_id":{"S":835},"title":{"S":"Gerontology Nursing Case Studies: 100 Narratives for Learning"},"author":{"S":"null"},"isbn13":{"S":9780826108333},"isbn10":{"S":"826108334"}}}},{"PutRequest":{"Item":{"id":{"S":1420},"course_id":{"S":837},"title":{"S":"Maternal and Newborn Success: A Course Review Applying Critical..."},"author":{"S":"Margot Desevo"},"isbn13":{"S":9780803619067},"isbn10":{"S":"803619065"}}}},{"PutRequest":{"Item":{"id":{"S":1421},"course_id":{"S":837},"title":{"S":"Maternal-Child Nursing 3e"},"author":{"S":"Emily Slone McKinney MSN  RN  C"},"isbn13":{"S":9781416058960},"isbn10":{"S":"1416058966"}}}},{"PutRequest":{"Item":{"id":{"S":1422},"course_id":{"S":837},"title":{"S":"Study Guide for Maternal-Child Nursing 3e"},"author":{"S":"Emily Slone McKinney MSN  RN  C"},"isbn13":{"S":9781416069980},"isbn10":{"S":"1416069984"}}}},{"PutRequest":{"Item":{"id":{"S":1423},"course_id":{"S":840},"title":{"S":"Contemporary Nursing: Issues Trends &amp; Management 5e (Cherry..."},"author":{"S":"Barbara Cherry DNSc  MBA  RN  NEA-BC"},"isbn13":{"S":9780323069533},"isbn10":{"S":"323069533"}}}},{"PutRequest":{"Item":{"id":{"S":1424},"course_id":{"S":841},"title":{"S":"Loosening the Grip: A Handbook of Alcohol Information"},"author":{"S":"Jean Kinney"},"isbn13":{"S":9780073404684},"isbn10":{"S":"73404683"}}}},{"PutRequest":{"Item":{"id":{"S":1425},"course_id":{"S":842},"title":{"S":"The Only Grammar Book You'll Ever Need: A One-Stop Source for Every..."},"author":{"S":"Susan Thurman"},"isbn13":{"S":9781580628556},"isbn10":{"S":"1580628559"}}}}]}}
+2014-10-15 09:42:56.980 StotleDev[81726:70b] Created 400 batches

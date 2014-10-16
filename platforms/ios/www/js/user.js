@@ -16,7 +16,7 @@ var app = angular.module('user', ['ngStorage']);
 
 // User data 
 
-app.factory("User", function($sessionStorage, $window, $http, $q, $state, OpenFB, AWSService) {
+app.factory("User", function($sessionStorage, $window, $http, $q, $state, OpenFB, AWSService, Textbooks) {
 
 	var storage = $sessionStorage;
 
@@ -89,7 +89,7 @@ app.factory("User", function($sessionStorage, $window, $http, $q, $state, OpenFB
 	            		$state.go('home.tab.selling');
 
 	            		// WHERE TO GO AFTER LOGIN
-	            		$state.go('home.posts.selling'); 
+	            		//$state.go('home.posts.selling'); 
 	            	} else {
 	            		// Get school
 	            		console.log('New user');

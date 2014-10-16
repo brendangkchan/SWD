@@ -121,6 +121,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/sha1-min.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/sha1.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/signup.js \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/textbooks.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/js/user.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/lib/angular-animate \
@@ -294,6 +295,14 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/plugins/org.apache.cordova.statusbar/www/statusbar.js \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/schools.json \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/states.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/textbooks-2k-end.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/textbooks-all.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/textbooks-p1.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/textbooks-p2.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/textbooks-p3.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/textbooks-p4.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/textbooks-p5.json \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/res/textbooks-p6.json \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/cam.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/conversation.html \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates/create-post-modal.html \

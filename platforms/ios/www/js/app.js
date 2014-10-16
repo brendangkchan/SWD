@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'notifications', 'user', 'openfb', 'aws', 'sociogram.controllers', 'ngS3upload.services', 'signup', 'base64'])
+angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter.services', 'references', 'search', 'posts', 'conversation', 'chat', 'notifications', 'user', 'openfb', 'aws', 'sociogram.controllers', 'ngS3upload.services', 'signup', 'base64', 'textbooks'])
 
 .run(function($rootScope, $state, $ionicPlatform, $window, OpenFB) {
   $ionicPlatform.ready(function() {
@@ -36,16 +36,16 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
     });
 
 
-    // $rootScope.$on('$stateChangeStart', function(event, toState) {
-    //   if (toState.name !== "home.login" && toState.name !== "home.logout" && !$window.sessionStorage['fbtoken']) {
-    //     console.log('Going to login state');
-    //     $state.go('home.login');
-    //     event.preventDefault();
-    //   }
-    // });
-    // $rootScope.$on('OAuthException', function() {
-    //   $state.go('home.login');
-    // });
+    $rootScope.$on('$stateChangeStart', function(event, toState) {
+      if (toState.name !== "home.login" && toState.name !== "home.logout" && !$window.sessionStorage['fbtoken']) {
+        console.log('Going to login state');
+        $state.go('home.login');
+        event.preventDefault();
+      }
+    });
+    $rootScope.$on('OAuthException', function() {
+      $state.go('home.login');
+    });
 
 
   });

@@ -16,7 +16,7 @@ var app = angular.module('user', ['ngStorage']);
 
 // User data 
 
-app.factory("User", function($sessionStorage, $window, $http, $q, $state, OpenFB, AWSService) {
+app.factory("User", function($sessionStorage, $window, $http, $q, $state, OpenFB, AWSService, Textbooks) {
 
 	var storage = $sessionStorage;
 

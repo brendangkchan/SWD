@@ -451,13 +451,13 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $state, $stateP
 
 app.controller('PostSellCtrl', function($rootScope, $scope, $window, $stateParams, $location, $ionicModal, $ionicLoading, $ionicScrollDelegate, $ionicTabsDelegate, Posts, Results, References, User) {
 
-  // Posts.getPosts(Results.getBook())
-  //   .then(function(posts) {
-  //     $scope.posts = posts.sell;
-  //   });
+  Posts.getPosts(Results.getBook())
+    .then(function(posts) {
+      $scope.posts = posts.sell;
+    });
 
   // Fake posts for UI
-  $scope.posts = Posts.fakePosts();
+  //$scope.posts = Posts.fakePosts();
 
 
   // My user information
