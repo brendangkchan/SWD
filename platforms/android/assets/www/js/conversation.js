@@ -109,7 +109,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
                           .then(function(retrievedConversation) {
 
                             $scope.conversation = retrievedConversation;
-                            Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+                            //Chat.send($scope.conversation, $scope.reference, $scope.data.message);
 
                             // Clean up
                             delete $scope.data.message;
@@ -146,7 +146,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
                       .then(function(retrievedConversation) {
 
                           $scope.conversation = retrievedConversation;
-                          Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+                          // Chat.send($scope.conversation, $scope.reference, $scope.data.message);
                           // Clean up
                             delete $scope.data.message;
                             
@@ -168,7 +168,7 @@ app.controller('ConversationCtrl', function($rootScope, $scope, $stateParams, Re
               .then(function(retrievedConversation) {
 
                   $scope.conversation = retrievedConversation;
-                  Chat.send($scope.conversation, $scope.reference, $scope.data.message);
+                  //Chat.send($scope.conversation, $scope.reference, $scope.data.message);
                   // Clean up
                             delete $scope.data.message;
                             

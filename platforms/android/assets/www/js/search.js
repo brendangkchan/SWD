@@ -220,6 +220,9 @@ app.factory("Results", function($localStorage,  $http, AWSHelper) {
 	// Retrieve last query
 	getQuery: function() {
 		return query;
+	},
+	searchBookDB: function() {
+		return AWSHelper.searchBookDB($localStorage.query);
 	}
 
   }
@@ -551,12 +554,21 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 
 	//$scope.results = null;
 
-	Results.all().success(function (data) {
-		var initial_results = data.data;
-		console.log(data,data);
-		$scope.results = Results.getResults(initial_results);
-		//$ionicLoading.hide();
+
+
+
+	// Results.all().success(function (data) {
+	// 	var initial_results = data.data;
+	// 	console.log(data,data);
+	// 	$scope.results = Results.getResults(initial_results);
+	// 	//$ionicLoading.hide();
+	// });
+
+	Results.searchBookDB().success(function (data) {
+		$scope.results = data;
 	});
+
+
 	
 	// Select book from initial search
 	$scope.selectBook = function(book) {

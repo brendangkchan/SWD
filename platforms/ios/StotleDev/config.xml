@@ -22,17 +22,17 @@
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="IonicKeyboard" />
     </feature>
-    <feature name="Console">
-        <param name="ios-package" value="CDVLogger" />
+    <feature name="IDFVPlugin">
+        <param name="ios-package" value="IDFVPlugin" />
     </feature>
-    <feature name="Device">
-        <param name="ios-package" value="CDVDevice" />
-    </feature>
-    <feature name="InAppBrowser">
-        <param name="ios-package" value="CDVInAppBrowser" />
+    <feature name="PushPlugin">
+        <param name="ios-package" value="PushPlugin" />
     </feature>
     <feature name="Camera">
         <param name="ios-package" value="CDVCamera" />
+    </feature>
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
     </feature>
     <feature name="File">
         <param name="ios-package" value="CDVFile" />
@@ -41,14 +41,11 @@
     <feature name="FileTransfer">
         <param name="ios-package" value="CDVFileTransfer" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="StatusBarStyle" value="lightcontent" />
-    <feature name="IDFVPlugin">
-        <param name="ios-package" value="IDFVPlugin" />
-    </feature>
-    <feature name="PushPlugin">
-        <param name="ios-package" value="PushPlugin" />
-    </feature>
     <name>StotleDev</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -65,5 +62,8 @@
     <preference name="StatusBarOverlaysWebView" value="true" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
     </feature>
 </widget>

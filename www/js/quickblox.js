@@ -147,7 +147,7 @@ var mutualSubscriptions = {};
 // create Strophe Connection object
 var protocol = config.chatProtocol.active === 1 ? config.chatProtocol.bosh : config.chatProtocol.websocket;
 var connection = new Strophe.Connection(protocol);
-// if (config.debug) {
+ if (config.debug) {
   if (config.chatProtocol.active === 1) {
     connection.xmlInput = function(data) { if (typeof data.children !== 'undefined') data.children[0] && console.log('[QBChat RECV]:', data.children[0]); };
     connection.xmlOutput = function(data) { if (typeof data.children !== 'undefined') data.children[0] && console.log('[QBChat SENT]:', data.children[0]); };
@@ -155,7 +155,7 @@ var connection = new Strophe.Connection(protocol);
     connection.xmlInput = function(data) { console.log('[QBChat RECV]:', data); };
     connection.xmlOutput = function(data) { console.log('[QBChat SENT]:', data); };
   }
-// }
+ }
 
 function ChatProxy(service) {
   var self = this;

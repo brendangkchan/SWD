@@ -4,85 +4,85 @@ var app = angular.module('textbooks', []);
 // Conversation Controller
 app.factory('Textbooks', function($state, $http, $sessionStorage, $localStorage) {
 
-	var books;
-	$localStorage.batches = [];
+	// var books;
+	// $localStorage.batches = [];
 
 
-	$http.get('res/textbooks-p1.json').success (function(data){
-        books = data;
+	// $http.get('res/textbooks-p1.json').success (function(data){
+ //        books = data;
 
-        console.log('Parsing ' + books.length + ' textbooks');
+ //        console.log('Parsing ' + books.length + ' textbooks');
 
-		var batch = [];
+	// 	var batch = [];
 
-		var count = 0;        	
+	// 	var count = 0;        	
 
-        // For each book
-    	for (var i = 0; i < 10000 && i < books.length; i++) {
-    		var book = books[i];
+ //        // For each book
+ //    	for (var i = 0; i < 10000 && i < books.length; i++) {
+ //    		var book = books[i];
 
-        	// Increase count
-        	count++;
+ //        	// Increase count
+ //        	count++;
 
-        	// Single request
-        	var request = 
-        		{
-	        		'PutRequest' : {
-			        	'Item' : {
-			        		'id' : { 'S' : book.id },
-			        		'course_id' : { 'S' : book.course_id },
-			        		'title' : { 'S' : book.title },
-			        		'author' : { 'S' : book.author },
-			        		'isbn13' : { 'S' : book.isbn13 },
-			        		'isbn10' : { 'S' : book.isbn10 }
-			        	}
-			        }
-		        };
+ //        	// Single request
+ //        	var request = 
+ //        		{
+	//         		'PutRequest' : {
+	// 		        	'Item' : {
+	// 		        		'id' : { 'S' : book.id },
+	// 		        		'course_id' : { 'S' : book.course_id },
+	// 		        		'title' : { 'S' : book.title },
+	// 		        		'author' : { 'S' : book.author },
+	// 		        		'isbn13' : { 'S' : book.isbn13 },
+	// 		        		'isbn10' : { 'S' : book.isbn10 }
+	// 		        	}
+	// 		        }
+	// 	        };
 
-	        // Save request to batch
-	        batch.push(request);
+	//         // Save request to batch
+	//         batch.push(request);
 
-	        // After every 25
-	        if (count === 25) {
+	//         // After every 25
+	//         if (count === 25) {
 
-	        	// Reset count
-	        	count = 0;
-	        	batch = [];
+	//         	// Reset count
+	//         	count = 0;
+	//         	batch = [];
 
-	        	// New batch
-	        	requestBatch = 
-		        	{
-		        		'RequestItems' : {
-		        			'test-textbook-3' : batch
-		        		}
-		        	};
+	//         	// New batch
+	//         	requestBatch = 
+	// 	        	{
+	// 	        		'RequestItems' : {
+	// 	        			'test-textbook-3' : batch
+	// 	        		}
+	// 	        	};
 
-	        	// Save batch
-	        	$localStorage.batches.push(requestBatch);
-	        }
+	//         	// Save batch
+	//         	$localStorage.batches.push(requestBatch);
+	//         }
 
-		}
+	// 	}
 
-		// Check last batch
-		if (batch.length > 0) {
-			// New batch
-        	requestBatch = 
-	        	{
-	        		'RequestItems' : {
-	        			'test-textbook-3' : batch
-	        		}
-	        	};
-        	// Log batch
-        	console.log(requestBatch);
+	// 	// Check last batch
+	// 	if (batch.length > 0) {
+	// 		// New batch
+ //        	requestBatch = 
+	//         	{
+	//         		'RequestItems' : {
+	//         			'test-textbook-3' : batch
+	//         		}
+	//         	};
+ //        	// Log batch
+ //        	console.log(requestBatch);
 
-        	// Save batch
-        	$localStorage.batches.push(requestBatch);
-		}
+ //        	// Save batch
+ //        	$localStorage.batches.push(requestBatch);
+	// 	}
 
-        // Log results
-        console.log($localStorage.batches[50]);
-        console.log('Created ' + $localStorage.batches.length + ' batches');
-    });
+ //        // Log results
+ //        console.log($localStorage.batches[50]);
+ //        console.log('Created ' + $localStorage.batches.length + ' batches');
+ //    });
 
 	return {
 		uploadTextbooks: function() {

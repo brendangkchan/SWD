@@ -67,6 +67,11 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/templates \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/css/deperecated.css \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/css/style.css \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/login-background-bright-blur.png \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/login-background-bright.png \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/login-background-clear.png \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/login-background.png \
+/Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/stotle-icon-500.png \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/blank_cover.png \
 /Users/brendan/Ionic/StotleDev/platforms/android/assets/www/img/test/book1.jpg \

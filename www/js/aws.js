@@ -524,6 +524,12 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 			return d.promise;
 		},
 
+		searchBookDB: function(query) {
+
+
+
+		},
+
 		// Updates conversation status
 		updateConversationStatusesFromReference: function(reference, status) {
 

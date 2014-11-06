@@ -1,6 +1,7 @@
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes.dex : \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$1.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$2.class \
+/Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$3.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/BuildConfig.class \
 /Users/brendan/Ionic/StotleDev/platforms/android/ant-build/classes/com/ionicframework/stotledev425747/Manifest$permission.class \
