@@ -104,7 +104,7 @@ app.factory("User", function($sessionStorage, $window, $http, $q, $state, OpenFB
 	return {
 		setSchool: function(school) {
 			storage['user'].schoolID = school.id;
-			storage['user'].schoolz = school.name;
+			storage['user'].school = school.name;
 		},
 
 		getUser: function() {

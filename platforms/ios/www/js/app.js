@@ -31,9 +31,10 @@ angular.module('starter', ['ionic', 'ngAnimate', 'starter.controllers', 'starter
 
     var pushNotification;
 
-    document.addEventListener("deviceready", function(){
-        pushNotification = window.plugins.pushNotification;
-    });
+    // document.addEventListener("deviceready", function(){
+    //     //pushNotification = window.plugins.pushNotification;
+    //     console.log('Device is now ready!');
+    // });
 
 
     $rootScope.$on('$stateChangeStart', function(event, toState) {

@@ -63,6 +63,41 @@ html *
 }
 
 /*
+ * Login Screen
+ */
+
+.login-screen {
+	background-image: url('../img/login-background-bright.png');
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.login-icon-container {
+	margin-left: auto;
+	margin-right: auto;
+
+	margin-top: 25%;
+	margin-bottom: 25%;
+	width: 50%;
+	height: auto;
+}
+
+.login-icon {
+	border-width: 0px;
+	width: 100%;
+	height: auto;
+}
+
+.login-button {
+	border-color: #3b5998 !important;
+	background-color: #3b5998 !important;
+	color: #FFF !important;
+	
+	padding-left: 25%;
+	padding-right: 25%;
+}
+
+/*
  * Buttons
  */
 

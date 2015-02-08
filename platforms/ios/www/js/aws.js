@@ -64,6 +64,34 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 	  return word.substr(0,1).toUpperCase() + word.substr(1);
 	}
 
+	function isValidISBN (isbn) {
+		isbn = isbn.replace(/[^\dX]/gi, '');
+		if(isbn.length == 10) {
+			var chars = isbn.split('');
+			if(chars[9].toUpperCase() == 'X') {
+				chars[9] = 10;
+			}
+			var sum = 0;
+			for(var i = 0; i < chars.length; i++) {
+				sum += ((10-i) * parseInt(chars[i]));
+			}
+			return (sum % 11 == 0);
+		} else if(isbn.length == 13) {
+			var chars = isbn.split('');
+			var sum = 0;
+			for (var i = 0; i < chars.length; i++) {
+				if(i % 2 == 0) {
+					sum += parseInt(chars[i]);
+				} else {
+					sum += parseInt(chars[i]) * 3;
+				}
+			}
+			return (sum % 10 == 0);
+		} else {
+			return false;
+		}
+	}
+
 
 
 	return {
@@ -524,6 +552,194 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 			return d.promise;
 		},
 
+		searchBookDB: function(query) {
+
+			// ADD PROMISE HERE
+			var d = $q.defer();
+
+			if (isValidISBN(query)) {
+				d.resolve(this.searchBookDBByIsbn(query));
+			} else {
+				d.resolve(this.searchBookDBByTitle(query));
+			}
+
+			return d.promise;
+
+		},
+
+		searchBookDBByIsbn: function(isbn) {
+
+			var user = User.user();
+
+			var d = $q.defer();
+
+			// Load AWS credentials
+	        AWSService.credentials().then(function() {
+
+	        	// Change to textbook db region
+	        	AWS.config.region = 'us-west-2';
+
+	            AWSService.dynamo({
+	              params: {TableName: AWSService.TextbooksTable()}
+	            })
+	            .then(function(table) {
+
+				// Query table for user
+				console.log('Getting books with isbn: ' + isbn);
+                    var itemParams = {
+                    	'Select': "ALL_ATTRIBUTES",
+                    	'KeyConditions': {
+                			 'isbn13' : { 
+                    			'AttributeValueList': [
+                    				{
+                    					'S': isbn
+                    				}
+                    			],
+                    			'ComparisonOperator': 'EQ'
+                			 }
+                    	}
+                 //    	,
+                 //    	'QueryFilter': {
+                 //    		'title' : { 
+                 //    			'AttributeValueList': [
+                 //    				{
+                 //    					'S': book.title
+                 //    				}
+                 //    			],
+                 //    			'ComparisonOperator': 'EQ'
+            			 	// },
+            			 	// 'author' : { 
+                 //    			'AttributeValueList': [
+                 //    				{
+                 //    					'S': book.author
+                 //    				}
+                 //    			],
+                 //    			'ComparisonOperator': 'EQ'
+            			 	// },
+            			 	// 'status' : { 
+                 //    			'AttributeValueList': [
+                 //    				{
+                 //    					'S': 'open'
+                 //    				}
+                 //    			],
+                 //    			'ComparisonOperator': 'EQ'
+            			 	// }
+                 //    	}
+                    };
+                    // Put entry in table
+                    table.query(itemParams, 
+                    	function(err, data) {
+                    		console.log(data);
+
+                    		// Set region back 
+							AWS.config.region = 'us-west-1';
+
+                    		var items = [];
+					        if (data) {
+					          angular.forEach(data.Items, function(item) {
+					            items.push(
+									{
+										author: item.author.S,
+										course_id: item.course_id.S,
+										id: item.id.S,
+										isbn10: item.isbn10.S,
+										isbn13: item.isbn13.S,
+										price: item.price.S,
+										title: item.title.S,
+										icon: 'http://covers.openlibrary.org/b/' + 'isbn/' + item.isbn13.S + '-S.jpg' + '?default=false'
+									}					            	
+				            	);
+					          });
+
+					          d.resolve(items);
+					        } else {
+					          d.reject(err);
+					        }
+                	});  
+				});
+	        });
+
+			return d.promise;
+		},
+
+		searchForOtherEditions: function(author, title) {
+
+			var user = User.user();
+
+			var d = $q.defer();
+
+			// Load AWS credentials
+	        AWSService.credentials().then(function() {
+
+	        	// Change to textbook db region
+	        	AWS.config.region = 'us-west-2';
+
+	            AWSService.dynamo({
+	              params: {TableName: AWSService.TextbooksTable()}
+	            })
+	            .then(function(table) {
+
+				// Query table for user
+				console.log('Getting books with title: ' + title);
+                    var itemParams = {
+                    	'Select': "ALL_ATTRIBUTES",
+                    	'KeyConditions': {
+                			 'author' : { 
+                    			'AttributeValueList': [
+                    				{
+                    					'S': author
+                    				}
+                    			],
+                    			'ComparisonOperator': 'EQ'
+                			 }
+                    	},
+                    	'QueryFilter': {
+                    		'title' : { 
+                    			'AttributeValueList': [
+                    				{
+                    					'S': title
+                    				}
+                    			],
+                    			'ComparisonOperator': 'CONTAINS'
+            			 	}
+                    	}
+                    };
+                    // Put entry in table
+                    table.query(itemParams, 
+                    	function(err, data) {
+                    		console.log(data);
+
+                    		// Set region back 
+							AWS.config.region = 'us-west-1';
+
+                    		var items = [];
+					        if (data) {
+					          angular.forEach(data.Items, function(item) {
+					            items.push(
+									{
+										author: item.author.S,
+										course_id: item.course_id.S,
+										id: item.id.S,
+										isbn10: item.isbn10.S,
+										isbn13: item.isbn13.S,
+										price: item.price.S,
+										title: item.title.S,
+										icon: 'http://covers.openlibrary.org/b/' + 'isbn/' + item.isbn13.S + '-S.jpg' + '?default=false'
+									}					            	
+				            	);
+					          });
+
+					          d.resolve(items);
+					        } else {
+					          d.reject(err);
+					        }
+                	});  
+				});
+	        });
+
+			return d.promise;
+		},
+
 		// Updates conversation status
 		updateConversationStatusesFromReference: function(reference, status) {
 
@@ -813,7 +1029,160 @@ app.factory("AWSHelper", function($sessionStorage, $http, $q, AWSService, User, 
 			  	});
 			});
 			return d.promise;
-		}
+		},
+
+		uploadImageToS3: function(imageURI) {
+
+			var d = $q.defer();
+
+			console.log('Uploading image: ' + imageURI);
+
+			AWSService.credentials().then(function() {
+
+			    // Get S3 bucket object
+			    AWSService.s3({
+			    	params: {
+			    		Bucket: AWSService.Bucket()
+			    	}
+			    }).then(function(s3) {
+
+					var params = {
+						Key: Math.random().toString(36).slice(2) + '.jpg',
+						// ContentType: 'image/jpeg',
+						ContentType: 'text/plain',
+						Body: imageURI
+					}
+
+					s3.putObject(params, function(err, data) {
+
+						if (err) console.log(err, err.stack);
+
+						if (!err) {
+							console.log('Upload successful!');
+
+							// var params = {
+							// 	Bucket: AWSService.Bucket(), 
+							// 	Key: key
+							// };
+							// s3.getSignedUrl('getObject', params, 
+							// 	function(err, url) {
+									
+							// 		if (err) {
+							// 			console.log(err);
+							// 			d.reject(err);
+							// 		}
+
+							// 		if (url) {
+							// 			// Now have signed url
+							// 			console.log('Object URL: ' + url);
+							// 			d.resolve(url);
+							// 		}
+							// });
+						}
+					});
+			  	});
+			});
+			return d.promise;
+		},
+
+		uploadImageAlt: function(imageURI) {
+ 
+	        var deferred = $.Deferred(),
+	            ft = new FileTransfer(),
+	            options = new FileUploadOptions();
+
+	        var user = User.user();
+
+	        //var fileName = user.id + '-' + postID + '-' + imageID + '.jpg';
+	        var fileName = imageURI + '.jpg';
+
+
+	        var s3URI = encodeURI("http://bgchan-swd.s3.amazonaws.com/"),
+		    acl = "public-read";
+
+
+		    var 
+			    //crypto = require('crypto'),
+			    crypto,
+			    secret = AWS.config.credentials.secretAccessKey,
+			    policy,
+			    policyBase64,
+			    signature;
+		 
+			policy = {
+			    "expiration": "2020-12-31T12:00:00.000Z",
+			    "conditions": [
+			        {"bucket": "bgchan-swd"},
+			        ["starts-with", "$key", ""],
+			        {"acl": 'public-read'},
+			        ["starts-with", "$Content-Type", ""],
+	        		["content-length-range", 0, 524288000]
+			    ]
+			};
+
+			//["starts-with", "$key", ""],
+			//["starts-with", "$Content-Type", ""],
+	        //["content-length-range", 0, 524288000]
+			 
+			//policyBase64 = new Buffer(JSON.stringify(policy), 'utf8').toString('base64');
+			policyBase64 = encodeURI(JSON.stringify(policy)).toString(CryptoJS.enc.Base64);
+			//policyBase64 = JSON.stringify(policy).toString(CryptoJS.enc.Base64);
+			console.log("Policy Base64:");
+			console.log(policyBase64);
+			 
+			//signature = crypto.createHmac('sha1', secret).update(policyBase64).digest('base64');
+			signature = CryptoJS.SHA1(secret).toString(CryptoJS.enc.Base64);
+
+			console.log("Signature:");
+			console.log(signature);
+
+
+
+	        console.log('Uploading image: ' + imageURI);
+			console.log('With key: ' + fileName);
+	 
+	        options.fileKey = "file";
+	        options.fileName = fileName;
+	        options.mimeType = "text/plain";
+	        options.chunkedMode = false;
+	        var params = {
+	            "key": fileName,
+	            "AWSAccessKeyId": AWS.config.credentials.accessKeyId,
+	            "acl": "public-read",
+	        	"policy": policyBase64,
+	            "signature": signature,
+
+	            "x-amz-security-token": AWS.config.credentials.sessionToken,
+	            // "Content-Type": "image/jpeg",
+	            "Content-Type": "text/plain",
+	            //"file": imageURI
+	            // ft. upload with file: no key, without file: no awsaccess
+	            // http post with file: nothing happens, without: conflicting acl, policy
+	        };
+
+	        options.params = JSON.stringify(params);
+	        //options.params = params;
+
+
+	        console.log('params:');
+	        console.log(JSON.stringify(options));
+	 
+	        ft.upload(imageURI, s3URI,
+	            function (e) {
+	            	// Success
+	            	console.log(e);
+	                deferred.resolve(e);
+	            },
+	            function (e) {
+	            	// Fail
+	            	console.log(e);
+	                deferred.reject(e);
+	            }, 
+	            options);
+
+	 
+	        return deferred.promise();    
+	    }
 
 	}
 });
@@ -861,7 +1230,10 @@ app.provider('AWSService', function() {
 	    		AWS.config.credentials = new AWS.WebIdentityCredentials(config);
 	    		AWS.config.region = 'us-west-1';
 
-	    		//console.log(AWS.config.credentials);
+	    		console.log(AWS.config.credentials);
+
+	    		// Save credentials
+
 
 	    		credentialsDefer.resolve(AWS.config.credentials);
 	    	},
@@ -904,6 +1276,9 @@ app.provider('AWSService', function() {
 	    	},
 	    	ReferencesTable: function() {
 	    		return 'references-stotle-dev';	
+	    	},
+	    	TextbooksTable: function() {
+	    		return 'test-textbook-4'
 	    	}
 	    }
 

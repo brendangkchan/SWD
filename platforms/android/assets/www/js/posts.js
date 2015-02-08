@@ -407,7 +407,7 @@ app.controller('PostCtrl', function($rootScope, $scope, $window, $state, $stateP
   });
 
 
-  // // take picture
+  // take picture
   var takePicture = function() {
     console.log("got camera button click");
 

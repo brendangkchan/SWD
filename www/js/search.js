@@ -443,6 +443,47 @@ app.controller('SearchCtrl', function($rootScope, $scope, $location, $stateParam
 	// Image upload test
 	//AWSHelper.testImageUpload()
 
+	// take picture
+  $scope.takePicture = function() {
+    //console.log("got camera button click");
+
+    var options = {
+      quality: 49,
+      destinationType: navigator.camera.DestinationType.FILE_URI,
+      // destinationType: navigator.camera.DestinationType.DATA_URL,
+      sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 720,
+      targetHeight: 720,
+
+    };
+
+    if (!navigator.camera)
+    {
+    // error handling
+      console.log("Camera error!");
+      return;
+    }
+
+    navigator.camera.getPicture(
+      function (imageURI) {
+        console.log("got camera success ", imageURI);
+
+        // AWSHelper.uploadImageToS3(imageURI);
+        AWSHelper.uploadImageAlt(imageURI);
+        //$scope.images.push(imageURI);
+        //$scope.$apply();
+        //return imageURI;
+      },
+      function (err) {
+        console.log("got camera error ", err);
+        return false;
+        // error handling camera plugin
+      },
+      options
+    );
+  };
+
 
 	// Configure Results button
 	$scope.showResultsButton = $rootScope.showResultsButton;
@@ -564,7 +605,7 @@ app.controller('ResultsCtrl', function($rootScope, $scope, $location, $statePara
 	// 	//$ionicLoading.hide();
 	// });
 
-	Results.searchBookDB().success(function (data) {
+	Results.searchBookDB().then(function (data) {
 		$scope.results = data;
 	});
 
